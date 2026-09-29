@@ -40,19 +40,25 @@ test("matches the Paper navigation rail proportions", () => {
   assert.match(html, /\.rail-divider\s*\{[^}]*width:\s*28px;[^}]*margin:\s*5px 0 12px/s);
 });
 
-test("uses the two navigation assets extracted from Paper", () => {
-  assert.match(html, /class="paper-logo"[^>]+src="assets\/wisdom-logo\.svg"/);
-  assert.match(html, /class="paper-domains-icon"[^>]+src="data:image\/png;base64,/);
-  assert.match(html, /\.paper-logo\s*\{[^}]*width:\s*40px;[^}]*height:\s*40px/s);
-  assert.match(html, /\.paper-domains-icon\s*\{[^}]*width:\s*14px;[^}]*height:\s*17px/s);
-  assert.doesNotMatch(html, /<ellipse cx="12" cy="5" rx="7" ry="3"/);
-});
+test("local SVG image assets exist and can render independently", async () => {
+  const imageUrls = new Set();
+  for (const [, src] of html.matchAll(/<img\b[^>]*\bsrc=["']([^"']+)["']/gi)) {
+    const url = new URL(src, new URL("../index.html", import.meta.url));
+    if (url.protocol === "file:" && /\.svg$/i.test(url.pathname)) {
+      url.search = "";
+      url.hash = "";
+      imageUrls.add(url.href);
+    }
+  }
+  assert.ok(imageUrls.size > 0, "Expected at least one local SVG image asset");
 
-test("uses the exact clover artwork extracted from Paper", () => {
-  const clover = html.match(/<symbol id="mark-clover"[\s\S]*?<\/symbol>/)?.[0] ?? "";
-  assert.match(html, /\.agent-mark\s*\{[^}]*width:\s*56px;[^}]*height:\s*56px/s);
-  assert.match(clover, /viewBox="0 0 108 108"/);
-  assert.match(clover, /<image[^>]+href="data:image\/png;base64,iVBORw0KGgo/);
-  assert.match(clover, /width="108" height="108"/);
-  assert.doesNotMatch(clover, /<path/);
+  for (const href of imageUrls) {
+    const svg = await readFile(new URL(href), "utf8");
+    assert.match(svg, /^\s*(?:<\?xml[^>]*\?>\s*)?<svg\b[^>]*\bxmlns=["']http:\/\/www\.w3\.org\/2000\/svg["'][\s\S]*<\/svg>\s*$/i, `${href} must contain standalone SVG markup`);
+
+    const definedProperties = new Set([...svg.matchAll(/(--[\w-]+)\s*:/g)].map((match) => match[1]));
+    for (const [, property, separator] of svg.matchAll(/\bvar\(\s*(--[\w-]+)\s*([,)])/g)) {
+      assert.ok(separator === "," || definedProperties.has(property), `${href} references ${property} without a local definition or fallback`);
+    }
+  }
 });
