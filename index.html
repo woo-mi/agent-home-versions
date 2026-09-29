@@ -293,16 +293,18 @@
     .v3 .suggestion p { margin-top: 2px; font-size: 12px; line-height: 17px; }
 
     .v4 .suggestions {
-      width: min(778px, 90%);
+      width: max-content;
+      max-width: 90%;
       margin: 40px auto 0;
       display: grid;
-      gap: 12px;
+      gap: 18px;
     }
     .v4 .suggestion { min-height: 36px; justify-self: stretch; width: 100%; }
     .v4 .agent-icon-slot { width: 28px; height: 28px; flex: 0 0 28px; display: grid; place-items: center; border-radius: 50%; background: #f2f2f4; }
     .v4 .agent-mark { width: 24px; height: 24px; }
     .v4 .suggestion-copy { margin-left: 14px; }
     .v4 .suggestion h2 { font-size: 16px; font-weight: 400; line-height: 24px; letter-spacing: 0; white-space: normal; }
+    .v4 .suggestion p { white-space: normal; }
 
     @media (max-width: 900px) {
       body { overflow: auto; }
@@ -467,10 +469,10 @@
           </div>
           <div class="section-toggle"><span class="pill"><svg><use href="#icon-app"/></svg>Apps</span><span class="pill active"><svg><use href="#icon-agent"/></svg>Agents</span></div>
           <div class="suggestions">
-            <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark" aria-hidden="true"><use href="#paper-daily-brief"/></svg></span><div class="suggestion-copy"><h2>Daily brief</h2></div></article>
-            <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-circle"/></svg></span><div class="suggestion-copy"><h2>Weekly update</h2></div></article>
-            <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-square"/></svg></span><div class="suggestion-copy"><h2>Quately business review</h2></div></article>
-            <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-diamond"/></svg></span><div class="suggestion-copy"><h2>Executive recap</h2></div></article>
+            <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark" aria-hidden="true"><use href="#paper-daily-brief"/></svg></span><div class="suggestion-copy"><h2>Daily brief</h2><p>Today’s priorities and key updates</p></div></article>
+            <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-circle"/></svg></span><div class="suggestion-copy"><h2>Weekly update</h2><p>This week’s progress and next steps</p></div></article>
+            <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-square"/></svg></span><div class="suggestion-copy"><h2>Quately business review</h2><p>Quarterly performance, trends, and goals</p></div></article>
+            <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-diamond"/></svg></span><div class="suggestion-copy"><h2>Executive recap</h2><p>Key results, decisions, and actions</p></div></article>
           </div>
         </div>
       </section>
