@@ -29,3 +29,16 @@ test("preserves the Paper frame copy", () => {
   assert.match(html, /Key results, decisions, and actions/);
   assert.match(html, /Category and product trends vs plan/);
 });
+
+test("matches the Paper navigation rail proportions", () => {
+  assert.match(html, /--rail:\s*60px/);
+  assert.match(html, /\.brand\s*\{[^}]*width:\s*60px;[^}]*height:\s*64px/s);
+  assert.match(html, /\.rail-button\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px/s);
+});
+
+test("uses an unclipped symmetric clover mark", () => {
+  const clover = html.match(/<symbol id="mark-clover"[\s\S]*?<\/symbol>/)?.[0] ?? "";
+  assert.match(clover, /viewBox="-2 -2 68 68"/);
+  assert.doesNotMatch(clover, /transform=/);
+  assert.match(clover, /M32 4C42\.5 4 51 12\.5 51 23/);
+});
