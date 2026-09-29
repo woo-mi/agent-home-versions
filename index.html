@@ -303,19 +303,19 @@
       gap: 18px;
     }
     :is(.v0, .v1) .section-toggle { width: 810px; max-width: 100%; justify-content: flex-start; }
-    :is(.v0, .v1, .v2, .va, .vb) .suggestion { min-height: 36px; justify-self: stretch; width: 100%; }
-    :is(.v0, .v1, .v2, .va, .vb) .agent-icon-slot { width: 28px; height: 28px; flex: 0 0 28px; display: grid; place-items: center; }
+    :is(.v0, .v1, .v2, .va, .vb, .vc) .suggestion { min-height: 36px; justify-self: stretch; width: 100%; }
+    :is(.v0, .v1, .v2, .va, .vb, .vc) .agent-icon-slot { width: 28px; height: 28px; flex: 0 0 28px; display: grid; place-items: center; }
     .v1 .agent-icon-slot { border-radius: 50%; background: #f2f2f4; }
-    :is(.v0, .v1, .v2, .va, .vb) .agent-mark { width: 28px; height: 28px; }
+    :is(.v0, .v1, .v2, .va, .vb, .vc) .agent-mark { width: 28px; height: 28px; }
     :is(.v0, .v1) .agent-mark { width: 24px; height: 24px; }
     .v0 .agent-mark { width: 26px; height: 26px; }
-    :is(.v0, .v1, .v2, .va, .vb) .suggestion-copy { margin-left: 14px; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 6px; }
-    :is(.v0, .v1, .v2, .va, .vb) .suggestion h2 { font-size: 16px; font-weight: 400; line-height: 24px; letter-spacing: 0; white-space: normal; }
-    :is(.v0, .v1, .v2, .va, .vb) .suggestion p { margin: 0; white-space: normal; }
+    :is(.v0, .v1, .v2, .va, .vb, .vc) .suggestion-copy { margin-left: 14px; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 6px; }
+    :is(.v0, .v1, .v2, .va, .vb, .vc) .suggestion h2 { font-size: 16px; font-weight: 400; line-height: 24px; letter-spacing: 0; white-space: normal; }
+    :is(.v0, .v1, .v2, .va, .vb, .vc) .suggestion p { margin: 0; white-space: normal; }
 
-    :is(.v2, .va, .vb) .suggestions { width: max-content; max-width: 90%; margin: 24px auto 0; display: grid; gap: 18px; }
+    :is(.v2, .va, .vb, .vc) .suggestions { width: max-content; max-width: 90%; margin: 24px auto 0; display: grid; gap: 18px; }
 
-    :is(.va, .vb) .suggestion { padding-inline: 8px; }
+    :is(.va, .vb, .vc) .suggestion { padding-inline: 8px; }
     .va .suggestion:hover {
       background-color: #f5f5f5;
       border-radius: 4px;
@@ -326,7 +326,7 @@
       border-radius: 4px;
       box-shadow: 0 0 0 8px #f5f5f5;
     }
-    :is(.va, .vb) .suggestion:hover .agent-mark {
+    :is(.va, .vb, .vc) .suggestion:hover .agent-mark {
       --mark-fill: color-mix(in srgb, var(--mark-color) 8%, transparent);
       --mark-outline: var(--mark-color);
       --mark-eyes: var(--mark-color);
@@ -447,6 +447,7 @@
         <ul class="version-menu" role="menu" hidden>
           <li><button class="version-option" type="button" role="menuitem" data-version="va">vA</button></li>
           <li><button class="version-option" type="button" role="menuitem" data-version="vb">vB</button></li>
+          <li><button class="version-option" type="button" role="menuitem" data-version="vc">vC</button></li>
           <li><button class="version-option" type="button" role="menuitem" data-version="v0">v0</button></li>
           <li><button class="version-option" type="button" role="menuitem" data-version="v1">v1</button></li>
           <li><button class="version-option" type="button" role="menuitem" data-version="v2">v2</button></li>
@@ -556,6 +557,26 @@
         </div>
       </section>
 
+      <section class="screen vc" data-screen="vc" hidden>
+        <div class="stage">
+          <h1 class="prompt-title">What do you want to build, Woomi?</h1>
+          <div class="composer" aria-label="App description composer">
+            <div class="placeholder">Describe the app you want to build</div>
+            <div class="composer-row">
+              <div class="composer-left"><span class="plus"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><div class="mode-toggle"><span class="mode">Ask</span><span class="mode selected">Build</span></div></div>
+              <div class="composer-right"><span class="thinking"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 18V5"/><path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/><path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/><path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/><path d="M18 18a4 4 0 0 0 2-7.464"/><path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/><path d="M6 18a4 4 0 0 1-2-7.464"/><path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/></svg>Thinking<svg class="thinking-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span><span class="mic-button"><svg class="composer-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg></span><span class="arrow-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 11 5-5 5 5M12 6v12"/></svg></span></div>
+            </div>
+          </div>
+          <div class="section-toggle"><span class="pill"><svg><use href="#icon-app"/></svg>Apps</span><span class="pill active"><svg><use href="#icon-agent"/></svg>Agents</span></div>
+          <div class="suggestions">
+            <a class="suggestion" data-daily-brief href="#vc/conv"><span class="agent-icon-slot"><svg class="agent-mark" aria-hidden="true"><use href="#paper-daily-brief"/></svg></span><div class="suggestion-copy"><h2>Daily brief</h2><p>Today’s priorities and key updates</p></div></a>
+            <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-circle"/></svg></span><div class="suggestion-copy"><h2>Weekly update</h2><p>This week’s progress and next steps</p></div></article>
+            <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-square"/></svg></span><div class="suggestion-copy"><h2>Quately business review</h2><p>Quarterly performance, trends, and goals</p></div></article>
+            <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-diamond"/></svg></span><div class="suggestion-copy"><h2>Executive recap</h2><p>Key results, decisions, and actions</p></div></article>
+          </div>
+        </div>
+      </section>
+
       <section class="screen v3" data-screen="v3" hidden>
         <div class="stage">
           <h1 class="prompt-title">What do you want to build, Woomi?</h1>
@@ -632,8 +653,8 @@
   </main>
 
   <script>
-    const allowedVersions = ["v0", "v1", "v2", "v3", "v4", "v5", "va", "vb"];
-    const versionLabels = { va: "vA", vb: "vB" };
+    const allowedVersions = ["v0", "v1", "v2", "v3", "v4", "v5", "va", "vb", "vc"];
+    const versionLabels = { va: "vA", vb: "vB", vc: "vC" };
     const versionWrap = document.querySelector(".version-wrap");
     const versionTrigger = document.querySelector(".version-trigger");
     const versionMenu = document.querySelector(".version-menu");
