@@ -31,14 +31,20 @@ test("preserves the Paper frame copy", () => {
 });
 
 test("matches the Paper navigation rail proportions", () => {
-  assert.match(html, /--rail:\s*60px/);
-  assert.match(html, /\.brand\s*\{[^}]*width:\s*60px;[^}]*height:\s*64px/s);
-  assert.match(html, /\.rail-button\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px/s);
+  assert.match(html, /--rail:\s*48px/);
+  assert.match(html, /\.left-rail\s*\{[^}]*border-right:\s*1px solid #e6e6e6;[^}]*background:\s*rgba\(245,\s*245,\s*245,\s*\.82\)/s);
+  assert.match(html, /\.brand\s*\{[^}]*width:\s*40px;[^}]*height:\s*40px;[^}]*margin-top:\s*8px/s);
+  assert.match(html, /\.rail-nav\s*\{[^}]*margin-top:\s*11px/s);
+  assert.match(html, /\.rail-button\s*\{[^}]*width:\s*36px;[^}]*height:\s*36px/s);
+  assert.match(html, /\.rail-button\.active\s*\{[^}]*background:\s*#e6e6e6/s);
+  assert.match(html, /\.rail-divider\s*\{[^}]*width:\s*28px;[^}]*margin:\s*5px 0 12px/s);
 });
 
-test("uses an unclipped symmetric clover mark", () => {
+test("uses the Paper-sized symmetric clover mark", () => {
   const clover = html.match(/<symbol id="mark-clover"[\s\S]*?<\/symbol>/)?.[0] ?? "";
-  assert.match(clover, /viewBox="-2 -2 68 68"/);
+  assert.match(html, /\.agent-mark\s*\{[^}]*width:\s*56px;[^}]*height:\s*56px/s);
+  assert.match(clover, /viewBox="0 0 64 64"/);
   assert.doesNotMatch(clover, /transform=/);
-  assert.match(clover, /M32 4C42\.5 4 51 12\.5 51 23/);
+  assert.match(clover, /M32 3C42\.5 3 51 11\.5 51 22/);
+  assert.match(clover, /C45 57 39 61 32 61C25 61 19 57 19 52/);
 });
