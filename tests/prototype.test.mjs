@@ -4,16 +4,11 @@ import { readFile } from "node:fs/promises";
 
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 
-test("contains three version panels and selectors", () => {
-  for (const version of ["v1", "v2", "v3"]) {
+test("contains four version panels and selectors", () => {
+  for (const version of ["v1", "v2", "v3", "v4"]) {
     assert.match(html, new RegExp(`data-screen="${version}"`));
     assert.match(html, new RegExp(`data-version="${version}"`));
   }
-});
-
-test("removes the old fourth version entry", () => {
-  assert.doesNotMatch(html, /data-(?:screen|version)="v4"/);
-  assert.equal((html.match(/data-screen=/g) ?? []).length, 3);
 });
 
 test("defines hash normalization and rendering", () => {
