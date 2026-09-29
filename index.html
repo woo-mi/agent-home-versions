@@ -293,12 +293,14 @@
     .v3 .suggestion p { margin-top: 2px; font-size: 12px; line-height: 17px; }
 
     .v4 .suggestions {
-      width: max-content;
-      max-width: 90%;
+      width: 810px;
+      max-width: 100%;
+      padding-inline: 23px;
       margin: 40px auto 0;
       display: grid;
       gap: 18px;
     }
+    .v4 .section-toggle { width: 810px; max-width: 100%; padding-inline: 23px; justify-content: flex-start; }
     .v4 .suggestion { min-height: 36px; justify-self: stretch; width: 100%; }
     .v4 .agent-icon-slot { width: 28px; height: 28px; flex: 0 0 28px; display: grid; place-items: center; }
     .v4 .agent-mark { width: 28px; height: 28px; }
@@ -312,6 +314,7 @@
       .screen { min-height: 860px; overflow: visible; }
       .stage { top: 170px; width: calc(100vw - 78px); }
       .composer { width: min(810px, 92%); }
+      .v4 .section-toggle, .v4 .suggestions { width: min(810px, 92%); }
       .v1 .suggestions,
       .v2 .suggestions,
       .v3 .suggestions {
