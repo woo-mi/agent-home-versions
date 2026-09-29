@@ -4,8 +4,8 @@ import { readFile } from "node:fs/promises";
 
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 
-test("contains nine version panels and selectors", () => {
-  for (const version of ["v0", "v1", "v2", "v3", "v4", "v5", "va", "vb", "vc"]) {
+test("contains ten version panels and selectors", () => {
+  for (const version of ["v0", "v1", "v2", "v3", "v4", "v5", "va", "va-smaller", "vb", "vc"]) {
     assert.match(html, new RegExp(`data-screen="${version}"`));
     assert.match(html, new RegExp(`data-version="${version}"`));
   }
