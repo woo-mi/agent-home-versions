@@ -40,6 +40,14 @@ test("matches the Paper navigation rail proportions", () => {
   assert.match(html, /\.rail-divider\s*\{[^}]*width:\s*28px;[^}]*margin:\s*5px 0 12px/s);
 });
 
+test("uses the two navigation assets extracted from Paper", () => {
+  assert.match(html, /class="paper-logo"[^>]+src="data:image\/png;base64,/);
+  assert.match(html, /class="paper-domains-icon"[^>]+src="data:image\/png;base64,/);
+  assert.match(html, /\.paper-logo\s*\{[^}]*width:\s*20px;[^}]*height:\s*23px/s);
+  assert.match(html, /\.paper-domains-icon\s*\{[^}]*width:\s*14px;[^}]*height:\s*17px/s);
+  assert.doesNotMatch(html, /<ellipse cx="12" cy="5" rx="7" ry="3"/);
+});
+
 test("uses the Paper-sized symmetric clover mark", () => {
   const clover = html.match(/<symbol id="mark-clover"[\s\S]*?<\/symbol>/)?.[0] ?? "";
   assert.match(html, /\.agent-mark\s*\{[^}]*width:\s*56px;[^}]*height:\s*56px/s);
