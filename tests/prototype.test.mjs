@@ -48,11 +48,11 @@ test("uses the two navigation assets extracted from Paper", () => {
   assert.doesNotMatch(html, /<ellipse cx="12" cy="5" rx="7" ry="3"/);
 });
 
-test("uses the Paper-sized symmetric clover mark", () => {
+test("uses the exact clover artwork extracted from Paper", () => {
   const clover = html.match(/<symbol id="mark-clover"[\s\S]*?<\/symbol>/)?.[0] ?? "";
   assert.match(html, /\.agent-mark\s*\{[^}]*width:\s*56px;[^}]*height:\s*56px/s);
-  assert.match(clover, /viewBox="0 0 64 64"/);
-  assert.doesNotMatch(clover, /transform=/);
-  assert.match(clover, /M32 3C42\.5 3 51 11\.5 51 22/);
-  assert.match(clover, /C45 57 39 61 32 61C25 61 19 57 19 52/);
+  assert.match(clover, /viewBox="0 0 108 108"/);
+  assert.match(clover, /<image[^>]+href="data:image\/png;base64,iVBORw0KGgo/);
+  assert.match(clover, /width="108" height="108"/);
+  assert.doesNotMatch(clover, /<path/);
 });
