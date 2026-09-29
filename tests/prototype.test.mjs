@@ -13,7 +13,7 @@ test("contains six version panels and selectors", () => {
 
 test("defines hash normalization and rendering", () => {
   assert.match(html, /function normalizeVersion\(hash\)/);
-  assert.match(html, /function renderVersion\(version\)/);
+  assert.match(html, /function renderVersion\(version, conversation = false\)/);
   assert.match(html, /addEventListener\("hashchange"/);
 });
 
