@@ -6,6 +6,7 @@ Create a lightweight, shareable prototype that compares four existing Agent home
 
 ## Scope
 
+- Use the four V1–V4 frames in `https://app.paper.design/file/01M32J0S3B3M2EQ8B2MQ1VTG50/p-3-0` as the visual source of truth.
 - Reproduce the four supplied Paper layouts as V1, V2, V3, and V4.
 - Add a shared dark version control in the upper-right corner of every view.
 - Allow the control to switch between all four layouts.
