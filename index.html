@@ -276,16 +276,6 @@
     .v2 .suggestion-copy { margin-left: 14px; }
 
     .v3 .suggestions {
-      width: 954px;
-      margin: 55px auto 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      column-gap: 38px;
-      align-items: center;
-    }
-    .v3 .suggestion-copy { margin-left: 13px; }
-
-    .v4 .suggestions {
       width: 900px;
       margin: 55px auto 0;
       display: grid;
@@ -293,9 +283,9 @@
       column-gap: 28px;
       align-items: center;
     }
-    .v4 .suggestion-copy { margin-left: 10px; }
-    .v4 .suggestion h2 { font-size: 14px; line-height: 18px; }
-    .v4 .suggestion p { margin-top: 2px; font-size: 12px; line-height: 17px; }
+    .v3 .suggestion-copy { margin-left: 10px; }
+    .v3 .suggestion h2 { font-size: 14px; line-height: 18px; }
+    .v3 .suggestion p { margin-top: 2px; font-size: 12px; line-height: 17px; }
 
     @media (max-width: 900px) {
       body { overflow: auto; }
@@ -305,8 +295,7 @@
       .composer { width: min(810px, 92%); }
       .v1 .suggestions,
       .v2 .suggestions,
-      .v3 .suggestions,
-      .v4 .suggestions {
+      .v3 .suggestions {
         width: min(650px, 90%);
         grid-template-columns: 1fr;
         gap: 24px;
@@ -394,7 +383,6 @@
           <li><button class="version-option" type="button" role="menuitem" data-version="v1">v1</button></li>
           <li><button class="version-option" type="button" role="menuitem" data-version="v2">v2</button></li>
           <li><button class="version-option" type="button" role="menuitem" data-version="v3">v3</button></li>
-          <li><button class="version-option" type="button" role="menuitem" data-version="v4">v4</button></li>
         </ul>
       </div>
 
@@ -443,22 +431,6 @@
           </div>
           <div class="section-toggle"><span class="pill"><svg><use href="#icon-app"/></svg>Apps</span><span class="pill active"><svg><use href="#icon-agent"/></svg>Agents</span></div>
           <div class="suggestions">
-            <article class="suggestion"><svg class="agent-mark" aria-hidden="true"><use href="#paper-daily-brief-muted"/></svg><div class="suggestion-copy"><h2>Daily brief</h2><p>Category and product trends vs plan</p></div></article>
-            <article class="suggestion"><svg class="agent-mark"><use href="#mark-square"/></svg><div class="suggestion-copy"><h2>Weekly update</h2><p>Category and product trends vs plan</p></div></article>
-            <article class="suggestion"><svg class="agent-mark"><use href="#mark-diamond"/></svg><div class="suggestion-copy"><h2>Quately business review</h2><p>Category and product trends vs plan</p></div></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="screen v4" data-screen="v4" hidden>
-        <div class="stage">
-          <h1 class="prompt-title">What do you want to build, Woomi?</h1>
-          <div class="composer" aria-label="App description composer">
-            <div class="placeholder">Describe the app you want to build</div>
-            <div class="composer-row"><div class="composer-left"><span class="plus">+</span><div class="mode-toggle"><span class="mode">Ask</span><span class="mode selected">Build</span></div></div><div class="composer-right"><span class="thinking"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="7"/><path d="M9 9v6M15 9v6M8 5l-2-2M16 5l2-2"/></svg>Thinking <span>⌄</span></span><svg class="composer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 5v7a3 3 0 0 0 6 0V5M6 11v1a6 6 0 0 0 12 0v-1M12 18v3"/></svg><span class="arrow-button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m7 11 5-5 5 5M12 6v12"/></svg></span></div></div>
-          </div>
-          <div class="section-toggle"><span class="pill"><svg><use href="#icon-app"/></svg>Apps</span><span class="pill active"><svg><use href="#icon-agent"/></svg>Agents</span></div>
-          <div class="suggestions">
             <article class="suggestion"><svg class="agent-mark" aria-hidden="true"><use href="#paper-daily-brief-small"/></svg><div class="suggestion-copy"><h2>Daily brief</h2><p>Category and product trends vs plan</p></div></article>
             <article class="suggestion"><svg class="agent-mark"><use href="#mark-square"/></svg><div class="suggestion-copy"><h2>Weekly update</h2><p>Category and product trends vs plan</p></div></article>
             <article class="suggestion"><svg class="agent-mark"><use href="#mark-diamond"/></svg><div class="suggestion-copy"><h2>Quately business review</h2><p>Category and product trends vs plan</p></div></article>
@@ -469,13 +441,14 @@
   </main>
 
   <script>
-    const allowedVersions = ["v1", "v2", "v3", "v4"];
+    const allowedVersions = ["v1", "v2", "v3"];
     const versionWrap = document.querySelector(".version-wrap");
     const versionTrigger = document.querySelector(".version-trigger");
     const versionMenu = document.querySelector(".version-menu");
 
     function normalizeVersion(hash) {
       const value = hash.replace(/^#/, "").toLowerCase();
+      if (value === "v4") return "v3";
       return allowedVersions.includes(value) ? value : "v1";
     }
 
