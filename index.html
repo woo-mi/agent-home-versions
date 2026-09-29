@@ -218,23 +218,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
     }
     .pill {
       height: 46px;
-      padding: 0 22px;
-      border: 1px solid #dedee1;
+      padding: 12px 22px;
+      border: 1px solid #e4e6ea;
       border-radius: 24px;
       background: white;
-      color: #202024;
+      color: #15171b;
       display: inline-flex;
       align-items: center;
-      gap: 11px;
-      font-size: 15px;
-      box-shadow: 0 1px 2px rgba(0,0,0,.02);
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      box-shadow: 0 1px 2px #0f11280a;
     }
-    .pill.active { border-color: #18181b; background: #18181b; color: white; }
-    .pill svg { width: 17px; height: 17px; }
+    .pill.active { background: #15171b; color: #fbfcfd; }
+    .pill svg { width: 20px; height: 20px; flex-shrink: 0; }
 
     .suggestions { color: var(--ink); }
     .suggestion { display: flex; align-items: center; min-width: 0; }
@@ -366,13 +368,14 @@
       <path d="M32 3c8.5 13.1 15.8 20.6 29 29-13.2 8.4-20.5 15.9-29 29C23.5 47.9 16.2 40.4 3 32 16.2 23.6 23.5 16.1 32 3Z" fill="var(--mark-fill, none)" stroke="var(--mark-outline, currentColor)" stroke-width="3.4"/>
       <path class="mark-eyes" d="M27 28v8M39 28v8" stroke="var(--mark-eyes, currentColor)" stroke-width="3.5" stroke-linecap="round"/>
     </symbol>
-    <symbol id="icon-app" viewBox="0 0 24 24">
-      <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <path d="M7 8h.01M10 8h.01M13 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <symbol id="icon-app" viewBox="0 0 20 20">
+      <path d="M3.583 3.5L16.381 3.5C17.265 3.5 17.981 4.228 17.981 5.126L17.981 14.874C17.981 15.772 17.265 16.5 16.381 16.5L3.583 16.5C2.699 16.5 1.981 15.772 1.981 14.874L1.981 5.126C1.981 4.228 2.699 3.5 3.583 3.5Z" fill="none" stroke="#666666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M5 7L5.007 7M8 7L8.007 7M10.999 7L11.007 7" fill="none" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
-    <symbol id="icon-agent" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <path d="M9.4 10v4M14.6 10v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+    <symbol id="icon-agent" viewBox="0 0 20 20">
+      <circle cx="10" cy="10" r="6.944" fill="none" stroke="#fbfcfd" stroke-width="1.5"/>
+      <rect x="8.333" y="7.222" width="1.667" height="3.333" rx="0.75" fill="#fbfcfd"/>
+      <rect x="12.222" y="7.222" width="1.667" height="3.333" rx="0.75" fill="#fbfcfd"/>
     </symbol>
   </svg>
 
