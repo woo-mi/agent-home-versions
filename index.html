@@ -235,18 +235,19 @@
     .suggestion { display: flex; align-items: center; min-width: 0; }
     .agent-mark { flex: 0 0 auto; width: 40px; height: 40px; color: #65666b; }
 
-    .suggestion:nth-child(1) { --mark-color: #0688ff; }
-    .suggestion:nth-child(2) { --mark-color: #9558cb; }
-    .suggestion:nth-child(3) { --mark-color: #33a363; }
-    .suggestion:nth-child(4) { --mark-color: #fd8b00; }
+    .suggestion:nth-child(1) { --mark-color: #0688ff; --glance-x: 7px; --glance-y: 0px; }
+    .suggestion:nth-child(2) { --mark-color: #9558cb; --glance-x: 0px; --glance-y: -7px; }
+    .suggestion:nth-child(3) { --mark-color: #33a363; --glance-x: -7px; --glance-y: 0px; }
+    .suggestion:nth-child(4) { --mark-color: #fd8b00; --glance-x: 0px; --glance-y: 7px; }
     .suggestion:hover .agent-mark {
       --mark-fill: var(--mark-color);
       --mark-outline: var(--mark-color);
       --mark-eyes: #fff;
-      --mark-eye-shift: 7px;
+      --mark-eye-x: var(--glance-x);
+      --mark-eye-y: var(--glance-y);
     }
     .mark-eyes {
-      transform: translateX(var(--mark-eye-shift, 0px));
+      transform: translate(var(--mark-eye-x, 0px), var(--mark-eye-y, 0px));
       transition: transform 320ms cubic-bezier(.2, .8, .2, 1);
     }
     @media (prefers-reduced-motion: reduce) {
