@@ -315,6 +315,17 @@
 
     :is(.v2, .va) .suggestions { width: max-content; max-width: 90%; margin: 24px auto 0; display: grid; gap: 18px; }
 
+    .va .suggestion:hover {
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      box-shadow: 0 0 0 8px #f5f5f5;
+    }
+    .va .suggestion:hover .agent-mark {
+      --mark-fill: color-mix(in srgb, var(--mark-color) 8%, transparent);
+      --mark-outline: var(--mark-color);
+      --mark-eyes: var(--mark-color);
+    }
+
     @media (max-width: 900px) {
       body { overflow: auto; }
       .version-wrap { bottom: 14px; right: 14px; }
