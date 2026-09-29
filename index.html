@@ -103,8 +103,8 @@
     .version-wrap {
       position: fixed;
       z-index: 50;
-      top: 22px;
-      right: 24px;
+      bottom: 16px;
+      right: 16px;
     }
     .version-trigger {
       height: 36px;
@@ -125,30 +125,44 @@
     .version-wrap.open .chevron { transform: rotate(180deg); }
     .version-menu {
       position: absolute;
-      top: calc(100% + 6px);
+      bottom: calc(100% + 6px);
       right: 0;
-      width: 100%;
+      width: 200px;
       margin: 0;
       padding: 6px;
       list-style: none;
-      border: 1px solid #565656;
-      border-radius: 4px;
-      background: #3f3f3f;
-      box-shadow: 0 8px 24px rgba(0,0,0,.18);
+      border: 1px solid #e5e5e7;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
     }
     .version-option {
       width: 100%;
-      height: 34px;
+      height: 32px;
       border: 0;
-      border-radius: 3px;
+      border-radius: 8px;
       background: transparent;
-      color: #eee;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      line-height: 20px;
       text-align: left;
-      padding: 0 12px;
+      padding: 0 8px;
       cursor: pointer;
     }
     .version-option:hover,
-    .version-option[aria-current="true"] { background: #565656; color: white; }
+    .version-option:focus-visible { background: #eeeef0; outline: none; }
+    .version-option[aria-current="true"]::after {
+      content: "";
+      width: 6px;
+      height: 11px;
+      margin-left: 2px;
+      border: solid currentColor;
+      border-width: 0 1.5px 1.5px 0;
+      transform: translateY(-2px) rotate(45deg);
+    }
 
     .screen { position: relative; min-height: 100vh; overflow: hidden; }
     .stage {
@@ -266,7 +280,7 @@
 
     @media (max-width: 900px) {
       body { overflow: auto; }
-      .version-wrap { top: 14px; right: 14px; }
+      .version-wrap { bottom: 14px; right: 14px; }
       .screen { min-height: 860px; overflow: visible; }
       .stage { top: 170px; width: calc(100vw - 78px); }
       .composer { width: min(810px, 92%); }
@@ -333,14 +347,14 @@
       <div class="version-wrap">
         <button class="version-trigger" type="button" aria-haspopup="menu" aria-expanded="false">
           <svg class="layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-9 5 9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg>
-          <span class="version-label" data-current-version>V1</span>
+          <span class="version-label" data-current-version>v1</span>
           <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 7 6 6 6-6"/></svg>
         </button>
         <ul class="version-menu" role="menu" hidden>
-          <li><button class="version-option" type="button" role="menuitem" data-version="v1">V1</button></li>
-          <li><button class="version-option" type="button" role="menuitem" data-version="v2">V2</button></li>
-          <li><button class="version-option" type="button" role="menuitem" data-version="v3">V3</button></li>
-          <li><button class="version-option" type="button" role="menuitem" data-version="v4">V4</button></li>
+          <li><button class="version-option" type="button" role="menuitem" data-version="v1">v1</button></li>
+          <li><button class="version-option" type="button" role="menuitem" data-version="v2">v2</button></li>
+          <li><button class="version-option" type="button" role="menuitem" data-version="v3">v3</button></li>
+          <li><button class="version-option" type="button" role="menuitem" data-version="v4">v4</button></li>
         </ul>
       </div>
 
@@ -435,7 +449,7 @@
       document.querySelectorAll("[data-screen]").forEach((screen) => {
         screen.hidden = screen.dataset.screen !== version;
       });
-      document.querySelector("[data-current-version]").textContent = version.toUpperCase();
+      document.querySelector("[data-current-version]").textContent = version;
       document.querySelectorAll("[data-version]").forEach((option) => {
         option.setAttribute("aria-current", String(option.dataset.version === version));
       });
