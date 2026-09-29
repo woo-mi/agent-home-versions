@@ -41,9 +41,9 @@ test("matches the Paper navigation rail proportions", () => {
 });
 
 test("uses the two navigation assets extracted from Paper", () => {
-  assert.match(html, /class="paper-logo"[^>]+src="data:image\/png;base64,/);
+  assert.match(html, /class="paper-logo"[^>]+src="assets\/wisdom-logo\.svg"/);
   assert.match(html, /class="paper-domains-icon"[^>]+src="data:image\/png;base64,/);
-  assert.match(html, /\.paper-logo\s*\{[^}]*width:\s*20px;[^}]*height:\s*23px/s);
+  assert.match(html, /\.paper-logo\s*\{[^}]*width:\s*40px;[^}]*height:\s*40px/s);
   assert.match(html, /\.paper-domains-icon\s*\{[^}]*width:\s*14px;[^}]*height:\s*17px/s);
   assert.doesNotMatch(html, /<ellipse cx="12" cy="5" rx="7" ry="3"/);
 });
