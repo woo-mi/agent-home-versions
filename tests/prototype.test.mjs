@@ -32,7 +32,8 @@ test("preserves the Paper frame copy", () => {
   assert.match(html, /This week’s progress and next steps/);
   assert.match(html, /Quarterly performance, trends, and goals/);
   assert.match(html, /Key results, decisions, and actions/);
-  assert.match(html, /Category and product trends vs plan/);
+  assert.match(html, /Revenue growth and target attainment/);
+  assert.match(html, /Product and category trends vs plan/);
 });
 
 test("matches the Paper navigation rail proportions", () => {
