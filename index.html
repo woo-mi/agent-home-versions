@@ -106,28 +106,27 @@
       right: 24px;
     }
     .version-trigger {
-      width: 116px;
-      height: 56px;
-      padding: 0 16px;
+      height: 36px;
+      padding: 0 10px;
       border: 0;
       border-radius: 2px;
       background: var(--control);
       color: white;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 6px;
       cursor: pointer;
       box-shadow: 0 1px 0 rgba(0,0,0,.12);
     }
-    .version-trigger .layers { width: 22px; height: 22px; }
-    .version-label { font-size: 20px; line-height: 1; font-weight: 400; letter-spacing: -.2px; }
+    .version-trigger .layers { width: 16px; height: 16px; }
+    .version-label { font-size: 14px; line-height: 20px; font-weight: 400; }
     .chevron { width: 16px; height: 16px; transition: transform .15s ease; }
     .version-wrap.open .chevron { transform: rotate(180deg); }
     .version-menu {
       position: absolute;
-      top: 62px;
+      top: calc(100% + 6px);
       right: 0;
-      width: 116px;
+      width: 100%;
       margin: 0;
       padding: 6px;
       list-style: none;
