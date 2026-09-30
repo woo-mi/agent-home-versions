@@ -21,13 +21,13 @@ const footer=document.createElement('footer');footer.className='chat-footer';
 const footerInner=document.createElement('div');footerInner.className='chat-footer-inner';footer.append(footerInner);
 app.append(header,scroller,footer);scroller.append(content);footerInner.append(composer);
 input.className='chat-input';input.id='chat-message';input.setAttribute('aria-label','Message Wisdom');
-let chatMode='ask';
+let chatMode='build';
 function button(label,fn,cls='choice'){const b=document.createElement('button');b.type='button';b.className=cls;b.textContent=label;b.onclick=fn;return b}
 function iconButton(icon,label){const b=button('',()=>{},'icon-button');b.setAttribute('aria-label',label);icon.replaceWith(b);b.append(icon);return b}
 const send=iconButton(named('Send message'),'Send answer');
-send.className='composer-tool chat-send';send.setAttribute('aria-label','Send message');
+send.className='composer-tool chat-send';send.setAttribute('aria-label','Send message');send.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 11 5-5 5 5M12 6v12"/></svg>';
 const choices=document.createElement('div');choices.className='choices';content.append(choices);
-const hint=document.createElement('p');hint.className='demo-note';hint.setAttribute('role','status');hint.textContent='Interactive prototype · Sample data. Scheduling is simulated; no Slack messages are sent.';composer.after(hint);
+const hint=document.createElement('p');hint.className='composer-status';hint.setAttribute('role','status');composer.after(hint);
 const toolbar=document.createElement('div');toolbar.className='composer-toolbar';
 const leftTools=document.createElement('div');leftTools.className='composer-toolbar-group';
 const rightTools=document.createElement('div');rightTools.className='composer-toolbar-group';
@@ -36,16 +36,28 @@ const attachments=document.createElement('div');attachments.className='attachmen
 const attach=button('',()=>fileInput.click(),'composer-tool');attach.setAttribute('aria-label','Attach files');attach.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>';
 fileInput.onchange=()=>{for(const file of fileInput.files){const chip=document.createElement('div');chip.className='attachment-chip';const name=document.createElement('span');name.textContent=file.name;const remove=button('×',()=>chip.remove());remove.setAttribute('aria-label','Remove '+file.name);chip.append(name,remove);attachments.append(chip)}hint.textContent='Files attached for preview only. This prototype does not upload or analyze attachments.';fileInput.value=''};
 const modeSwitch=document.createElement('div');modeSwitch.className='composer-mode';modeSwitch.setAttribute('role','group');modeSwitch.setAttribute('aria-label','Conversation mode');
-function setMode(mode){chatMode=mode;modeSwitch.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));input.placeholder=mode==='ask'?'Ask Wisdom about your data…':'Reply or describe the agent you want to build…';input.focus({preventScroll:true})}
+function setMode(mode){chatMode=mode;modeSwitch.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));input.placeholder=mode==='ask'?'Ask Wisdom about your data…':'Describe the app you want to build';input.focus({preventScroll:true})}
 for(const mode of ['ask','build']){const b=button(mode==='ask'?'Ask':'Build',()=>setMode(mode),'');b.dataset.mode=mode;b.setAttribute('aria-pressed',String(mode===chatMode));modeSwitch.append(b)}
-const thinking=button('',()=>{const active=thinking.getAttribute('aria-pressed')!=='true';thinking.setAttribute('aria-pressed',String(active));thinking.querySelector('span').textContent=active?'Thinking':'Quick';hint.textContent=active?'Thinking selected · Responses in this prototype use sample data.':'Quick selected · Responses in this prototype use sample data.'},'thinking-control');thinking.setAttribute('aria-label','Toggle thinking mode');thinking.setAttribute('aria-pressed','true');thinking.innerHTML='<svg viewBox="0 0 24 24"><path d="M9 18h6m-5 3h4M8 14c-1.3-1-2-2.5-2-4a6 6 0 0 1 12 0c0 1.5-.7 3-2 4-1 .8-1 1.3-1 2H9c0-.7 0-1.2-1-2Z"/></svg><span>Thinking</span><span aria-hidden="true">⌄</span>';
-const mic=button('',()=>{},'composer-tool');mic.setAttribute('aria-label','Dictate message');mic.innerHTML='<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3"/></svg>';
+const thinking=button('',()=>{const active=thinking.getAttribute('aria-pressed')!=='true';thinking.setAttribute('aria-pressed',String(active));thinking.querySelector('span').textContent=active?'Thinking':'Quick';hint.textContent=active?'Thinking selected · Responses in this prototype use sample data.':'Quick selected · Responses in this prototype use sample data.'},'thinking-control');thinking.setAttribute('aria-label','Toggle thinking mode');thinking.setAttribute('aria-pressed','true');thinking.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 18V5"/><path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/><path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/><path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/><path d="M18 18a4 4 0 0 0 2-7.464"/><path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/><path d="M6 18a4 4 0 0 1-2-7.464"/><path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/></svg><span>Thinking</span><svg class="thinking-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+const mic=button('',()=>{},'composer-tool');mic.setAttribute('aria-label','Dictate message');mic.innerHTML='<svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3"/></svg>';
 const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
 if(Recognition){mic.onclick=()=>{const recognition=new Recognition();recognition.lang=navigator.language;recognition.onresult=e=>{input.value+=(input.value?' ':'')+e.results[0][0].transcript;syncInput();input.focus()};recognition.onerror=()=>{hint.textContent='Dictation unavailable. You can type your message below.'};recognition.start()}}else{mic.disabled=true;mic.title='Dictation is not available in this browser'}
 leftTools.append(attach,modeSwitch);rightTools.append(thinking,mic,send);toolbar.append(leftTools,rightTools);composer.prepend(attachments);composer.append(toolbar,fileInput);
 const latest=button('↓',()=>scrollToLatest(),'latest-button');latest.setAttribute('aria-label','Jump to latest message');latest.hidden=true;footer.prepend(latest);
 function updateLatest(){latest.hidden=scroller.scrollHeight-scroller.scrollTop-scroller.clientHeight<150}
 scroller.addEventListener('scroll',updateLatest,{passive:true});
+// Keep the last message above the floating composer as its content grows.
+const composerObserver=new ResizeObserver(()=>{
+  const atBottom=scroller.scrollHeight-scroller.scrollTop-scroller.clientHeight<2;
+  app.style.setProperty('--composer-height',Math.ceil(composer.getBoundingClientRect().height)+'px');
+  if(atBottom)scroller.scrollTop=scroller.scrollHeight;
+  updateLatest();
+});
+composerObserver.observe(composer);
+const scrollObserver=new ResizeObserver(()=>{
+  app.style.setProperty('--scrollbar-width',(scroller.offsetWidth-scroller.clientWidth)+'px');
+});
+scrollObserver.observe(scroller);
 function syncInput(){input.style.height='auto';input.style.height=Math.min(input.scrollHeight,144)+'px';send.disabled=!input.value.trim();updateLatest()}
 input.addEventListener('input',syncInput);
 // The design is a complete conversation. Always display its entire transcript;
@@ -64,7 +76,7 @@ function resetToDesign(){
   answers=[...defaults];paused=false;
   config.innerHTML=originalConfig;status.innerHTML=originalStatus;
   document.querySelectorAll('.followup-message').forEach(node=>node.remove());
-  input.value='';attachments.replaceChildren();setMode('ask');syncInput();
+  input.value='';attachments.replaceChildren();setMode('build');syncInput();
   scroller.scrollTo({top:0,behavior:'instant'});
 }
 function updateConfig(){
@@ -123,6 +135,6 @@ function submit(){
 }
 send.onclick=submit;
 input.onkeydown=event=>{if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing&&event.keyCode!==229){event.preventDefault();submit()}};
-input.placeholder='Ask a follow-up or adjust this agent…';
+input.placeholder='Describe the app you want to build';
 syncInput();
 requestAnimationFrame(()=>{scroller.scrollTop=0;updateLatest()});
