@@ -52,7 +52,7 @@ button:hover {background:#f0f0f1} button:focus-visible,a:focus-visible {outline:
 [data-pencil-name="Dataset options"] input{accent-color:#17171a;width:18px;height:18px;flex-shrink:0;cursor:pointer}
 .config-dialog{border:1px solid #ddd;border-radius:18px;max-width:640px;width:calc(100% - 32px);padding:28px;color:#24242a}.config-dialog::backdrop{background:#0005}.config-dialog h2{margin:0 0 24px;font-size:21px}.config-dialog label{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;font-size:13px}.config-dialog textarea{border:1px solid #ddd;border-radius:8px;padding:10px;font-size:14px}.config-dialog .choices{position:sticky;bottom:-28px;padding:16px 0;background:white}
 @media(max-width:700px){[data-pencil-name="Headline numbers"]{display:grid!important;grid-template-columns:1fr 1fr;gap:20px!important}[data-pencil-name="Segment table"]{overflow-x:auto}[data-pencil-name="Segment table"]>div{min-width:460px}[data-pencil-name="Sample product metrics brief"]{padding:18px!important}[data-pencil-name="Activation anomaly"]{padding:14px!important}}
-</style><link rel="stylesheet" href="assets/product-metrics-chat.css?v=composer-match" />
+</style><link rel="stylesheet" href="assets/product-metrics-chat.css?v=prototype-control" />
 </head>
   <body style="background-color: #FFFFFF">
     <div
@@ -1488,5 +1488,25 @@ button:hover {background:#f0f0f1} button:focus-visible,a:focus-visible {outline:
   <nav id="prototype-menu" aria-label="Conversation options" hidden>
 <a href="#configuration">View agent configuration</a><a href="#sample">View sample brief</a><a href="#scheduled">View scheduled state</a><a href="#follow-up">Ask a follow-up</a><a href="./#va-smaller">Back to agent home</a><button id="back-top">Back to top</button>
 </nav>
-<script src="assets/product-metrics-chat.js?v=composer-match"></script></body>
+<div class="version-wrap">
+        <button class="version-trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Switch prototype" aria-controls="prototype-versions">
+          <svg class="layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-9 5 9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg>
+          <span class="version-label" data-current-version>Daily brief</span>
+          <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 7 6 6 6-6"/></svg>
+        </button>
+        <ul class="version-menu" id="prototype-versions" role="menu" aria-label="Prototype versions" hidden>
+          <li><button class="version-option" type="button" role="menuitem" aria-current="true" data-current-prototype>Daily brief</button></li>
+          <li><a class="version-option" role="menuitem" href="./#va">vA</a></li>
+          <li><a class="version-option" role="menuitem" href="./#va-smaller">vA-smaller</a></li>
+          <li><a class="version-option" role="menuitem" href="./#vb">vB</a></li>
+          <li><a class="version-option" role="menuitem" href="./#vc">vC</a></li>
+          <li><a class="version-option" role="menuitem" href="./#v0">v0</a></li>
+          <li><a class="version-option" role="menuitem" href="./#v1">v1</a></li>
+          <li><a class="version-option" role="menuitem" href="./#v2">v2</a></li>
+          <li><a class="version-option" role="menuitem" href="./#v3">v3</a></li>
+          <li><a class="version-option" role="menuitem" href="./#v4">v4</a></li>
+          <li><a class="version-option" role="menuitem" href="./#v5">v5</a></li>
+        </ul>
+      </div>
+<script src="assets/product-metrics-chat.js?v=prototype-control"></script></body>
 </html>

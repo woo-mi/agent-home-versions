@@ -138,3 +138,52 @@ input.onkeydown=event=>{if(event.key==='Enter'&&!event.shiftKey&&!event.isCompos
 input.placeholder='Describe the app you want to build';
 syncInput();
 requestAnimationFrame(()=>{scroller.scrollTop=0;updateLatest()});
+
+// Reuse the home prototype's version control, with links back to each exploration.
+const versionWrap=document.querySelector('.version-wrap');
+app.append(versionWrap);
+const versionTrigger=versionWrap.querySelector('.version-trigger');
+const versionMenu=versionWrap.querySelector('.version-menu');
+const versionOptions=[...versionMenu.querySelectorAll('[role="menuitem"]')];
+function setVersionMenu(open,focusIndex=0){
+  versionWrap.classList.toggle('open',open);
+  versionTrigger.setAttribute('aria-expanded',String(open));
+  versionMenu.hidden=!open;
+  if(open)versionOptions[focusIndex].focus({preventScroll:true});
+}
+versionTrigger.onclick=()=>setVersionMenu(versionMenu.hidden);
+versionTrigger.onkeydown=event=>{
+  if(event.key==='ArrowDown'||event.key==='ArrowUp'){
+    event.preventDefault();
+    setVersionMenu(true,event.key==='ArrowUp'?versionOptions.length-1:0);
+  }
+};
+versionMenu.onkeydown=event=>{
+  const index=versionOptions.indexOf(document.activeElement);
+  let next;
+  if(event.key==='ArrowDown')next=(index+1)%versionOptions.length;
+  if(event.key==='ArrowUp')next=(index-1+versionOptions.length)%versionOptions.length;
+  if(event.key==='Home')next=0;
+  if(event.key==='End')next=versionOptions.length-1;
+  if(next!==undefined){event.preventDefault();versionOptions[next].focus()}
+  if(event.key==='Tab')setVersionMenu(false);
+};
+versionMenu.querySelector('[data-current-prototype]').onclick=()=>{setVersionMenu(false);versionTrigger.focus()};
+document.addEventListener('click',event=>{if(!versionWrap.contains(event.target))setVersionMenu(false)});
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&!versionMenu.hidden){event.preventDefault();setVersionMenu(false);versionTrigger.focus()}
+});
+function positionVersionControl(){
+  const bounds=composer.getBoundingClientRect();
+  const raised=innerWidth-16-versionTrigger.offsetWidth<bounds.right+12;
+  const bottom=raised?innerHeight-bounds.top+12:16;
+  versionWrap.classList.toggle('above-composer',raised);
+  versionWrap.style.bottom=bottom+'px';
+  versionWrap.style.setProperty('--control-bottom',bottom+'px');
+  footer.style.setProperty('--latest-left',(bounds.left-footer.getBoundingClientRect().left)+'px');
+}
+const versionObserver=new ResizeObserver(positionVersionControl);
+versionObserver.observe(footer);
+versionObserver.observe(versionTrigger);
+window.addEventListener('resize',positionVersionControl);
+positionVersionControl();
