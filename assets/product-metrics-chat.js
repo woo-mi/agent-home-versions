@@ -10,10 +10,12 @@ const input=document.createElement('textarea');input.rows=1;input.placeholder='T
 const app=content.parentElement;
 app.classList.add('chat-app');
 const header=named('Conversation header');
-const titleGroup=document.createElement('div');titleGroup.className='chat-title-group';
-const back=document.createElement('a');back.className='chat-back';back.href='./#va-smaller';back.setAttribute('aria-label','Back to agent home');back.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m15 18-6-6 6-6"/></svg>';
-const badge=document.createElement('span');badge.className='chat-prototype';badge.textContent='Prototype';
-titleGroup.append(back,named('Conversation title'),badge);header.prepend(titleGroup);
+const titleGroup=document.createElement('nav');titleGroup.className='chat-title-group';titleGroup.setAttribute('aria-label','Conversation navigation');
+const sidebarToggle=document.createElement('button');sidebarToggle.type='button';sidebarToggle.className='chat-sidebar-toggle';sidebarToggle.setAttribute('aria-label','Hide sidebar');sidebarToggle.setAttribute('aria-expanded','true');sidebarToggle.setAttribute('aria-controls','app-sidebar');sidebarToggle.innerHTML='<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="1.5" width="14" height="13" rx="2.5" fill="none" stroke="#666666"/><path d="M5.6 1.5 L5.6 14.5" fill="none" stroke="#666666"/></svg>';
+const sidebar=named('aside');sidebar.id='app-sidebar';
+sidebarToggle.onclick=()=>{const collapsed=app.classList.toggle('sidebar-collapsed');sidebar.hidden=collapsed;sidebarToggle.setAttribute('aria-expanded',String(!collapsed));sidebarToggle.setAttribute('aria-label',collapsed?'Show sidebar':'Hide sidebar')};
+const back=document.createElement('a');back.className='chat-back';back.href='./#va-smaller';back.setAttribute('aria-label','Back to agent home');back.innerHTML='<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M9.9 3.2 L5.3 8 L9.9 12.8" fill="none" stroke="#171717" stroke-width="1.33" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Chat /  Daily brief</span>';
+titleGroup.append(sidebarToggle,back);header.replaceChildren(titleGroup);
 const scroller=document.createElement('main');scroller.className='message-scroll';scroller.setAttribute('aria-label','Conversation history');
 const footer=document.createElement('footer');footer.className='chat-footer';
 const footerInner=document.createElement('div');footerInner.className='chat-footer-inner';footer.append(footerInner);
@@ -56,21 +58,7 @@ const originalConfig=config.innerHTML;
 const originalStatus=status.innerHTML;
 const configCells=[...config.querySelectorAll('[data-pencil-name="Setting value"]')].map(node=>node.innerHTML);
 config.id='configuration';status.id='scheduled';
-const menu=document.querySelector('#prototype-menu');menu.innerHTML='';
-const more=iconButton(named('More options'),'Conversation options');
-more.setAttribute('aria-expanded','false');more.setAttribute('aria-controls','prototype-menu');
-function closeMenu(){menu.hidden=true;more.setAttribute('aria-expanded','false')}
-more.onclick=()=>{menu.hidden=!menu.hidden;more.setAttribute('aria-expanded',String(!menu.hidden))};
-function jumpTo(node){node.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});closeMenu()}
-menu.append(
-  button('Conversation beginning',()=>jumpTo(users[0])),
-  button('Agent configuration',()=>jumpTo(config)),
-  button('Scheduling confirmation',()=>jumpTo(assistants.at(-1))),
-  button('Reset to design',()=>{closeMenu();resetToDesign()})
-);
-const home=document.createElement('a');home.href='./#va-smaller';home.textContent='Back to agent home';menu.append(home);
-document.addEventListener('click',event=>{if(!menu.contains(event.target)&&!more.contains(event.target))closeMenu()});
-document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu()});
+document.querySelector('#prototype-menu').remove();
 const fields=[['Brief type',1],['Area',2],['Data source',3],['Datasets',5],['Metrics',6],['Definitions',7],['Comparisons',8],['Segments',9],['Anomalies',10],['Explanation',11],['Delivery',12],['Format',13],['Order',14],['Permissions',15],['Follow-up questions',16],['Missing data',17]];
 function resetToDesign(){
   answers=[...defaults];paused=false;

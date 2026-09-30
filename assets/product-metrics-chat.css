@@ -6,22 +6,25 @@ body > .chat-app {
   min-height: 0 !important;
   display: grid !important;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: 64px minmax(0, 1fr) auto;
+  grid-template-rows: 48px minmax(0, 1fr) auto;
   align-items: stretch !important;
   justify-content: stretch !important;
   padding: 0 0 0 48px !important;
 }
 .chat-app > [data-pencil-name="Conversation header"] {
-  padding: 0 28px !important;
-  height: 64px !important;
+  padding: 0 12px !important;
+  height: 48px !important;
   margin: 0 !important;
   background: #fff;
+  border-bottom: 1px solid #e6e6e6 !important;
   z-index: 2;
 }
 [data-pencil-name="Conversation title"] { font-size: 14px !important; font-weight: 500 !important; }
-.chat-title-group { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.chat-back { color: #777780; text-decoration: none; display: grid; place-items: center; }
-.chat-prototype { color: #919198; background: #f5f5f6; padding: 3px 7px; border-radius: 5px; font: 11px/16px Inter, sans-serif; }
+.chat-title-group { display: flex; align-items: center; gap: 8px; min-width: 0; transform: translateY(-.5px); }
+.chat-back { color: #171717; text-decoration: none; display: flex; align-items: center; gap: 10px; font: 400 14px/20px system-ui, sans-serif; white-space: pre; }
+.chat-back svg { flex-shrink: 0; }
+.chat-sidebar-toggle { width: 24px; height: 24px; flex-shrink: 0; padding: 0; border: 0; border-radius: 6px; background: transparent; display: grid; place-items: center; }
+body > .chat-app.sidebar-collapsed { padding-left: 0 !important; }
 .message-scroll { min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; scrollbar-gutter: stable both-edges; padding: 0 24px; }
 .chat-app [data-pencil-name="Conversation content"] {
   width: 100% !important;
@@ -123,10 +126,9 @@ body > .chat-app {
 .config-dialog .choice:first-child { background: #fff; color: #24242a; }
 .config-dialog .primary { background: #17171a; color: #fff; }
 @media(max-width:700px) {
-  body > .chat-app { grid-template-rows: 56px minmax(0, 1fr) auto; }
-  .chat-app > [data-pencil-name="Conversation header"] { height: 56px !important; padding: 0 16px !important; }
+  body > .chat-app { grid-template-rows: 48px minmax(0, 1fr) auto; }
+  .chat-app > [data-pencil-name="Conversation header"] { height: 48px !important; padding: 0 12px !important; }
   .chat-title-group { gap: 8px; }
-  .chat-prototype { display: none; }
   .message-scroll { padding: 0 14px; scrollbar-gutter: auto; }
   .chat-app [data-pencil-name="Conversation content"] { padding: 24px 0 20px !important; gap: 24px !important; }
   .chat-footer { padding: 8px 10px max(8px, env(safe-area-inset-bottom)); }
