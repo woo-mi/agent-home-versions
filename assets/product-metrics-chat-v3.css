@@ -16,7 +16,7 @@ body > .chat-app {
   height: 48px !important;
   margin: 0 !important;
   background: #fff;
-  border-bottom: 1px solid #e6e6e6 !important;
+  border-bottom: 0 !important;
   z-index: 2;
 }
 [data-pencil-name="Conversation title"] { font-size: 14px !important; font-weight: 500 !important; }
