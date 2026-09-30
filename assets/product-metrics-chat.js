@@ -72,12 +72,11 @@ const home=document.createElement('a');home.href='./#va-smaller';home.textConten
 document.addEventListener('click',event=>{if(!menu.contains(event.target)&&!more.contains(event.target))closeMenu()});
 document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu()});
 const fields=[['Brief type',1],['Area',2],['Data source',3],['Datasets',5],['Metrics',6],['Definitions',7],['Comparisons',8],['Segments',9],['Anomalies',10],['Explanation',11],['Delivery',12],['Format',13],['Order',14],['Permissions',15],['Follow-up questions',16],['Missing data',17]];
-function renderActions(){choices.replaceChildren(button('Edit configuration',editConfig),button(paused?'Resume schedule':'Pause schedule',toggleSchedule))}
 function resetToDesign(){
   answers=[...defaults];paused=false;
   config.innerHTML=originalConfig;status.innerHTML=originalStatus;
   document.querySelectorAll('.followup-message').forEach(node=>node.remove());
-  input.value='';attachments.replaceChildren();setMode('ask');renderActions();syncInput();
+  input.value='';attachments.replaceChildren();setMode('ask');syncInput();
   scroller.scrollTo({top:0,behavior:'instant'});
 }
 function updateConfig(){
@@ -90,12 +89,6 @@ function updateConfig(){
   });
   if(answers[12]!==defaults[12])named('Delivery details').textContent=answers[12];
   else named('Delivery details').innerHTML=new DOMParser().parseFromString(originalStatus,'text/html').querySelector('[data-pencil-name="Delivery details"]').innerHTML;
-}
-function toggleSchedule(){
-  paused=!paused;
-  named('Scheduled status').textContent=paused?'Ⅱ  Product Metrics Brief is paused':'✓  Product Metrics Brief is scheduled';
-  renderActions();
-  appendReply(null,paused?'The schedule is paused in this prototype.':'The schedule is resumed in this prototype.');
 }
 function editConfig(){
   const dialog=document.createElement('dialog');dialog.className='config-dialog';
@@ -136,12 +129,12 @@ function submit(){
   }else if(/metric|cover/.test(lower)){
     response='The brief covers '+answers[6];
   }else{
-    response='You can ask about metrics, activation, data sources, anomalies, or delivery. Use Edit configuration to change the brief. This prototype does not connect to live data.';
+    response='You can ask about metrics, activation, data sources, anomalies, or delivery. Ask me to change the configuration to update the brief. This prototype does not connect to live data.';
   }
   input.value='';attachments.replaceChildren();appendReply(text,response);syncInput();
 }
 send.onclick=submit;
 input.onkeydown=event=>{if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing&&event.keyCode!==229){event.preventDefault();submit()}};
 input.placeholder='Ask a follow-up or adjust this agent…';
-renderActions();syncInput();
+syncInput();
 requestAnimationFrame(()=>{scroller.scrollTop=0;updateLatest()});
