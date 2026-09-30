@@ -32,7 +32,6 @@ body > .chat-app {
 }
 [data-pencil-name="User bubble"] { padding: 12px 18px !important; border-radius: 18px !important; }
 [data-pencil-name="User response"], [data-pencil-name="Assistant response"] { font-size: 15px !important; line-height: 24px !important; }
-[data-pencil-name="Wisdom AI"] { font-size: 10px !important; letter-spacing: .7px !important; }
 [data-pencil-name="Wisdom AI message"] { gap: 10px !important; }
 .chat-app [data-pencil-name="Options"] { background: transparent !important; }
 .brief-option { display: flex; gap: 12px; align-items: center; border: 0; border-radius: 8px; margin: 2px 0; padding: 12px; background: #fff; }
