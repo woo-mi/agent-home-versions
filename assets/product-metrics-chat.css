@@ -31,7 +31,7 @@ body > .chat-app.sidebar-collapsed { padding-left: 0 !important; }
   max-width: 810px;
   margin: 0 auto !important;
   padding: 36px 0 28px !important;
-  gap: 28px !important;
+  gap: 40px !important;
 }
 [data-pencil-name="User bubble"] { padding: 12px 18px !important; border-radius: 18px !important; }
 [data-pencil-name="User response"], [data-pencil-name="Assistant response"] { font-size: 15px !important; line-height: 24px !important; }
@@ -130,7 +130,7 @@ body > .chat-app.sidebar-collapsed { padding-left: 0 !important; }
   .chat-app > [data-pencil-name="Conversation header"] { height: 48px !important; padding: 0 12px !important; }
   .chat-title-group { gap: 8px; }
   .message-scroll { padding: 0 14px; scrollbar-gutter: auto; }
-  .chat-app [data-pencil-name="Conversation content"] { padding: 24px 0 20px !important; gap: 24px !important; }
+  .chat-app [data-pencil-name="Conversation content"] { padding: 24px 0 20px !important; gap: 40px !important; }
   .chat-footer { padding: 0 10px max(8px, env(safe-area-inset-bottom)); }
   .chat-app [data-pencil-name="Message composer"] { min-height: 116px; padding: 15px 12px 10px !important; border-radius: 18px !important; gap: 12px !important; }
   .chat-input { font-size: 16px; }
