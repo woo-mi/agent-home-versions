@@ -1,10 +1,14 @@
 const named=(name,root=document)=>root.querySelector(`[data-pencil-name="${name}"]`);
 const content=named('Conversation content');
-const users=[...content.children].filter(x=>x.dataset.pencilName==='User message');
-const assistants=[...content.children].filter(x=>x.dataset.pencilName==='Wisdom AI message');
-const defaults=users.map(x=>named('User response',x).textContent.trim());
-const questions=assistants.map(x=>named('Assistant response',x).textContent.trim());
-let answers=[...defaults],paused=false;
+const users=[...content.querySelectorAll('[data-pencil-name="User message"]')];
+const assistants=[...content.querySelectorAll('[data-pencil-name="Wisdom AI message"]')];
+const assistantTextTemplate=named('Assistant response',content);
+const textOf=node=>node?.textContent.replace(/\s+/g,' ').trim()||'';
+// Match each answer to its preceding question/card, including source frame wrappers.
+function answerAfter(question){
+  const user=[...users].reverse().find(node=>question.test(textOf(node.previousElementSibling)));
+  return textOf(user&&named('User response',user));
+}
 const composer=named('Message composer');
 const input=document.createElement('textarea');input.rows=1;input.placeholder='Type your answer…';input.setAttribute('aria-label','Your answer');named('Input placeholder').replaceWith(input);
 const app=content.parentElement;
@@ -66,51 +70,56 @@ users.forEach(node=>node.hidden=false);
 assistants.forEach(node=>node.hidden=false);
 const config=named('Agent configuration');
 const status=named('Scheduled agent status');
-const originalConfig=config.innerHTML;
-const originalStatus=status.innerHTML;
-const configCells=[...config.querySelectorAll('[data-pencil-name="Setting value"]')].map(node=>node.innerHTML);
 config.id='configuration';status.id='scheduled';
-document.querySelector('#prototype-menu').remove();
-const fields=[['Brief type',1],['Area',2],['Data source',3],['Datasets',5],['Metrics',6],['Definitions',7],['Comparisons',8],['Segments',9],['Anomalies',10],['Explanation',11],['Delivery',12],['Format',13],['Order',14],['Permissions',15],['Follow-up questions',16],['Missing data',17]];
-function resetToDesign(){
-  answers=[...defaults];paused=false;
-  config.innerHTML=originalConfig;status.innerHTML=originalStatus;
-  document.querySelectorAll('.followup-message').forEach(node=>node.remove());
-  input.value='';attachments.replaceChildren();setMode('build');syncInput();
-  scroller.scrollTo({top:0,behavior:'instant'});
-}
-function updateConfig(){
-  const datasets=answers[5]==='Yes.'?'product.events, product.daily_active_users, product.signups, billing.subscriptions':answers[5];
-  const values=[answers[1]+' — '+answers[2],answers[3]+' · '+datasets,answers[6]+' · '+answers[7],answers[8],answers[9],answers[10]+' · '+answers[11],answers[12]+' · '+answers[13],answers[14],answers[15]+' · '+answers[16]+' · '+answers[17]];
-  const inputs=[[1,2],[3,5],[6,7],[8],[9],[10,11],[12,13],[14],[15,16,17]];
-  config.querySelectorAll('[data-pencil-name="Setting value"]').forEach((node,i)=>{
-    if(inputs[i].every(index=>answers[index]===defaults[index]))node.innerHTML=configCells[i];
-    else node.textContent=values[i];
-  });
-  if(answers[12]!==defaults[12])named('Delivery details').textContent=answers[12];
-  else named('Delivery details').innerHTML=new DOMParser().parseFromString(originalStatus,'text/html').querySelector('[data-pencil-name="Delivery details"]').innerHTML;
-}
+document.querySelector('#prototype-menu')?.remove();
+const settings=[...config.querySelectorAll('[data-pencil-name="Setting label"]')].map(label=>{
+  const node=named('Setting value',label.parentElement);
+  return {label:textOf(label),node,value:textOf(node)};
+});
+const settingsByLabel=new Map(settings.map(setting=>[setting.label,setting]));
+const settingValue=label=>settingsByLabel.get(label)?.value||'';
+function useSelection(label,value){if(value&&settingsByLabel.has(label))settingsByLabel.get(label).value=value}
+// Keep the exported cards intact on load. Follow-ups use the latest explicit choices.
+const datasets=answerAfter(/see these.*datasets|which datasets/i);
+const metrics=answerAfter(/what metrics should the brief cover/i)||answerAfter(/for metrics, what/i);
+const definitions=answerAfter(/how do you define activation/i);
+if(datasets){const source=settingValue('Data').split(' · ')[0];useSelection('Data',[source,datasets].filter(Boolean).join(' · '))}
+useSelection('Metrics',[metrics,definitions].filter(Boolean).join(' · '));
+useSelection('Comparisons',answerAfter(/compare against/i));
+useSelection('Segments',answerAfter(/segment by/i));
+const threshold=answerAfter(/flag anomalies/i);
+const explanation=answerAfter(/when it flags/i);
+useSelection('Anomalies',[threshold,explanation].filter(Boolean).join(' · '));
 function editConfig(){
   const dialog=document.createElement('dialog');dialog.className='config-dialog';
   const form=document.createElement('form');
   const title=document.createElement('h2');title.textContent='Edit Product Metrics Brief';form.append(title);
-  fields.forEach(([label,index])=>{
-    const wrap=document.createElement('label');wrap.textContent=label;
-    const field=document.createElement('textarea');field.name=String(index);field.value=answers[index];field.rows=2;field.required=true;
+  settings.forEach(setting=>{
+    const wrap=document.createElement('label');wrap.textContent=setting.label;
+    const field=document.createElement('textarea');field.name=setting.label;field.value=setting.value;field.rows=2;field.required=true;
     wrap.append(field);form.append(wrap);
   });
   const actions=document.createElement('div');actions.className='choices';actions.append(button('Cancel',()=>dialog.close()));
   const saveButton=document.createElement('button');saveButton.type='submit';saveButton.textContent='Save changes';saveButton.className='choice primary';actions.append(saveButton);form.append(actions);
   form.onsubmit=event=>{
-    event.preventDefault();fields.forEach(([,index])=>answers[index]=form.elements.namedItem(String(index)).value.trim());
-    updateConfig();dialog.close();appendReply(null,'Your configuration changes are reflected in this prototype. No live delivery has been changed.');
+    event.preventDefault();
+    settings.forEach(setting=>{
+      const value=form.elements.namedItem(setting.label).value.trim();
+      if(value!==setting.value){
+        setting.value=value;setting.node.textContent=value;
+        if(setting.label==='Delivery')named('Delivery details',status).textContent=value;
+      }
+    });
+    dialog.close();appendReply(null,'Your configuration changes are reflected in this prototype. No live delivery has been changed.');
   };
   dialog.append(form);document.body.append(dialog);dialog.onclose=()=>dialog.remove();dialog.showModal();
 }
 function scrollToLatest(){requestAnimationFrame(()=>{scroller.scrollTo({top:scroller.scrollHeight,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});updateLatest()})}
 function appendReply(text,response){
   if(text){const user=users[0].cloneNode(true);user.classList.add('followup-message');named('User response',user).textContent=text;choices.before(user)}
-  const answer=assistants[1].cloneNode(true);answer.classList.add('followup-message');named('Assistant response',answer).textContent=response;choices.before(answer);
+  const answer=document.createElement('div');answer.dataset.pencilName='Wisdom AI message';answer.className='followup-message';
+  answer.style.cssText='display:flex;flex-direction:column;flex-shrink:0;width:100%;';
+  const answerText=assistantTextTemplate.cloneNode(false);answerText.removeAttribute('data-pencil-id');answerText.textContent=response;answer.append(answerText);choices.before(answer);
   scrollToLatest();
 }
 function submit(){
@@ -119,15 +128,19 @@ function submit(){
   if(/edit|change|adjust/.test(lower)){
     editConfig();response='Use Edit configuration to update the settings for this brief.';
   }else if(/schedule|delivery|when/.test(lower)){
-    response=(paused?'The schedule is paused. Configured delivery: ':'Current delivery: ')+answers[12].replace(/[.\s]+$/,'')+'.';
+    response='Current delivery: '+settingValue('Delivery').replace(/[.\s]+$/,'')+'.';
   }else if(/activation|definition/.test(lower)){
-    response=answers[7];
+    response=settingValue('Metrics');
   }else if(/anomal|threshold/.test(lower)){
-    response='Anomaly setting: '+answers[10]+' '+answers[11];
+    response='Anomaly setting: '+settingValue('Anomalies');
   }else if(/data|source|dataset/.test(lower)){
-    response='Configured source: '+answers[3]+' Datasets: '+(answers[5]==='Yes.'?'product.events, product.daily_active_users, product.signups, billing.subscriptions.':answers[5]);
+    response='Configured source and datasets: '+settingValue('Data');
   }else if(/metric|cover/.test(lower)){
-    response='The brief covers '+answers[6];
+    response='The brief covers '+settingValue('Metrics');
+  }else if(/segment|platform|region/.test(lower)){
+    response='Current segments: '+settingValue('Segments');
+  }else if(/comparison|compare/.test(lower)){
+    response='Current comparisons: '+settingValue('Comparisons');
   }else{
     response='You can ask about metrics, activation, data sources, anomalies, or delivery. Ask me to change the configuration to update the brief. This prototype does not connect to live data.';
   }

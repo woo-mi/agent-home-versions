@@ -233,3 +233,29 @@ body > .chat-app.sidebar-collapsed { padding-left: 0 !important; }
     .version-trigger:hover { background: #555; }
     .version-trigger:focus-visible { outline-color: #777780; }
     .chat-app:has(.version-wrap.above-composer) .latest-button { left: var(--latest-left, 24px); }
+
+/* Keep the imported selection panels fluid inside the conversation. */
+.chat-app [data-source-frame="all selections"] > *,
+.chat-app [data-source-frame="all selections"] [data-pencil-name^="Frame "],
+.chat-app [data-source-frame="all selections"] [data-pencil-name="Options"] {
+  width: 100% !important;
+  min-width: 0;
+  max-width: 100%;
+}
+.chat-app [data-source-frame="all selections"] [data-pencil-name="Assistant response"],
+.chat-app [data-source-frame="all selections"] [data-pencil-name="Scheduled status"],
+.chat-app [data-source-frame="all selections"] [data-pencil-name="Delivery details"] {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+}
+.chat-app [data-source-frame="all selections"] [data-pencil-name="Frame 6"],
+.chat-app [data-source-frame="all selections"] [data-pencil-name="Scheduled agent status"] {
+  flex-wrap: wrap;
+}
+.chat-app [data-source-frame="all selections"] [data-pencil-name="Frame 5"] {
+  flex: 1 1 0;
+  width: auto !important;
+}
+.chat-app [data-source-frame="all selections"] [data-pencil-name="Frame 6"] {
+  column-gap: 4px !important;
+}
