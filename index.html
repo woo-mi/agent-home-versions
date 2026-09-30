@@ -309,7 +309,7 @@
     :is(.v0, .v1, .v2, .va, .vb, .vc) .agent-mark { width: 28px; height: 28px; }
     :is(.v0, .v1) .agent-mark { width: 24px; height: 24px; }
     .v0 .agent-mark { width: 26px; height: 26px; }
-    .va-smaller .agent-mark { width: 20px; height: 20px; }
+    .va-smaller .agent-mark { width: 20px; height: 20px; --mark-stroke-width: 4.8; --mark-overflow: visible; overflow: visible; }
     :is(.v0, .v1, .v2, .va, .vb, .vc) .suggestion-copy { margin-left: 14px; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 6px; }
     .va-smaller .suggestion-copy { margin-left: 6px; }
     :is(.v0, .v1, .v2, .va, .vb, .vc) .suggestion h2 { font-size: 16px; font-weight: 400; line-height: 24px; letter-spacing: 0; white-space: normal; }
@@ -394,16 +394,23 @@
   <rect class="mark-eyes" x="21.428" y="18" width="2.571" height="6.857" rx="1.286" fill="var(--mark-eyes, hsl(218 22% 10% / 70%))" />
   <rect class="mark-eyes" x="30.857" y="18" width="2.571" height="6.857" rx="1.286" fill="var(--mark-eyes, hsl(218 22% 10% / 70%))" />
 </symbol>
+    <!-- The masked 8.4-unit stroke is 4.2 units inside: 1.5px at 20/56 scale. -->
+    <symbol id="paper-daily-brief-uniform" viewBox="0 0 56 56">
+      <mask id="paper-daily-brief-uniform-mask" fill="#fff"><path d="M28 0C35.631 0 41.954 5.597 43.09 12.909C50.403 14.045 56 20.369 56 28C56 35.631 50.403 41.954 43.09 43.09C41.954 50.403 35.631 56 28 56C20.369 56 14.045 50.403 12.909 43.09C5.597 41.954 0 35.631 0 28C0 20.369 5.597 14.045 12.909 12.909C14.045 5.597 20.369 0 28 0Z"/></mask>
+      <path d="M28 0C35.631 0 41.954 5.597 43.09 12.909C50.403 14.045 56 20.369 56 28C56 35.631 50.403 41.954 43.09 43.09C41.954 50.403 35.631 56 28 56C20.369 56 14.045 50.403 12.909 43.09C5.597 41.954 0 35.631 0 28C0 20.369 5.597 14.045 12.909 12.909C14.045 5.597 20.369 0 28 0Z" fill="var(--mark-fill, transparent)" stroke="var(--mark-outline, hsl(218 22% 10% / 70%))" stroke-width="8.4" mask="url(#paper-daily-brief-uniform-mask)"/>
+  <rect class="mark-eyes" x="25" y="21" width="3" height="8" rx="1.5" fill="var(--mark-eyes, hsl(218 22% 10% / 70%))" />
+  <rect class="mark-eyes" x="36" y="21" width="3" height="8" rx="1.5" fill="var(--mark-eyes, hsl(218 22% 10% / 70%))" />
+    </symbol>
     <symbol id="mark-circle" viewBox="0 0 64 64">
-      <circle cx="32" cy="32" r="28" fill="var(--mark-fill, none)" stroke="var(--mark-outline, currentColor)" stroke-width="3.2"/>
+      <circle cx="32" cy="32" r="28" fill="var(--mark-fill, none)" stroke="var(--mark-outline, currentColor)" stroke-width="var(--mark-stroke-width, 3.2)"/>
       <path class="mark-eyes" d="M27 27v8M39 27v8" stroke="var(--mark-eyes, currentColor)" stroke-width="3.5" stroke-linecap="round"/>
     </symbol>
     <symbol id="mark-square" viewBox="0 0 64 64">
-      <path d="M10 8C20 5 44 5 54 8c4 10 4 38 0 48-11 4-33 4-44 0C6 46 6 18 10 8Z" fill="var(--mark-fill, none)" stroke="var(--mark-outline, currentColor)" stroke-width="3.4" stroke-linejoin="round"/>
+      <path d="M10 8C20 5 44 5 54 8c4 10 4 38 0 48-11 4-33 4-44 0C6 46 6 18 10 8Z" fill="var(--mark-fill, none)" stroke="var(--mark-outline, currentColor)" stroke-width="var(--mark-stroke-width, 3.4)" stroke-linejoin="round"/>
       <path class="mark-eyes" d="M27 27v8M39 27v8" stroke="var(--mark-eyes, currentColor)" stroke-width="3.5" stroke-linecap="round"/>
     </symbol>
-    <symbol id="mark-diamond" viewBox="0 0 64 64">
-      <path d="M32 3c8.5 13.1 15.8 20.6 29 29-13.2 8.4-20.5 15.9-29 29C23.5 47.9 16.2 40.4 3 32 16.2 23.6 23.5 16.1 32 3Z" fill="var(--mark-fill, none)" stroke="var(--mark-outline, currentColor)" stroke-width="3.4"/>
+    <symbol id="mark-diamond" viewBox="0 0 64 64" style="overflow: var(--mark-overflow, hidden)">
+      <path d="M32 3c8.5 13.1 15.8 20.6 29 29-13.2 8.4-20.5 15.9-29 29C23.5 47.9 16.2 40.4 3 32 16.2 23.6 23.5 16.1 32 3Z" fill="var(--mark-fill, none)" stroke="var(--mark-outline, currentColor)" stroke-width="var(--mark-stroke-width, 3.4)"/>
       <path class="mark-eyes" d="M27 28v8M39 28v8" stroke="var(--mark-eyes, currentColor)" stroke-width="3.5" stroke-linecap="round"/>
     </symbol>
     <symbol id="icon-app" viewBox="0 0 20 20">
@@ -553,7 +560,7 @@
           </div>
           <div class="section-toggle"><span class="pill"><svg><use href="#icon-app"/></svg>Apps</span><span class="pill active"><svg><use href="#icon-agent"/></svg>Agents</span></div>
           <div class="suggestions">
-            <a class="suggestion" data-daily-brief href="#va-smaller/conv"><span class="agent-icon-slot"><svg class="agent-mark" aria-hidden="true"><use href="#paper-daily-brief"/></svg></span><div class="suggestion-copy"><h2>Daily brief</h2><p>Today’s priorities and key updates</p></div></a>
+            <a class="suggestion" data-daily-brief href="#va-smaller/conv"><span class="agent-icon-slot"><svg class="agent-mark" aria-hidden="true"><use href="#paper-daily-brief-uniform"/></svg></span><div class="suggestion-copy"><h2>Daily brief</h2><p>Today’s priorities and key updates</p></div></a>
             <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-circle"/></svg></span><div class="suggestion-copy"><h2>Weekly update</h2><p>This week’s progress and next steps</p></div></article>
             <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-square"/></svg></span><div class="suggestion-copy"><h2>Quately business review</h2><p>Quarterly performance, trends, and goals</p></div></article>
             <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-diamond"/></svg></span><div class="suggestion-copy"><h2>Executive recap</h2><p>Key results, decisions, and actions</p></div></article>
