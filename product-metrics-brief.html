@@ -1,0 +1,1995 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Conversation · Product Metrics Brief</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter%3Awght%40100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *, ::before, ::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+    </style>
+  <style>
+html {scroll-behavior:smooth} body {font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body > [data-pencil-name] {width:100%!important;min-height:100vh}
+[data-pencil-name="Conversation content"] {max-width:1392px;margin:auto;padding-left:clamp(24px,11.11vw,160px)!important;padding-right:clamp(24px,11.11vw,160px)!important}
+[data-pencil-name="aside"] {position:fixed!important;height:100dvh!important;z-index:3!important}
+[data-pencil-name="aside"] > [data-pencil-name="div"] {top:auto!important;bottom:0}
+[data-pencil-name="User bubble"] {max-width:90%}
+[data-pencil-name="User response"] {white-space:normal!important;overflow-wrap:anywhere}
+[data-pencil-name="Setting value"], [data-pencil-name="Cell"] {min-width:0;overflow-wrap:anywhere}
+[data-pencil-name="Message composer"] {background:white}
+textarea {font:400 16px/24px Inter,system-ui,sans-serif;resize:none;border:0;outline:0;flex:1;min-width:0;background:transparent;color:#24242a}
+textarea::placeholder {color:#8b8b92}
+button {font:inherit;cursor:pointer} .icon-button {border:0;background:transparent;display:grid;place-items:center;padding:6px;color:#777780;border-radius:6px}
+button:hover {background:#f0f0f1} button:focus-visible,a:focus-visible {outline:2px solid #777780;outline-offset:4px}
+#prototype-menu {position:fixed;right:24px;top:62px;z-index:10;padding:8px;background:white;border:1px solid #ddd;border-radius:12px;box-shadow:0 8px 30px #0002;min-width:200px}
+#prototype-menu[hidden] {display:none} #prototype-menu a,#prototype-menu button {display:block;text-align:left;padding:10px 12px;color:#24242a;text-decoration:none;border:0;background:transparent;width:100%;font-size:14px}
+#prototype-menu a:hover,#prototype-menu button:hover {background:#f5f5f5;border-radius:6px}
+.demo-note {color:#777780;font-size:12px;margin-top:-24px;line-height:18px}
+@media(max-width:700px){[data-pencil-name="Conversation content"] {padding:24px 16px 32px!important;gap:28px!important}[data-pencil-name="Setting label"] {width:80px!important}[data-pencil-name="Setting value"] {font-size:13px!important}[data-pencil-name="Metric value"]{font-size:22px!important}[data-pencil-name="Metrics row"]{flex-wrap:wrap}[data-pencil-name="7-day activation chart"]{gap:6px!important}[data-pencil-name="Day"]{font-size:9px!important}[data-pencil-name="Comparison"]{font-size:11px!important}[data-pencil-name="User bubble"]{max-width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style><style>
+[hidden]{display:none!important}
+[data-pencil-name="Conversation header"]{width:100%!important;box-sizing:border-box!important;height:auto!important;min-height:46px}
+[data-pencil-name="Conversation title"]{white-space:normal!important}
+[data-pencil-name="Activation anomaly"]{box-sizing:border-box!important;width:100%!important;height:auto!important}
+[data-pencil-name="Conversation content"] > * {scroll-margin-top:28px}
+.choices{display:flex;flex-wrap:wrap;gap:8px;width:100%}.choice{border:1px solid #dddde1;background:white;color:#24242a;padding:10px 14px;border-radius:10px;font-size:14px;line-height:21px;text-align:left}
+.primary,.choice:first-child{background:#17171a;color:white;border-color:#17171a}.choice:first-child:hover{background:#343438}
+.brief-option:disabled{color:#999;cursor:not-allowed;background:#fafafa}.brief-option{background:white;border:0;border-bottom:1px solid #eee;width:100%;padding:14px;text-align:left;font-size:14px;line-height:21px}.confirmed-choice{padding:14px;font-size:14px;color:#99999d}
+[data-pencil-name="Dataset options"] input{accent-color:#17171a;width:18px;height:18px;flex-shrink:0;cursor:pointer}
+.config-dialog{border:1px solid #ddd;border-radius:18px;max-width:640px;width:calc(100% - 32px);padding:28px;color:#24242a}.config-dialog::backdrop{background:#0005}.config-dialog h2{margin:0 0 24px;font-size:21px}.config-dialog label{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;font-size:13px}.config-dialog textarea{border:1px solid #ddd;border-radius:8px;padding:10px;font-size:14px}.config-dialog .choices{position:sticky;bottom:-28px;padding:16px 0;background:white}
+@media(max-width:700px){[data-pencil-name="Headline numbers"]{display:grid!important;grid-template-columns:1fr 1fr;gap:20px!important}[data-pencil-name="Segment table"]{overflow-x:auto}[data-pencil-name="Segment table"]>div{min-width:460px}[data-pencil-name="Sample product metrics brief"]{padding:18px!important}[data-pencil-name="Activation anomaly"]{padding:14px!important}}
+</style></head>
+  <body style="background-color: #FFFFFF">
+    <div
+      data-pencil-name="Conversation · Product Metrics Brief"
+      style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: fit-content; justify-content: flex-start; overflow: hidden; padding: 0px 0px 0px 48px; position: relative; width: 1440px"
+    >
+      <div
+        data-pencil-name="aside"
+        style="backdrop-filter: blur(7px); background-color: #f5f5f5d1; border-color: #e6e6e6; border-style: solid; border-width: 0px 1px 0px 0px; box-shadow: 0px 1px 3px #0f112814; box-sizing: border-box; height: 5698px; left: 0px; position: absolute; top: 0px; width: 48px; z-index: 0"
+      >
+        <div
+          data-pencil-name="img"
+          style="box-sizing: border-box; height: 40px; left: 3.5px; overflow: hidden; position: absolute; top: 8px; width: 40px; z-index: 0"
+        >
+          <div
+            data-pencil-name="Icon artwork"
+            style="box-sizing: border-box; height: 25.512px; left: 8.163px; position: absolute; top: 7.23px; width: 23.43px; z-index: 0"
+          >
+            <div
+              data-pencil-name="Icon artwork"
+              style="box-sizing: border-box; height: 25.512px; left: 0px; position: absolute; top: 0px; width: 23.43px; z-index: 0"
+            >
+              <svg
+                data-pencil-name="Icon vector"
+                viewBox="-0.0000035762786865234375 5.960464477539062e-7 23.430448293685913 14.761725783348083"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 14.762px; left: 0px; overflow: visible; position: absolute; top: 5.374px; width: 23.43px; z-index: 0"
+              >
+                <path
+                  d="M23.29141 12.88672c-0.119-0.255-1.205-2.465 0-4.938 0.085-0.179 0.127-0.374 0.136-0.57q0-0.304-0.128-0.569c-0.119-0.247-1.214-2.457 0-4.93 0.365-0.748-0.051-1.76-1.018-1.87-1.129-0.128-1.723 1.037-1.324 1.861 0.356 0.74 1.078 2.72 0 4.93-0.085 0.162-0.119 0.34-0.127 0.519 0 0.179 0.017 0.366 0.084 0.527 0.314 0.816 1.078 3.46 0.255 3.93499-0.832 0.485-2.826-1.683-3.225-2.18399-0.11-0.136-0.255-0.255-0.407-0.34-0.152-0.085-0.323-0.136-0.51-0.14501-0.806-0.06-2.86-0.425-4.218-2.465-0.12061-0.17888-0.28385-0.32494-0.475-0.42499-0.187-0.102-0.399-0.153-0.62-0.153-0.221 0-0.424 0.051-0.619 0.153-0.18927 0.10314-0.35217 0.24858-0.476 0.425-1.349 2.023-3.403 2.397-4.218 2.465-0.178 0.017-0.356 0.06-0.509 0.145-0.153 0.085-0.297 0.204-0.407 0.34-0.492 0.621-2.385 2.652-3.226 2.184-0.857-0.493 0.008-3.29 0.255-3.935 0.059-0.162 0.093-0.349 0.085-0.527 0-0.179-0.051-0.357-0.127-0.519-1.069-2.21-0.348-4.191 0-4.93 0.399-0.825-0.204-1.989-1.324-1.861-0.959 0.111-1.383 1.131-1.019 1.87 1.205 2.482 0.11 4.684 0 4.93-0.085 0.179-0.127 0.374-0.127 0.569 0 0.195 0.042 0.391 0.136 0.57 1.205 2.474 0.11 4.684 0 4.938-0.13327 0.28422-0.16333 0.60601-0.085 0.91 0.085 0.298 0.272 0.561 0.534 0.739 0.58496 0.38703 1.37098 0.24464 1.783-0.323 0.789-1.097 2.249-2.406 4.184-2.49 0.187 0 0.382-0.06 0.552-0.145q0.255-0.143 0.433-0.374c2.47-3.256 5.729-3.426 8.317 0 0.119 0.153 0.263 0.281 0.433 0.374 0.17 0.093 0.365 0.136 0.552 0.145 1.935 0.085 3.403 1.394 4.184 2.49 0.39 0.536 1.171 0.748 1.782 0.323 0.54335-0.35828 0.73604-1.06438 0.45-1.649l0.034 0z"
+                  fill="#000000"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-name="Icon vector"
+                viewBox="0.0000034570693969726562 -0.000001039355993270874 17.23699986934662 25.512309160083532"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 25.512px; left: 3.117px; overflow: visible; position: absolute; top: 0px; width: 17.237px; z-index: 1"
+              >
+                <path
+                  d="M0.161 11.72518c0 0 0.042 0 0.059-0.017l2.496-1.454c0.051-0.034 0.119-0.043 0.178-0.034 0.068 0 0.127 0.026 0.187 0.051l0.017 0c0.05152 0.03245 0.09496 0.07622 0.127 0.128 0.03278 0.05658 0.04743 0.12184 0.042 0.187l0 2.924c0 0 0.017 0.06 0.034 0.085 0.02321 0.02433 0.05537 0.0381 0.089 0.0381 0.03363 0 0.06579-0.01377 0.089-0.0381 0.025-0.026 0.034-0.051 0.034-0.094l0-2.924c0-0.051 0.017-0.119 0.043-0.161 0.03423-0.05001 0.07726-0.09338 0.127-0.128l0.026-0.017c0.12131-0.05537 0.26069-0.05537 0.382 0l2.478 1.445c0 0 0.051 0.017 0.085 0.017 0.034 0 0.051-0.026 0.076-0.042l0.017 0 0-0.026c0 0 0-0.009 0.009-0.017l0-0.051c0 0 0-0.043-0.017-0.059 0-0.009-0.017-0.017-0.026-0.026l-2.495-1.453c-0.051-0.034-0.11-0.085-0.136-0.136-0.026-0.051-0.042-0.119-0.042-0.196l0-0.017c0-0.068 0.017-0.128 0.051-0.195 0.034-0.067 0.093-0.111 0.135-0.136l3.684-2.142q0.087-0.05 0.187-0.034c0.06501 0.00303 0.12853 0.02045 0.186 0.051l0.017 0c0.05001 0.03423 0.09338 0.07726 0.128 0.127 0.03278 0.05658 0.04743 0.12184 0.042 0.187l0 2.95c0 0 0.017 0.06 0.034 0.085 0.02118 0.0244 0.05284 0.03706 0.085 0.034l0.051 0c0 0 0.025-0.017 0.034-0.026 0.025-0.026 0.025-0.051 0.025-0.059l0-2.967c0-0.068 0.017-0.128 0.043-0.195 0.0373-0.05547 0.0865-0.10193 0.144-0.136 0.05556-0.03592 0.12089-0.05374 0.187-0.051 0.068 0 0.127 0.017 0.195 0.042l3.683 2.142c0 0 0.093 0.077 0.128 0.136 0.02754 0.05826 0.03893 0.12284 0.033 0.187l0 0.017c0.0029 0.06141-0.00839 0.12266-0.033 0.179-0.03134 0.0548-0.0752 0.1014-0.128 0.136l-2.504 1.462-0.025 0.025-0.025 0.043 0 0.051c0 0 0 0.051 0.025 0.068 0.017 0.026 0.042 0.034 0.068 0.042l0.017 0c0 0 0.051 0 0.085-0.008l2.495-1.462c0 0 0.102-0.043 0.161-0.043 0.059 0 0.11 0.017 0.162 0.043l0.025 0.017c0.05371 0.0361 0.0999 0.08229 0.136 0.136 0.02841 0.06104 0.04277 0.12768 0.042 0.195l0 2.916c0 0 0.017 0.06 0.034 0.085 0.025 0.026 0.051 0.034 0.094 0.034l0.05 0c0 0 0.025-0.017 0.034-0.034 0.025-0.026 0.025-0.051 0.026-0.06l0-2.966c0-0.068 0.017-0.119 0.042-0.187 0.03106-0.05698 0.08305-0.09966 0.145-0.119q0.076-0.051 0.178-0.051c0.102 0 0.127 0.017 0.178 0.034l2.495 1.453c0 0 0.025 0.009 0.051 0.009l0.051 0c0 0 0.025-0.017 0.034-0.026 0.025-0.026 0.025-0.051 0.026-0.051l0-0.068c0 0-0.034-0.06-0.051-0.068l-2.47-1.445c-0.05572-0.0336-0.1024-0.08028-0.136-0.136-0.02407-0.04768-0.03836-0.09971-0.042-0.153l0.068 0 0-0.068c0-0.068 0.017-0.128 0.042-0.195 0.0336-0.05572 0.08028-0.1024 0.136-0.136l2.478-1.454c0 0 0.034-0.034 0.042-0.051l0-0.093c0 0-0.008-0.026-0.025-0.034-0.034-0.026-0.051-0.026-0.059-0.026l-0.034 0c0 0-0.042 0-0.06 0.017l-2.495 1.454q-0.076 0.05-0.178 0.034c-0.068 0-0.127-0.026-0.187-0.051-0.0548-0.03134-0.1014-0.0752-0.136-0.128-0.03219-0.05352-0.04687-0.11574-0.042-0.178l0-4.344c0-0.051 0.017-0.119 0.042-0.161 0.02975-0.05092 0.07038-0.09463 0.119-0.128l0.026-0.017c0.12042-0.05784 0.26059-0.05784 0.381 0l2.487 1.454c0 0 0.025 0.017 0.051 0.017l0.034 0c0 0 0.042-0.009 0.06-0.034 0.017-0.017 0.025-0.034 0.025-0.043 0.00819-0.02774 0.00819-0.05726 0-0.085 0-0.026-0.025-0.051-0.042-0.068l-2.513-1.471c-0.05141-0.03216-0.09484-0.07559-0.127-0.127-0.025-0.034-0.034-0.094-0.034-0.162 0-0.077 0-0.153-0.025-0.229-0.03524-0.11364-0.10346-0.21423-0.196-0.289-0.08935-0.08245-0.20164-0.1358-0.322-0.153-0.14731-0.02561-0.29887 0.0047-0.425 0.085-0.05325 0.03364-0.11501 0.05134-0.178 0.051-0.068 0-0.119-0.017-0.178-0.034l-3.7-2.159c-0.05189-0.03232-0.09567-0.07611-0.128-0.128-0.025-0.034-0.034-0.094-0.034-0.161 0.0139-0.19888-0.06425-0.39314-0.212-0.527-0.07136-0.06671-0.15892-0.1136-0.254-0.136-0.19662-0.04862-0.40467-0.0084-0.569 0.11-0.083 0.06066-0.14769 0.14301-0.187 0.238-0.04501 0.08967-0.0683 0.18867-0.068 0.289-0.002 0.06993-0.01621 0.13897-0.042 0.204-0.0336 0.05572-0.08028 0.1024-0.136 0.136l-3.683 2.151c-0.05361 0.03255-0.11719 0.04463-0.179 0.034-0.06251-0.00284-0.12347-0.02031-0.178-0.051-0.136-0.085-0.297-0.111-0.458-0.085-0.11308 0.02491-0.21822 0.07748-0.306 0.153-0.08214 0.08027-0.14327 0.17952-0.178 0.289-0.017 0.06-0.025 0.136-0.025 0.212 0 0.076-0.008 0.128-0.034 0.162-0.02987 0.05055-0.07049 0.09391-0.119 0.127l-2.512 1.463c0 0-0.051 0.043-0.051 0.085l0 0.076c0 0 0.017 0.026 0.025 0.034l0 0.017 0.085 0c0 0 0.025 0.009 0.051-0.008l2.512-1.463c0 0 0.102-0.043 0.161-0.042 0.059 0.001 0.11 0.017 0.162 0.042l0.025 0.017c0.051 0.034 0.11 0.085 0.136 0.137 0.02841 0.06104 0.04277 0.12768 0.042 0.195l0 4.318c-0.00141 0.06557-0.01893 0.12979-0.051 0.187-0.025 0.051-0.068 0.085-0.135 0.119q-0.076 0.051-0.179 0.051c-0.103 0-0.127-0.017-0.186-0.034l-2.496-1.453c0 0-0.025-0.009-0.051-0.009l-0.05 0c0 0-0.025 0.017-0.034 0.026-0.008 0.009-0.034 0.026-0.034 0.059l0 0.068c0 0 0.034 0.06 0.051 0.068l2.469 1.445c0.05371 0.0361 0.0999 0.08229 0.136 0.136 0.02743 0.06176 0.04206 0.12843 0.043 0.196l0 0.017c0 0.068-0.017 0.128-0.051 0.195-0.034 0.067-0.093 0.111-0.136 0.136l-2.478 1.445c0 0-0.051 0.043-0.051 0.077l0 0.076c0 0 0.017 0.026 0.025 0.034 0.025 0.026 0.051 0.026 0.06 0.026l0.076 0z m13.512-7.2l0 4.335c-0.00212 0.06453-0.01673 0.12803-0.043 0.187-0.03082 0.05678-0.08243 0.09943-0.144 0.119-0.051 0.034-0.102 0.051-0.178 0.051-0.076 0-0.119-0.017-0.179-0.034l-3.683-2.15c-0.05572-0.0336-0.1024-0.08028-0.136-0.136-0.02856-0.06134-0.04292-0.12834-0.042-0.196l0-0.017c0-0.068 0.017-0.128 0.042-0.195 0.0336-0.05572 0.08028-0.1024 0.136-0.136l3.658-2.134c0.12069-0.05816 0.26131-0.05816 0.382 0l0.025 0.017c0.0501 0.03452 0.09347 0.0779 0.128 0.128 0.02752 0.0492 0.04198 0.10463 0.042 0.161l-0.008 0z m-0.518-0.876c-0.00094 0.06757-0.01557 0.13424-0.043 0.196-0.03332 0.0556-0.07965 0.10227-0.135 0.136l-3.684 2.151c-0.05364 0.0315-0.11652 0.04351-0.178 0.034-0.06298 0.00034-0.12475-0.01736-0.178-0.051l-0.068-0.043c0 0-0.059-0.043-0.077-0.068-0.03278-0.05658-0.04743-0.12184-0.042-0.187l0-4.344c0-0.051 0.017-0.119 0.042-0.161 0.03232-0.05189 0.07611-0.09567 0.128-0.128l0.025-0.017c0.06041-0.03024 0.1275-0.04469 0.195-0.042 0.068 0 0.127 0.017 0.187 0.042l3.658 2.134c0.05572 0.0336 0.1024 0.08028 0.136 0.136 0.02841 0.06104 0.04277 0.12768 0.042 0.195l0 0.017-0.008 0z m-4.685 2.219c-0.00141 0.05112-0.01587 0.10104-0.042 0.145-0.03106 0.05698-0.08305 0.09966-0.145 0.119q-0.076 0.051-0.178 0.051c-0.102 0-0.127-0.017-0.178-0.034l-3.684-2.151c-0.05572-0.0336-0.1024-0.08028-0.136-0.136-0.02856-0.06135-0.04291-0.12834-0.042-0.196l0-0.017c0-0.068 0.017-0.128 0.042-0.195 0.0313-0.05748 0.07852-0.1047 0.136-0.136l3.658-2.134c0.06071-0.03041 0.12816-0.04486 0.196-0.042 0.068 0 0.127 0.017 0.195 0.042 0.051 0.034 0.11 0.085 0.136 0.136 0.026 0.051 0.042 0.119 0.042 0.196l0 4.352z m-0.535 0.799l0 0.06 0.017 0c0.00242 0.05311-0.00931 0.10591-0.034 0.153-0.03105 0.05469-0.07456 0.10128-0.127 0.136l-3.684 2.142c-0.12073 0.05642-0.26026 0.05642-0.381 0l-0.026-0.017c-0.04974-0.03462-0.09277-0.07799-0.127-0.128-0.02747-0.04927-0.04224-0.1046-0.043-0.161l0-4.318c0-0.068 0.017-0.128 0.051-0.196 0.034-0.068 0.093-0.111 0.136-0.136 0.05556-0.03592 0.12089-0.05374 0.187-0.051 0.068 0 0.127 0.017 0.187 0.042l3.675 2.151c0.05416 0.03264 0.09814 0.07974 0.127 0.136 0.0265 0.05576 0.0382 0.1174 0.034 0.179l0.008 0.008z m9.243 13.218l-0.06-0.034 0 0.017c0 0-0.025-0.017-0.042-0.026l-0.017 0c0 0-0.051 0-0.085 0.009l-2.495 1.453c0 0-0.102 0.043-0.161 0.043-0.059 0-0.11-0.017-0.17-0.051l-0.042-0.026c-0.05002-0.03423-0.09339-0.07726-0.128-0.127-0.02769-0.04949-0.04215-0.10529-0.042-0.162l0-2.941c0 0-0.017-0.06-0.034-0.076-0.02321-0.02433-0.05537-0.0381-0.089-0.0381-0.03363 0-0.06579 0.01377-0.089 0.0381-0.025 0.026-0.034 0.051-0.034 0.093l0 2.916c-0.00108 0.06723-0.0157 0.13355-0.043 0.195-0.03056 0.05605-0.0782 0.10089-0.136 0.128q-0.076 0.051-0.178 0.051c-0.102 0-0.119-0.017-0.178-0.034l-3.684-2.151c-0.051-0.034-0.11-0.085-0.135-0.136-0.025-0.051-0.042-0.119-0.043-0.187l0-0.017c0-0.068 0.017-0.128 0.043-0.195 0.03581-0.05361 0.08165-0.09979 0.135-0.136l2.47-1.437 0.034-0.034 0.026-0.042 0-0.051c0 0 0-0.043-0.026-0.068-0.008-0.017-0.034-0.034-0.085-0.034-0.017 0-0.051 0-0.085 0.017l-2.486 1.445c-0.05361 0.03256-0.11719 0.04463-0.179 0.034-0.068 0-0.119-0.026-0.186-0.051-0.0548-0.03134-0.1014-0.0752-0.136-0.128-0.03254-0.0567-0.0475-0.12178-0.043-0.187l0-2.941c0 0-0.017-0.06-0.033-0.085-0.0361-0.03744-0.09173-0.04836-0.13932-0.02736-0.04758 0.021-0.07701 0.06946-0.07368 0.12136l0 2.932c-0.00181 0.06446-0.01607 0.12796-0.042 0.187-0.03082 0.05678-0.08243 0.09943-0.144 0.119q-0.076 0.051-0.179 0.051c-0.103 0-0.127-0.017-0.178-0.034l-2.487-1.453c0 0-0.051-0.026-0.084-0.009-0.017 0-0.034 0.017-0.051 0.026l-0.034 0 0 0.034c0 0 0 0.009-0.009 0.017l0 0.051c0 0 0 0.043 0.017 0.059 0 0.009 0.017 0.017 0.026 0.026l2.478 1.445c0.05371 0.03611 0.0999 0.08229 0.136 0.136 0.02841 0.06104 0.04276 0.12768 0.042 0.195l0 0.017c0.0001 0.06863-0.01747 0.13612-0.051 0.196-0.0313 0.05748-0.07852 0.1047-0.136 0.136l-3.683 2.15c-0.051 0.034-0.119 0.043-0.178 0.034-0.068 0-0.119-0.026-0.187-0.051-0.05469-0.03105-0.10128-0.07456-0.136-0.127-0.03239-0.0538-0.04708-0.11641-0.042-0.179l0-2.941c0 0-0.017-0.06-0.034-0.085-0.02205-0.02315-0.05307-0.03556-0.085-0.034l-0.051 0c0 0-0.025 0.017-0.034 0.026-0.01619 0.01533-0.02525 0.03671-0.025 0.059l0 2.975c-0.00141 0.06557-0.01893 0.12979-0.051 0.187-0.025 0.051-0.068 0.085-0.136 0.119q-0.076 0.051-0.178 0.051c-0.102 0-0.119-0.017-0.187-0.034l-2.495-1.453c0 0-0.051-0.026-0.085-0.017-0.034 0-0.051 0.026-0.077 0.042l-0.017 0 0 0.026c0 0 0 0.009-0.008 0.017l0 0.051c0 0 0 0.043 0.025 0.059 0 0.009 0.017 0.017 0.026 0.026l2.495 1.462c0.05141 0.03216 0.09484 0.07559 0.127 0.127 0.025 0.034 0.034 0.094 0.034 0.162 0 0.077 0 0.153 0.026 0.221 0.025 0.102 0.076 0.17 0.144 0.255 0.076 0.077 0.161 0.128 0.246 0.161 0.085 0.033 0.178 0.051 0.28 0.034 0.09781-0.00371 0.19239-0.03604 0.272-0.093 0.05721-0.03207 0.12143-0.04959 0.187-0.051 0.068 0 0.119 0.017 0.178 0.034l3.7 2.159c0.05083 0.03689 0.09425 0.08303 0.128 0.136 0.025 0.043 0.042 0.102 0.042 0.161 0 0.059 0 0.145 0.026 0.213 0.0415 0.15364 0.13793 0.28671 0.271 0.374 0.10605 0.06909 0.23046 0.10463 0.357 0.102l0.084 0c0.15593-0.02125 0.29827-0.10008 0.399-0.221 0.10441-0.11633 0.15931-0.26881 0.153-0.425 0-0.077 0.017-0.136 0.043-0.204 0.03332-0.0556 0.07965-0.10227 0.135-0.136l3.684-2.151q0.087-0.05 0.187-0.034c0.068 0 0.127 0.026 0.178 0.051 0.13623 0.07799 0.29471 0.10792 0.45 0.085 0.11591-0.02365 0.22394-0.07629 0.314-0.153 0.08214-0.08027 0.14327-0.17952 0.178-0.289 0.01777-0.06923 0.02617-0.14053 0.025-0.212 0-0.06 0.017-0.119 0.034-0.162 0.03328-0.04789 0.07337-0.09067 0.119-0.127l2.495-1.462 0.026-0.026 0.025-0.042 0-0.051c0 0 0-0.06-0.03401-0.068l-0.02499 0z m-8.632 4.122c0 0-0.017 0.085-0.042 0.128-0.03092 0.05238-0.07462 0.09608-0.127 0.127l-0.026 0.017c-0.06085 0.02909-0.12756 0.0438-0.195 0.043-0.06723-0.00108-0.13355-0.0157-0.195-0.043l-3.684-2.142c-0.05416-0.03264-0.09814-0.07974-0.127-0.136-0.02619-0.0587-0.03786-0.12284-0.034-0.187l0-0.017c0-0.068 0-0.077 0.034-0.144 0.025-0.06 0.127-0.119 0.187-0.153l3.683-2.142c0.06084-0.02909 0.12756-0.0438 0.195-0.043 0.068 0 0.076-0.009 0.145 0.017 0.051 0.034 0.11 0.085 0.135 0.136 0.025 0.051 0.042 0.119 0.043 0.196l0 4.343 0.008 0z m4.609-2.099c-0.00076 0.0564-0.01554 0.11173-0.043 0.161-0.03581 0.05361-0.08165 0.0998-0.135 0.136l-3.616 2.125c-0.05365 0.0315-0.11652 0.04351-0.178 0.034-0.06557-0.00141-0.12979-0.01893-0.187-0.051-0.05469-0.03105-0.10128-0.07456-0.136-0.127-0.03164-0.05702-0.04622-0.12193-0.042-0.187l0-4.318c0-0.068 0.017-0.128 0.042-0.196 0.03502-0.05771 0.08517-0.10474 0.145-0.136 0.059-0.043 0.068-0.026 0.118-0.025 0.068 0 0.127 0.017 0.187 0.042l3.658 2.134c0.051 0.026 0.11 0.085 0.136 0.136 0.026 0.051 0.042 0.119 0.042 0.195l0 0.068 0.009 0 0 0.009z"
+                  fill="#000000"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="nav"
+          style="box-sizing: border-box; height: 342px; left: 0px; position: absolute; top: 59px; width: 47px; z-index: 1"
+        >
+          <div
+            data-pencil-name="button"
+            style="border-radius: 8px; box-sizing: border-box; height: 36px; left: 5.5px; position: absolute; top: 0px; width: 36px; z-index: 0"
+          >
+            <div
+              data-pencil-name="svg"
+              style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+            >
+              <svg
+                data-pencil-name="Icon vector"
+                viewBox="0 0 14 14"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 11.667px; left: 4.167px; overflow: visible; position: absolute; top: 4.167px; width: 11.667px; z-index: 0"
+              >
+                <path
+                  d="M7 0l0 14m-7-7l14 0"
+                  fill="none"
+                  stroke="#626268"
+                  stroke-width="1.292"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div
+            data-pencil-name="button"
+            style="border-radius: 8px; box-sizing: border-box; height: 36px; left: 5.5px; position: absolute; top: 36px; width: 36px; z-index: 1"
+          >
+            <div
+              data-pencil-name="svg"
+              style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+            >
+              <div
+                data-pencil-name="Imported element"
+                style="border-radius: 0.833px; box-sizing: border-box; height: 5px; left: 3.333px; outline-offset: -0.646px; outline: 1.292px solid #626268; position: absolute; top: 3.333px; width: 5px; z-index: 0"
+              ></div>
+              <div
+                data-pencil-name="Imported element"
+                style="border-radius: 0.833px; box-sizing: border-box; height: 5px; left: 11.667px; outline-offset: -0.646px; outline: 1.292px solid #626268; position: absolute; top: 3.333px; width: 5px; z-index: 1"
+              ></div>
+              <div
+                data-pencil-name="Imported element"
+                style="border-radius: 0.833px; box-sizing: border-box; height: 5px; left: 3.333px; outline-offset: -0.646px; outline: 1.292px solid #626268; position: absolute; top: 11.667px; width: 5px; z-index: 2"
+              ></div>
+              <div
+                data-pencil-name="Imported element"
+                style="border-radius: 0.833px; box-sizing: border-box; height: 5px; left: 11.667px; outline-offset: -0.646px; outline: 1.292px solid #626268; position: absolute; top: 11.667px; width: 5px; z-index: 3"
+              ></div>
+            </div>
+          </div>
+          <div
+            data-pencil-name="button"
+            style="background-color: #e6e6e6; border-radius: 8px; box-sizing: border-box; height: 36px; left: 5.5px; position: absolute; top: 72px; width: 36px; z-index: 2"
+          >
+            <div
+              data-pencil-name="svg"
+              style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+            >
+              <div
+                data-pencil-name="Imported element"
+                style="border-radius: 50%; box-sizing: border-box; height: 13.333px; left: 3.333px; outline-offset: -0.646px; outline: 1.292px solid #303034; position: absolute; top: 3.333px; width: 13.333px; z-index: 0"
+              ></div>
+              <svg
+                data-pencil-name="Icon vector"
+                viewBox="0 0 5 4"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 3.333px; left: 7.917px; overflow: visible; position: absolute; top: 8.333px; width: 4.167px; z-index: 1"
+              >
+                <path
+                  d="M0 0l0 4m5-4l0 4"
+                  fill="none"
+                  stroke="#303034"
+                  stroke-width="1.292"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div
+            data-pencil-name="button"
+            style="border-radius: 8px; box-sizing: border-box; height: 36px; left: 5.5px; position: absolute; top: 108px; width: 36px; z-index: 3"
+          >
+            <div
+              data-pencil-name="img"
+              style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+            >
+              <svg
+                data-pencil-name="Icon vector"
+                viewBox="-4.76837158203125e-7 0 13.872000217437744 13.333000183105469"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 13.333px; left: 3.06px; overflow: visible; position: absolute; top: 2.778px; width: 13.872px; z-index: 0"
+              >
+                <path
+                  d="M1.94 2.778l0-1.112c0 0 0-1.666 1.667-1.666l6.666 0c1.667 0 1.667 1.481 1.667 1.666l0 1.112m-10 0l10 0m-10 0l0 2.777m10-2.777l0 2.777m-10 0l0 0.556c0 2.222 1.667 2.31 1.667 2.31l3.333 0m-5-2.866l10 0m0 0l0 0.556c0 2.222-1.7 2.31-1.7 2.31l-3.3 0m0 0l0 2.69m-6.94 2.222l5.273 0m3.334 0l5.265 0"
+                  fill="none"
+                  stroke="#666"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="miter"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-name="Imported element"
+                style="border-radius: 50%; box-sizing: border-box; height: 2.778px; left: 8.611px; outline-offset: -0.65px; outline: 1.3px solid #666; position: absolute; top: 14.167px; width: 2.778px; z-index: 1"
+              ></div>
+            </div>
+          </div>
+          <div
+            data-pencil-name="button"
+            style="border-radius: 8px; box-sizing: border-box; height: 36px; left: 5.5px; position: absolute; top: 144px; width: 36px; z-index: 4"
+          >
+            <div
+              data-pencil-name="svg"
+              style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+            >
+              <svg
+                data-pencil-name="Icon vector"
+                viewBox="0 0 18 20"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 16.667px; left: 2.5px; overflow: visible; position: absolute; top: 1.667px; width: 15px; z-index: 0"
+              >
+                <path
+                  d="M14 0l4 4-4 4m-14 0l0-2c0-1.10457 0.89543-2 2-2l16 0m-14 16l-4-4 4-4m14 0l0 2c0 1.10457-0.89543 2-2 2l-16 0"
+                  fill="none"
+                  stroke="#626268"
+                  stroke-width="1.292"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div
+            data-pencil-name="button"
+            style="border-radius: 8px; box-sizing: border-box; height: 36px; left: 5.5px; position: absolute; top: 180px; width: 36px; z-index: 5"
+          >
+            <div
+              data-pencil-name="svg"
+              style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+            >
+              <svg
+                data-pencil-name="Icon vector"
+                viewBox="0 0 16 15"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 12.5px; left: 3.333px; overflow: visible; position: absolute; top: 4.167px; width: 13.333px; z-index: 0"
+              >
+                <path
+                  d="M0 0l16 0 0 12-12 0-4 3 0-15z m4 4l8 0m-8 4l5 0"
+                  fill="none"
+                  stroke="#626268"
+                  stroke-width="1.292"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div
+            data-pencil-name="button"
+            style="border-radius: 8px; box-sizing: border-box; height: 36px; left: 5.5px; position: absolute; top: 216px; width: 36px; z-index: 6"
+          >
+            <div
+              data-pencil-name="svg"
+              style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+            >
+              <div
+                data-pencil-name="Imported element"
+                style="background-color: #626268; border-radius: 50%; box-sizing: border-box; height: 2.167px; left: 3.917px; position: absolute; top: 8.917px; width: 2.167px; z-index: 0"
+              ></div>
+              <div
+                data-pencil-name="Imported element"
+                style="background-color: #626268; border-radius: 50%; box-sizing: border-box; height: 2.167px; left: 8.917px; position: absolute; top: 8.917px; width: 2.167px; z-index: 1"
+              ></div>
+              <div
+                data-pencil-name="Imported element"
+                style="background-color: #626268; border-radius: 50%; box-sizing: border-box; height: 2.167px; left: 13.917px; position: absolute; top: 8.917px; width: 2.167px; z-index: 2"
+              ></div>
+            </div>
+          </div>
+          <div
+            data-pencil-name="button"
+            style="border-radius: 8px; box-sizing: border-box; height: 36px; left: 5.5px; position: absolute; top: 252px; width: 36px; z-index: 7"
+          >
+            <div
+              data-pencil-name="svg"
+              style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+            >
+              <div
+                data-pencil-name="Imported element"
+                style="border-radius: 50%; box-sizing: border-box; height: 5px; left: 7.5px; outline-offset: -0.646px; outline: 1.292px solid #626268; position: absolute; top: 7.5px; width: 5px; z-index: 0"
+              ></div>
+              <svg
+                data-pencil-name="Icon vector"
+                viewBox="-8.344650268554688e-7 7.152557373046875e-7 17.59999930858612 18.300000429153442"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 15.25px; left: 2.667px; overflow: visible; position: absolute; top: 2.167px; width: 14.667px; z-index: 1"
+              >
+                <path
+                  d="M15.8 10.9l1.5 1.2-2 3.4-1.9-0.8c-0.74801 0.68212-1.63507 1.19388-2.6 1.5l-0.3 2.1-3.7 0-0.3-2.1c-0.96493-0.30611-1.85199-0.81788-2.6-1.5l-1.9 0.8-2-3.4 1.6-1.7c-0.2168-0.98825-0.2168-2.01175 0-3l-1.6-1.2 2-3.4 1.9 0.8c0.74801-0.68212 1.63507-1.19389 2.6-1.5l0.3-2.1 4 0 0.3 2.1c0.96494 0.30611 1.85199 0.81788 2.6 1.5l1.9-0.8 2 3.4-1.6 1.2c0.23129 1.16475 0.16246 2.36918-0.2 3.5"
+                  fill="none"
+                  stroke="#626268"
+                  stroke-width="1.292"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+            </div>
+          </div>
+          <div
+            data-pencil-name="div"
+            style="background-color: #0f112814; box-sizing: border-box; height: 1px; left: 9.5px; position: absolute; top: 293px; width: 28px; z-index: 8"
+          ></div>
+          <div
+            data-pencil-name="button"
+            style="border-radius: 8px; box-sizing: border-box; height: 36px; left: 5.5px; position: absolute; top: 306px; width: 36px; z-index: 9"
+          >
+            <div
+              data-pencil-name="svg"
+              style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+            >
+              <div
+                data-pencil-name="Imported element"
+                style="border-radius: 50%; box-sizing: border-box; height: 10px; left: 3.75px; outline-offset: -0.646px; outline: 1.292px solid #626268; position: absolute; top: 3.75px; width: 10px; z-index: 0"
+              ></div>
+              <svg
+                data-pencil-name="Icon vector"
+                viewBox="0 0 5 5"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 4.167px; left: 12.5px; overflow: visible; position: absolute; top: 12.5px; width: 4.167px; z-index: 1"
+              >
+                <path
+                  d="M0 0l5 5"
+                  fill="none"
+                  stroke="#626268"
+                  stroke-width="1.292"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="div"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px; height: 92px; justify-content: flex-start; left: 3.5px; padding: 0px 0px 16px 0px; position: absolute; top: 5606px; width: 40px; z-index: 2"
+        >
+          <div
+            data-pencil-name="button"
+            style="border-radius: 8px; box-sizing: border-box; flex: 1 1 0; position: relative; width: 100%"
+          >
+            <div
+              data-pencil-name="svg"
+              style="box-sizing: border-box; height: 20px; left: 10px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+            >
+              <svg
+                data-pencil-name="Icon vector"
+                viewBox="0 0 15 15.5"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 12.917px; left: 3.75px; overflow: visible; position: absolute; top: 2.917px; width: 12.5px; z-index: 0"
+              >
+                <path
+                  d="M2 5.5c0-3.03757 2.46243-5.5 5.5-5.5 3.03757 0 5.5 2.46243 5.5 5.5l0 4 2 3-15 0 2-3 0-4z m3.5 10l4 0"
+                  fill="none"
+                  stroke="#626268"
+                  stroke-width="1.292"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+            </div>
+            <div
+              data-pencil-name="Icon"
+              style="align-items: center; background-color: #f04438; border-radius: 50px; border: 1px solid #ffffff; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: 12px; justify-content: center; left: 23px; position: absolute; top: 3px; width: 12px; z-index: 1"
+            >
+              <div
+                data-pencil-name="Imported element"
+                style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 7px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 11px; text-align: center; white-space: nowrap"
+              >
+                1
+              </div>
+            </div>
+          </div>
+          <div
+            data-pencil-name="div"
+            style="box-sizing: border-box; flex: 1 1 0; position: relative; width: 100%"
+          >
+            <div
+              data-pencil-name="M"
+              style="align-items: center; background-color: #fbe6f5; border-radius: 50px; border: 1px solid #e7b8de; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: 24px; justify-content: center; left: 8px; position: absolute; top: 6px; width: 24px; z-index: 0"
+            >
+              <div
+                data-pencil-name="Imported element"
+                style="box-sizing: border-box; color: #9e168e; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 13px; text-align: left; white-space: nowrap"
+              >
+                M
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        data-pencil-name="Conversation content"
+        style="align-items: flex-start; background-color: #ffffff; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 36px; height: fit-content; justify-content: flex-start; padding: 32px 160px 56px 160px; position: relative; width: 100%; z-index: 1"
+      >
+        <div
+          data-pencil-name="Conversation header"
+          style="align-items: center; border-color: #ECECEE; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 45.5px; justify-content: space-between; margin: 0px 0px -0.5px 0px; padding: 0px 0px 24px 0px; width: 1072px"
+        >
+          <div
+            data-pencil-name="Conversation title"
+            style="box-sizing: border-box; color: #17171A; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+          >
+            New daily brief agent
+          </div>
+          <svg
+            data-pencil-name="More options"
+            data-icon-name="ellipsis"
+            data-icon-set="lucide"
+            viewBox="0 0 13.99993896484375 14"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; flex-shrink: 0; height: 20px; width: 20px"
+          >
+            <path
+              d="M2.77197 5.85156q-0.2666 0.01367-0.50244 0.18115-0.33838 0.22559-0.45801 0.59815-0.11621 0.36914 0.00684 0.7417 0.12646 0.36914 0.46484 0.6084 0.26318 0.18115 0.62891 0.18115 0.25293 0 0.44092-0.0752 0.18799-0.07861 0.37597-0.2666 0.19141-0.19141 0.26661-0.37939 0.07861-0.18799 0.07861-0.44092 0-0.25293-0.07861-0.44092-0.0752-0.18799-0.25635-0.37256-0.15381-0.15381-0.29395-0.22216-0.30762-0.15381-0.67334-0.1128z m4.10157 0q-0.2085 0.01367-0.37598 0.09912-0.23926 0.11279-0.3999 0.31446-0.16064 0.20166-0.23243 0.44091-0.02734 0.11279-0.02734 0.29395 0 0.18115 0.02734 0.29395 0.08545 0.30762 0.30762 0.5332 0.22559 0.22217 0.5332 0.30762 0.11279 0.02734 0.29395 0.02734 0.18115 0 0.29395-0.02734 0.30762-0.08545 0.52978-0.30762 0.22559-0.22559 0.31104-0.5332 0.02734-0.11279 0.02734-0.29395 0-0.18115-0.02734-0.29395-0.07178-0.23926-0.23243-0.44091-0.16064-0.20166-0.3999-0.31446-0.26318-0.14014-0.6289-0.09912z m4.07421 0q-0.39307 0.02734-0.70068 0.33496-0.16748 0.18457-0.24609 0.37256-0.0752 0.18799-0.0752 0.44092 0 0.25293 0.0752 0.44775 0.07861 0.19482 0.2666 0.3794 0.19141 0.18115 0.37939 0.25976 0.18799 0.0752 0.44092 0.0752 0.36572 0 0.62891-0.18115 0.33838-0.23926 0.46142-0.6084 0.12647-0.37256 0.00684-0.7417-0.11621-0.37256-0.46143-0.60156-0.3418-0.23242-0.77588-0.17774z"
+              fill="#777780"
+            ></path>
+          </svg>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              I want to create a daily brief agent.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Sure. Which type of daily brief?
+          </div>
+          <div
+            data-pencil-name="Choose a brief type"
+            style="align-items: flex-start; background-color: #F0F0F1; border-radius: 18px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 18px; width: 100%"
+          >
+            <div
+              data-pencil-name="Options"
+              style="align-items: flex-start; background-color: #FFFFFF; border-radius: 12px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; overflow: hidden; width: 100%"
+            >
+              <div
+                data-pencil-name="Data analyst — key metrics, trends, and anomalies from your data"
+                style="align-items: center; background-color: #FCFCFC; border-radius: 12px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #E8E8EA; padding: 14px; width: 100%"
+              >
+                <div
+                  data-pencil-name="Option key"
+                  style="align-items: center; background-color: #F2F2F3; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 26px; justify-content: center; width: 26px"
+                >
+                  <div
+                    data-pencil-name="Key"
+                    style="box-sizing: border-box; color: #B8B8BC; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+                  >
+                    C
+                  </div>
+                </div>
+                <div
+                  data-pencil-name="Option label"
+                  style="box-sizing: border-box; color: #99999D; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+                >
+                  Data analyst — key metrics, trends, and anomalies from your data
+                </div>
+                <svg
+                  data-pencil-name="Confirmed selection"
+                  data-icon-name="check"
+                  data-icon-set="lucide"
+                  viewBox="0 0 13.99993896484375 14"
+                  preserveAspectRatio="xMidYMid meet"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; flex-shrink: 0; height: 20px; width: 20px"
+                >
+                  <path
+                    d="M11.48096 2.95313q-0.07178 0.01367-0.12989 0.0581-0.05469 0.04102-3.07617 3.06592l-3.0249 3.00781-1.28857-1.28857q-1.28857-1.28516-1.38086-1.32618-0.08887-0.04443-0.22217-0.04443-0.1333 0-0.23242 0.0376-0.0957 0.03418-0.18799 0.11279-0.08887 0.0752-0.1333 0.1709-0.02734 0.07178-0.03418 0.11279-0.00684 0.04102-0.00684 0.14014l0 0.04102q-0.01367 0.11279 0.04102 0.19824 0.07178 0.10938 0.36572 0.40332 0.19482 0.21191 0.96729 0.98096l1.49707 1.48339q0.28027 0.2666 0.38964 0.33838 0.07178 0.05469 0.18457 0.04102l0.09571 0.01367q0.07178 0 0.14013-0.02734 0.08545-0.07178 0.32129-0.28711 0.23926-0.21875 0.79981-0.76221l2.2832-2.2832q2.08496-2.09863 2.7002-2.71387 0.61524-0.61865 0.64599-0.68701 0.04102-0.08545 0.04102-0.23926 0-0.09912-0.00684-0.14014-0.00684-0.04102-0.03418-0.11279-0.04443-0.08203-0.13672-0.16406-0.08887-0.08545-0.18115-0.11963-0.08887-0.0376-0.20849-0.0376-0.11963 0-0.18799 0.02734z"
+                    fill="#77777C"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Data analyst.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Which area — sales, product usage, marketing, finance, operations?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Product usage.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Where’s the data? Mixpanel, Amplitude, a warehouse like Snowflake or BigQuery,
+            spreadsheets?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              BigQuery.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Which datasets should it use? Or should I look and suggest?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Look and suggest.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            I see product.events, product.daily_active_users, product.signups, and
+            billing.subscriptions. Use all four?
+          </div>
+          <div
+            data-pencil-name="Suggested BigQuery datasets"
+            style="align-items: flex-start; background-color: #F0F0F1; border-radius: 18px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 18px; width: 100%"
+          >
+            <div
+              data-pencil-name="Dataset options"
+              style="align-items: flex-start; background-color: #00000000; border-radius: 12px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; overflow: hidden; width: 100%"
+            >
+              <div
+                data-pencil-name="product.events"
+                style="align-items: center; background-color: #FCFCFC; border-radius: 12px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #E8E8EA; padding: 14px; width: 100%"
+              >
+                <div
+                  data-pencil-name="Selected dataset"
+                  style="align-items: center; background-color: #F2F2F3; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 26px; justify-content: center; width: 26px"
+                >
+                  <div
+                    data-pencil-name="Dataset option key"
+                    style="box-sizing: border-box; color: #B8B8BC; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+                  >
+                    A
+                  </div>
+                </div>
+                <div
+                  data-pencil-name="Dataset"
+                  style="box-sizing: border-box; color: #99999D; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+                >
+                  product.events
+                </div>
+                <svg
+                  data-pencil-name="Selected checkmark"
+                  data-icon-name="check"
+                  data-icon-set="lucide"
+                  viewBox="0 0 13.99993896484375 14"
+                  preserveAspectRatio="xMidYMid meet"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; flex-shrink: 0; height: 20px; width: 20px"
+                >
+                  <path
+                    d="M11.48096 2.95313q-0.07178 0.01367-0.12989 0.0581-0.05469 0.04102-3.07617 3.06592l-3.0249 3.00781-1.28857-1.28857q-1.28857-1.28516-1.38086-1.32618-0.08887-0.04443-0.22217-0.04443-0.1333 0-0.23242 0.0376-0.0957 0.03418-0.18799 0.11279-0.08887 0.0752-0.1333 0.1709-0.02734 0.07178-0.03418 0.11279-0.00684 0.04102-0.00684 0.14014l0 0.04102q-0.01367 0.11279 0.04102 0.19824 0.07178 0.10938 0.36572 0.40332 0.19482 0.21191 0.96729 0.98096l1.49707 1.48339q0.28027 0.2666 0.38964 0.33838 0.07178 0.05469 0.18457 0.04102l0.09571 0.01367q0.07178 0 0.14013-0.02734 0.08545-0.07178 0.32129-0.28711 0.23926-0.21875 0.79981-0.76221l2.2832-2.2832q2.08496-2.09863 2.7002-2.71387 0.61524-0.61865 0.64599-0.68701 0.04102-0.08545 0.04102-0.23926 0-0.09912-0.00684-0.14014-0.00684-0.04102-0.03418-0.11279-0.04443-0.08203-0.13672-0.16406-0.08887-0.08545-0.18115-0.11963-0.08887-0.0376-0.20849-0.0376-0.11963 0-0.18799 0.02734z"
+                    fill="#77777C"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                data-pencil-name="product.daily_active_users"
+                style="align-items: center; background-color: #FCFCFC; border-radius: 12px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #E8E8EA; padding: 14px; width: 100%"
+              >
+                <div
+                  data-pencil-name="Selected dataset"
+                  style="align-items: center; background-color: #F2F2F3; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 26px; justify-content: center; width: 26px"
+                >
+                  <div
+                    data-pencil-name="Dataset option key"
+                    style="box-sizing: border-box; color: #B8B8BC; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+                  >
+                    B
+                  </div>
+                </div>
+                <div
+                  data-pencil-name="Dataset"
+                  style="box-sizing: border-box; color: #99999D; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+                >
+                  product.daily_active_users
+                </div>
+                <svg
+                  data-pencil-name="Selected checkmark"
+                  data-icon-name="check"
+                  data-icon-set="lucide"
+                  viewBox="0 0 13.99993896484375 14"
+                  preserveAspectRatio="xMidYMid meet"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; flex-shrink: 0; height: 20px; width: 20px"
+                >
+                  <path
+                    d="M11.48096 2.95313q-0.07178 0.01367-0.12989 0.0581-0.05469 0.04102-3.07617 3.06592l-3.0249 3.00781-1.28857-1.28857q-1.28857-1.28516-1.38086-1.32618-0.08887-0.04443-0.22217-0.04443-0.1333 0-0.23242 0.0376-0.0957 0.03418-0.18799 0.11279-0.08887 0.0752-0.1333 0.1709-0.02734 0.07178-0.03418 0.11279-0.00684 0.04102-0.00684 0.14014l0 0.04102q-0.01367 0.11279 0.04102 0.19824 0.07178 0.10938 0.36572 0.40332 0.19482 0.21191 0.96729 0.98096l1.49707 1.48339q0.28027 0.2666 0.38964 0.33838 0.07178 0.05469 0.18457 0.04102l0.09571 0.01367q0.07178 0 0.14013-0.02734 0.08545-0.07178 0.32129-0.28711 0.23926-0.21875 0.79981-0.76221l2.2832-2.2832q2.08496-2.09863 2.7002-2.71387 0.61524-0.61865 0.64599-0.68701 0.04102-0.08545 0.04102-0.23926 0-0.09912-0.00684-0.14014-0.00684-0.04102-0.03418-0.11279-0.04443-0.08203-0.13672-0.16406-0.08887-0.08545-0.18115-0.11963-0.08887-0.0376-0.20849-0.0376-0.11963 0-0.18799 0.02734z"
+                    fill="#77777C"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                data-pencil-name="product.signups"
+                style="align-items: center; background-color: #FCFCFC; border-radius: 12px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #E8E8EA; padding: 14px; width: 100%"
+              >
+                <div
+                  data-pencil-name="Selected dataset"
+                  style="align-items: center; background-color: #F2F2F3; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 26px; justify-content: center; width: 26px"
+                >
+                  <div
+                    data-pencil-name="Dataset option key"
+                    style="box-sizing: border-box; color: #B8B8BC; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+                  >
+                    C
+                  </div>
+                </div>
+                <div
+                  data-pencil-name="Dataset"
+                  style="box-sizing: border-box; color: #99999D; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+                >
+                  product.signups
+                </div>
+                <svg
+                  data-pencil-name="Selected checkmark"
+                  data-icon-name="check"
+                  data-icon-set="lucide"
+                  viewBox="0 0 13.99993896484375 14"
+                  preserveAspectRatio="xMidYMid meet"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; flex-shrink: 0; height: 20px; width: 20px"
+                >
+                  <path
+                    d="M11.48096 2.95313q-0.07178 0.01367-0.12989 0.0581-0.05469 0.04102-3.07617 3.06592l-3.0249 3.00781-1.28857-1.28857q-1.28857-1.28516-1.38086-1.32618-0.08887-0.04443-0.22217-0.04443-0.1333 0-0.23242 0.0376-0.0957 0.03418-0.18799 0.11279-0.08887 0.0752-0.1333 0.1709-0.02734 0.07178-0.03418 0.11279-0.00684 0.04102-0.00684 0.14014l0 0.04102q-0.01367 0.11279 0.04102 0.19824 0.07178 0.10938 0.36572 0.40332 0.19482 0.21191 0.96729 0.98096l1.49707 1.48339q0.28027 0.2666 0.38964 0.33838 0.07178 0.05469 0.18457 0.04102l0.09571 0.01367q0.07178 0 0.14013-0.02734 0.08545-0.07178 0.32129-0.28711 0.23926-0.21875 0.79981-0.76221l2.2832-2.2832q2.08496-2.09863 2.7002-2.71387 0.61524-0.61865 0.64599-0.68701 0.04102-0.08545 0.04102-0.23926 0-0.09912-0.00684-0.14014-0.00684-0.04102-0.03418-0.11279-0.04443-0.08203-0.13672-0.16406-0.08887-0.08545-0.18115-0.11963-0.08887-0.0376-0.20849-0.0376-0.11963 0-0.18799 0.02734z"
+                    fill="#77777C"
+                  ></path>
+                </svg>
+              </div>
+              <div
+                data-pencil-name="billing.subscriptions"
+                style="align-items: center; background-color: #FCFCFC; border-radius: 12px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #E8E8EA; padding: 14px; width: 100%"
+              >
+                <div
+                  data-pencil-name="Selected dataset"
+                  style="align-items: center; background-color: #F2F2F3; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 26px; justify-content: center; width: 26px"
+                >
+                  <div
+                    data-pencil-name="Dataset option key"
+                    style="box-sizing: border-box; color: #B8B8BC; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap"
+                  >
+                    D
+                  </div>
+                </div>
+                <div
+                  data-pencil-name="Dataset"
+                  style="box-sizing: border-box; color: #99999D; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+                >
+                  billing.subscriptions
+                </div>
+                <svg
+                  data-pencil-name="Selected checkmark"
+                  data-icon-name="check"
+                  data-icon-set="lucide"
+                  viewBox="0 0 13.99993896484375 14"
+                  preserveAspectRatio="xMidYMid meet"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; flex-shrink: 0; height: 20px; width: 20px"
+                >
+                  <path
+                    d="M11.48096 2.95313q-0.07178 0.01367-0.12989 0.0581-0.05469 0.04102-3.07617 3.06592l-3.0249 3.00781-1.28857-1.28857q-1.28857-1.28516-1.38086-1.32618-0.08887-0.04443-0.22217-0.04443-0.1333 0-0.23242 0.0376-0.0957 0.03418-0.18799 0.11279-0.08887 0.0752-0.1333 0.1709-0.02734 0.07178-0.03418 0.11279-0.00684 0.04102-0.00684 0.14014l0 0.04102q-0.01367 0.11279 0.04102 0.19824 0.07178 0.10938 0.36572 0.40332 0.19482 0.21191 0.96729 0.98096l1.49707 1.48339q0.28027 0.2666 0.38964 0.33838 0.07178 0.05469 0.18457 0.04102l0.09571 0.01367q0.07178 0 0.14013-0.02734 0.08545-0.07178 0.32129-0.28711 0.23926-0.21875 0.79981-0.76221l2.2832-2.2832q2.08496-2.09863 2.7002-2.71387 0.61524-0.61865 0.64599-0.68701 0.04102-0.08545 0.04102-0.23926 0-0.09912-0.00684-0.14014-0.00684-0.04102-0.03418-0.11279-0.04443-0.08203-0.13672-0.16406-0.08887-0.08545-0.18115-0.11963-0.08887-0.0376-0.20849-0.0376-0.11963 0-0.18799 0.02734z"
+                    fill="#77777C"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Yes.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            What metrics should the brief cover? e.g. DAU, signups, activation rate, retention,
+            feature adoption.
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              DAU, signups, activation rate, and churn.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            How do you define activation and churn? Or should I propose definitions?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: 620px"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+            >
+              Activation = user completes onboarding within 7 days. Churn = subscription canceled.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Compare against what — yesterday, same day last week, or a 7-day average?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Same day last week and 7-day average.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Should it segment? e.g. by plan, platform, or region.
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              By plan and platform.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Should it flag anomalies? If so, what threshold — say, any metric moving more than 10%?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Yes, 15%.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            When it flags something, just report it or also try to explain why (e.g. dig into which
+            segment drove the drop)?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Try to explain why.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            When and where should it arrive?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              8 AM Pacific, weekdays, Slack #product-metrics.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Format: 5 key numbers, one-screen summary with a chart, or full report?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              One screen with a chart.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            I’ll order it: headline numbers → anomalies with explanation → segment breakdown → 7-day
+            trend chart. Change anything?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Put anomalies first.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Done. Should it stay read-only, or can it create tickets in Linear when it finds an
+            anomaly?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Read-only.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Can people in #product-metrics ask it follow-up questions, or is it one-way?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Follow-up questions are fine.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Last one: if a data source is delayed or missing, send with a note or hold it?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Send with a note.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Here’s the config:
+          </div>
+          <div
+            data-pencil-name="Agent configuration"
+            style="align-items: flex-start; background-color: #F6F6F7; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 18px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #E5E5E7; padding: 24px; width: 100%"
+          >
+            <div
+              data-pencil-name="Agent name"
+              style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 24px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 36px; text-align: left; width: 100%"
+            >
+              Product Metrics Brief
+            </div>
+            <div
+              data-pencil-name="Type"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="Setting label"
+                style="box-sizing: border-box; color: #777780; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 120px"
+              >
+                Type
+              </div>
+              <div
+                data-pencil-name="Setting value"
+                style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+              >
+                Data analyst — product usage
+              </div>
+            </div>
+            <div
+              data-pencil-name="Data"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="Setting label"
+                style="box-sizing: border-box; color: #777780; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 120px"
+              >
+                Data
+              </div>
+              <div
+                data-pencil-name="Setting value"
+                style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+              >
+                BigQuery · product.events, product.daily_active_users, product.signups,
+                billing.subscriptions
+              </div>
+            </div>
+            <div
+              data-pencil-name="Metrics"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="Setting label"
+                style="box-sizing: border-box; color: #777780; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 120px"
+              >
+                Metrics
+              </div>
+              <div
+                data-pencil-name="Setting value"
+                style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+              >
+                DAU, signups, activation (onboarding ≤7 days), churn (canceled subscriptions)
+              </div>
+            </div>
+            <div
+              data-pencil-name="Comparisons"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="Setting label"
+                style="box-sizing: border-box; color: #777780; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 120px"
+              >
+                Comparisons
+              </div>
+              <div
+                data-pencil-name="Setting value"
+                style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+              >
+                Same day last week · 7-day average
+              </div>
+            </div>
+            <div
+              data-pencil-name="Segments"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="Setting label"
+                style="box-sizing: border-box; color: #777780; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 120px"
+              >
+                Segments
+              </div>
+              <div
+                data-pencil-name="Setting value"
+                style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+              >
+                Plan · Platform
+              </div>
+            </div>
+            <div
+              data-pencil-name="Anomalies"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="Setting label"
+                style="box-sizing: border-box; color: #777780; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 120px"
+              >
+                Anomalies
+              </div>
+              <div
+                data-pencil-name="Setting value"
+                style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+              >
+                &gt;15% change, with root-cause explanation
+              </div>
+            </div>
+            <div
+              data-pencil-name="Delivery"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="Setting label"
+                style="box-sizing: border-box; color: #777780; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 120px"
+              >
+                Delivery
+              </div>
+              <div
+                data-pencil-name="Setting value"
+                style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+              >
+                Weekdays at 8 AM PT → Slack #product-metrics
+                <br />
+                One screen + trend chart
+              </div>
+            </div>
+            <div
+              data-pencil-name="Order"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="Setting label"
+                style="box-sizing: border-box; color: #777780; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 120px"
+              >
+                Order
+              </div>
+              <div
+                data-pencil-name="Setting value"
+                style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+              >
+                Anomalies → headline numbers → segments → trend chart
+              </div>
+            </div>
+            <div
+              data-pencil-name="Behavior"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="Setting label"
+                style="box-sizing: border-box; color: #777780; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 120px"
+              >
+                Behavior
+              </div>
+              <div
+                data-pencil-name="Setting value"
+                style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left"
+              >
+                Read-only · Follow-up questions allowed
+                <br />
+                Send with a note if data is missing
+              </div>
+            </div>
+          </div>
+          <div
+            data-pencil-name="Preview invitation"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Want me to generate a sample brief from yesterday’s data so you can check the format?
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Yes.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Here’s yesterday’s:
+          </div>
+          <div
+            data-pencil-name="Sample product metrics brief"
+            style="align-items: flex-start; background-color: #FFFFFF; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #DEDEE2; padding: 28px; width: 100%"
+          >
+            <div
+              data-pencil-name="Sample label"
+              style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+            >
+              SAMPLE BRIEF · SEPTEMBER 28
+            </div>
+            <div
+              data-pencil-name="Brief title"
+              style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 26px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 39px; text-align: left; width: 100%"
+            >
+              Product Metrics
+            </div>
+            <div
+              data-pencil-name="Activation anomaly"
+              style="align-items: flex-start; background-color: #FFF6E8; border-color: #D89E38; border-radius: 10px; border-style: solid; border-width: 0px 0px 0px 3px; box-sizing: content-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; height: 91px; justify-content: flex-start; margin: 0px 0px 0px -1.5px; padding: 18px; width: 1014.5px"
+            >
+              <div
+                data-pencil-name="Anomaly headline"
+                style="box-sizing: border-box; color: #785015; font-family: Inter, system-ui, sans-serif; font-size: 17px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 26px; text-align: left; width: 100%"
+              >
+                ⚠ Activation rate down 18% vs 7-day average
+              </div>
+              <div
+                data-pencil-name="Root cause"
+                style="box-sizing: border-box; color: #785015; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 100%"
+              >
+                Driven by Free plan on Android — onboarding step 3 completions dropped 40% after
+                2:00 PM. Possibly related to the 1:45 PM release.
+              </div>
+            </div>
+            <div
+              data-pencil-name="Headline numbers"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="DAU"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 5px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-name="Metric label"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  DAU
+                </div>
+                <div
+                  data-pencil-name="Metric value"
+                  style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 28px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 42px; text-align: left; width: 100%"
+                >
+                  42,310
+                </div>
+                <div
+                  data-pencil-name="Comparison"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  +3% vs last week
+                </div>
+              </div>
+              <div
+                data-pencil-name="Signups"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 5px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-name="Metric label"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  Signups
+                </div>
+                <div
+                  data-pencil-name="Metric value"
+                  style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 28px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 42px; text-align: left; width: 100%"
+                >
+                  1,204
+                </div>
+                <div
+                  data-pencil-name="Comparison"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  −2%
+                </div>
+              </div>
+              <div
+                data-pencil-name="Activation"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 5px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-name="Metric label"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  Activation
+                </div>
+                <div
+                  data-pencil-name="Metric value"
+                  style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 28px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 42px; text-align: left; width: 100%"
+                >
+                  31%
+                </div>
+                <div
+                  data-pencil-name="Comparison"
+                  style="box-sizing: border-box; color: #A05E14; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  −18%
+                </div>
+              </div>
+              <div
+                data-pencil-name="Churn"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 5px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-name="Metric label"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  Churn
+                </div>
+                <div
+                  data-pencil-name="Metric value"
+                  style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 28px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 42px; text-align: left; width: 100%"
+                >
+                  0.4%
+                </div>
+                <div
+                  data-pencil-name="Comparison"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  Flat
+                </div>
+              </div>
+            </div>
+            <div
+              data-pencil-name="Segments title"
+              style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 17px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 26px; text-align: left; width: 100%"
+            >
+              Segment breakdown
+            </div>
+            <div
+              data-pencil-name="Segment table"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="Plan / platform"
+                style="align-items: flex-start; border-color: #E8E8EB; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 16px; height: 43.5px; justify-content: flex-start; margin: 0px 0px -0.5px 0px; padding: 12px 0px; width: 1016px"
+              >
+                <div
+                  data-pencil-name="Cell"
+                  style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left"
+                >
+                  Plan / platform
+                </div>
+                <div
+                  data-pencil-name="Cell"
+                  style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left"
+                >
+                  Signal
+                </div>
+                <div
+                  data-pencil-name="Cell"
+                  style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left"
+                >
+                  Observed impact
+                </div>
+              </div>
+              <div
+                data-pencil-name="Free / Android"
+                style="align-items: flex-start; border-color: #E8E8EB; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 16px; height: 43.5px; justify-content: flex-start; margin: 0px 0px -0.5px 0px; padding: 12px 0px; width: 1016px"
+              >
+                <div
+                  data-pencil-name="Cell"
+                  style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left"
+                >
+                  Free / Android
+                </div>
+                <div
+                  data-pencil-name="Cell"
+                  style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left"
+                >
+                  Onboarding step 3
+                </div>
+                <div
+                  data-pencil-name="Cell"
+                  style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left"
+                >
+                  Completions −40% after 2 PM
+                </div>
+              </div>
+              <div
+                data-pencil-name="Other segments"
+                style="align-items: flex-start; border-color: #E8E8EB; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 16px; height: 43.5px; justify-content: flex-start; margin: 0px 0px -0.5px 0px; padding: 12px 0px; width: 1016px"
+              >
+                <div
+                  data-pencil-name="Cell"
+                  style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left"
+                >
+                  Other segments
+                </div>
+                <div
+                  data-pencil-name="Cell"
+                  style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left"
+                >
+                  No detail in sample
+                </div>
+                <div
+                  data-pencil-name="Cell"
+                  style="box-sizing: border-box; color: #24242A; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left"
+                >
+                  —
+                </div>
+              </div>
+            </div>
+            <div
+              data-pencil-name="Chart title"
+              style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 17px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 26px; text-align: left; width: 100%"
+            >
+              Activation · 7-day trend
+            </div>
+            <div
+              data-pencil-name="Chart caption"
+              style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+            >
+              Illustrative trend • final day 31% • 7-day average ≈ 37.8%
+            </div>
+            <div
+              data-pencil-name="7-day activation chart"
+              style="align-items: flex-end; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-name="September 22"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 8px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-name="Value"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  39%
+                </div>
+                <div
+                  data-pencil-name="Activation bar"
+                  style="background-color: #D8DADF; border-radius: 4px 4px 0px 0px; box-sizing: border-box; flex-shrink: 0; height: 93.6px; width: 100%"
+                ></div>
+                <div
+                  data-pencil-name="Day"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+                >
+                  Sep 22
+                </div>
+              </div>
+              <div
+                data-pencil-name="September 23"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 8px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-name="Value"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  40%
+                </div>
+                <div
+                  data-pencil-name="Activation bar"
+                  style="background-color: #D8DADF; border-radius: 4px 4px 0px 0px; box-sizing: border-box; flex-shrink: 0; height: 96px; width: 100%"
+                ></div>
+                <div
+                  data-pencil-name="Day"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+                >
+                  Sep 23
+                </div>
+              </div>
+              <div
+                data-pencil-name="September 24"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 8px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-name="Value"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  38%
+                </div>
+                <div
+                  data-pencil-name="Activation bar"
+                  style="background-color: #D8DADF; border-radius: 4px 4px 0px 0px; box-sizing: border-box; flex-shrink: 0; height: 91.2px; width: 100%"
+                ></div>
+                <div
+                  data-pencil-name="Day"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+                >
+                  Sep 24
+                </div>
+              </div>
+              <div
+                data-pencil-name="September 25"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 8px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-name="Value"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  39%
+                </div>
+                <div
+                  data-pencil-name="Activation bar"
+                  style="background-color: #D8DADF; border-radius: 4px 4px 0px 0px; box-sizing: border-box; flex-shrink: 0; height: 93.6px; width: 100%"
+                ></div>
+                <div
+                  data-pencil-name="Day"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+                >
+                  Sep 25
+                </div>
+              </div>
+              <div
+                data-pencil-name="September 26"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 8px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-name="Value"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  38%
+                </div>
+                <div
+                  data-pencil-name="Activation bar"
+                  style="background-color: #D8DADF; border-radius: 4px 4px 0px 0px; box-sizing: border-box; flex-shrink: 0; height: 91.2px; width: 100%"
+                ></div>
+                <div
+                  data-pencil-name="Day"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+                >
+                  Sep 26
+                </div>
+              </div>
+              <div
+                data-pencil-name="September 27"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 8px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-name="Value"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  40%
+                </div>
+                <div
+                  data-pencil-name="Activation bar"
+                  style="background-color: #D8DADF; border-radius: 4px 4px 0px 0px; box-sizing: border-box; flex-shrink: 0; height: 96px; width: 100%"
+                ></div>
+                <div
+                  data-pencil-name="Day"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+                >
+                  Sep 27
+                </div>
+              </div>
+              <div
+                data-pencil-name="September 28"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 8px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-name="Value"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+                >
+                  31%
+                </div>
+                <div
+                  data-pencil-name="Activation bar"
+                  style="background-color: #D7A453; border-radius: 4px 4px 0px 0px; box-sizing: border-box; flex-shrink: 0; height: 74.4px; width: 100%"
+                ></div>
+                <div
+                  data-pencil-name="Day"
+                  style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+                >
+                  Sep 28
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            data-pencil-name="Adjustment invitation"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Look right? I can adjust wording, length, or what counts as an anomaly.
+          </div>
+        </div>
+        <div
+          data-pencil-name="User message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-end; width: 100%"
+        >
+          <div
+            data-pencil-name="User bubble"
+            style="align-items: flex-start; background-color: #111113; border-radius: 20px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 20px; width: fit-content"
+          >
+            <div
+              data-pencil-name="User response"
+              style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; white-space: nowrap"
+            >
+              Good. Schedule it.
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Wisdom AI message"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-name="Wisdom AI"
+            style="box-sizing: border-box; color: #777780; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%"
+          >
+            WISDOM AI
+          </div>
+          <div
+            data-pencil-name="Assistant response"
+            style="box-sizing: border-box; color: #24242A; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+          >
+            Scheduled. First brief goes out tomorrow at 8 AM PT.
+          </div>
+          <div
+            data-pencil-name="Scheduled agent status"
+            style="align-items: flex-start; background-color: #F1F6F2; border-radius: 12px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; padding: 20px; width: 100%"
+          >
+            <div
+              data-pencil-name="Scheduled status"
+              style="box-sizing: border-box; color: #305B40; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%"
+            >
+              ✓ Product Metrics Brief is scheduled
+            </div>
+            <div
+              data-pencil-name="Delivery details"
+              style="box-sizing: border-box; color: #305B40; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; width: 100%"
+            >
+              Weekdays · 8 AM Pacific · Slack #product-metrics
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-name="Message composer"
+          style="align-items: center; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #DDDEE1; padding: 20px; width: 100%"
+        >
+          <div
+            data-pencil-name="Input placeholder"
+            style="box-sizing: border-box; color: #8B8B92; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left"
+          >
+            Ask a follow-up or adjust this agent…
+          </div>
+          <svg
+            data-pencil-name="Send message"
+            data-icon-name="arrow-up"
+            data-icon-set="lucide"
+            viewBox="0 0 13.99993896484375 14"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; flex-shrink: 0; height: 22px; width: 22px"
+          >
+            <path
+              d="M6.84619 2.35156q-0.08545 0.01367-0.15723 0.06494-0.06836 0.04785-2.16699 2.14649l-1.66455 1.69531q-0.36572 0.3623-0.46484 0.50244-0.05469 0.08545-0.05469 0.19824l0 0.04102q0 0.23926 0.18115 0.42041 0.11279 0.11279 0.28028 0.14697 0.16748 0.03418 0.32129-0.02051 0.08545-0.02734 0.32128-0.25976 0.23926-0.23242 1.37403-1.36377 1.58252-1.58252 1.59619-1.58252 0.01367 0 0.01367 3.42822l0 3.01123q0 0.44775 0.03418 0.53321 0.0376 0.08203 0.11963 0.16748 0.08545 0.08203 0.18799 0.1333 0.10596 0.04785 0.23242 0.04785 0.12646 0 0.229-0.04785 0.10596-0.05127 0.18799-0.1333 0.08545-0.08545 0.11963-0.16748 0.0376-0.08545 0.0376-0.53321l0-3.01123q0-3.42822 0.01367-3.42822 0.01367 0 1.59619 1.58252 1.13477 1.13135 1.37061 1.36377 0.23926 0.23242 0.32471 0.25976 0.15381 0.05469 0.32128 0.02051 0.16748-0.03418 0.28028-0.14697 0.18115-0.18115 0.18115-0.42041l0-0.04102q0-0.11279-0.05469-0.19824-0.09912-0.14014-0.46484-0.51611l-1.67822-1.68164q-2.10205-2.1123-2.17041-2.14649-0.06836-0.0376-0.16065-0.06494-0.09229-0.02734-0.14014-0.02734-0.04785 0-0.14697 0.02734z"
+              fill="#777780"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  <nav id="prototype-menu" aria-label="Conversation options" hidden>
+<a href="#configuration">View agent configuration</a><a href="#sample">View sample brief</a><a href="#scheduled">View scheduled state</a><a href="#follow-up">Ask a follow-up</a><a href="./#va-smaller">Back to agent home</a><button id="back-top">Back to top</button>
+</nav>
+<script>const named=(name,root=document)=>root.querySelector(`[data-pencil-name="${name}"]`);
+const content=named('Conversation content');
+const users=[...content.children].filter(x=>x.dataset.pencilName==='User message');
+const assistants=[...content.children].filter(x=>x.dataset.pencilName==='Wisdom AI message');
+const defaults=users.map(x=>named('User response',x).textContent.trim());
+const questions=assistants.map(x=>named('Assistant response',x).textContent.trim());
+let answers=[...defaults],step=0,complete=false,paused=false;
+const key='product-metrics-prototype-v1';
+const composer=named('Message composer');
+const input=document.createElement('textarea');input.rows=1;input.placeholder='Type your answer…';input.setAttribute('aria-label','Your answer');named('Input placeholder').replaceWith(input);
+function button(label,fn,cls='choice'){const b=document.createElement('button');b.type='button';b.className=cls;b.textContent=label;b.onclick=fn;return b}
+function iconButton(icon,label){const b=button('',()=>{},'icon-button');b.setAttribute('aria-label',label);icon.replaceWith(b);b.append(icon);return b}
+const send=iconButton(named('Send message'),'Send answer');
+const choices=document.createElement('div');choices.className='choices';composer.before(choices);
+const hint=document.createElement('p');hint.className='demo-note';hint.textContent='Interactive prototype · Sample data. Scheduling is simulated; no Slack messages are sent.';composer.after(hint);
+const menu=document.querySelector('#prototype-menu');menu.innerHTML='';
+const more=iconButton(named('More options'),'Conversation options');more.setAttribute('aria-expanded','false');
+function closeMenu(){menu.hidden=true;more.setAttribute('aria-expanded','false')}
+more.onclick=()=>{menu.hidden=!menu.hidden;more.setAttribute('aria-expanded',String(!menu.hidden))};
+menu.append(button('View complete example',()=>{closeMenu();answers=[...defaults];step=19;complete=true;render();window.scrollTo({top:0})}),button('Edit configuration',()=>{closeMenu();editConfig()}),button('Restart setup',()=>{closeMenu();answers=[...defaults];step=0;complete=false;paused=false;localStorage.removeItem(key);render();window.scrollTo({top:0})}));
+const home=document.createElement('a');home.href='./#va-smaller';home.textContent='Back to agent home';menu.append(home);
+document.addEventListener('click',e=>{if(!menu.contains(e.target)&&!more.contains(e.target))closeMenu()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+const config=named('Agent configuration'),sample=named('Sample product metrics brief'),status=named('Scheduled agent status');
+config.id='configuration';sample.id='sample';status.id='scheduled';
+function save(){localStorage.setItem(key,JSON.stringify({answers,step,complete,paused}))}
+function setText(name,text){named(name).textContent=text}
+function updateConfig(){
+setText('Scheduled status',paused?'Ⅱ  Product Metrics Brief is paused':'✓  Product Metrics Brief is scheduled');
+ const values=[answers[1]+' — '+answers[2],answers[3]+' · '+(answers[5]==='Yes.'?'product.events, product.daily_active_users, product.signups, billing.subscriptions':answers[5]),answers[6]+' · '+answers[7],answers[8],answers[9],answers[10]+' · '+answers[11],answers[12]+' · '+answers[13],answers[14],answers[15]+' · '+answers[16]+' · '+answers[17]];
+ config.querySelectorAll('[data-pencil-name="Setting value"]').forEach((x,i)=>x.textContent=values[i]);
+ setText('Delivery details',answers[12]);
+ named('Assistant response',assistants[19]).textContent='Scheduled in this prototype. Delivery: '+answers[12];
+ const shortFormat=/5 key|numbers only/i.test(answers[13]);for(const label of ['Chart title','Chart caption','7-day activation chart'])named(label).hidden=shortFormat;
+ const threshold=Number(answers[10].match(/\d+(\.\d+)?/)?.[0]||15);
+ named('Activation anomaly').hidden=threshold>=18||/^no\b/i.test(answers[10]);
+ named('Root cause').hidden=/just report|^no\b/i.test(answers[11]);
+ const anomaly=named('Activation anomaly');
+ if(/anomalies first/i.test(answers[14]))sample.insertBefore(anomaly,named('Headline numbers'));else sample.insertBefore(anomaly,named('Segments title'));
+ named('Segment table').hidden=/^no\b|none/i.test(answers[9]);named('Segments title').hidden=named('Segment table').hidden;
+}
+function scrollToLatest(){requestAnimationFrame(()=>assistants[step].scrollIntoView({block:'start',behavior:'smooth'}))}
+function submit(value=input.value){const text=value.trim();if(!text)return;if(step===0&&!/data analyst/i.test(text)){hint.textContent='Choose Data analyst to explore this Product Metrics Brief prototype.';return}if(!complete&&step===18&&!/schedule|confirm|yes/i.test(text)){hint.textContent='Use Edit configuration to make changes, or Schedule this brief to confirm.';return}if(step===17&&!/yes|sample|preview/i.test(text)){hint.textContent='Use Edit configuration to make changes, or Generate sample brief to continue.';return}if(complete){followup(text);return}answers[step+1]=text;step++;input.value='';if(step===19)complete=true;render();save();scrollToLatest()}
+const presets={2:['Product usage.'],3:['BigQuery.'],4:['Look and suggest.'],6:['DAU, signups, activation rate, and churn.'],7:['Activation = user completes onboarding within 7 days. Churn = subscription canceled.'],8:['Same day last week and 7-day average.','Yesterday.'],9:['By plan and platform.','No segmentation.'],10:['Yes, 15%.','Yes, 10%.','No anomalies.'],11:['Try to explain why.','Just report it.'],12:['8 AM Pacific, weekdays, Slack #product-metrics.'],13:['One screen with a chart.','5 key numbers.','Full report.'],14:['Put anomalies first.','Keep the proposed order.'],15:['Read-only.','Create tickets in Linear.'],16:['Follow-up questions are fine.','One-way only.'],17:['Send with a note.','Hold it.']};
+function render(){
+document.querySelectorAll('.followup-message').forEach(x=>x.remove());
+hint.textContent='Interactive prototype · Sample data. Scheduling is simulated; no Slack messages are sent.';
+ users.forEach((u,i)=>{u.hidden=i>step;named('User response',u).textContent=answers[i]});assistants.forEach((a,i)=>a.hidden=i>step);
+ updateConfig();choices.replaceChildren();input.placeholder=complete?'Ask a follow-up or adjust this agent…':'Type your answer…';
+ const next=step+1;
+ if(step===0){const options=named('Options');options.replaceChildren();['Personal — your calendar, inbox, and tasks for the day','Team — what your team shipped, blockers, and updates','Data analyst — key metrics, trends, and anomalies from your data','News & market — industry news, competitors, market moves','Custom — mix of the above'].forEach((label,i)=>{const b=button(String.fromCharCode(65+i)+'   '+label,()=>{if(i===2)submit('Data analyst.');else{input.value=label.split(' — ')[0];hint.textContent='This screen prototypes the data analyst setup. Choose Data analyst to continue the Product Metrics Brief flow.';input.focus()}},'brief-option');if(i!==2){b.disabled=true;b.title='This prototype covers the Data analyst flow'}options.append(b)});}
+ else named('Options').innerHTML='';
+ if(step>0){const b=document.createElement('div');b.className='confirmed-choice';b.textContent='C   '+answers[1]+'   ✓';named('Options').append(b)}
+ const datasetOptions=named('Dataset options');
+ datasetOptions.querySelectorAll('input').forEach(x=>x.remove());
+ if(step===4){[...datasetOptions.children].forEach(row=>{const cb=document.createElement('input');cb.type='checkbox';cb.checked=true;cb.setAttribute('aria-label',row.dataset.pencilName);row.prepend(cb)});choices.append(button('Use selected datasets',()=>{const selected=[...datasetOptions.querySelectorAll('input:checked')].map(x=>x.parentElement.dataset.pencilName);if(!selected.length){hint.textContent='Select at least one dataset to continue.';return}submit(selected.join(', '))}));}
+ else if(step===17){choices.append(button('Generate sample brief',()=>submit('Yes.')),button('Edit configuration',editConfig));}
+ else if(step===18){choices.append(button('Schedule this brief',()=>submit('Good. Schedule it.')),button('Edit configuration',editConfig));}
+ else if(complete){choices.append(button('Edit configuration',editConfig),button('View sample brief',()=>sample.scrollIntoView({block:'start'})),button(paused?'Resume schedule':'Pause schedule',toggleSchedule));}
+ else if(next!==1){(presets[next]||[defaults[next]]).filter(Boolean).forEach(text=>choices.append(button(text,()=>submit(text))));}
+ if(step<18)sample.hidden=true;else sample.hidden=false;
+}
+function toggleSchedule(){paused=!paused;status.dataset.paused=String(paused);setText('Scheduled status',paused?'Ⅱ  Product Metrics Brief is paused':'✓  Product Metrics Brief is scheduled');choices.lastChild.textContent=paused?'Resume schedule':'Pause schedule';save()}
+const fields=[['Brief type',1],['Area',2],['Data source',3],['Datasets',5],['Metrics',6],['Definitions',7],['Comparisons',8],['Segments',9],['Anomalies',10],['Explanation',11],['Delivery',12],['Format',13],['Order',14],['Permissions',15],['Follow-up questions',16],['Missing data',17]];
+function editConfig(){const dialog=document.createElement('dialog');dialog.className='config-dialog';const form=document.createElement('form');const title=document.createElement('h2');title.textContent='Edit Product Metrics Brief';form.append(title);fields.forEach(([label,i])=>{const wrap=document.createElement('label');wrap.textContent=label;const field=document.createElement('textarea');field.name=String(i);field.value=answers[i];field.rows=2;field.required=true;wrap.append(field);form.append(wrap)});const actions=document.createElement('div');actions.className='choices';actions.append(button('Cancel',()=>dialog.close()));const saveButton=document.createElement('button');saveButton.type='submit';saveButton.textContent='Save changes';saveButton.className='choice primary';actions.append(saveButton);form.append(actions);form.onsubmit=e=>{e.preventDefault();fields.forEach(([,i])=>answers[i]=form.elements.namedItem(String(i)).value.trim());updateConfig();users.forEach((u,i)=>named('User response',u).textContent=answers[i]);save();dialog.close()};dialog.append(form);document.body.append(dialog);dialog.onclose=()=>dialog.remove();dialog.showModal()}
+function followup(text){input.value='';const user=users[0].cloneNode(true);user.classList.add('followup-message');user.hidden=false;named('User response',user).textContent=text;const answer=assistants[1].cloneNode(true);answer.classList.add('followup-message');answer.hidden=false;const lower=text.toLowerCase();let response;if(/schedule|delivery|when/.test(lower))response='Current delivery: '+answers[12]+'. You can change this in Edit configuration.';else if(/anomal|activation|drop/.test(lower))response='In the sample, activation is 31%, down 18% from the 7-day average. Free-plan Android onboarding step 3 completions dropped 40% after 2 PM. This is illustrative sample data.';else if(/data|source/.test(lower))response='Configured source: '+answers[3]+'. Datasets: '+answers[5]+'.';else if(/edit|change|adjust/.test(lower)){editConfig();response='Update the fields in Edit configuration and save your changes.'}else response='You can ask about the schedule, data sources, or activation anomaly, or use Edit configuration to change the brief. This prototype uses sample data.';named('Assistant response',answer).textContent=response;choices.before(user,answer);answer.scrollIntoView({block:'center'})}
+send.onclick=()=>submit();input.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();submit()}};
+try{const saved=JSON.parse(localStorage.getItem(key));if(saved&&Array.isArray(saved.answers)&&saved.answers.length===20&&saved.answers.every(x=>typeof x==='string')&&Number.isInteger(saved.step)&&saved.step>=0&&saved.step<=19){answers=saved.answers;step=saved.step;complete=step===19;paused=Boolean(saved.paused)}}catch{}
+render();if(paused){paused=false;toggleSchedule()}
+</script></body>
+</html>
