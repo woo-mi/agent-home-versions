@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agent home explorations</title>
+  <title>vA-smaller · Agent home explorations</title>
   <style>
     :root {
       --ink: #17171a;
@@ -51,6 +51,7 @@
       place-items: center;
       color: #111;
     }
+    .brand:focus-visible { outline: 2px solid #5263ff; outline-offset: 2px; border-radius: 6px; }
 
     .paper-logo { width: 40px; height: 40px; display: block; }
     .rail-nav { width: 100%; margin-top: 11px; display: flex; flex-direction: column; align-items: center; gap: 0; }
@@ -427,9 +428,9 @@
 
   <main class="app-shell">
     <aside class="left-rail" aria-label="Primary navigation">
-      <div class="brand" aria-label="WisdomAI">
+      <a class="brand" href="https://woo-mi.github.io/prototype-agenda/" aria-label="Open Prototype Agenda">
         <img class="paper-logo" src="assets/wisdom-logo.svg" alt="">
-      </div>
+      </a>
       <nav class="rail-nav" aria-label="Workspace">
         <button class="rail-button" aria-label="New"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg></button>
         <button class="rail-button" aria-label="Apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></button>
@@ -452,7 +453,7 @@
       <div class="version-wrap">
         <button class="version-trigger" type="button" aria-haspopup="menu" aria-expanded="false">
           <svg class="layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-9 5 9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg>
-          <span class="version-label" data-current-version>v1</span>
+          <span class="version-label" data-current-version>vA-smaller</span>
           <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 7 6 6 6-6"/></svg>
         </button>
         <ul class="version-menu" role="menu" hidden>
@@ -693,7 +694,7 @@
 
     function normalizeVersion(hash) {
       const value = hash.replace(/^#/, "").split("/")[0].replace(/\.+$/, "").toLowerCase();
-      return allowedVersions.includes(value) ? value : "v1";
+      return allowedVersions.includes(value) ? value : "va-smaller";
     }
 
     function setMenuOpen(open) {
