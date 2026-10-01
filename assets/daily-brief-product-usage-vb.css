@@ -260,7 +260,7 @@ body > .chat-app.sidebar-collapsed { padding-left: 0 !important; }
   column-gap: 4px !important;
 }
 
-/* vB: show the conversation choices without the surrounding grey container. */
+/* vB: match the outlined choices in the Pen "all selections v2" design. */
 .chat-app :is([data-pencil-name="Choose a brief type"], [data-pencil-name="Suggested BigQuery datasets"]) {
   background: transparent !important;
   border: 0 !important;
@@ -269,6 +269,10 @@ body > .chat-app.sidebar-collapsed { padding-left: 0 !important; }
   box-shadow: none !important;
 }
 .chat-app :is([data-pencil-name="Options"], [data-pencil-name="Dataset options"]) {
-  background: transparent !important;
-  border-radius: 0 !important;
+  background: #fff !important;
+  border: 1px solid #00000033 !important;
+  border-radius: 12px !important;
+}
+.chat-app :is([data-pencil-name="Options"], [data-pencil-name="Dataset options"]) > div:has([data-pencil-name="Confirmed selection"]) {
+  background: #f7f7f7 !important;
 }
