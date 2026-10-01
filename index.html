@@ -456,7 +456,7 @@
           <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 7 6 6 6-6"/></svg>
         </button>
         <ul class="version-menu" role="menu" hidden>
-          <li><a class="version-option" role="menuitem" href="./product-metrics-brief.html">Daily brief</a></li>
+          <li><a class="version-option" role="menuitem" href="./daily-brief-product-usage-vb.html?v=no-container">Daily brief</a></li>
           <li><button class="version-option" type="button" role="menuitem" data-version="va">vA</button></li>
           <li><button class="version-option" type="button" role="menuitem" data-version="va-smaller">vA-smaller</button></li>
           <li><button class="version-option" type="button" role="menuitem" data-version="vb">vB</button></li>
@@ -562,7 +562,7 @@
           </div>
           <div class="section-toggle"><span class="pill"><svg><use href="#icon-app"/></svg>Apps</span><span class="pill active"><svg><use href="#icon-agent"/></svg>Agents</span></div>
           <div class="suggestions">
-            <a class="suggestion" data-daily-brief href="#va-smaller/conv"><span class="agent-icon-slot"><svg class="agent-mark" aria-hidden="true"><use href="#paper-daily-brief-uniform"/></svg></span><div class="suggestion-copy"><h2>Daily brief</h2><p>Today’s priorities and key updates</p></div></a>
+            <a class="suggestion" data-daily-brief href="./daily-brief-product-usage-vb.html?v=no-container"><span class="agent-icon-slot"><svg class="agent-mark" aria-hidden="true"><use href="#paper-daily-brief-uniform"/></svg></span><div class="suggestion-copy"><h2>Daily brief</h2><p>Today’s priorities and key updates</p></div></a>
             <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-circle"/></svg></span><div class="suggestion-copy"><h2>Weekly update</h2><p>This week’s progress and next steps</p></div></article>
             <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-square"/></svg></span><div class="suggestion-copy"><h2>Quately business review</h2><p>Quarterly performance, trends, and goals</p></div></article>
             <article class="suggestion"><span class="agent-icon-slot"><svg class="agent-mark"><use href="#mark-diamond"/></svg></span><div class="suggestion-copy"><h2>Executive recap</h2><p>Key results, decisions, and actions</p></div></article>
@@ -693,7 +693,7 @@
     const versionMenu = document.querySelector(".version-menu");
 
     function normalizeVersion(hash) {
-      const value = hash.replace(/^#/, "").split("/")[0].toLowerCase();
+      const value = hash.replace(/^#/, "").split("/")[0].replace(/\.+$/, "").toLowerCase();
       return allowedVersions.includes(value) ? value : "v1";
     }
 
@@ -726,7 +726,8 @@
     }
 
     document.querySelectorAll("[data-daily-brief]").forEach((link) => {
-      link.href = `#${link.closest("[data-screen]").dataset.screen}/conv`;
+      const version = link.closest("[data-screen]").dataset.screen;
+      if (version !== "va-smaller") link.href = `#${version}/conv`;
     });
 
     versionTrigger.addEventListener("click", () => {
