@@ -1,4 +1,4 @@
-.chat-page { --sidebar-width: 260px; --chat-text-width: 748px; --chat-card-width: 460px; --panel-duration: 420ms; --panel-ease: cubic-bezier(.22, .8, .25, 1); overflow-x: clip; }
+.chat-page { --sidebar-width: 260px; --chat-text-width: 748px; --chat-card-width: 613px; --panel-duration: 420ms; --panel-ease: cubic-bezier(.22, .8, .25, 1); overflow-x: clip; }
 .chat-page[data-chat-version="v2"] { --chat-card-width: 748px; }
 .chat-sidebar { position: fixed; inset: 0 auto 0 0; width: var(--sidebar-width); padding: 8px 6px 16px; display: flex; flex-direction: column; background: #f5f5f5d1; border-right: 1px solid #e6e6e6; z-index: 20; }
 .sidebar-brand-row { display: flex; justify-content: space-between; align-items: center; min-height: 40px; }
