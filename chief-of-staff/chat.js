@@ -546,7 +546,7 @@ function setLiveAppOpen(open, restoreFocus = true) {
 
 function prepareLiveAppPreview() {
   const preview = byId('live-app-preview');
-  if (!preview.hasAttribute('src')) preview.src = 'live-app-preview.html?v=80219989';
+  if (!preview.hasAttribute('src')) preview.src = 'live-app-preview.html?v=98479e44';
 }
 
 const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true), onReady: prepareLiveAppPreview });
