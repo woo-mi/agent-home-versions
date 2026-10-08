@@ -44,7 +44,7 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
     const currentVersion = version;
     const currentSettings = ++settingsVersion;
     update(() => {
-      offer.hidden = false;
+      offer.hidden = true;
       setupButton.disabled = true;
       setupButton.setAttribute('aria-expanded', 'true');
       history.append(deliveryQuestion, form);
@@ -79,7 +79,7 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
       const currentVersion = version;
       update(() => { history.append(conversation); conversation.hidden = false; });
       streamMessage(question, QUESTION, () => later(() => {
-        if (version === currentVersion && flow.snapshot().stage === 'offered') update(() => { offer.hidden = false; });
+        if (version === currentVersion && flow.snapshot().stage === 'offered' && !settingsShown) update(() => { offer.hidden = false; });
       }, 650));
     } else if (state.stage === 'deferred') {
       if (form.hidden) {
