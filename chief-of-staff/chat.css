@@ -32,7 +32,7 @@
 .chunk-reveal { animation: chunk-reveal 110ms cubic-bezier(0, 0, .38, .9) both; }
 .connection-box, .live-app-offer, .activity { width: min(var(--chat-card-width), 100%); }
 .connection-box { margin: 18px 0 20px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; }
-.connection-row { min-height: 54px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px solid #e8e8ea; }
+.connection-row { min-height: 54px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px solid #EDEDED; }
 .connection-name { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #24242a; min-width: 0; }
 .connection-name svg { width: 24px; height: 24px; }
 .connect-button { display: flex; align-items: center; justify-content: center; gap: 4px; min-width: 76px; min-height: 30px; padding: 5px 10px; border: 1px solid transparent; border-radius: 24px; background: #333444; color: #fff; font-size: 12px; line-height: 1.43; font-weight: 500; transition: background-color 150ms ease, border-color 150ms ease; }

@@ -65,7 +65,7 @@ body > .chat-app.sidebar-collapsed { padding-left: 0 !important; }
   padding: 14px !important;
   gap: 12px !important;
   border: 0 !important;
-  box-shadow: inset 0 -1px #e8e8ea;
+  box-shadow: inset 0 -1px #EDEDED;
   border-radius: 0 !important;
   outline: none !important;
 }

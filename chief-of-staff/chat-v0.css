@@ -36,7 +36,7 @@
 }
 
 :where(.chat-page[data-chat-version="v0"]) #connection-rows > :last-child {
-  box-shadow: inset 0 -1px 0 #e8e8ea;
+  box-shadow: inset 0 -1px 0 #EDEDED;
 }
 
 :where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-name {
@@ -97,7 +97,7 @@
   width: 100%;
   height: 40px;
   padding: 0 max(17px, calc(100% - 596px)) 0 0;
-  box-shadow: inset 0 -1px 0 #e8e8ea;
+  box-shadow: inset 0 -1px 0 #EDEDED;
 }
 
 :where(.chat-page[data-chat-version="v0"]) #connection-box .connection-footer button {
@@ -129,13 +129,13 @@
 }
 
 :where(.chat-page[data-chat-version="v0"]) #crm-rows > :last-child {
-  box-shadow: inset 0 -.5px 0 #e8e8ea;
+  box-shadow: inset 0 -.5px 0 #EDEDED;
 }
 
 :where(.chat-page[data-chat-version="v0"]) #crm-box .connection-footer {
   min-height: 39px;
   padding: 9px 22px;
-  box-shadow: inset 0 -1px 0 #e8e8ea;
+  box-shadow: inset 0 -1px 0 #EDEDED;
 }
 
 :where(.chat-page[data-chat-version="v0"]) #crm-box .connection-footer button {
@@ -148,7 +148,7 @@
   min-height: 54px;
   padding: 12.5px 14px;
   border: 0;
-  box-shadow: inset 0 0 0 .5px #e4e6ea, inset 0 -1px 0 #e8e8ea;
+  box-shadow: inset 0 0 0 .5px #e4e6ea, inset 0 -1px 0 #EDEDED;
 }
 
 :where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-setup-offer, #agent-report-card) .connection-name {
@@ -198,7 +198,7 @@
 }
 
 :where(.chat-page[data-chat-version="v0"].live-app-open) #connection-rows > :last-child {
-  box-shadow: inset 0 -.5px 0 #e8e8ea;
+  box-shadow: inset 0 -.5px 0 #EDEDED;
 }
 
 :where(.chat-page[data-chat-version="v0"].live-app-open) .live-app-panel {
@@ -265,7 +265,7 @@
 
 :where(.chat-page[data-chat-version="v0"]) .agent-schedule-header {
   border: 0;
-  box-shadow: inset 0 -.5px 0 #e8e8ea;
+  box-shadow: inset 0 -.5px 0 #EDEDED;
 }
 
 :where(.chat-page[data-chat-version="v0"]) .agent-schedule-header h2 {
