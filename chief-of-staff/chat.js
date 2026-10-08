@@ -1,7 +1,8 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=50c6ed7b';
 import { createLiveAppChat } from './live-app-chat.mjs?v=a8bdc8ad';
-import { createLiveAppVersions } from './live-app-versions.mjs?v=0a4c5e0c';
+import { createLiveAppVersions } from './live-app-versions.mjs?v=06120411';
+import { createChatVersions } from './chat-versions.mjs?v=02619397';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -537,6 +538,7 @@ function setLiveAppOpen(open, restoreFocus = true) {
     liveAppPanel.setAttribute('aria-hidden', String(!open));
     byId('open-live-app').setAttribute('aria-expanded', String(open));
     appVersions.setVisible(open);
+    chatVersions.setVisible(!open);
   });
   if (immediate) {
     // Commit the reset before restoring transitions; no animation can leak into a new chat.
@@ -550,6 +552,7 @@ function prepareLiveAppPreview() {
   appVersions.prepare();
 }
 
+const chatVersions = createChatVersions({ update: updateConversation });
 const appVersions = createLiveAppVersions({ previews: { v1: 'live-app-preview.html?v=0ab9a542', v2: 'live-app-preview-v2.html?v=ef845f18' }, onClose: () => setLiveAppOpen(false) });
 const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true), onReady: prepareLiveAppPreview });
 byId('close-live-app').addEventListener('click', () => setLiveAppOpen(false));
@@ -617,7 +620,7 @@ byId('close-sidebar').addEventListener('click', () => setSidebar(false));
 backdrop.addEventListener('click', () => setSidebar(false));
 sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setSidebar(false, false)));
 document.addEventListener('keydown', (event) => {
-  if (appVersions.handleEscape(event)) return;
+  if (chatVersions.handleEscape(event) || appVersions.handleEscape(event)) return;
   if (event.key === 'Escape' && document.body.classList.contains('live-app-open')) {
     event.preventDefault();
     setLiveAppOpen(false);
