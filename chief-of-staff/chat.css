@@ -1,4 +1,4 @@
-.chat-page { --sidebar-width: 260px; }
+.chat-page { --sidebar-width: 260px; --panel-duration: 420ms; --panel-ease: cubic-bezier(.22, .8, .25, 1); overflow-x: clip; }
 .chat-sidebar { position: fixed; inset: 0 auto 0 0; width: var(--sidebar-width); padding: 8px 6px 16px; display: flex; flex-direction: column; background: #f5f5f5d1; border-right: 1px solid #e6e6e6; z-index: 20; }
 .sidebar-brand-row { display: flex; justify-content: space-between; align-items: center; min-height: 40px; }
 .sidebar-brand { display: block; width: 126px; height: 40px; margin-left: -2px; }
@@ -64,20 +64,29 @@
 .crm-box .connection-footer { padding: 3px 22px; }
 #live-app-complete, .chat-history > :last-child { margin-bottom: 0; }
 .conversation-tail { margin-bottom: 0 !important; }
-.live-app-panel { position: fixed; inset: 0 0 0 auto; width: calc((100vw - 48px) / 2); height: 100dvh; display: flex; flex-direction: column; border-left: 1px solid #e6e6e6; background: #fff; z-index: 25; }
-.live-app-panel-toolbar { height: 32px; flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; }
-.live-app-panel-toolbar button { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 6px; }
+.live-app-panel { position: fixed; inset: 0 0 0 auto; width: calc((100vw - 48px) / 2); height: 100dvh; display: flex; flex-direction: column; border-left: 1px solid #e6e6e6; background: #fff; z-index: 25; transform: translateX(100%); visibility: hidden; transition: transform var(--panel-duration) var(--panel-ease), visibility 0s linear var(--panel-duration); }
+.live-app-panel-toolbar { height: 24px; flex-shrink: 0; position: relative; }
+.live-app-panel-toolbar button { position: absolute; top: 0; right: 0; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 6px; z-index: 1; }
 .live-app-panel-toolbar button:hover { background: var(--soft); }
-.live-app-panel-toolbar svg { width: 18px; height: 18px; fill: none; stroke: #333444; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.live-app-panel-toolbar svg { width: 18px; height: 18px; fill: none; stroke: #000; stroke-width: 1.5; stroke-linejoin: round; }
 .live-app-panel iframe { flex: 1; min-height: 0; width: 100%; border: 0; }
 .chat-page.live-app-open { --sidebar-width: 48px; }
+.live-app-open .live-app-panel { transform: translateX(0); visibility: visible; transition-delay: 0s; }
+/* The panel and conversation share one easing curve, without scaling chat text. */
+.chat-shell { margin-right: 0; transition: margin-left var(--panel-duration) var(--panel-ease), margin-right var(--panel-duration) var(--panel-ease); }
+.chat-sidebar { overflow-x: hidden; transition: width var(--panel-duration) var(--panel-ease), padding var(--panel-duration) var(--panel-ease); }
+.sidebar-brand { overflow: hidden; transition: width var(--panel-duration) var(--panel-ease); }
+.sidebar-item { overflow: hidden; white-space: nowrap; transition: padding var(--panel-duration) var(--panel-ease); }
+.sidebar-item > span { flex-shrink: 0; }
+.sidebar-item > span:not(.sidebar-avatar), .recent-chats { transition: opacity 120ms ease, visibility 0s linear 120ms; }
+.conversation-content, .chat-footer .composer, .chat-status, .prototype-note { max-width: 810px; transition: max-width var(--panel-duration) var(--panel-ease); }
 .live-app-open .chat-shell { margin-right: calc((100vw - 48px) / 2); }
 .live-app-open .conversation-content, .live-app-open .chat-footer .composer, .live-app-open .chat-status, .live-app-open .prototype-note { max-width: 613px; }
 .live-app-open .chat-sidebar { padding: 8px 4px 16px; }
 .live-app-open .sidebar-brand { width: 40px; overflow: hidden; }
-.live-app-open .sidebar-item { width: 40px; justify-content: center; padding: 0; }
-.live-app-open .sidebar-item > span, .live-app-open .recent-chats { display: none; }
-.live-app-open .sidebar-bottom .sidebar-avatar { display: grid; }
+.live-app-open .sidebar-item { padding: 0 10px; }
+.live-app-open .sidebar-item > span:not(.sidebar-avatar), .live-app-open .recent-chats { opacity: 0; visibility: hidden; }
+.live-app-reset *, .live-app-reset .live-app-panel { transition: none !important; }
 .user-message { align-self: flex-end; max-width: 85%; padding: 12px 16px; margin: 4px 0 20px; border-radius: 16px 16px 4px 16px; background: #f2f1f4; font-size: 14px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
 .typing-message { display: flex; align-items: center; height: 19.25px; margin-bottom: 16px; }
 .typing-message span { width: 8px; height: 8px; border-radius: 50%; background: #333444; }

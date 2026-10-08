@@ -1,6 +1,6 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=50c6ed7b';
-import { createLiveAppChat } from './live-app-chat.mjs?v=25bd59aa';
+import { createLiveAppChat } from './live-app-chat.mjs?v=a8bdc8ad';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -522,17 +522,34 @@ function setSidebar(open, restoreFocus = true) {
 }
 
 function setLiveAppOpen(open, restoreFocus = true) {
+  // Visibility transitions keep rapid open/close reversible, without delayed callbacks.
+  // New Chat and page navigation settle immediately, including an in-flight transition.
+  const immediate = !open && !restoreFocus;
+  if (immediate) document.body.classList.add('live-app-reset');
+  if (open) prepareLiveAppPreview();
+  else if (restoreFocus && liveAppPanel.contains(document.activeElement)) {
+    byId('open-live-app').focus({ preventScroll: true });
+  }
   updateConversation(() => {
     document.body.classList.toggle('live-app-open', open);
-    liveAppPanel.hidden = !open;
+    liveAppPanel.inert = !open;
+    liveAppPanel.setAttribute('aria-hidden', String(!open));
     byId('open-live-app').setAttribute('aria-expanded', String(open));
-    if (open && !byId('live-app-preview').hasAttribute('src')) byId('live-app-preview').src = 'live-app-preview.html?v=80219989';
   });
+  if (immediate) {
+    // Commit the reset before restoring transitions; no animation can leak into a new chat.
+    liveAppPanel.getBoundingClientRect();
+    document.body.classList.remove('live-app-reset');
+  }
   if (open) byId('close-live-app').focus({ preventScroll: true });
-  else if (restoreFocus) byId('open-live-app').focus({ preventScroll: true });
 }
 
-const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true) });
+function prepareLiveAppPreview() {
+  const preview = byId('live-app-preview');
+  if (!preview.hasAttribute('src')) preview.src = 'live-app-preview.html?v=80219989';
+}
+
+const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true), onReady: prepareLiveAppPreview });
 byId('close-live-app').addEventListener('click', () => setLiveAppOpen(false));
 byId('live-app-preview').addEventListener('load', () => {
   byId('live-app-preview').contentDocument?.addEventListener('keydown', (event) => {
@@ -606,7 +623,7 @@ byId('close-sidebar').addEventListener('click', () => setSidebar(false));
 backdrop.addEventListener('click', () => setSidebar(false));
 sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setSidebar(false, false)));
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && !liveAppPanel.hidden) {
+  if (event.key === 'Escape' && document.body.classList.contains('live-app-open')) {
     event.preventDefault();
     setLiveAppOpen(false);
     return;
@@ -630,6 +647,7 @@ document.addEventListener('keydown', (event) => {
 });
 mobileQuery.addEventListener('change', () => setSidebar(false));
 window.addEventListener('pagehide', () => {
+  setLiveAppOpen(false, false);
   flow.destroy();
   liveApps.destroy();
   chatScroll.cancel();

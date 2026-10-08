@@ -3,7 +3,7 @@ import { createLiveAppFlow, CRM_TOOLS } from './live-app-flow.mjs?v=a1829340';
 const TIMING = { offerPause: 650, toolsPause: 650 };
 const CRM_PROMPT = 'Connect your CRM so I can bring in your opportunities, sales stages, and regional performance.';
 
-export function createLiveAppChat({ history, update, streamMessage, stopStreaming, later, follow, onOpen }) {
+export function createLiveAppChat({ history, update, streamMessage, stopStreaming, later, follow, onOpen, onReady = () => {} }) {
   const byId = (id) => document.getElementById(id);
   const offer = byId('live-app-offer');
   const buildButton = byId('build-live-app');
@@ -27,6 +27,7 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
   let buildMessageReady = false;
 
   function showCompletedApp() {
+    onReady();
     const currentVersion = version;
     later(() => {
       if (currentVersion === version && buildMessageReady && flow.snapshot().stage === 'complete') {
