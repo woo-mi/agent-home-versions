@@ -1,13 +1,15 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 
 /* Conversation timing: brief pause → complete sentence → pause → next sentence.
- * Every sentence appears at once, without typing or entrance animations.
+ * Every sentence appears together; only the new sentence fades into place.
  * Connection/status labels remain immediate so clicks always feel responsive. */
 const TIMING = Object.freeze({
   openingPause: 700,
-  paragraphPause: 1400,
+  paragraphPause: 750,
   toolsPause: 650,
-  sentencePause: 1400,
+  sentencePauseBase: 420,
+  sentencePausePerWord: 24,
+  sentencePauseMaximum: 1100,
   replyPause: 1300,
   replyLengthPause: 6,
   maxReplyLengthPause: 900,
@@ -109,24 +111,31 @@ function startNextStream() {
   }
 }
 
+function sentencePause(text) {
+  const words = text.trim().split(/\s+/).length;
+  return Math.min(TIMING.sentencePauseMaximum, TIMING.sentencePauseBase + words * TIMING.sentencePausePerWord);
+}
+
 function streamMessage(element, text, onComplete = () => {}) {
   stopStreaming(element);
   const token = {};
   streams.set(element, token);
   const sentences = [...new Intl.Segmenter('en', { granularity: 'sentence' }).segment(text)]
     .map(({ segment }) => segment);
-  const textNode = document.createTextNode('');
   let position = 0;
   function nextSentence() {
     if (streams.get(element) !== token) return;
     const sentence = sentences[position++] || '';
-    updateConversation(() => { textNode.appendData(sentence); });
+    const sentenceElement = document.createElement('span');
+    sentenceElement.className = 'sentence-reveal';
+    sentenceElement.textContent = sentence;
+    updateConversation(() => { element.append(sentenceElement); });
     if (position >= sentences.length) {
       stopStreaming(element);
-      onComplete();
+      onComplete(sentence);
       return;
     }
-    later(nextSentence, TIMING.sentencePause);
+    later(nextSentence, sentencePause(sentence));
   }
   streamQueue.push({ element, token, start: () => {
     updateConversation(() => {
@@ -135,7 +144,7 @@ function streamMessage(element, text, onComplete = () => {}) {
         element.removeAttribute('role');
         element.removeAttribute('aria-label');
       }
-      element.replaceChildren(textNode);
+      element.replaceChildren();
       element.setAttribute('aria-busy', 'true');
       element.dataset.streaming = 'true';
       reveal(element);
@@ -163,10 +172,10 @@ function startIntroduction() {
   introductionComplete = false;
   function nextParagraph(index) {
     if (version !== introductionVersion) return;
-    streamMessage(introMessages[index], introTexts[index], () => {
+    streamMessage(introMessages[index], introTexts[index], (lastSentence) => {
       if (version !== introductionVersion) return;
       if (index < introMessages.length - 1) {
-        later(() => nextParagraph(index + 1), TIMING.paragraphPause);
+        later(() => nextParagraph(index + 1), sentencePause(lastSentence));
       } else {
         later(() => {
           if (version !== introductionVersion) return;
@@ -264,19 +273,11 @@ function suggestionFor(state) {
 
 function showRecommendation(key, ready, suggestion) {
   if (recommendationKey === key) return;
-  const updatingExisting = Boolean(recommendationKey) && !recommendation.hidden;
   recommendationKey = key;
   recommendationContent = { ready, suggestion };
   const version = ++recommendationVersion;
   stopStreaming(readyMessage);
   stopStreaming(suggestionMessage);
-  if (updatingExisting) {
-    readyMessage.textContent = ready;
-    suggestionMessage.textContent = suggestion;
-    reveal(readyMessage);
-    reveal(suggestionMessage);
-    return;
-  }
   readyMessage.hidden = true;
   suggestionMessage.hidden = true;
   reveal(recommendation);
@@ -310,10 +311,12 @@ function render(state) {
     }
     skipButton.textContent = state.connectedCount ? 'Continue with connected tools' : 'Skip for now';
     skipButton.disabled = state.skipped || state.connectedCount === TOOLS.length;
-    if (state.connectedCount && reviewMessage.hidden && !streams.has(reviewMessage)) streamMessage(reviewMessage, reviewText);
+    if (state.connectedCount && reviewMessage.hidden) {
+      reviewMessage.textContent = reviewText;
+      reveal(reviewMessage);
+    }
     feedback.hidden = !state.activityStarted;
-    // Keep the confirmation line in place while a batch is being reviewed.
-    confirmation.hidden = !state.confirmation && state.pendingCount === 0;
+    confirmation.hidden = !state.confirmation;
     if (confirmation.textContent !== (state.confirmation || '')) confirmation.textContent = state.confirmation || '';
     activity.hidden = !state.activityStarted;
     activity.dataset.busy = String(state.pendingCount > 0);
@@ -330,12 +333,22 @@ function render(state) {
     // Replacing only the list keeps the user's expanded/collapsed choice intact.
     activityCalls.replaceChildren(...calls);
 
+    if (state.pendingCount) {
+      question.textContent = state.connectedCount
+        ? `${countLabel(state.connectedCount)} connected. I’m getting context while the remaining steps finish.`
+        : 'Connecting your tools. You can connect another source while this one gets ready.';
+    } else if (state.connectedCount) {
+      question.textContent = `${countLabel(state.connectedCount)} connected. You can add more context whenever you like.`;
+    } else {
+      question.textContent = state.skipped ? 'We can start without connected tools. Tell me what you’d like to focus on.' : initialQuestion;
+    }
+
     if (state.complete) {
       const idea = suggestionFor(state);
       showRecommendation(`connected:${idea.title}`, "Now that you're set up, here are a few things I can take care of for you.", idea.text);
     } else if (state.skipped && !state.activityStarted) {
       showRecommendation('skipped', 'We can start with what you tell me.', 'What would make your day easier—a daily brief, help organizing priorities, or something else? You can connect your tools whenever you’re ready.');
-    } else if (!state.activityStarted) {
+    } else {
       if (recommendationKey) recommendationVersion += 1;
       recommendationKey = '';
       stopStreaming(readyMessage);
