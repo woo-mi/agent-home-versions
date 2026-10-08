@@ -330,5 +330,5 @@
 }
 
 :where(.chat-page[data-chat-version="v0"]) #open-agent-report {
-  min-width: 90px;
+  min-width: 93px;
 }
