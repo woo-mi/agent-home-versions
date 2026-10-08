@@ -1,8 +1,7 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=d7e6a4ef';
 import { createLiveAppChat } from './live-app-chat.mjs?v=eebd70c3';
-import { createLiveAppVersions } from './live-app-versions.mjs?v=bda9d194';
-import { createChatVersions } from './chat-versions.mjs?v=7b280f62';
+import { createLiveAppPreview } from './live-app-preview.mjs?v=7eea3c12';
 import { createAgentSetupChat } from './agent-setup-chat.mjs?v=1c4929c3';
 import { createReportViews } from './report-views.mjs?v=3e53c1e2';
 
@@ -98,8 +97,7 @@ function updateConversation(change, forceScroll = false) {
   chatScroll.update(() => {
     change();
     const content = byId('conversation-content');
-    const connectingLabel = document.body.dataset.chatVersion === 'v0'
-      ? 'Connecting...' : 'Connecting…';
+    const connectingLabel = 'Connecting...';
     for (const label of content.querySelectorAll('.connection-box [data-state="connecting"] .state-label')) {
       if (label.textContent !== connectingLabel) label.textContent = connectingLabel;
     }
@@ -594,10 +592,8 @@ function setLiveAppOpen(open, restoreFocus = true, kind = panelKind) {
     syncPanelToggle();
     byId('open-live-app').setAttribute('aria-expanded', String(open && !report));
     byId('open-agent-report').setAttribute('aria-expanded', String(open && report));
-    appVersions.setActive(!report);
+    appPreview.setActive(!report);
     reportViews.setActive(report);
-    appVersions.setVisible(open && !report);
-    chatVersions.setVisible(!open);
   });
   agentSetup.setViewing(open && panelKind === 'app');
   if (open && immediate) chatScroll.settle();
@@ -613,12 +609,11 @@ function setLiveAppOpen(open, restoreFocus = true, kind = panelKind) {
 }
 
 function prepareLiveAppPreview() {
-  appVersions.prepare();
+  appPreview.prepare();
   reportViews.prepare();
 }
 
-const appVersions = createLiveAppVersions({ previews: { v0: 'live-app-preview-v0.html?v=51fc0539', v1: 'live-app-preview.html?v=246bcca2', v2: 'live-app-preview-v2.html?v=69211e59', v3: 'live-app-preview-v3.html?v=fb478781' }, onClose: () => setLiveAppOpen(false) });
-const chatVersions = createChatVersions({ update: updateConversation, onChange: appVersions.setChatVersion });
+const appPreview = createLiveAppPreview({ source: 'live-app-preview-v3.html?v=fb478781', onClose: () => setLiveAppOpen(false) });
 const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=9bfbfb37', workflow: 'workflow-preview.html?v=4ffa5c09' }, onClose: () => setLiveAppOpen(false) });
 const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onScheduleChange: reportViews.setSchedule, onReady: () => markPanelReady('report'), onOpenReport: () => {
   reportViews.open(agentSetup.snapshot().schedule);
@@ -694,7 +689,6 @@ byId('close-sidebar').addEventListener('click', () => setSidebar(false));
 backdrop.addEventListener('click', () => setSidebar(false));
 sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setSidebar(false, false)));
 document.addEventListener('keydown', (event) => {
-  if (chatVersions.handleEscape(event) || appVersions.handleEscape(event)) return;
   if (event.key === 'Escape' && document.body.classList.contains('live-app-open')) {
     event.preventDefault();
     setLiveAppOpen(false);

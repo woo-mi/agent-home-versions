@@ -1,5 +1,4 @@
 .chat-page { --sidebar-width: 260px; --chat-text-width: 748px; --chat-card-width: 613px; --chat-card-line: #d2d2d2; --panel-duration: 420ms; --panel-ease: cubic-bezier(.22, .8, .25, 1); overflow-x: clip; }
-.chat-page[data-chat-version="v2"] { --chat-card-width: 748px; }
 .chat-sidebar { position: fixed; inset: 0 auto 0 0; width: var(--sidebar-width); padding: 8px 6px 16px; display: flex; flex-direction: column; background: #f5f5f5d1; border-right: 1px solid #e6e6e6; z-index: 20; }
 .sidebar-brand-row { display: flex; justify-content: space-between; align-items: center; min-height: 40px; }
 .sidebar-brand { display: block; width: 126px; height: 40px; margin-left: -2px; }
@@ -98,16 +97,6 @@
 .live-app-open .sidebar-item { padding: 0 10px; }
 .live-app-open .sidebar-item > span:not(.sidebar-avatar), .live-app-open .recent-chats { opacity: 0; visibility: hidden; }
 .live-app-reset *, .live-app-reset .live-app-panel { transition: none !important; }
-.app-version-control { position: fixed; z-index: 50; bottom: 16px; right: 16px; }
-.app-version-trigger { height: 36px; padding: 0 10px; border: 1px solid #e4e4e614; border-radius: 16px; background: #4a4a4a; color: #fff; display: flex; align-items: center; gap: 6px; box-shadow: 0 24px 80px #0003; }
-.app-version-trigger .layers, .app-version-chevron { width: 16px; height: 16px; }
-.app-version-trigger span { font-size: 14px; line-height: 20px; font-weight: 400; }
-.app-version-chevron { transition: transform 150ms ease; }
-.app-version-control.open .app-version-chevron { transform: rotate(180deg); }
-.app-version-menu { position: absolute; bottom: calc(100% + 6px); right: 0; width: 200px; margin: 0; padding: 6px; list-style: none; border: 1px solid #e5e5e7; border-radius: 12px; background: #fff; box-shadow: 0 8px 24px #0000001f; }
-.app-version-menu button { width: 100%; height: 32px; padding: 0 8px; border-radius: 8px; display: flex; align-items: center; gap: 8px; font-size: 14px; line-height: 20px; text-align: left; }
-.app-version-menu button:hover, .app-version-menu button:focus-visible { background: #eeeef0; outline: none; }
-.app-version-menu button[aria-checked="true"]::after { content: ""; width: 6px; height: 11px; margin-left: 2px; border: solid currentColor; border-width: 0 1.5px 1.5px 0; transform: translateY(-2px) rotate(45deg); }
 .user-message { align-self: flex-end; max-width: 85%; padding: 12px 16px; margin: 4px 0 20px; border-radius: 16px 16px 4px 16px; background: #f2f1f4; font-size: 14px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
 .typing-message { display: flex; align-items: center; height: 19.25px; margin-bottom: 16px; }
 .typing-message span { width: 8px; height: 8px; border-radius: 50%; background: #333444; }
