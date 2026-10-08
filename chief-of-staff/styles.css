@@ -50,7 +50,8 @@ textarea::placeholder { color: var(--muted); opacity: 1; }
 .composer-right { gap: 8px; }
 .select-control { position: relative; display: flex; align-items: center; height: 34px; }
 .select-control select { appearance: none; background: transparent; border: 0; font-size: 14px; line-height: 1.29; width: 100%; padding: 8px 22px 8px 0; }
-.domain-control { width: 86px; }
+.domain-control { width: 86px; flex-shrink: 0; }
+.domain-control select { height: 34px; padding-right: 18px; line-height: 18px; }
 .chevron { pointer-events: none; width: 14px; height: 14px; position: absolute; right: 0; }
 .mode-toggle { display: flex; align-items: center; gap: 4px; padding: 4px; border-radius: 9px; background: var(--soft); }
 .mode { height: 30px; padding: 0 9px; border-radius: 7px; color: #6d6b79; font-size: 14px; }

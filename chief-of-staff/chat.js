@@ -577,7 +577,7 @@ function prepareLiveAppPreview() {
 
 const chatVersions = createChatVersions({ update: updateConversation });
 const appVersions = createLiveAppVersions({ previews: { v1: 'live-app-preview.html?v=0ab9a542', v2: 'live-app-preview-v2.html?v=ef845f18' }, onClose: () => setLiveAppOpen(false) });
-const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=20a3a961', workflow: 'workflow-preview.html?v=8e329585' }, onClose: () => setLiveAppOpen(false) });
+const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=3c174308', workflow: 'workflow-preview.html?v=93006e22' }, onClose: () => setLiveAppOpen(false) });
 const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onOpenReport: () => {
   reportViews.open(agentSetup.snapshot().schedule);
   setLiveAppOpen(true, true, 'report');
