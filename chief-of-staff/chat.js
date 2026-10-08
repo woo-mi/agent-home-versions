@@ -1,7 +1,7 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=d7e6a4ef';
 import { createLiveAppChat } from './live-app-chat.mjs?v=49dde280';
-import { createLiveAppVersions } from './live-app-versions.mjs?v=bd00ef23';
+import { createLiveAppVersions } from './live-app-versions.mjs?v=bda9d194';
 import { createChatVersions } from './chat-versions.mjs?v=7b280f62';
 import { createAgentSetupChat } from './agent-setup-chat.mjs?v=cfafdba1';
 import { createReportViews } from './report-views.mjs?v=3e53c1e2';
@@ -594,7 +594,7 @@ function prepareLiveAppPreview() {
   reportViews.prepare();
 }
 
-const appVersions = createLiveAppVersions({ previews: { v0: 'live-app-preview-v0.html?v=51fc0539', v1: 'live-app-preview.html?v=246bcca2', v2: 'live-app-preview-v2.html?v=69211e59' }, onClose: () => setLiveAppOpen(false) });
+const appVersions = createLiveAppVersions({ previews: { v0: 'live-app-preview-v0.html?v=51fc0539', v1: 'live-app-preview.html?v=246bcca2', v2: 'live-app-preview-v2.html?v=69211e59', v3: 'live-app-preview-v3.html?v=fb478781' }, onClose: () => setLiveAppOpen(false) });
 const chatVersions = createChatVersions({ update: updateConversation, onChange: appVersions.setChatVersion });
 const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=9bfbfb37', workflow: 'workflow-preview.html?v=652fede7' }, onClose: () => setLiveAppOpen(false) });
 const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onScheduleChange: reportViews.setSchedule, onOpenReport: () => {

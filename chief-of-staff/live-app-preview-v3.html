@@ -1,0 +1,2582 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Weekly Sales Pipeline Review · App v3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+      html { font-synthesis: none; -webkit-font-smoothing: antialiased; font-family: Inter, system-ui, sans-serif; color: #171717; background: #fff; scrollbar-width: none; }
+      html::-webkit-scrollbar { display: none; }
+      body { margin: 0; }
+      *, ::before, ::after { box-sizing: border-box; }
+      .preview-shell { width: 100%; min-height: 100vh; }
+      [data-pencil-id="R7Vxu"], [data-pencil-id="wYCr9"] { position: relative !important; left: auto !important; top: auto !important; width: 100% !important; height: auto !important; border: 0 !important; }
+      [data-pencil-id="wYCr9"] { overflow: visible !important; }
+      [data-pencil-id="avxQd"] { visibility: hidden; }
+      [data-pencil-id="kIEIe"] { border: 0 !important; box-shadow: inset 0 0 0 1px #e6e6e6; }
+      [data-pencil-id="XsbLK"], [data-pencil-id="nTpb4"], [data-pencil-id="jcqk0"] { min-width: 0; }
+      [data-pencil-id="rfkqj"] { border: 0 !important; box-shadow: inset 0 -1px #e6e6e6; }
+      [data-pencil-id="W08qs"] { border: 0 !important; box-shadow: inset 0 -2px #171717; }
+      [data-pencil-id="sOK1C"] { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: stretch !important; }
+      [data-pencil-id="sOK1C"] > div { width: 100% !important; min-width: 0; height: auto !important; min-height: 102px; border: 0 !important; box-shadow: inset 0 0 0 .5px #e6e6e6; }
+      [data-pencil-id="sOK1C"] > div > div { white-space: normal !important; }
+      [data-pencil-id="s9co11"], [data-pencil-id="f5UEPR"], [data-pencil-id="XJqz3"], [data-pencil-id="IndFs"], [data-pencil-id="LBLUP"] { min-width: 0; border: 0 !important; box-shadow: inset 0 0 0 .5px #e6e6e6; }
+      .chart-fit { position: relative; width: 100%; min-width: 0; flex-shrink: 0; }
+      .chart-fit > div { position: absolute !important; top: 0; left: 0; transform-origin: top left; overflow: visible !important; }
+      [data-pencil-id="OlI6Q"], [data-pencil-id="IsjQq"] { flex-wrap: wrap; row-gap: 8px !important; }
+      .deals-table-scroll { width: 100%; min-width: 0; overflow-x: auto; }
+      .deals-table-scroll:focus-visible { outline: 2px solid #68678b; outline-offset: 3px; }
+      .deals-table { min-width: 496px; }
+      .deals-table > div { display: grid !important; grid-template-columns: minmax(110px, 140fr) minmax(82px, 92fr) minmax(56px, 56fr) minmax(32px, 40fr) minmax(0, 8fr) minmax(58px, 64fr) minmax(134px, 156fr); border: 0 !important; box-shadow: inset 0 -1px #f2f2f2; }
+      .deals-table > div > div { width: 100% !important; min-width: 0; }
+      .deals-table > div > :first-child > div { white-space: normal !important; }
+      .deals-table > [data-pencil-id="C9dlmT"] { box-shadow: inset 0 -1px #e6e6e6; }
+    </style>
+  </head>
+  <body>
+    <main class="preview-shell">
+<div
+        data-pencil-id="R7Vxu"
+        data-pencil-name="Frame 73"
+        style="align-items: flex-start; border-color: #e6e6e6; border-style: solid; border-width: 0px 0px 0px 0.5px; box-sizing: border-box; display: flex; flex-direction: row; gap: 10px; height: fit-content; justify-content: space-between; left: 0px; padding: 12px 32px 0px 32px; position: absolute; top: 0px; width: 696px"
+      >
+        <div
+          data-pencil-id="nZIUA"
+          data-pencil-name="Dashboard layout"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 8.01px; height: fit-content; justify-content: flex-start; width: fit-content"
+        >
+          <div
+            data-pencil-id="kIEIe"
+            data-pencil-name="Dashboard layout"
+            style="align-items: center; background-color: #ffffff; border-radius: 8px; border: 1px solid #e6e6e6; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 8.01px; height: 32px; justify-content: flex-start; padding: 1px 13px; width: fit-content"
+          >
+            <div
+              data-pencil-id="b3EgD"
+              data-pencil-name="Last 30 days"
+              style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+            >
+              Last 30 days
+            </div>
+            <div
+              data-pencil-id="N4yiDZ"
+              data-pencil-name="Editable chart or icon"
+              style="box-sizing: border-box; flex-shrink: 0; height: 12px; overflow: hidden; position: relative; width: 12px"
+            >
+              <svg
+                data-pencil-id="N4XHfC"
+                viewBox="0 0 6 3"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 3px; left: 3px; overflow: visible; position: absolute; top: 4.5px; width: 6px; z-index: 0"
+              >
+                <path
+                  d="M0 0l3 3 3-3"
+                  fill="none"
+                  stroke="#8F8F8F"
+                  stroke-width="1.1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-id="avxQd" aria-hidden="true"
+          data-pencil-name="filled=off, stroke=1.5, radius=2, join=round (7).svg"
+          style="box-sizing: border-box; flex-shrink: 0; height: 18px; overflow: hidden; position: relative; width: 18px"
+        >
+          <svg
+            data-pencil-id="Vu4iB"
+            viewBox="0 0 18.5 14.5"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; height: 10.875px; left: 2.063px; overflow: visible; position: absolute; top: 3.563px; width: 13.875px; z-index: 0"
+          >
+            <path
+              d="M13 0.25l0 14m-13-1.75l0-10.5c0-1.10457 0.89543-2 2-2l14.5 0c1.10457 0 2 0.89543 2 2l0 10.5c0 1.10457-0.89543 2-2 2l-14.5 0c-1.10457 0-2-0.89543-2-2z"
+              fill="none"
+              stroke="#000"
+              stroke-width="1.125"
+              stroke-linejoin="round"
+              vector-effect="non-scaling-stroke"
+            ></path>
+          </svg>
+        </div>
+      </div>
+<div
+        data-pencil-id="wYCr9"
+        data-pencil-name="App surface 6"
+        style="align-items: flex-start; background-color: #ffffff; border-color: #e6e6e6; border-style: solid; border-width: 0px 0px 0px 0.5px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; height: fit-content; justify-content: flex-start; left: 0px; overflow: hidden; padding: 24px 40px; position: absolute; top: 44px; width: 696px"
+      >
+        <div
+          data-pencil-id="XsbLK"
+          data-pencil-name="Dashboard layout"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: space-between; width: 100%"
+        >
+          <div
+            data-pencil-id="nTpb4"
+            data-pencil-name="Dashboard layout"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 8px; height: fit-content; justify-content: flex-start"
+          >
+            <div
+              data-pencil-id="BQahS" role="heading" aria-level="1"
+              data-pencil-name="Title"
+              style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 600; letter-spacing: -0.24px; line-height: 25px; text-align: left; width: 100%"
+            >
+              Weekly Sales Pipeline Review
+            </div>
+            <div
+              data-pencil-id="gMjqK"
+              data-pencil-name="Subtitle"
+              style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; width: 100%"
+            >
+              Q4 FY26 to date · week ending Oct 9, 2026 · sample data
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-id="rfkqj"
+          data-pencil-name="Dashboard layout"
+          style="align-items: flex-end; border-color: #e6e6e6; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 22px; height: fit-content; justify-content: flex-start; padding: 0px 0px 1px 0px; width: 100%"
+        >
+          <div
+            data-pencil-id="W08qs"
+            data-pencil-name="Dashboard layout"
+            style="align-items: center; border-color: #171717; border-style: solid; border-width: 0px 0px 2px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 7px; height: fit-content; justify-content: flex-start; padding: 0px 2px 8px 2px; width: fit-content"
+          >
+            <div
+              data-pencil-id="S7NcJa"
+              data-pencil-name="All regions"
+              style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+            >
+              All regions
+            </div>
+          </div>
+          <div
+            data-pencil-id="P9aY7"
+            data-pencil-name="Dashboard layout"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 7px; height: fit-content; justify-content: flex-start; padding: 0px 2px 8px 2px; width: fit-content"
+          >
+            <div
+              data-pencil-id="RDvAd"
+              data-pencil-name="North America"
+              style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+            >
+              North America
+            </div>
+          </div>
+          <div
+            data-pencil-id="iUSWc"
+            data-pencil-name="Dashboard layout"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 7px; height: fit-content; justify-content: flex-start; padding: 0px 2px 8px 2px; width: fit-content"
+          >
+            <div
+              data-pencil-id="z0fVG"
+              data-pencil-name="EMEA"
+              style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+            >
+              EMEA
+            </div>
+          </div>
+          <div
+            data-pencil-id="OGph8"
+            data-pencil-name="Dashboard layout"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 7px; height: fit-content; justify-content: flex-start; padding: 0px 2px 8px 2px; width: fit-content"
+          >
+            <div
+              data-pencil-id="E5jNwG"
+              data-pencil-name="APAC"
+              style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+            >
+              APAC
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-id="jcqk0"
+          data-pencil-name="Frame 71"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
+        >
+          <div
+            data-pencil-id="sOK1C"
+            data-pencil-name="Dashboard layout"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; width: 100%"
+          >
+            <div
+              data-pencil-id="i4jlmV"
+              data-pencil-name="Dashboard layout"
+              style="align-items: flex-start; border-radius: 10px; border: 0.5px solid #e6e6e6; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: 102px; justify-content: flex-start; padding: 12px"
+            >
+              <div
+                data-pencil-id="ml8Iy"
+                data-pencil-name="Open pipeline"
+                style="box-sizing: border-box; color: #666666; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                Open pipeline
+              </div>
+              <div
+                data-pencil-id="lM7Qk"
+                data-pencil-name="$18.4M"
+                style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 500; letter-spacing: -0.44px; line-height: 25px; text-align: left; white-space: nowrap"
+              >
+                $18.4M
+              </div>
+              <div
+                data-pencil-id="XdEI2"
+                data-pencil-name="↑ 3.4% vs last week"
+                style="box-sizing: border-box; color: #16a394; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                ↑ 3.4% vs last week
+              </div>
+            </div>
+            <div
+              data-pencil-id="vJVyd"
+              data-pencil-name="Dashboard layout"
+              style="align-items: flex-start; border-radius: 10px; border: 0.5px solid #e6e6e6; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: 102px; justify-content: flex-start; padding: 12px"
+            >
+              <div
+                data-pencil-id="J0JuQe"
+                data-pencil-name="Weighted forecast"
+                style="box-sizing: border-box; color: #666666; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                Weighted forecast
+              </div>
+              <div
+                data-pencil-id="Z2x9wq"
+                data-pencil-name="$6.1M"
+                style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 500; letter-spacing: -0.44px; line-height: 25px; text-align: left; white-space: nowrap"
+              >
+                $6.1M
+              </div>
+              <div
+                data-pencil-id="bXK1T"
+                data-pencil-name="↑ 3.4% vs last week"
+                style="box-sizing: border-box; color: #16a394; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                ↑ 3.4% vs last week
+              </div>
+            </div>
+            <div
+              data-pencil-id="EUi0B"
+              data-pencil-name="Dashboard layout"
+              style="align-items: flex-start; border-radius: 10px; border: 0.5px solid #e6e6e6; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: 102px; justify-content: flex-start; padding: 12px"
+            >
+              <div
+                data-pencil-id="TqPmX"
+                data-pencil-name="Win rate (QTD)"
+                style="box-sizing: border-box; color: #666666; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                Win rate (QTD)
+              </div>
+              <div
+                data-pencil-id="WTiXC"
+                data-pencil-name="24.3%"
+                style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 500; letter-spacing: -0.44px; line-height: 25px; text-align: left; white-space: nowrap"
+              >
+                24.3%
+              </div>
+              <div
+                data-pencil-id="cPcI7"
+                data-pencil-name="↑ 1.4pp vs last week"
+                style="box-sizing: border-box; color: #16a394; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                ↑ 1.4pp vs last week
+              </div>
+            </div>
+            <div
+              data-pencil-id="FKcIo"
+              data-pencil-name="Dashboard layout"
+              style="align-items: flex-start; border-radius: 10px; border: 0.5px solid #e6e6e6; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: 102px; justify-content: flex-start; padding: 12px"
+            >
+              <div
+                data-pencil-id="t75qJE"
+                data-pencil-name="Avg sales cycle"
+                style="box-sizing: border-box; color: #666666; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                Avg sales cycle
+              </div>
+              <div
+                data-pencil-id="H38uKH"
+                data-pencil-name="47 days"
+                style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 20px; font-style: normal; font-weight: 500; letter-spacing: -0.44px; line-height: 25px; text-align: left; white-space: nowrap"
+              >
+                47 days
+              </div>
+              <div
+                data-pencil-id="H6ez9h"
+                data-pencil-name="↓ 2 days vs last week"
+                style="box-sizing: border-box; color: #16a394; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                ↓ 2 days vs last week
+              </div>
+            </div>
+          </div>
+          <div
+            data-pencil-id="s9co11"
+            data-pencil-name="Frame 70"
+            style="align-items: flex-start; border-radius: 10px; border: 0.5px solid #e6e6e6; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 18px; height: fit-content; justify-content: flex-start; padding: 19px 16px; width: 100%"
+          >
+            <div
+              data-pencil-id="V9l8l"
+              data-pencil-name="Frame 69"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; width: 100%"
+            >
+              <div
+                data-pencil-id="FjBaq" role="heading" aria-level="2"
+                data-pencil-name="Chart title"
+                style="box-sizing: border-box; color: #0F1425; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: 19px; text-align: left; width: 100%"
+              >
+                Pipeline conversion
+              </div>
+              <div
+                data-pencil-id="N7Sb8Y"
+                data-pencil-name="Chart subtitle"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%"
+              >
+                Opportunities by stage · Q4 FY26 cohort
+              </div>
+            </div>
+            <div class="chart-fit" data-chart-width="584" data-chart-max-width="584" role="region" aria-label="Pipeline conversion chart">
+<div
+              data-pencil-id="w2xM3P"
+              data-pencil-name="Funnel · extracted data visualization · editable"
+              style="background-color: #FFFFFF; box-sizing: border-box; flex-shrink: 0; height: 398px; position: relative; width: 100%"
+            >
+              <svg
+                data-pencil-id="d6JBum"
+                data-pencil-name="Funnel silhouette · Catmull-Rom"
+                viewBox="168 12.27 406 345.13"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 345.13px; left: 168px; overflow: visible; position: absolute; top: 12.27px; width: 406px; z-index: 0"
+              >
+                <defs><linearGradient id="pipeline-conversion-gradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B66C4"/><stop offset="1" stop-color="#C3408B"/></linearGradient></defs>
+<path d="M 168.00 12.27 C 172.77 26.65 187.43 69.79 196.65 98.55 C 205.87 127.31 209.55 156.07 223.33 184.84 C 237.11 213.60 265.19 242.36 279.32 271.12 C 293.46 299.88 303.33 343.02 308.14 357.40 L 433.86 357.40 C 438.67 343.02 448.54 299.88 462.68 271.12 C 476.81 242.36 504.89 213.60 518.67 184.84 C 532.45 156.07 536.13 127.31 545.35 98.55 C 554.57 69.79 569.23 26.65 574.00 12.27 Z" fill="url(#pipeline-conversion-gradient)" fill-opacity="0.95"/></svg>
+              <svg
+                data-pencil-id="h9I8pb"
+                data-pencil-name="Qualified · Guide"
+                viewBox="0 0 156 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 12px; overflow: visible; position: absolute; top: 11.77px; width: 156px; z-index: 1"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-id="eZqKn"
+                data-pencil-name="Qualified · Inner guide"
+                viewBox="0 0 406 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 168px; opacity: 0.85; overflow: visible; position: absolute; top: 11.77px; width: 406px; z-index: 2"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="vBdKk"
+                data-pencil-name="Qualified labels"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px; height: fit-content; justify-content: flex-start; left: 12px; position: absolute; top: 15.27px; width: fit-content; z-index: 3"
+              >
+                <div
+                  data-pencil-id="EUU7N"
+                  data-pencil-name="Qualified label"
+                  style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Qualified
+                </div>
+                <div
+                  data-pencil-id="PO4fu"
+                  data-pencil-name="Qualified conversion"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  100.0%
+                </div>
+              </div>
+              <div
+                data-pencil-id="anDUG"
+                data-pencil-name="Qualified total"
+                style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 13.66px; font-style: normal; font-weight: 400; left: 332px; letter-spacing: 0px; line-height: 16px; position: absolute; text-align: center; top: 15.27px; width: 78px; z-index: 4"
+              >
+                1.24K
+              </div>
+              <svg
+                data-pencil-id="Z5ixd"
+                data-pencil-name="Discovery · Guide"
+                viewBox="0 0 184.6491935483871 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 12px; overflow: visible; position: absolute; top: 98.053px; width: 184.649px; z-index: 5"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-id="CeFE8"
+                data-pencil-name="Discovery · Inner guide"
+                viewBox="0 0 348.70161290322585 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 196.649px; opacity: 0.85; overflow: visible; position: absolute; top: 98.053px; width: 348.702px; z-index: 6"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="vj9Ze"
+                data-pencil-name="Discovery labels"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px; height: fit-content; justify-content: flex-start; left: 12px; position: absolute; top: 101.553px; width: fit-content; z-index: 7"
+              >
+                <div
+                  data-pencil-id="pWRjv"
+                  data-pencil-name="Discovery label"
+                  style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Discovery
+                </div>
+                <div
+                  data-pencil-id="W70BST"
+                  data-pencil-name="Discovery conversion"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  85.9%
+                </div>
+              </div>
+              <div
+                data-pencil-id="iPHyw"
+                data-pencil-name="Discovery total"
+                style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 13.66px; font-style: normal; font-weight: 400; left: 332px; letter-spacing: 0px; line-height: 16px; position: absolute; text-align: center; top: 101.553px; width: 78px; z-index: 8"
+              >
+                1.06K
+              </div>
+              <svg
+                data-pencil-id="qpUve"
+                data-pencil-name="Proposal · Guide"
+                viewBox="0 0 211.33387096774194 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 12px; overflow: visible; position: absolute; top: 184.335px; width: 211.334px; z-index: 9"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-id="U3KbW"
+                data-pencil-name="Proposal · Inner guide"
+                viewBox="0 0 295.33225806451605 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 223.334px; opacity: 0.85; overflow: visible; position: absolute; top: 184.335px; width: 295.332px; z-index: 10"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="j9NnG0"
+                data-pencil-name="Proposal labels"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px; height: fit-content; justify-content: flex-start; left: 12px; position: absolute; top: 187.835px; width: fit-content; z-index: 11"
+              >
+                <div
+                  data-pencil-id="hEbfT"
+                  data-pencil-name="Proposal label"
+                  style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Proposal
+                </div>
+                <div
+                  data-pencil-id="jowWS"
+                  data-pencil-name="Proposal conversion"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  72.7%
+                </div>
+              </div>
+              <div
+                data-pencil-id="NFOdY"
+                data-pencil-name="Proposal total"
+                style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 13.66px; font-style: normal; font-weight: 400; left: 332px; letter-spacing: 0px; line-height: 16px; position: absolute; text-align: center; top: 187.835px; width: 78px; z-index: 12"
+              >
+                902
+              </div>
+              <svg
+                data-pencil-id="DjWss"
+                data-pencil-name="Negotiation · Guide"
+                viewBox="0 0 267.3225806451613 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 12px; overflow: visible; position: absolute; top: 270.617px; width: 267.323px; z-index: 13"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-id="VQ4ZM"
+                data-pencil-name="Negotiation · Inner guide"
+                viewBox="0 0 183.35483870967744 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 279.323px; opacity: 0.85; overflow: visible; position: absolute; top: 270.617px; width: 183.355px; z-index: 14"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="YiAZW"
+                data-pencil-name="Negotiation labels"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px; height: fit-content; justify-content: flex-start; left: 12px; position: absolute; top: 274.117px; width: fit-content; z-index: 15"
+              >
+                <div
+                  data-pencil-id="FS3H6"
+                  data-pencil-name="Negotiation label"
+                  style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Negotiation
+                </div>
+                <div
+                  data-pencil-id="PKwOy"
+                  data-pencil-name="Negotiation conversion"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  45.2%
+                </div>
+              </div>
+              <div
+                data-pencil-id="AyoZs"
+                data-pencil-name="Negotiation total"
+                style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 13.66px; font-style: normal; font-weight: 400; left: 332px; letter-spacing: 0px; line-height: 16px; position: absolute; text-align: center; top: 274.117px; width: 78px; z-index: 16"
+              >
+                560
+              </div>
+              <svg
+                data-pencil-id="DTOXg"
+                data-pencil-name="Closed won · Guide"
+                viewBox="0 0 296.13548387096773 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 12px; overflow: visible; position: absolute; top: 356.9px; width: 296.135px; z-index: 17"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-id="ycwFg"
+                data-pencil-name="Closed won · Inner guide"
+                viewBox="0 0 125.72903225806454 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 308.135px; opacity: 0.85; overflow: visible; position: absolute; top: 356.9px; width: 125.729px; z-index: 18"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="hFtcy"
+                data-pencil-name="Closed won labels"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px; height: fit-content; justify-content: flex-start; left: 12px; position: absolute; top: 360.4px; width: fit-content; z-index: 19"
+              >
+                <div
+                  data-pencil-id="VbmY0"
+                  data-pencil-name="Closed won label"
+                  style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Closed won
+                </div>
+                <div
+                  data-pencil-id="UuEh6"
+                  data-pencil-name="Closed won conversion"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  31.0%
+                </div>
+              </div>
+              <div
+                data-pencil-id="b3c4Dw"
+                data-pencil-name="Closed won total"
+                style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 13.66px; font-style: normal; font-weight: 400; left: 332px; letter-spacing: 0px; line-height: 16px; position: absolute; text-align: center; top: 338.4px; width: 78px; z-index: 20"
+              >
+                384
+              </div>
+            </div>
+</div>
+          </div>
+          <div
+            data-pencil-id="f5UEPR"
+            data-pencil-name="Pipeline movement"
+            style="align-items: flex-start; background-color: #ffffff; border-radius: 10px; border: 0.5px solid #e6e6e6; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 19px 17px 19px 19px; width: 100%"
+          >
+            <div
+              data-pencil-id="w1kcrD" role="heading" aria-level="2"
+              data-pencil-name="Chart title"
+              style="box-sizing: border-box; color: #0F1425; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+            >
+              Pipeline movement this week
+            </div>
+            <div
+              data-pencil-id="QYguB"
+              data-pencil-name="Chart subtitle"
+              style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; white-space: nowrap"
+            >
+              Open pipeline · Oct 2 → Oct 9 · US$ millions
+            </div>
+            <div
+              data-pencil-id="QAxZd"
+              data-pencil-name="spacer"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 14px; justify-content: flex-start; width: 100%"
+            ></div>
+            <div class="chart-fit" data-chart-width="576" data-chart-max-width="576" role="region" aria-label="Pipeline movement this week chart">
+<div
+              data-pencil-id="l5XHAP"
+              data-pencil-name="Waterfall plot"
+              style="box-sizing: border-box; flex-shrink: 0; height: 300px; position: relative; width: 576px"
+            >
+              <svg
+                data-pencil-id="bqUEp"
+                data-pencil-name="grid 0"
+                viewBox="0 0 560 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 259.5px; width: 560px; z-index: 0"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="sOWAt"
+                data-pencil-name="tick 0"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 243px; white-space: nowrap; z-index: 1"
+              >
+                $0M
+              </div>
+              <svg
+                data-pencil-id="W86SR"
+                data-pencil-name="grid 5"
+                viewBox="0 0 560 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 212.3px; width: 560px; z-index: 2"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="dX0wQ"
+                data-pencil-name="tick 5"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 195.8px; white-space: nowrap; z-index: 3"
+              >
+                $5M
+              </div>
+              <svg
+                data-pencil-id="iCeZM"
+                data-pencil-name="grid 10"
+                viewBox="0 0 560 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 165.1px; width: 560px; z-index: 4"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="iTvKJ"
+                data-pencil-name="tick 10"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 148.6px; white-space: nowrap; z-index: 5"
+              >
+                $10M
+              </div>
+              <svg
+                data-pencil-id="B9NP3"
+                data-pencil-name="grid 15"
+                viewBox="0 0 560 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 117.9px; width: 560px; z-index: 6"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="QLn5P"
+                data-pencil-name="tick 15"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 101.4px; white-space: nowrap; z-index: 7"
+              >
+                $15M
+              </div>
+              <svg
+                data-pencil-id="bN0ez"
+                data-pencil-name="grid 20"
+                viewBox="0 0 560 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 70.7px; width: 560px; z-index: 8"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="qnHfn"
+                data-pencil-name="tick 20"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 54.2px; white-space: nowrap; z-index: 9"
+              >
+                $20M
+              </div>
+              <svg
+                data-pencil-id="rSvpk"
+                data-pencil-name="grid 25"
+                viewBox="0 0 560 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 23.5px; width: 560px; z-index: 10"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="tK3Qm"
+                data-pencil-name="tick 25"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 7px; white-space: nowrap; z-index: 11"
+              >
+                $25M
+              </div>
+              <div
+                data-pencil-id="mRb00"
+                data-pencil-name="connector"
+                style="background-color: #4A4D5380; box-sizing: border-box; height: 1px; left: 64.571px; position: absolute; top: 91.968px; width: 73.143px; z-index: 12"
+              ></div>
+              <div
+                data-pencil-id="D5Vpe4"
+                data-pencil-name="Opening"
+                style="background-color: #1B66C4; box-sizing: border-box; height: 168.032px; left: 64.571px; position: absolute; top: 91.968px; width: 40px; z-index: 13"
+              ></div>
+              <div
+                data-pencil-id="Lk7C4"
+                data-pencil-name="17.8"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 48.571px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 72.968px; width: 72px; z-index: 14"
+              >
+                17.8
+              </div>
+              <div
+                data-pencil-id="HvcTx"
+                data-pencil-name="Opening"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 600; left: 48.571px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 15"
+              >
+                Opening
+              </div>
+              <div
+                data-pencil-id="fd531"
+                data-pencil-name="connector"
+                style="background-color: #4A4D5380; box-sizing: border-box; height: 1px; left: 137.714px; position: absolute; top: 70.256px; width: 73.143px; z-index: 16"
+              ></div>
+              <div
+                data-pencil-id="nX4Mw"
+                data-pencil-name="Created"
+                style="background-color: #C3408B; box-sizing: border-box; height: 21.712px; left: 137.714px; position: absolute; top: 70.256px; width: 40px; z-index: 17"
+              ></div>
+              <div
+                data-pencil-id="mfacL"
+                data-pencil-name="+2.3"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 121.714px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 51.256px; width: 72px; z-index: 18"
+              >
+                +2.3
+              </div>
+              <div
+                data-pencil-id="TV5LC"
+                data-pencil-name="Created"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 121.714px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 19"
+              >
+                Created
+              </div>
+              <div
+                data-pencil-id="v6Msj"
+                data-pencil-name="connector"
+                style="background-color: #4A4D5380; box-sizing: border-box; height: 1px; left: 210.857px; position: absolute; top: 65.536px; width: 73.143px; z-index: 20"
+              ></div>
+              <div
+                data-pencil-id="e1Xoc"
+                data-pencil-name="Expanded"
+                style="background-color: #C3408B; box-sizing: border-box; height: 4.72px; left: 210.857px; position: absolute; top: 65.536px; width: 40px; z-index: 21"
+              ></div>
+              <div
+                data-pencil-id="nZZ9L"
+                data-pencil-name="+0.5"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 194.857px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 46.536px; width: 72px; z-index: 22"
+              >
+                +0.5
+              </div>
+              <div
+                data-pencil-id="W5pkI"
+                data-pencil-name="Expanded"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 194.857px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 23"
+              >
+                Expanded
+              </div>
+              <div
+                data-pencil-id="K07DZd"
+                data-pencil-name="connector"
+                style="background-color: #4A4D5380; box-sizing: border-box; height: 1px; left: 284px; position: absolute; top: 74.032px; width: 73.143px; z-index: 24"
+              ></div>
+              <div
+                data-pencil-id="ejjQv"
+                data-pencil-name="Won"
+                style="background-color: #E5D248; box-sizing: border-box; height: 8.496px; left: 284px; position: absolute; top: 65.536px; width: 40px; z-index: 25"
+              ></div>
+              <div
+                data-pencil-id="Jq7fl"
+                data-pencil-name="−0.9"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 268px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 78.032px; width: 72px; z-index: 26"
+              >
+                −0.9
+              </div>
+              <div
+                data-pencil-id="cib9j"
+                data-pencil-name="Won"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 268px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 27"
+              >
+                Won
+              </div>
+              <div
+                data-pencil-id="Ag4iA"
+                data-pencil-name="connector"
+                style="background-color: #4A4D5380; box-sizing: border-box; height: 1px; left: 357.143px; position: absolute; top: 81.584px; width: 73.143px; z-index: 28"
+              ></div>
+              <div
+                data-pencil-id="Nq1W6"
+                data-pencil-name="Lost"
+                style="background-color: #E5D248; box-sizing: border-box; height: 7.552px; left: 357.143px; position: absolute; top: 74.032px; width: 40px; z-index: 29"
+              ></div>
+              <div
+                data-pencil-id="IxtdI"
+                data-pencil-name="−0.8"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 341.143px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 85.584px; width: 72px; z-index: 30"
+              >
+                −0.8
+              </div>
+              <div
+                data-pencil-id="jKQKU"
+                data-pencil-name="Lost"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 341.143px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 31"
+              >
+                Lost
+              </div>
+              <div
+                data-pencil-id="V5HJe"
+                data-pencil-name="connector"
+                style="background-color: #4A4D5380; box-sizing: border-box; height: 1px; left: 430.286px; position: absolute; top: 86.304px; width: 73.143px; z-index: 32"
+              ></div>
+              <div
+                data-pencil-id="pwgXY"
+                data-pencil-name="Slipped"
+                style="background-color: #E5D248; box-sizing: border-box; height: 4.72px; left: 430.286px; position: absolute; top: 81.584px; width: 40px; z-index: 33"
+              ></div>
+              <div
+                data-pencil-id="OEuGT"
+                data-pencil-name="−0.5"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 414.286px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 90.304px; width: 72px; z-index: 34"
+              >
+                −0.5
+              </div>
+              <div
+                data-pencil-id="V9em7"
+                data-pencil-name="Slipped"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 414.286px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 35"
+              >
+                Slipped
+              </div>
+              <div
+                data-pencil-id="tsQT0"
+                data-pencil-name="Closing"
+                style="background-color: #1B66C4; box-sizing: border-box; height: 173.696px; left: 503.429px; position: absolute; top: 86.304px; width: 40px; z-index: 36"
+              ></div>
+              <div
+                data-pencil-id="ZyebZ"
+                data-pencil-name="18.4"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 487.429px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 67.304px; width: 72px; z-index: 37"
+              >
+                18.4
+              </div>
+              <div
+                data-pencil-id="og76i"
+                data-pencil-name="Closing"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 600; left: 487.429px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 38"
+              >
+                Closing
+              </div>
+              <div
+                data-pencil-id="ZS7mV"
+                data-pencil-name="baseline"
+                style="background-color: #4A4D53; box-sizing: border-box; height: 1px; left: 0px; position: absolute; top: 260px; width: 560px; z-index: 39"
+              ></div>
+            </div>
+</div>
+          </div>
+          <div
+            data-pencil-id="XJqz3"
+            data-pencil-name="Dashboard layout"
+            style="align-items: flex-start; background-color: #ffffff; border-radius: 10px; border: 0.5px solid #e6e6e6; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 19px 17px 19px 19px; width: 100%"
+          >
+            <div
+              data-pencil-id="DJuhS" role="heading" aria-level="2"
+              data-pencil-name="Revenue by product category"
+              style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 15px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: 18px; text-align: left; white-space: nowrap"
+            >
+              Pipeline created by source
+            </div>
+            <div
+              data-pencil-id="bSptt"
+              data-pencil-name="spacer"
+              style="box-sizing: border-box; flex-shrink: 0; height: 4px; width: 100%"
+            ></div>
+            <div
+              data-pencil-id="vI1GV"
+              data-pencil-name="Net of returns · last 12 months · click a column to focus a month"
+              style="box-sizing: border-box; color: #666666; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+            >
+              New opportunity value per month · US$ millions
+            </div>
+            <div
+              data-pencil-id="ZqFma"
+              data-pencil-name="spacer"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 14px; justify-content: flex-start; width: 100%"
+            ></div>
+            <div
+              data-pencil-id="OlI6Q"
+              data-pencil-name="Legend"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; padding: 0px 0px 12px 0px; width: 100%"
+            >
+              <div
+                data-pencil-id="pwxAc"
+                data-pencil-name="Outbound"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 7px; height: fit-content; justify-content: flex-start; width: fit-content"
+              >
+                <div
+                  data-pencil-id="QKXkT"
+                  data-pencil-name="chip"
+                  style="background-color: #1B66C4; border-radius: 2px; box-sizing: border-box; flex-shrink: 0; height: 11px; width: 11px"
+                ></div>
+                <div
+                  data-pencil-id="N4pRx"
+                  data-pencil-name="Outbound"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Outbound
+                </div>
+              </div>
+              <div
+                data-pencil-id="aa2JF"
+                data-pencil-name="Inbound"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 7px; height: fit-content; justify-content: flex-start; width: fit-content"
+              >
+                <div
+                  data-pencil-id="E2Eu8"
+                  data-pencil-name="chip"
+                  style="background-color: #C3408B; border-radius: 2px; box-sizing: border-box; flex-shrink: 0; height: 11px; width: 11px"
+                ></div>
+                <div
+                  data-pencil-id="R3518"
+                  data-pencil-name="Inbound"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Inbound
+                </div>
+              </div>
+              <div
+                data-pencil-id="hkVSE"
+                data-pencil-name="Partner"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 7px; height: fit-content; justify-content: flex-start; width: fit-content"
+              >
+                <div
+                  data-pencil-id="P3JlQo"
+                  data-pencil-name="chip"
+                  style="background-color: #219855; border-radius: 2px; box-sizing: border-box; flex-shrink: 0; height: 11px; width: 11px"
+                ></div>
+                <div
+                  data-pencil-id="u712A"
+                  data-pencil-name="Partner"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Partner
+                </div>
+              </div>
+              <div
+                data-pencil-id="N6qaJF"
+                data-pencil-name="Expansion"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 7px; height: fit-content; justify-content: flex-start; width: fit-content"
+              >
+                <div
+                  data-pencil-id="mJx91"
+                  data-pencil-name="chip"
+                  style="background-color: #E5D248; border-radius: 2px; box-sizing: border-box; flex-shrink: 0; height: 11px; width: 11px"
+                ></div>
+                <div
+                  data-pencil-id="vgCeM"
+                  data-pencil-name="Expansion"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Expansion
+                </div>
+              </div>
+            </div>
+            <div class="chart-fit" data-chart-width="576" data-chart-max-width="576" role="region" aria-label="Pipeline created by source chart">
+<div
+              data-pencil-id="UpbRw"
+              data-pencil-name="Stacked column plot"
+              style="box-sizing: border-box; flex-shrink: 0; height: 300px; position: relative; width: 576px"
+            >
+              <svg
+                data-pencil-id="u4ALc"
+                data-pencil-name="grid 0"
+                viewBox="0 0 560 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 259.5px; width: 560px; z-index: 0"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="IzebK"
+                data-pencil-name="tick 0"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 243px; white-space: nowrap; z-index: 1"
+              >
+                $0M
+              </div>
+              <svg
+                data-pencil-id="a26V9q"
+                data-pencil-name="grid 2"
+                viewBox="0 0 560 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 180.833px; width: 560px; z-index: 2"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="MQ6Th"
+                data-pencil-name="tick 2"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 164.333px; white-space: nowrap; z-index: 3"
+              >
+                $2M
+              </div>
+              <svg
+                data-pencil-id="e5Y9I"
+                data-pencil-name="grid 4"
+                viewBox="0 0 560 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 102.167px; width: 560px; z-index: 4"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="ZInvE"
+                data-pencil-name="tick 4"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 85.667px; white-space: nowrap; z-index: 5"
+              >
+                $4M
+              </div>
+              <svg
+                data-pencil-id="i4Dox"
+                data-pencil-name="grid 6"
+                viewBox="0 0 560 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 23.5px; width: 560px; z-index: 6"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="KASvT"
+                data-pencil-name="tick 6"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 7px; white-space: nowrap; z-index: 7"
+              >
+                $6M
+              </div>
+              <div
+                data-pencil-id="NqV82"
+                data-pencil-name="May Outbound"
+                style="background-color: #1B66C4; box-sizing: border-box; height: 76.7px; left: 30.333px; position: absolute; top: 183.3px; width: 40px; z-index: 8"
+              ></div>
+              <div
+                data-pencil-id="aAQF6"
+                data-pencil-name="May Inbound"
+                style="background-color: #C3408B; box-sizing: border-box; height: 58.607px; left: 30.333px; position: absolute; top: 124.693px; width: 40px; z-index: 9"
+              ></div>
+              <div
+                data-pencil-id="K9Zrl4"
+                data-pencil-name="May Partner"
+                style="background-color: #219855; box-sizing: border-box; height: 25.173px; left: 30.333px; position: absolute; top: 99.52px; width: 40px; z-index: 10"
+              ></div>
+              <div
+                data-pencil-id="NFriV"
+                data-pencil-name="May Expansion"
+                style="background-color: #E5D248; box-sizing: border-box; height: 14.553px; left: 30.333px; position: absolute; top: 84.967px; width: 40px; z-index: 11"
+              ></div>
+              <div
+                data-pencil-id="ksFF5"
+                data-pencil-name="4.5"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 14.333px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 65.967px; width: 72px; z-index: 12"
+              >
+                4.5
+              </div>
+              <div
+                data-pencil-id="mv9F9"
+                data-pencil-name="May"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 14.333px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 13"
+              >
+                May
+              </div>
+              <div
+                data-pencil-id="MBfa0"
+                data-pencil-name="2026"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 14.333px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 283px; width: 72px; z-index: 14"
+              >
+                2026
+              </div>
+              <div
+                data-pencil-id="l0tY7J"
+                data-pencil-name="Jun Outbound"
+                style="background-color: #1B66C4; box-sizing: border-box; height: 81.42px; left: 123px; position: absolute; top: 178.58px; width: 40px; z-index: 15"
+              ></div>
+              <div
+                data-pencil-id="ooVzM"
+                data-pencil-name="Jun Inbound"
+                style="background-color: #C3408B; box-sizing: border-box; height: 62.147px; left: 123px; position: absolute; top: 116.433px; width: 40px; z-index: 16"
+              ></div>
+              <div
+                data-pencil-id="eFbzV"
+                data-pencil-name="Jun Partner"
+                style="background-color: #219855; box-sizing: border-box; height: 25.173px; left: 123px; position: absolute; top: 91.26px; width: 40px; z-index: 17"
+              ></div>
+              <div
+                data-pencil-id="ROdpU"
+                data-pencil-name="Jun Expansion"
+                style="background-color: #E5D248; box-sizing: border-box; height: 15.733px; left: 123px; position: absolute; top: 75.527px; width: 40px; z-index: 18"
+              ></div>
+              <div
+                data-pencil-id="z3SHT"
+                data-pencil-name="4.7"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 107px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 56.527px; width: 72px; z-index: 19"
+              >
+                4.7
+              </div>
+              <div
+                data-pencil-id="A6RpTs"
+                data-pencil-name="Jun"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 107px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 20"
+              >
+                Jun
+              </div>
+              <div
+                data-pencil-id="U76Ct"
+                data-pencil-name="Jul Outbound"
+                style="background-color: #1B66C4; box-sizing: border-box; height: 82.993px; left: 215.667px; position: absolute; top: 177.007px; width: 40px; z-index: 21"
+              ></div>
+              <div
+                data-pencil-id="BD7Rf"
+                data-pencil-name="Jul Inbound"
+                style="background-color: #C3408B; box-sizing: border-box; height: 58.607px; left: 215.667px; position: absolute; top: 118.4px; width: 40px; z-index: 22"
+              ></div>
+              <div
+                data-pencil-id="UPsfx"
+                data-pencil-name="Jul Partner"
+                style="background-color: #219855; box-sizing: border-box; height: 25.173px; left: 215.667px; position: absolute; top: 93.227px; width: 40px; z-index: 23"
+              ></div>
+              <div
+                data-pencil-id="O1x0yb"
+                data-pencil-name="Jul Expansion"
+                style="background-color: #E5D248; box-sizing: border-box; height: 16.127px; left: 215.667px; position: absolute; top: 77.1px; width: 40px; z-index: 24"
+              ></div>
+              <div
+                data-pencil-id="X4mWy"
+                data-pencil-name="4.7"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 199.667px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 58.1px; width: 72px; z-index: 25"
+              >
+                4.7
+              </div>
+              <div
+                data-pencil-id="L4vHtj"
+                data-pencil-name="Jul"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 199.667px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 26"
+              >
+                Jul
+              </div>
+              <div
+                data-pencil-id="zDEz6"
+                data-pencil-name="Aug Outbound"
+                style="background-color: #1B66C4; box-sizing: border-box; height: 94.007px; left: 308.333px; position: absolute; top: 165.993px; width: 40px; z-index: 27"
+              ></div>
+              <div
+                data-pencil-id="Bz665"
+                data-pencil-name="Aug Inbound"
+                style="background-color: #C3408B; box-sizing: border-box; height: 62.933px; left: 308.333px; position: absolute; top: 103.06px; width: 40px; z-index: 28"
+              ></div>
+              <div
+                data-pencil-id="fpNQ9"
+                data-pencil-name="Aug Partner"
+                style="background-color: #219855; box-sizing: border-box; height: 28.713px; left: 308.333px; position: absolute; top: 74.347px; width: 40px; z-index: 29"
+              ></div>
+              <div
+                data-pencil-id="qjrkW"
+                data-pencil-name="Aug Expansion"
+                style="background-color: #E5D248; box-sizing: border-box; height: 17.307px; left: 308.333px; position: absolute; top: 57.04px; width: 40px; z-index: 30"
+              ></div>
+              <div
+                data-pencil-id="BOwVY"
+                data-pencil-name="5.2"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 292.333px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 38.04px; width: 72px; z-index: 31"
+              >
+                5.2
+              </div>
+              <div
+                data-pencil-id="FWnKF"
+                data-pencil-name="Aug"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 292.333px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 32"
+              >
+                Aug
+              </div>
+              <div
+                data-pencil-id="z7p2a"
+                data-pencil-name="Sep Outbound"
+                style="background-color: #1B66C4; box-sizing: border-box; height: 95.973px; left: 401px; position: absolute; top: 164.027px; width: 40px; z-index: 33"
+              ></div>
+              <div
+                data-pencil-id="k9Om96"
+                data-pencil-name="Sep Inbound"
+                style="background-color: #C3408B; box-sizing: border-box; height: 66.08px; left: 401px; position: absolute; top: 97.947px; width: 40px; z-index: 34"
+              ></div>
+              <div
+                data-pencil-id="giQzS"
+                data-pencil-name="Sep Partner"
+                style="background-color: #219855; box-sizing: border-box; height: 30.68px; left: 401px; position: absolute; top: 67.267px; width: 40px; z-index: 35"
+              ></div>
+              <div
+                data-pencil-id="f6Hnz"
+                data-pencil-name="Sep Expansion"
+                style="background-color: #E5D248; box-sizing: border-box; height: 17.7px; left: 401px; position: absolute; top: 49.567px; width: 40px; z-index: 36"
+              ></div>
+              <div
+                data-pencil-id="r57gxh"
+                data-pencil-name="5.3"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 385px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 30.567px; width: 72px; z-index: 37"
+              >
+                5.3
+              </div>
+              <div
+                data-pencil-id="fHvM7"
+                data-pencil-name="Sep"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 385px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 38"
+              >
+                Sep
+              </div>
+              <div
+                data-pencil-id="AGRgg"
+                data-pencil-name="Oct Outbound"
+                style="background-color: #1B66C4; box-sizing: border-box; height: 98.333px; left: 493.667px; position: absolute; top: 161.667px; width: 40px; z-index: 39"
+              ></div>
+              <div
+                data-pencil-id="hM5Qi"
+                data-pencil-name="Oct Inbound"
+                style="background-color: #C3408B; box-sizing: border-box; height: 72.373px; left: 493.667px; position: absolute; top: 89.293px; width: 40px; z-index: 40"
+              ></div>
+              <div
+                data-pencil-id="x62osq"
+                data-pencil-name="Oct Partner"
+                style="background-color: #219855; box-sizing: border-box; height: 32.253px; left: 493.667px; position: absolute; top: 57.04px; width: 40px; z-index: 41"
+              ></div>
+              <div
+                data-pencil-id="X19BA7"
+                data-pencil-name="Oct Expansion"
+                style="background-color: #E5D248; box-sizing: border-box; height: 18.093px; left: 493.667px; position: absolute; top: 38.947px; width: 40px; z-index: 42"
+              ></div>
+              <div
+                data-pencil-id="E7iDfW"
+                data-pencil-name="5.6"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 477.667px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 19.947px; width: 72px; z-index: 43"
+              >
+                5.6
+              </div>
+              <div
+                data-pencil-id="V8PyJ"
+                data-pencil-name="Oct"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 477.667px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 268px; width: 72px; z-index: 44"
+              >
+                Oct
+              </div>
+              <div
+                data-pencil-id="TNlCo"
+                data-pencil-name="baseline"
+                style="background-color: #4A4D53; box-sizing: border-box; height: 1px; left: 0px; position: absolute; top: 260px; width: 560px; z-index: 45"
+              ></div>
+            </div>
+</div>
+          </div>
+          <div
+            data-pencil-id="IndFs"
+            data-pencil-name="Quota attainment"
+            style="align-items: flex-start; background-color: #ffffff; border-radius: 10px; border: 0.5px solid #e6e6e6; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 19px 17px 19px 19px; width: 100%"
+          >
+            <div
+              data-pencil-id="HDGFW" role="heading" aria-level="2"
+              data-pencil-name="Chart title"
+              style="box-sizing: border-box; color: #0F1425; font-family: Inter, system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+            >
+              Quota attainment
+            </div>
+            <div
+              data-pencil-id="I8dk8"
+              data-pencil-name="Chart subtitle"
+              style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; white-space: nowrap"
+            >
+              Closed won vs quarterly quota by region · US$ millions
+            </div>
+            <div
+              data-pencil-id="pV2Hm"
+              data-pencil-name="spacer"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 14px; justify-content: flex-start; width: 100%"
+            ></div>
+            <div
+              data-pencil-id="IsjQq"
+              data-pencil-name="Legend"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; padding: 0px 0px 12px 0px; width: 100%"
+            >
+              <div
+                data-pencil-id="er3jz"
+                data-pencil-name="Closed won"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 7px; height: fit-content; justify-content: flex-start; width: fit-content"
+              >
+                <div
+                  data-pencil-id="tfdkr"
+                  data-pencil-name="chip"
+                  style="background-color: #1B66C4; border-radius: 2px; box-sizing: border-box; flex-shrink: 0; height: 11px; width: 11px"
+                ></div>
+                <div
+                  data-pencil-id="avXXU"
+                  data-pencil-name="Closed won"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Closed won
+                </div>
+              </div>
+              <div
+                data-pencil-id="NTc2L"
+                data-pencil-name="Quota"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 7px; height: fit-content; justify-content: flex-start; width: fit-content"
+              >
+                <div
+                  data-pencil-id="BLern"
+                  data-pencil-name="target"
+                  style="background-color: #0F1425; box-sizing: border-box; flex-shrink: 0; height: 13px; width: 2px"
+                ></div>
+                <div
+                  data-pencil-id="poEKX"
+                  data-pencil-name="Quota"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Quota
+                </div>
+              </div>
+              <div
+                data-pencil-id="Mczqz"
+                data-pencil-name="50 · 80 · 110% of quota"
+                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 7px; height: fit-content; justify-content: flex-start; width: fit-content"
+              >
+                <div
+                  data-pencil-id="l9EbZH"
+                  data-pencil-name="chip"
+                  style="background-color: #D3D8E2; border-radius: 2px; box-sizing: border-box; flex-shrink: 0; height: 11px; width: 11px"
+                ></div>
+                <div
+                  data-pencil-id="W9XmoL"
+                  data-pencil-name="50 · 80 · 110% of quota"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  50 · 80 · 110% of quota
+                </div>
+              </div>
+            </div>
+            <div class="chart-fit" data-chart-width="576" data-chart-max-width="576" role="region" aria-label="Quota attainment chart">
+<div
+              data-pencil-id="b9qlW"
+              data-pencil-name="Bullet plot"
+              style="box-sizing: border-box; flex-shrink: 0; height: 209px; position: relative; width: 576px"
+            >
+              <div
+                data-pencil-id="bDQ1R"
+                data-pencil-name="dim header"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 2px; white-space: nowrap; z-index: 0"
+              >
+                Region
+              </div>
+              <div
+                data-pencil-id="v3zhrl"
+                data-pencil-name="measure header"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 103px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 2px; white-space: nowrap; z-index: 1"
+              >
+                Closed won vs quota
+              </div>
+              <div
+                data-pencil-id="g3OCtw"
+                data-pencil-name="header rule"
+                style="background-color: #4A4D53; box-sizing: border-box; height: 1px; left: 0px; position: absolute; top: 23px; width: 576px; z-index: 2"
+              ></div>
+              <div
+                data-pencil-id="jEN2m"
+                data-pencil-name="North America range 110%"
+                style="background-color: #EFF1F5; box-sizing: border-box; height: 44px; left: 103px; position: absolute; top: 28.5px; width: 363.22px; z-index: 3"
+              ></div>
+              <div
+                data-pencil-id="yMfa3"
+                data-pencil-name="North America range 80%"
+                style="background-color: #E3E6EE; box-sizing: border-box; height: 44px; left: 103px; position: absolute; top: 28.5px; width: 264.16px; z-index: 4"
+              ></div>
+              <div
+                data-pencil-id="v7xaET"
+                data-pencil-name="North America range 50%"
+                style="background-color: #D3D8E2; box-sizing: border-box; height: 44px; left: 103px; position: absolute; top: 28.5px; width: 165.1px; z-index: 5"
+              ></div>
+              <div
+                data-pencil-id="ZC9EP"
+                data-pencil-name="North America closed won"
+                style="background-color: #1B66C4; box-sizing: border-box; height: 18.48px; left: 103px; position: absolute; top: 41.26px; width: 260.35px; z-index: 6"
+              ></div>
+              <div
+                data-pencil-id="Iz3qZ"
+                data-pencil-name="North America quota"
+                style="background-color: #0F1425; box-sizing: border-box; height: 44px; left: 432.2px; position: absolute; top: 28.5px; width: 2px; z-index: 7"
+              ></div>
+              <div
+                data-pencil-id="vXTfR"
+                data-pencil-name="North America"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 43.5px; white-space: nowrap; z-index: 8"
+              >
+                North America
+              </div>
+              <div
+                data-pencil-id="L0Mbr8"
+                data-pencil-name="North America value"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 474.22px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 43.5px; white-space: nowrap; z-index: 9"
+              >
+                $4.1M · 79%
+              </div>
+              <svg
+                data-pencil-id="LWFbJ"
+                data-pencil-name="row rule"
+                viewBox="0 0 576 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 76.5px; width: 576px; z-index: 10"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="ftdzs"
+                data-pencil-name="EMEA range 110%"
+                style="background-color: #EFF1F5; box-sizing: border-box; height: 44px; left: 103px; position: absolute; top: 81.5px; width: 209.55px; z-index: 11"
+              ></div>
+              <div
+                data-pencil-id="u1aUML"
+                data-pencil-name="EMEA range 80%"
+                style="background-color: #E3E6EE; box-sizing: border-box; height: 44px; left: 103px; position: absolute; top: 81.5px; width: 152.4px; z-index: 12"
+              ></div>
+              <div
+                data-pencil-id="bA5VL"
+                data-pencil-name="EMEA range 50%"
+                style="background-color: #D3D8E2; box-sizing: border-box; height: 44px; left: 103px; position: absolute; top: 81.5px; width: 95.25px; z-index: 13"
+              ></div>
+              <div
+                data-pencil-id="JfIHt"
+                data-pencil-name="EMEA closed won"
+                style="background-color: #1B66C4; box-sizing: border-box; height: 18.48px; left: 103px; position: absolute; top: 94.26px; width: 146.05px; z-index: 14"
+              ></div>
+              <div
+                data-pencil-id="ACeay"
+                data-pencil-name="EMEA quota"
+                style="background-color: #0F1425; box-sizing: border-box; height: 44px; left: 292.5px; position: absolute; top: 81.5px; width: 2px; z-index: 15"
+              ></div>
+              <div
+                data-pencil-id="l3O3C"
+                data-pencil-name="EMEA"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 96.5px; white-space: nowrap; z-index: 16"
+              >
+                EMEA
+              </div>
+              <div
+                data-pencil-id="bhiNl"
+                data-pencil-name="EMEA value"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 320.55px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 96.5px; white-space: nowrap; z-index: 17"
+              >
+                $2.3M · 77%
+              </div>
+              <svg
+                data-pencil-id="Tzr2R"
+                data-pencil-name="row rule"
+                viewBox="0 0 576 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 129.5px; width: 576px; z-index: 18"
+              >
+                <path
+                  d="M0 0.5h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0h1m3 0"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="MAZGJ"
+                data-pencil-name="APAC range 110%"
+                style="background-color: #EFF1F5; box-sizing: border-box; height: 44px; left: 103px; position: absolute; top: 134.5px; width: 111.76px; z-index: 19"
+              ></div>
+              <div
+                data-pencil-id="x77557"
+                data-pencil-name="APAC range 80%"
+                style="background-color: #E3E6EE; box-sizing: border-box; height: 44px; left: 103px; position: absolute; top: 134.5px; width: 81.28px; z-index: 20"
+              ></div>
+              <div
+                data-pencil-id="ZdeAq"
+                data-pencil-name="APAC range 50%"
+                style="background-color: #D3D8E2; box-sizing: border-box; height: 44px; left: 103px; position: absolute; top: 134.5px; width: 50.8px; z-index: 21"
+              ></div>
+              <div
+                data-pencil-id="OXzm0"
+                data-pencil-name="APAC closed won"
+                style="background-color: #1B66C4; box-sizing: border-box; height: 18.48px; left: 103px; position: absolute; top: 147.26px; width: 69.85px; z-index: 22"
+              ></div>
+              <div
+                data-pencil-id="S3pBnR"
+                data-pencil-name="APAC quota"
+                style="background-color: #0F1425; box-sizing: border-box; height: 44px; left: 203.6px; position: absolute; top: 134.5px; width: 2px; z-index: 23"
+              ></div>
+              <div
+                data-pencil-id="kj8PU"
+                data-pencil-name="APAC"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 149.5px; white-space: nowrap; z-index: 24"
+              >
+                APAC
+              </div>
+              <div
+                data-pencil-id="Hq8By"
+                data-pencil-name="APAC value"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 222.76px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 149.5px; white-space: nowrap; z-index: 25"
+              >
+                $1.1M · 69%
+              </div>
+              <div
+                data-pencil-id="NyKPX"
+                data-pencil-name="tick 0"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 103px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 189px; white-space: nowrap; z-index: 26"
+              >
+                $0M
+              </div>
+              <div
+                data-pencil-id="JbVTX"
+                data-pencil-name="$2M"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 194px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 189px; width: 72px; z-index: 27"
+              >
+                $2M
+              </div>
+              <div
+                data-pencil-id="L3LQx"
+                data-pencil-name="$4M"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 321px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 189px; width: 72px; z-index: 28"
+              >
+                $4M
+              </div>
+              <div
+                data-pencil-id="EYvaP"
+                data-pencil-name="$6M"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 448px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: center; top: 189px; width: 72px; z-index: 29"
+              >
+                $6M
+              </div>
+            </div>
+</div>
+          </div>
+          <div
+            data-pencil-id="LBLUP"
+            data-pencil-name="Dashboard layout"
+            style="align-items: flex-start; background-color: #ffffff; border-radius: 10px; border: 0.5px solid #e6e6e6; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 19px 17px 19px 19px; width: 100%"
+          >
+            <div
+              data-pencil-id="MvwSy" role="heading" aria-level="2"
+              data-pencil-name="Top products by revenue"
+              style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 15px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: 18px; text-align: left; white-space: nowrap"
+            >
+              Deals at risk
+            </div>
+            <div
+              data-pencil-id="nwgrE"
+              data-pencil-name="spacer"
+              style="box-sizing: border-box; flex-shrink: 0; height: 4px; width: 100%"
+            ></div>
+            <div
+              data-pencil-id="d7Ha12"
+              data-pencil-name="Last 30 days · net of returns"
+              style="box-sizing: border-box; color: #666666; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+            >
+              8 open deals over $200K flagged this week · $3.7M at risk
+            </div>
+            <div
+              data-pencil-id="XLNdr"
+              data-pencil-name="Dashboard layout"
+              style="box-sizing: border-box; flex-shrink: 0; height: 12px; width: 100%"
+            ></div>
+            <div class="deals-table-scroll" role="region" aria-label="Deals at risk table" tabindex="0"><div class="deals-table">
+<div
+              data-pencil-id="C9dlmT"
+              data-pencil-name="Dashboard layout"
+              style="align-items: center; border-color: #e6e6e6; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 0px 0px 9px 0px; width: 100%"
+            >
+              <div
+                data-pencil-id="AbJfm"
+                data-pencil-name="ACCOUNT"
+                style="box-sizing: border-box; color: #8f8f8f; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; letter-spacing: 0.44px; line-height: 14px; text-align: left; width: 140px"
+              >
+                ACCOUNT
+              </div>
+              <div
+                data-pencil-id="AwBI5"
+                data-pencil-name="STAGE"
+                style="box-sizing: border-box; color: #8f8f8f; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; letter-spacing: 0.44px; line-height: 14px; text-align: left; width: 92px"
+              >
+                STAGE
+              </div>
+              <div
+                data-pencil-id="g2If0M"
+                data-pencil-name="AMOUNT"
+                style="box-sizing: border-box; color: #8f8f8f; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; letter-spacing: 0.44px; line-height: 14px; text-align: right; width: 56px"
+              >
+                AMOUNT
+              </div>
+              <div
+                data-pencil-id="C02pU2"
+                data-pencil-name="DAYS"
+                style="box-sizing: border-box; color: #8f8f8f; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; letter-spacing: 0.44px; line-height: 14px; text-align: right; width: 40px"
+              >
+                DAYS
+              </div>
+              <div
+                data-pencil-id="CCVEa"
+                data-pencil-name="gap"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 1px; justify-content: flex-start; width: 8px"
+              ></div>
+              <div
+                data-pencil-id="zkRY7"
+                data-pencil-name="OWNER"
+                style="box-sizing: border-box; color: #8f8f8f; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; letter-spacing: 0.44px; line-height: 14px; text-align: left; width: 64px"
+              >
+                OWNER
+              </div>
+              <div
+                data-pencil-id="tXT7n"
+                data-pencil-name="RISK"
+                style="box-sizing: border-box; color: #8f8f8f; flex: 1 1 0; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; letter-spacing: 0.44px; line-height: 14px; text-align: left"
+              >
+                RISK
+              </div>
+            </div>
+            <div
+              data-pencil-id="gFcvD"
+              data-pencil-name="Kestrel Bank row"
+              style="align-items: center; border-color: #f2f2f2; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 9px 0px 10px 0px; width: 100%"
+            >
+              <div
+                data-pencil-id="SmwFL"
+                data-pencil-name="Account"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 1px; height: fit-content; justify-content: flex-start; width: 140px"
+              >
+                <div
+                  data-pencil-id="jE8gC"
+                  data-pencil-name="Account name"
+                  style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+                >
+                  Kestrel Bank
+                </div>
+                <div
+                  data-pencil-id="oCw8n"
+                  data-pencil-name="Region"
+                  style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  NA
+                </div>
+              </div>
+              <div
+                data-pencil-id="pcldo"
+                data-pencil-name="Stage"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 92px"
+              >
+                <div
+                  data-pencil-id="h3FB19"
+                  data-pencil-name="Stage chip"
+                  style="align-items: flex-start; background-color: #F2F2F2; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 3px 8px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="zbgZz"
+                    data-pencil-name="Stage"
+                    style="box-sizing: border-box; color: #4d4d4d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Negotiation
+                  </div>
+                </div>
+              </div>
+              <div
+                data-pencil-id="UHvV2"
+                data-pencil-name="Amount"
+                style="box-sizing: border-box; color: #171717; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: right; width: 56px"
+              >
+                $820K
+              </div>
+              <div
+                data-pencil-id="a15izR"
+                data-pencil-name="Days in stage"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: right; width: 40px"
+              >
+                38
+              </div>
+              <div
+                data-pencil-id="Q1OOzy"
+                data-pencil-name="gap"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 1px; justify-content: flex-start; width: 8px"
+              ></div>
+              <div
+                data-pencil-id="nHMFb"
+                data-pencil-name="Owner"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; width: 64px"
+              >
+                Maya R.
+              </div>
+              <div
+                data-pencil-id="zc4o5"
+                data-pencil-name="Risk"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-id="nrssK"
+                  data-pencil-name="Risk pill"
+                  style="align-items: center; background-color: #FCE8EB; border-radius: 999px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 3px 9px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="ebWIg"
+                    data-pencil-name="dot"
+                    style="background-color: #D4455C; border-radius: 50%; box-sizing: border-box; flex-shrink: 0; height: 6px; width: 6px"
+                  ></div>
+                  <div
+                    data-pencil-id="EeAfE"
+                    data-pencil-name="Risk"
+                    style="box-sizing: border-box; color: #D4455C; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Stalled 38 days
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              data-pencil-id="M2h8j4"
+              data-pencil-name="Halcyon Health row"
+              style="align-items: center; border-color: #f2f2f2; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 9px 0px 10px 0px; width: 100%"
+            >
+              <div
+                data-pencil-id="T5HIio"
+                data-pencil-name="Account"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 1px; height: fit-content; justify-content: flex-start; width: 140px"
+              >
+                <div
+                  data-pencil-id="Q6Boh"
+                  data-pencil-name="Account name"
+                  style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+                >
+                  Halcyon Health
+                </div>
+                <div
+                  data-pencil-id="r45IZW"
+                  data-pencil-name="Region"
+                  style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  NA
+                </div>
+              </div>
+              <div
+                data-pencil-id="T2ViOG"
+                data-pencil-name="Stage"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 92px"
+              >
+                <div
+                  data-pencil-id="V9ZaH"
+                  data-pencil-name="Stage chip"
+                  style="align-items: flex-start; background-color: #F2F2F2; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 3px 8px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="HmT4R"
+                    data-pencil-name="Stage"
+                    style="box-sizing: border-box; color: #4d4d4d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Proposal
+                  </div>
+                </div>
+              </div>
+              <div
+                data-pencil-id="U7LhcA"
+                data-pencil-name="Amount"
+                style="box-sizing: border-box; color: #171717; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: right; width: 56px"
+              >
+                $610K
+              </div>
+              <div
+                data-pencil-id="FVrgT"
+                data-pencil-name="Days in stage"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: right; width: 40px"
+              >
+                22
+              </div>
+              <div
+                data-pencil-id="lucoq"
+                data-pencil-name="gap"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 1px; justify-content: flex-start; width: 8px"
+              ></div>
+              <div
+                data-pencil-id="WbICF"
+                data-pencil-name="Owner"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; width: 64px"
+              >
+                Jordan P.
+              </div>
+              <div
+                data-pencil-id="aILBY"
+                data-pencil-name="Risk"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-id="uy2je"
+                  data-pencil-name="Risk pill"
+                  style="align-items: center; background-color: #FEEBD7; border-radius: 999px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 3px 9px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="Z0BkZM"
+                    data-pencil-name="dot"
+                    style="background-color: #975100; border-radius: 50%; box-sizing: border-box; flex-shrink: 0; height: 6px; width: 6px"
+                  ></div>
+                  <div
+                    data-pencil-id="DJkGI"
+                    data-pencil-name="Risk"
+                    style="box-sizing: border-box; color: #975100; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Close date moved
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              data-pencil-id="lZxAG"
+              data-pencil-name="Orbis Retail Group row"
+              style="align-items: center; border-color: #f2f2f2; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 9px 0px 10px 0px; width: 100%"
+            >
+              <div
+                data-pencil-id="zwjyF"
+                data-pencil-name="Account"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 1px; height: fit-content; justify-content: flex-start; width: 140px"
+              >
+                <div
+                  data-pencil-id="cAZhd"
+                  data-pencil-name="Account name"
+                  style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+                >
+                  Orbis Retail Group
+                </div>
+                <div
+                  data-pencil-id="cfvGu"
+                  data-pencil-name="Region"
+                  style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  EMEA
+                </div>
+              </div>
+              <div
+                data-pencil-id="WZNSb"
+                data-pencil-name="Stage"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 92px"
+              >
+                <div
+                  data-pencil-id="CDruV"
+                  data-pencil-name="Stage chip"
+                  style="align-items: flex-start; background-color: #F2F2F2; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 3px 8px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="XsF2H"
+                    data-pencil-name="Stage"
+                    style="box-sizing: border-box; color: #4d4d4d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Negotiation
+                  </div>
+                </div>
+              </div>
+              <div
+                data-pencil-id="f6SzP"
+                data-pencil-name="Amount"
+                style="box-sizing: border-box; color: #171717; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: right; width: 56px"
+              >
+                $540K
+              </div>
+              <div
+                data-pencil-id="Yauwa"
+                data-pencil-name="Days in stage"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: right; width: 40px"
+              >
+                31
+              </div>
+              <div
+                data-pencil-id="qIYjN"
+                data-pencil-name="gap"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 1px; justify-content: flex-start; width: 8px"
+              ></div>
+              <div
+                data-pencil-id="LOICo"
+                data-pencil-name="Owner"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; width: 64px"
+              >
+                Lena K.
+              </div>
+              <div
+                data-pencil-id="ZsbWt"
+                data-pencil-name="Risk"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-id="I7xP6o"
+                  data-pencil-name="Risk pill"
+                  style="align-items: center; background-color: #FCE8EB; border-radius: 999px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 3px 9px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="WxcSe"
+                    data-pencil-name="dot"
+                    style="background-color: #D4455C; border-radius: 50%; box-sizing: border-box; flex-shrink: 0; height: 6px; width: 6px"
+                  ></div>
+                  <div
+                    data-pencil-id="Easzu"
+                    data-pencil-name="Risk"
+                    style="box-sizing: border-box; color: #D4455C; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Stalled 31 days
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              data-pencil-id="D7g2eL"
+              data-pencil-name="Tamarack Energy row"
+              style="align-items: center; border-color: #f2f2f2; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 9px 0px 10px 0px; width: 100%"
+            >
+              <div
+                data-pencil-id="IgqDq"
+                data-pencil-name="Account"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 1px; height: fit-content; justify-content: flex-start; width: 140px"
+              >
+                <div
+                  data-pencil-id="XYwak"
+                  data-pencil-name="Account name"
+                  style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+                >
+                  Tamarack Energy
+                </div>
+                <div
+                  data-pencil-id="O01TNI"
+                  data-pencil-name="Region"
+                  style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  EMEA
+                </div>
+              </div>
+              <div
+                data-pencil-id="LU0c0"
+                data-pencil-name="Stage"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 92px"
+              >
+                <div
+                  data-pencil-id="bTBHL"
+                  data-pencil-name="Stage chip"
+                  style="align-items: flex-start; background-color: #F2F2F2; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 3px 8px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="Q6asV0"
+                    data-pencil-name="Stage"
+                    style="box-sizing: border-box; color: #4d4d4d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Proposal
+                  </div>
+                </div>
+              </div>
+              <div
+                data-pencil-id="Xa6eJ"
+                data-pencil-name="Amount"
+                style="box-sizing: border-box; color: #171717; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: right; width: 56px"
+              >
+                $470K
+              </div>
+              <div
+                data-pencil-id="f7qD9"
+                data-pencil-name="Days in stage"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: right; width: 40px"
+              >
+                19
+              </div>
+              <div
+                data-pencil-id="F5xQEJ"
+                data-pencil-name="gap"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 1px; justify-content: flex-start; width: 8px"
+              ></div>
+              <div
+                data-pencil-id="WYgqC"
+                data-pencil-name="Owner"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; width: 64px"
+              >
+                Tomás V.
+              </div>
+              <div
+                data-pencil-id="cCPP5"
+                data-pencil-name="Risk"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-id="n20dR"
+                  data-pencil-name="Risk pill"
+                  style="align-items: center; background-color: #FEEBD7; border-radius: 999px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 3px 9px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="G70mi"
+                    data-pencil-name="dot"
+                    style="background-color: #975100; border-radius: 50%; box-sizing: border-box; flex-shrink: 0; height: 6px; width: 6px"
+                  ></div>
+                  <div
+                    data-pencil-id="E2ixz"
+                    data-pencil-name="Risk"
+                    style="box-sizing: border-box; color: #975100; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    No next step
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              data-pencil-id="B5XqJw"
+              data-pencil-name="Brightline Freight row"
+              style="align-items: center; border-color: #f2f2f2; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 9px 0px 10px 0px; width: 100%"
+            >
+              <div
+                data-pencil-id="CEH2G"
+                data-pencil-name="Account"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 1px; height: fit-content; justify-content: flex-start; width: 140px"
+              >
+                <div
+                  data-pencil-id="CEeZL"
+                  data-pencil-name="Account name"
+                  style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+                >
+                  Brightline Freight
+                </div>
+                <div
+                  data-pencil-id="p9uSxj"
+                  data-pencil-name="Region"
+                  style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  NA
+                </div>
+              </div>
+              <div
+                data-pencil-id="nOpLg"
+                data-pencil-name="Stage"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 92px"
+              >
+                <div
+                  data-pencil-id="DQ09B"
+                  data-pencil-name="Stage chip"
+                  style="align-items: flex-start; background-color: #F2F2F2; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 3px 8px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="Swc0H"
+                    data-pencil-name="Stage"
+                    style="box-sizing: border-box; color: #4d4d4d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Discovery
+                  </div>
+                </div>
+              </div>
+              <div
+                data-pencil-id="wiOtk"
+                data-pencil-name="Amount"
+                style="box-sizing: border-box; color: #171717; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: right; width: 56px"
+              >
+                $390K
+              </div>
+              <div
+                data-pencil-id="yakdk"
+                data-pencil-name="Days in stage"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: right; width: 40px"
+              >
+                27
+              </div>
+              <div
+                data-pencil-id="hBEly"
+                data-pencil-name="gap"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 1px; justify-content: flex-start; width: 8px"
+              ></div>
+              <div
+                data-pencil-id="ksntS"
+                data-pencil-name="Owner"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; width: 64px"
+              >
+                Sam O.
+              </div>
+              <div
+                data-pencil-id="HSDCi"
+                data-pencil-name="Risk"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-id="J6uSna"
+                  data-pencil-name="Risk pill"
+                  style="align-items: center; background-color: #FCE8EB; border-radius: 999px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 3px 9px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="nW6SU"
+                    data-pencil-name="dot"
+                    style="background-color: #D4455C; border-radius: 50%; box-sizing: border-box; flex-shrink: 0; height: 6px; width: 6px"
+                  ></div>
+                  <div
+                    data-pencil-id="GLzRA"
+                    data-pencil-name="Risk"
+                    style="box-sizing: border-box; color: #D4455C; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Champion left
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              data-pencil-id="e7Qkmu"
+              data-pencil-name="Vela Robotics row"
+              style="align-items: center; border-color: #f2f2f2; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 9px 0px 10px 0px; width: 100%"
+            >
+              <div
+                data-pencil-id="Hj2Aq"
+                data-pencil-name="Account"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 1px; height: fit-content; justify-content: flex-start; width: 140px"
+              >
+                <div
+                  data-pencil-id="f0UK6"
+                  data-pencil-name="Account name"
+                  style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+                >
+                  Vela Robotics
+                </div>
+                <div
+                  data-pencil-id="jZN32"
+                  data-pencil-name="Region"
+                  style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  APAC
+                </div>
+              </div>
+              <div
+                data-pencil-id="KUu3K"
+                data-pencil-name="Stage"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 92px"
+              >
+                <div
+                  data-pencil-id="CyzlQ"
+                  data-pencil-name="Stage chip"
+                  style="align-items: flex-start; background-color: #F2F2F2; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 3px 8px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="fkLQu"
+                    data-pencil-name="Stage"
+                    style="box-sizing: border-box; color: #4d4d4d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Proposal
+                  </div>
+                </div>
+              </div>
+              <div
+                data-pencil-id="eq75O"
+                data-pencil-name="Amount"
+                style="box-sizing: border-box; color: #171717; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: right; width: 56px"
+              >
+                $360K
+              </div>
+              <div
+                data-pencil-id="a5RaA"
+                data-pencil-name="Days in stage"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: right; width: 40px"
+              >
+                24
+              </div>
+              <div
+                data-pencil-id="A4Pbt"
+                data-pencil-name="gap"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 1px; justify-content: flex-start; width: 8px"
+              ></div>
+              <div
+                data-pencil-id="X2Ewh"
+                data-pencil-name="Owner"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; width: 64px"
+              >
+                Aiko T.
+              </div>
+              <div
+                data-pencil-id="C5jKO"
+                data-pencil-name="Risk"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-id="pC4Mv"
+                  data-pencil-name="Risk pill"
+                  style="align-items: center; background-color: #FEEBD7; border-radius: 999px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 3px 9px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="LM2qS"
+                    data-pencil-name="dot"
+                    style="background-color: #975100; border-radius: 50%; box-sizing: border-box; flex-shrink: 0; height: 6px; width: 6px"
+                  ></div>
+                  <div
+                    data-pencil-id="cBebQ"
+                    data-pencil-name="Risk"
+                    style="box-sizing: border-box; color: #975100; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    No next step
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              data-pencil-id="f8Ca0j"
+              data-pencil-name="Pinecrest Insurance row"
+              style="align-items: center; border-color: #f2f2f2; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 9px 0px 10px 0px; width: 100%"
+            >
+              <div
+                data-pencil-id="aQ36g"
+                data-pencil-name="Account"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 1px; height: fit-content; justify-content: flex-start; width: 140px"
+              >
+                <div
+                  data-pencil-id="lQqIa"
+                  data-pencil-name="Account name"
+                  style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+                >
+                  Pinecrest Insurance
+                </div>
+                <div
+                  data-pencil-id="Mor9R"
+                  data-pencil-name="Region"
+                  style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  APAC
+                </div>
+              </div>
+              <div
+                data-pencil-id="KuoLu"
+                data-pencil-name="Stage"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 92px"
+              >
+                <div
+                  data-pencil-id="JLb5X"
+                  data-pencil-name="Stage chip"
+                  style="align-items: flex-start; background-color: #F2F2F2; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 3px 8px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="T9yjz"
+                    data-pencil-name="Stage"
+                    style="box-sizing: border-box; color: #4d4d4d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Negotiation
+                  </div>
+                </div>
+              </div>
+              <div
+                data-pencil-id="Uncd7"
+                data-pencil-name="Amount"
+                style="box-sizing: border-box; color: #171717; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: right; width: 56px"
+              >
+                $310K
+              </div>
+              <div
+                data-pencil-id="vawWj"
+                data-pencil-name="Days in stage"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: right; width: 40px"
+              >
+                17
+              </div>
+              <div
+                data-pencil-id="SKWrU"
+                data-pencil-name="gap"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 1px; justify-content: flex-start; width: 8px"
+              ></div>
+              <div
+                data-pencil-id="ygIeC"
+                data-pencil-name="Owner"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; width: 64px"
+              >
+                Dev M.
+              </div>
+              <div
+                data-pencil-id="CBlZY"
+                data-pencil-name="Risk"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-id="vnm0Q"
+                  data-pencil-name="Risk pill"
+                  style="align-items: center; background-color: #FEEBD7; border-radius: 999px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 3px 9px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="Q5gJN"
+                    data-pencil-name="dot"
+                    style="background-color: #975100; border-radius: 50%; box-sizing: border-box; flex-shrink: 0; height: 6px; width: 6px"
+                  ></div>
+                  <div
+                    data-pencil-id="w3x4o9"
+                    data-pencil-name="Risk"
+                    style="box-sizing: border-box; color: #975100; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Legal review
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              data-pencil-id="I0azgq"
+              data-pencil-name="Lumen Analytics row"
+              style="align-items: center; border-color: #f2f2f2; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 9px 0px 10px 0px; width: 100%"
+            >
+              <div
+                data-pencil-id="qyOPO"
+                data-pencil-name="Account"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 1px; height: fit-content; justify-content: flex-start; width: 140px"
+              >
+                <div
+                  data-pencil-id="V6pCJ7"
+                  data-pencil-name="Account name"
+                  style="box-sizing: border-box; color: #171717; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+                >
+                  Lumen Analytics
+                </div>
+                <div
+                  data-pencil-id="YIoEg"
+                  data-pencil-name="Region"
+                  style="box-sizing: border-box; color: #8f8f8f; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  EMEA
+                </div>
+              </div>
+              <div
+                data-pencil-id="IaTZw"
+                data-pencil-name="Stage"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 92px"
+              >
+                <div
+                  data-pencil-id="ZsTF3"
+                  data-pencil-name="Stage chip"
+                  style="align-items: flex-start; background-color: #F2F2F2; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 3px 8px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="wAhwz"
+                    data-pencil-name="Stage"
+                    style="box-sizing: border-box; color: #4d4d4d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Discovery
+                  </div>
+                </div>
+              </div>
+              <div
+                data-pencil-id="AJAg7"
+                data-pencil-name="Amount"
+                style="box-sizing: border-box; color: #171717; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 16px; text-align: right; width: 56px"
+              >
+                $240K
+              </div>
+              <div
+                data-pencil-id="IRBcf"
+                data-pencil-name="Days in stage"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: right; width: 40px"
+              >
+                29
+              </div>
+              <div
+                data-pencil-id="ZkiMz"
+                data-pencil-name="gap"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 1px; justify-content: flex-start; width: 8px"
+              ></div>
+              <div
+                data-pencil-id="FDJ3T"
+                data-pencil-name="Owner"
+                style="box-sizing: border-box; color: #4d4d4d; flex-shrink: 0; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; width: 64px"
+              >
+                Priya S.
+              </div>
+              <div
+                data-pencil-id="rCeHA"
+                data-pencil-name="Risk"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+              >
+                <div
+                  data-pencil-id="NS1dg"
+                  data-pencil-name="Risk pill"
+                  style="align-items: center; background-color: #FCE8EB; border-radius: 999px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 3px 9px; width: fit-content"
+                >
+                  <div
+                    data-pencil-id="T3U6m"
+                    data-pencil-name="dot"
+                    style="background-color: #D4455C; border-radius: 50%; box-sizing: border-box; flex-shrink: 0; height: 6px; width: 6px"
+                  ></div>
+                  <div
+                    data-pencil-id="HVZWk"
+                    data-pencil-name="Risk"
+                    style="box-sizing: border-box; color: #D4455C; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 15px; text-align: left; white-space: nowrap"
+                  >
+                    Stalled 29 days
+                  </div>
+                </div>
+              </div>
+            </div>
+</div></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="app-chart-layout.js?v=ad399144"></script>
+  </body>
+</html>

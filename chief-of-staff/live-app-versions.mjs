@@ -1,9 +1,9 @@
 import { createVersionMenu } from './version-menu.mjs?v=76591447';
 
-/** Compare app designs without restarting the conversation or either preview. */
+/** Compare app designs without restarting the conversation or any preview. */
 export function createLiveAppVersions({ previews, onClose }) {
   let active = true;
-  let selectedVersion = 'v1';
+  let selectedVersion = 'v3';
   let chatVersion = 'v1';
   const frames = Object.entries(previews).map(([version, source]) => ({
     version, source, element: document.getElementById(version === 'v1' ? 'live-app-preview' : `live-app-preview-${version}`),
@@ -29,7 +29,7 @@ export function createLiveAppVersions({ previews, onClose }) {
     menu.setSelection(version, `App ${version}`, `App version ${version}`);
     if (updateUrl) {
       const url = new URL(location.href);
-      if (version === 'v1') url.searchParams.delete('app');
+      if (version === 'v3') url.searchParams.delete('app');
       else url.searchParams.set('app', version);
       window.history.replaceState(null, '', url);
     }
@@ -45,7 +45,8 @@ export function createLiveAppVersions({ previews, onClose }) {
     });
   });
 
-  select(new URLSearchParams(location.search).get('app') === 'v2' ? 'v2' : 'v1');
+  const requestedVersion = new URLSearchParams(location.search).get('app');
+  select(['v1', 'v2', 'v3'].includes(requestedVersion) ? requestedVersion : 'v3');
   return {
     handleEscape: menu.handleEscape,
     setVisible: menu.setVisible,

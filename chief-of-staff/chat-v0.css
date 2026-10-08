@@ -206,7 +206,7 @@
 }
 
 :where(.chat-page[data-chat-version="v0"]) .live-app-panel[data-view="app"][data-app-version="v0"] .live-app-panel-toolbar,
-.live-app-panel[data-view="app"][data-app-version="v2"] .live-app-panel-toolbar {
+.live-app-panel[data-view="app"]:is([data-app-version="v2"], [data-app-version="v3"]) .live-app-panel-toolbar {
   top: 4px;
   right: 24px;
 }
