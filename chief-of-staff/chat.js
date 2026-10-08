@@ -1,5 +1,5 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
-import { createChatScroll } from './chat-scroll.mjs?v=ce73c21e';
+import { createChatScroll } from './chat-scroll.mjs?v=d7e6a4ef';
 import { createLiveAppChat } from './live-app-chat.mjs?v=49dde280';
 import { createLiveAppVersions } from './live-app-versions.mjs?v=bd00ef23';
 import { createChatVersions } from './chat-versions.mjs?v=7b280f62';
@@ -47,6 +47,20 @@ const suggestionMessage = byId('suggestion-message');
 const statusMessage = byId('status-message');
 const sidebar = byId('chat-sidebar');
 const shell = document.querySelector('.chat-shell');
+const chatHeader = shell.querySelector('.chat-header');
+const chatFooter = shell.querySelector('.chat-footer');
+function syncChatOverlays() {
+  // Reserve scrolling space without giving either floating control a backdrop.
+  // Own the size mutation so native scroll clamping keeps the current follow state.
+  chatScroll.update(() => {
+    shell.style.setProperty('--chat-header-height', `${chatHeader.getBoundingClientRect().height}px`);
+    shell.style.setProperty('--chat-footer-height', `${chatFooter.getBoundingClientRect().height}px`);
+  });
+}
+const chatOverlayObserver = new ResizeObserver(syncChatOverlays);
+chatOverlayObserver.observe(chatHeader);
+chatOverlayObserver.observe(chatFooter);
+syncChatOverlays();
 const sidebarToggle = byId('sidebar-toggle');
 const backdrop = byId('sidebar-backdrop');
 const liveAppPanel = byId('live-app-panel');
@@ -582,7 +596,7 @@ function prepareLiveAppPreview() {
 
 const appVersions = createLiveAppVersions({ previews: { v0: 'live-app-preview-v0.html?v=5a386792', v1: 'live-app-preview.html?v=0ab9a542', v2: 'live-app-preview-v2.html?v=f31fc436' }, onClose: () => setLiveAppOpen(false) });
 const chatVersions = createChatVersions({ update: updateConversation, onChange: appVersions.setChatVersion });
-const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=6ab244a0', workflow: 'workflow-preview.html?v=6c620cb4' }, onClose: () => setLiveAppOpen(false) });
+const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=9bfbfb37', workflow: 'workflow-preview.html?v=422a551c' }, onClose: () => setLiveAppOpen(false) });
 const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onScheduleChange: reportViews.setSchedule, onOpenReport: () => {
   reportViews.open(agentSetup.snapshot().schedule);
   setLiveAppOpen(true, true, 'report');

@@ -179,10 +179,14 @@ export function createChatScroll(scroller, {
     if (destroyed || !element) return;
     const viewport = scroller.getBoundingClientRect();
     const bounds = element.getBoundingClientRect();
-    const viewportTop = viewport.top + (scroller.clientTop || 0);
-    const viewportBottom = viewportTop + scroller.clientHeight;
+    const style = scroller.ownerDocument?.defaultView?.getComputedStyle(scroller);
+    const insetTop = parseFloat(style?.scrollPaddingTop) || 0;
+    const insetBottom = parseFloat(style?.scrollPaddingBottom) || 0;
+    const viewportTop = viewport.top + (scroller.clientTop || 0) + insetTop;
+    const viewportBottom = viewport.top + (scroller.clientTop || 0) + scroller.clientHeight - insetBottom;
+    const viewportHeight = Math.max(0, viewportBottom - viewportTop);
     let offset = 0;
-    if (bounds.top < viewportTop || bounds.height > scroller.clientHeight) offset = bounds.top - viewportTop;
+    if (bounds.top < viewportTop || bounds.height > viewportHeight) offset = bounds.top - viewportTop;
     else if (bounds.bottom > viewportBottom) offset = bounds.bottom - viewportBottom;
     cancel();
     elementTarget = scroller.scrollTop + offset;

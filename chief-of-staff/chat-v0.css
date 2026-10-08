@@ -9,7 +9,7 @@
 }
 
 :where(.chat-page[data-chat-version="v0"]) .conversation-scroll {
-  padding-top: 42px;
+  --conversation-top-gap: 42px;
 }
 
 :where(.chat-page[data-chat-version="v0"]) .agent-message {
@@ -188,7 +188,7 @@
 
 /* The open app groups paragraphs more closely, with 24px between sections. */
 :where(.chat-page[data-chat-version="v0"].live-app-open) .conversation-scroll {
-  padding-top: 24px;
+  --conversation-top-gap: 24px;
 }
 
 :where(.chat-page[data-chat-version="v0"].live-app-open) .agent-message,
@@ -216,7 +216,7 @@
 }
 
 :where(.chat-page[data-chat-version="v0"]:not(.live-app-open):has(#live-app-offer:not([hidden]))) .conversation-scroll {
-  padding-top: 38px;
+  --conversation-top-gap: 38px;
 }
 
 :where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .chat-footer .composer {

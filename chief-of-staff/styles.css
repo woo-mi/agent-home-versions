@@ -118,8 +118,20 @@ dialog button { background: var(--ink); color: #fff; padding: 12px 18px; border-
   .composer { padding: 16px 12px 12px; }
   .composer-left { gap: 10px; }
 }
+@media (min-width: 651px) {
+  .home-page .workspace { padding-top: clamp(96px, 24.425888vh, 291px); }
+  .home > h1 { line-height: 34px; letter-spacing: 0; margin-bottom: 23px; }
+  .home .tab { padding: 7px 15px; line-height: 20px; }
+  .home #tab-apps { width: 67px; }
+  .home #tab-agents { width: 80px; }
+  .home .panel { width: min(100%, 404px); position: relative; left: 2.5px; }
+  .home .card-top { min-height: 26px; }
+  .home .setup-button { width: 51px; height: 26px; line-height: 14px; text-align: center; }
+  .home .card-copy { max-width: 367px; }
+  .home .card-copy h2 { line-height: 19px; }
+}
 @media (max-height: 650px) and (min-width: 651px) {
-  .workspace { padding-top: 90px; }
+  .workspace, .home-page .workspace { padding-top: 90px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after { transition: none !important; scroll-behavior: auto !important; }

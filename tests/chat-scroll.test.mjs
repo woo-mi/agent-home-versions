@@ -261,6 +261,25 @@ test('explicit navigation reveals an earlier card without pulling back to new me
   controller.destroy();
 });
 
+test('explicit navigation reveals controls between floating header and composer overlays', () => {
+  const { controller, scroller, clock } = surface({ top: 200 });
+  const style = { scrollPaddingTop: '46px', scrollPaddingBottom: '120px' };
+  scroller.ownerDocument = { defaultView: { getComputedStyle: () => style } };
+  controller.scrollToElement({ getBoundingClientRect: () => ({ top: 300, bottom: 380, height: 80 }) });
+  clock.settle();
+  assert.equal(scroller.scrollTop, 250, 'Reveal a card that would otherwise sit behind the composer');
+  controller.scrollToElement({ getBoundingClientRect: () => ({ top: 70, bottom: 150, height: 80 }) });
+  clock.settle();
+  assert.equal(scroller.scrollTop, 224, 'An earlier card must clear the floating header');
+  style.scrollPaddingBottom = '170px';
+  controller.scrollToElement({ getBoundingClientRect: () => ({ top: 160, bottom: 380, height: 220 }) });
+  clock.settle();
+  assert.equal(scroller.scrollTop, 288, 'A card taller than the remaining view aligns its start below the header');
+  controller.update(() => { scroller.scrollHeight += 100; });
+  assert.equal(clock.pending, 0, 'Explicit navigation must keep new messages from pulling the reader away');
+  controller.destroy();
+});
+
 test('opening tool activity preserves the reader position without canceling ordinary clicks', () => {
   const { controller, scroller, clock, observer } = surface();
   controller.update(() => { scroller.scrollHeight += 200; });
