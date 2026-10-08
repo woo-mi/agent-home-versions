@@ -9,7 +9,7 @@ function displayTime(value) {
 }
 
 /** Offer the weekly agent after the walkthrough, then wait for the user to set it up. */
-export function createAgentSetupChat({ history, update, streamMessage, stopStreaming, later, onOpenReport, onScheduleChange = () => {} }) {
+export function createAgentSetupChat({ history, update, streamMessage, stopStreaming, later, onOpenReport, onScheduleChange = () => {}, onReady = () => {} }) {
   const byId = (id) => document.getElementById(id);
   const conversation = byId('agent-setup-conversation');
   const question = byId('agent-setup-question');
@@ -31,6 +31,12 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
   let savedLabel = 'Created';
 
   const readSchedule = () => Object.fromEntries(Object.entries(fields).map(([key, field]) => [key, field.value]));
+
+  function showReport() {
+    if (!report.hidden) return;
+    update(() => { history.append(report); report.hidden = false; });
+    onReady();
+  }
 
   function updateSummary() {
     const schedule = readSchedule();
@@ -105,14 +111,14 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
         update(() => {
           result.textContent = confirmation;
           result.hidden = false;
-          if (report.hidden) { history.append(report); report.hidden = false; }
         });
+        showReport();
         return;
       }
       update(() => { history.append(result); });
       streamMessage(result, confirmation, () => later(() => {
         if (version === currentVersion && flow.snapshot().stage === 'complete' && report.hidden) {
-          update(() => { history.append(report); report.hidden = false; });
+          showReport();
         }
       }, 650));
     }

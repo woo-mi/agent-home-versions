@@ -1,9 +1,9 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=d7e6a4ef';
-import { createLiveAppChat } from './live-app-chat.mjs?v=49dde280';
+import { createLiveAppChat } from './live-app-chat.mjs?v=eebd70c3';
 import { createLiveAppVersions } from './live-app-versions.mjs?v=bda9d194';
 import { createChatVersions } from './chat-versions.mjs?v=7b280f62';
-import { createAgentSetupChat } from './agent-setup-chat.mjs?v=cfafdba1';
+import { createAgentSetupChat } from './agent-setup-chat.mjs?v=1c4929c3';
 import { createReportViews } from './report-views.mjs?v=3e53c1e2';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
@@ -64,6 +64,9 @@ syncChatOverlays();
 const sidebarToggle = byId('sidebar-toggle');
 const backdrop = byId('sidebar-backdrop');
 const liveAppPanel = byId('live-app-panel');
+const panelToolbar = byId('live-app-panel-toolbar');
+const panelToggle = byId('close-live-app');
+const availablePanels = new Set();
 const mobileQuery = matchMedia('(max-width: 760px)');
 const appTimers = new Set();
 const streams = new Map();
@@ -503,6 +506,7 @@ function updateSendButton() {
 }
 
 function resetConversation() {
+  availablePanels.clear();
   setLiveAppOpen(false, false);
   reportViews.reset();
   generation += 1;
@@ -552,15 +556,32 @@ function setSidebar(open, restoreFocus = true) {
   else if (wasOpen && restoreFocus) sidebarReturnFocus?.focus({ preventScroll: true });
 }
 
+function syncPanelToggle() {
+  const open = document.body.classList.contains('live-app-open');
+  const label = `${open ? 'Close' : 'Open'} ${panelKind === 'report' ? 'report' : 'app preview'}`;
+  panelToolbar.hidden = !availablePanels.size;
+  panelToggle.setAttribute('aria-expanded', String(open));
+  panelToggle.setAttribute('aria-label', label);
+  panelToggle.title = label;
+}
+
+function markPanelReady(kind) {
+  if (availablePanels.has(kind)) return;
+  availablePanels.add(kind);
+  // New content becomes the next target only when nothing is already open.
+  if (!document.body.classList.contains('live-app-open')) panelKind = kind;
+  prepareLiveAppPreview();
+  syncPanelToggle();
+}
+
 function setLiveAppOpen(open, restoreFocus = true, kind = panelKind) {
+  if (open && !availablePanels.has(kind)) return;
   // App and report share the reversible panel transition. Only New Chat and
   // page navigation settle immediately so a reset cannot leave motion running.
   const immediate = !restoreFocus;
   if (immediate) document.body.classList.add('live-app-reset');
   if (open) prepareLiveAppPreview();
-  else if (restoreFocus && (liveAppPanel.contains(document.activeElement) || byId('app-version-control').contains(document.activeElement))) {
-    byId(panelKind === 'report' ? 'open-agent-report' : 'open-live-app').focus({ preventScroll: true });
-  }
+  else if (restoreFocus && availablePanels.size) panelToggle.focus({ preventScroll: true });
   if (open) panelKind = kind;
   else if (!restoreFocus) panelKind = 'app';
   updateConversation(() => {
@@ -570,8 +591,7 @@ function setLiveAppOpen(open, restoreFocus = true, kind = panelKind) {
     const report = panelKind === 'report';
     liveAppPanel.dataset.view = panelKind;
     liveAppPanel.setAttribute('aria-label', report ? 'Weekly Sales Pipeline Update report' : 'Weekly Sales Pipeline Review App preview');
-    byId('close-live-app').setAttribute('aria-label', report ? 'Close report' : 'Close app preview');
-    byId('close-live-app').title = report ? 'Close report' : 'Close app preview';
+    syncPanelToggle();
     byId('open-live-app').setAttribute('aria-expanded', String(open && !report));
     byId('open-agent-report').setAttribute('aria-expanded', String(open && report));
     appVersions.setActive(!report);
@@ -586,7 +606,10 @@ function setLiveAppOpen(open, restoreFocus = true, kind = panelKind) {
     liveAppPanel.getBoundingClientRect();
     document.body.classList.remove('live-app-reset');
   }
-  if (open) byId(panelKind === 'report' ? 'report-tab' : 'close-live-app').focus({ preventScroll: true });
+  if (open) {
+    const focusTarget = panelKind === 'report' ? byId('report-view-tabs').querySelector('[aria-selected="true"]') : panelToggle;
+    (focusTarget || panelToggle).focus({ preventScroll: true });
+  }
 }
 
 function prepareLiveAppPreview() {
@@ -597,12 +620,12 @@ function prepareLiveAppPreview() {
 const appVersions = createLiveAppVersions({ previews: { v0: 'live-app-preview-v0.html?v=51fc0539', v1: 'live-app-preview.html?v=246bcca2', v2: 'live-app-preview-v2.html?v=69211e59', v3: 'live-app-preview-v3.html?v=fb478781' }, onClose: () => setLiveAppOpen(false) });
 const chatVersions = createChatVersions({ update: updateConversation, onChange: appVersions.setChatVersion });
 const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=9bfbfb37', workflow: 'workflow-preview.html?v=4ffa5c09' }, onClose: () => setLiveAppOpen(false) });
-const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onScheduleChange: reportViews.setSchedule, onOpenReport: () => {
+const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onScheduleChange: reportViews.setSchedule, onReady: () => markPanelReady('report'), onOpenReport: () => {
   reportViews.open(agentSetup.snapshot().schedule);
   setLiveAppOpen(true, true, 'report');
 } });
-const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true, true, 'app'), onReady: prepareLiveAppPreview });
-byId('close-live-app').addEventListener('click', () => setLiveAppOpen(false));
+const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true, true, 'app'), onReady: () => markPanelReady('app') });
+panelToggle.addEventListener('click', () => setLiveAppOpen(!document.body.classList.contains('live-app-open')));
 sidebar.querySelectorAll('.sidebar-item').forEach((item) => {
   if (!item.hasAttribute('aria-label')) item.setAttribute('aria-label', item.textContent.trim());
 });

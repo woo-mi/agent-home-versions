@@ -27,11 +27,11 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
   let buildMessageReady = false;
 
   function showCompletedApp() {
-    onReady();
     const currentVersion = version;
     later(() => {
-      if (currentVersion === version && buildMessageReady && flow.snapshot().stage === 'complete') {
+      if (currentVersion === version && buildMessageReady && flow.snapshot().stage === 'complete' && complete.hidden) {
         update(() => { complete.hidden = false; });
+        onReady();
       }
     }, TIMING.offerPause);
   }

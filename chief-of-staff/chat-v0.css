@@ -21,7 +21,7 @@
 :where(.chat-page[data-chat-version="v0"]) #connection-box {
   margin: 24px 0;
   border: 0;
-  box-shadow: inset 0 0 0 1px #edf0f5;
+  box-shadow: inset 0 0 0 1px #EDEDED;
 }
 
 :where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-row {
@@ -121,11 +121,11 @@
   margin: 24px 0;
 }
 
-/* App recommendations and CRM use the lighter card treatment in screens 3–4. */
+/* Use a full 1px outline so the light card edges remain distinguishable. */
 :where(.chat-page[data-chat-version="v0"]) #crm-box {
   margin: 24px 0;
   border: 0;
-  box-shadow: inset 0 0 0 .5px #e4e6ea;
+  box-shadow: inset 0 0 0 1px #EDEDED;
 }
 
 :where(.chat-page[data-chat-version="v0"]) #crm-rows > :last-child {
@@ -148,7 +148,7 @@
   min-height: 54px;
   padding: 12.5px 14px;
   border: 0;
-  box-shadow: inset 0 0 0 .5px #e4e6ea, inset 0 -1px 0 #EDEDED;
+  box-shadow: inset 0 0 0 1px #EDEDED;
 }
 
 :where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-setup-offer, #agent-report-card) .connection-name {
@@ -205,12 +205,6 @@
   border-left-width: .5px;
 }
 
-:where(.chat-page[data-chat-version="v0"]) .live-app-panel[data-view="app"][data-app-version="v0"] .live-app-panel-toolbar,
-.live-app-panel[data-view="app"]:is([data-app-version="v2"], [data-app-version="v3"]) .live-app-panel-toolbar {
-  top: 4px;
-  right: 24px;
-}
-
 :where(.chat-page[data-chat-version="v0"]:not(.live-app-open):has(#live-app-offer:not([hidden]))) .chat-header {
   padding-top: 17px;
 }
@@ -260,7 +254,7 @@
 
 :where(.chat-page[data-chat-version="v0"]) #agent-schedule-form {
   border: 0;
-  box-shadow: inset 0 0 0 .5px #e4e6ea;
+  box-shadow: inset 0 0 0 1px #EDEDED;
 }
 
 :where(.chat-page[data-chat-version="v0"]) .agent-schedule-header {
