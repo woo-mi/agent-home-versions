@@ -28,7 +28,8 @@
 .conversation-content { max-width: 810px; margin: 0 auto; }
 .agent-message { margin: 0 0 16px; font-size: 14px; line-height: 1.375; color: #24242a; white-space: pre-line; overflow-wrap: anywhere; }
 .chunk-reveal { animation: chunk-reveal 110ms cubic-bezier(0, 0, .38, .9) both; }
-.connection-box { width: min(460px, 100%); margin: 18px 0 20px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; }
+.connection-box, .live-app-offer, .activity { width: min(613px, 100%); }
+.connection-box { margin: 18px 0 20px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; }
 .connection-row { min-height: 54px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px solid #e8e8ea; }
 .connection-name { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #24242a; min-width: 0; }
 .connection-name svg { width: 24px; height: 24px; }
@@ -43,7 +44,7 @@
 .connection-footer button:hover:not(:disabled) { color: #333444; }
 .connection-footer button:disabled { cursor: default; }
 .connection-confirmation { margin: 0 0 14px; font-size: 14px; line-height: 1.375; color: #24242a80; }
-.activity { width: min(460px, 100%); margin-bottom: 18px; color: #73717f; }
+.activity { margin-bottom: 18px; color: #73717f; }
 .activity summary { display: flex; align-items: center; gap: 8px; min-height: 32px; width: fit-content; max-width: 100%; cursor: pointer; list-style: none; font-size: 13px; line-height: 1.5; border-radius: 5px; }
 .activity summary::-webkit-details-marker { display: none; }
 .activity[data-busy="true"] .activity-label { background: linear-gradient(105deg, #73717f 35%, #96929f 44%, #c5c2cc 50%, #96929f 56%, #73717f 65%); background-size: 230% 100%; background-clip: text; -webkit-background-clip: text; color: transparent; animation: activity-shimmer 2.8s linear infinite; }
@@ -53,14 +54,13 @@
 .call-status { flex-shrink: 0; color: #73717f; font-size: 11px; }
 .call-status[data-state="complete"] { color: #53715f; }
 .chat-history { display: flex; flex-direction: column; gap: 0; }
-.live-app-offer { width: min(613px, 100%); min-height: 54px; padding: 11px 14px; margin: 18px 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.live-app-offer { min-height: 54px; padding: 11px 14px; margin: 18px 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
 .live-app-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .live-app-actions .connect-button { min-width: 56px; }
 .defer-app { padding: 4px 0; color: #858391; font-size: 14px; line-height: 1.5; }
 .defer-app:hover:not(:disabled) { color: #333444; }
 .defer-app:disabled { cursor: default; opacity: .6; }
 .live-app-actions .connect-button:disabled { cursor: default; }
-.crm-box, .crm-activity { width: min(613px, 100%); }
 .crm-box .connection-footer { padding: 3px 22px; }
 #live-app-complete, .chat-history > :last-child { margin-bottom: 0; }
 .conversation-tail { margin-bottom: 0 !important; }
