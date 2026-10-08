@@ -3,6 +3,7 @@ import { createChatScroll } from './chat-scroll.mjs?v=ce73c21e';
 import { createLiveAppChat } from './live-app-chat.mjs?v=a8bdc8ad';
 import { createLiveAppVersions } from './live-app-versions.mjs?v=06120411';
 import { createChatVersions } from './chat-versions.mjs?v=02619397';
+import { createAgentSetupChat } from './agent-setup-chat.mjs?v=e403012e';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -380,6 +381,11 @@ function showConnections() {
 
 function chooseAction(message) {
   const normalized = message.toLowerCase().trim();
+  const agentStage = agentSetup.snapshot().stage;
+  if (agentStage === 'offered' || agentStage === 'deferred') {
+    if (/^(?:not now|maybe later|skip(?: for now)?)[.!]?$/.test(normalized)) return { kind: 'agent-defer' };
+    if (/^(?:(?:yes|sure|okay|ok)\b|(?:please\s+)?(?:set\s+up|schedule)\b)/.test(normalized)) return { kind: 'agent-setup' };
+  }
   if (/\bconnect\b/.test(normalized) && !/\b(?:don't|do not|not)\s+connect\b/.test(normalized)) {
     const requested = ['hubspot', 'salesforce'].filter((id) => normalized.includes(id));
     if (requested.length) return { kind: 'crm-connect', ids: requested };
@@ -485,6 +491,7 @@ function resetConversation() {
   for (const timer of appTimers) clearTimeout(timer);
   appTimers.clear();
   liveApps.reset();
+  agentSetup.reset();
   responses = [];
   responding = false;
   recommendationVersion += 1;
@@ -540,6 +547,7 @@ function setLiveAppOpen(open, restoreFocus = true) {
     appVersions.setVisible(open);
     chatVersions.setVisible(!open);
   });
+  agentSetup.setViewing(open);
   if (open) chatScroll.settle();
   if (immediate) {
     // Commit every layout change before restoring transitions.
@@ -555,6 +563,7 @@ function prepareLiveAppPreview() {
 
 const chatVersions = createChatVersions({ update: updateConversation });
 const appVersions = createLiveAppVersions({ previews: { v1: 'live-app-preview.html?v=0ab9a542', v2: 'live-app-preview-v2.html?v=ef845f18' }, onClose: () => setLiveAppOpen(false) });
+const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later });
 const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true), onReady: prepareLiveAppPreview });
 byId('close-live-app').addEventListener('click', () => setLiveAppOpen(false));
 sidebar.querySelectorAll('.sidebar-item').forEach((item) => {
@@ -574,7 +583,11 @@ form.addEventListener('submit', (event) => {
   reply.hidden = true;
   updateConversation(() => history.append(userMessage, reply), true);
   const action = chooseAction(text);
-  if (action.kind === 'live-app-build' || action.kind === 'crm-connect' || action.kind === 'crm-skip' || action.kind === 'live-app-defer') {
+  if (action.kind === 'agent-setup' || action.kind === 'agent-defer') {
+    reply.remove();
+    if (action.kind === 'agent-setup') agentSetup.setup();
+    else agentSetup.defer();
+  } else if (action.kind === 'live-app-build' || action.kind === 'crm-connect' || action.kind === 'crm-skip' || action.kind === 'live-app-defer') {
     reply.remove();
     if (action.kind === 'live-app-build') liveApps.start();
     else if (action.kind === 'crm-connect') action.ids.forEach((id) => liveApps.connect(id));
@@ -649,6 +662,7 @@ window.addEventListener('pagehide', () => {
   setLiveAppOpen(false, false);
   flow.destroy();
   liveApps.destroy();
+  agentSetup.destroy();
   chatScroll.cancel();
   for (const timer of appTimers) clearTimeout(timer);
   appTimers.clear();

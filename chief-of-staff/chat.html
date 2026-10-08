@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=ab466a4d">
-  <link rel="stylesheet" href="chat.css?v=58f8289a">
-  <script type="module" src="chat.js?v=6c4ea3db"></script>
+  <link rel="stylesheet" href="chat.css?v=ef8e2cf9">
+  <script type="module" src="chat.js?v=90ec0027"></script>
 </head>
 <body class="chat-page" data-chat-version="v1">
   <a class="skip-link" href="#chat-prompt">Skip to conversation</a>
@@ -84,6 +84,14 @@
             <span class="connection-name"><svg aria-hidden="true"><use href="live-app-icons.svg#live-app"></use></svg><span>Weekly Sales Pipeline Review App</span></span>
             <div class="live-app-actions"><button class="connect-button" id="open-live-app" type="button" aria-controls="live-app-panel" aria-expanded="false">Open</button></div>
           </section>
+        </section>
+        <section class="agent-setup-conversation" id="agent-setup-conversation" aria-label="Set up your weekly pipeline agent" hidden>
+          <p class="agent-message" id="agent-setup-question" hidden></p>
+          <section class="live-app-offer" id="agent-setup-offer" aria-label="Weekly Sales Pipeline Update" hidden>
+            <span class="connection-name"><img class="agent-setup-icon" src="agent-setup-icon.svg" width="24" height="24" alt=""><span>Weekly Sales Pipeline Update</span></span>
+            <div class="live-app-actions"><button class="defer-app" id="defer-agent-setup" type="button">Not now</button><button class="connect-button" id="set-up-agent" type="button" data-state="idle"><span class="state-icon" aria-hidden="true"></span><span id="set-up-agent-label" aria-live="polite" aria-atomic="true">Set up</span></button></div>
+          </section>
+          <p class="agent-message" id="agent-setup-result" hidden></p>
         </section>
         <div class="chat-history" id="chat-history" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions"></div>
       </div>
