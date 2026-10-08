@@ -31,6 +31,7 @@ function fakeClock() {
 }
 
 const tool = (flow, id) => flow.snapshot().tools.find((entry) => entry.id === id);
+const TEST_DELAYS = { authorization: 1600, review: 4200, confirmation: 1700 };
 
 test("starts with five connectable tools and defensive immutable snapshots", () => {
   const flow = createConnectionFlow();
@@ -55,7 +56,7 @@ test("starts with five connectable tools and defensive immutable snapshots", () 
 test("authorization, source review, and transient confirmation have separate lifecycles", () => {
   const clock = fakeClock();
   const events = [];
-  const flow = createConnectionFlow({ clock, onChange: (state) => events.push(state) });
+  const flow = createConnectionFlow({ clock, delays: TEST_DELAYS, onChange: (state) => events.push(state) });
   assert.equal(events.length, 0);
   assert.equal(flow.connect("notion"), true);
   assert.equal(tool(flow, "notion").status, "connecting");
@@ -78,6 +79,40 @@ test("authorization, source review, and transient confirmation have separate lif
   assert.equal(flow.snapshot().pendingCount, 0);
   assert.equal(flow.snapshot().complete, true);
   assert.equal(events.length, 4);
+});
+
+test("default pacing gives every tool time to connect, show confirmation, and review context", () => {
+  const timings = [
+    ["notion", 2800, 7200],
+    ["gmail", 3200, 8200],
+    ["calendar", 2600, 6500],
+    ["slack", 3000, 7600],
+    ["gong", 3400, 9000],
+  ];
+  for (const [id, authorization, review] of timings) {
+    const clock = fakeClock();
+    const flow = createConnectionFlow({ clock });
+    flow.connect(id);
+    clock.tick(authorization - 1);
+    assert.equal(tool(flow, id).status, "connecting", `${id} should not authorize early`);
+    clock.tick(1);
+    assert.equal(tool(flow, id).status, "connected");
+    assert.equal(tool(flow, id).reviewStatus, "reviewing");
+    const expectedConfirmation = `${tool(flow, id).label} connected.`;
+    assert.equal(flow.snapshot().confirmation, expectedConfirmation);
+    clock.tick(2399);
+    assert.equal(flow.snapshot().confirmation, expectedConfirmation, `${id} confirmation needs reading time`);
+    clock.tick(1);
+    assert.equal(flow.snapshot().confirmation, null);
+    assert.equal(flow.snapshot().activityCount, 1);
+    clock.tick(review - 2400 - 1);
+    assert.equal(tool(flow, id).reviewStatus, "reviewing", `${id} review should remain visible`);
+    assert.equal(flow.snapshot().complete, false);
+    clock.tick(1);
+    assert.equal(tool(flow, id).reviewStatus, "complete");
+    assert.equal(flow.snapshot().complete, true);
+    assert.equal(clock.pending, 0);
+  }
 });
 
 test("parallel out-of-order authorization queues every confirmation exactly once", () => {
@@ -111,7 +146,7 @@ test("parallel out-of-order authorization queues every confirmation exactly once
 
 test("each later connection reopens activity and receives its own confirmation", () => {
   const clock = fakeClock();
-  const flow = createConnectionFlow({ clock });
+  const flow = createConnectionFlow({ clock, delays: TEST_DELAYS });
   flow.connect("notion");
   clock.tick(6000);
   assert.equal(flow.snapshot().complete, true);
@@ -127,7 +162,7 @@ test("each later connection reopens activity and receives its own confirmation",
 
 test("skip works with zero or partial connections without canceling pending work", () => {
   const clock = fakeClock();
-  const flow = createConnectionFlow({ clock });
+  const flow = createConnectionFlow({ clock, delays: TEST_DELAYS });
   flow.skip();
   assert.equal(flow.snapshot().skipped, true);
   assert.equal(flow.snapshot().activityStarted, false);
@@ -149,7 +184,7 @@ test("skip works with zero or partial connections without canceling pending work
 test("duplicate and unknown connections do not add timers, confirmations, or callbacks", () => {
   const clock = fakeClock();
   let changes = 0;
-  const flow = createConnectionFlow({ clock, onChange: () => { changes += 1; } });
+  const flow = createConnectionFlow({ clock, delays: TEST_DELAYS, onChange: () => { changes += 1; } });
   assert.equal(flow.connect("unknown"), false);
   flow.connect("gmail");
   assert.equal(flow.connect("gmail"), false);
@@ -166,7 +201,7 @@ test("duplicate and unknown connections do not add timers, confirmations, or cal
 test("destroy clears authorization, review, and confirmation timers and prevents callbacks", () => {
   const clock = fakeClock();
   let changes = 0;
-  const flow = createConnectionFlow({ clock, onChange: () => { changes += 1; } });
+  const flow = createConnectionFlow({ clock, delays: TEST_DELAYS, onChange: () => { changes += 1; } });
   flow.connect("notion");
   clock.tick(1600);
   flow.connect("gmail");
@@ -188,6 +223,7 @@ test("callbacks can connect another tool or destroy the flow without orphaned ti
   let changes = 0;
   const flow = createConnectionFlow({
     clock,
+    delays: TEST_DELAYS,
     onChange(state) {
       changes += 1;
       if (state.tools[0].status === "connecting" && state.tools[1].status === "idle") flow.connect("gmail");

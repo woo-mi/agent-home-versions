@@ -25,7 +25,7 @@
 .back-home { position: absolute; top: 18px; right: 22px; width: 36px; height: 36px; display: grid; place-items: center; color: #777780; border-radius: 8px; }
 .back-home:hover { background: var(--soft); }
 .back-home svg, .sidebar-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.conversation-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 10px 24px 20px; scroll-behavior: smooth; scrollbar-gutter: stable; }
+.conversation-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 10px 24px 20px; scrollbar-gutter: stable; }
 .conversation-content { max-width: 810px; margin: 0 auto; }
 .agent-message { margin: 0 0 16px; font-size: 14px; line-height: 1.375; color: #24242a; white-space: pre-line; overflow-wrap: anywhere; }
 .message-enter { animation: message-enter 240ms ease-out both; }
@@ -51,8 +51,6 @@
 .activity[data-busy="true"] .activity-symbol { border-top-color: #4f4d60; animation: spin 1.4s linear infinite; }
 .activity[data-complete="true"] .activity-symbol { width: 11px; height: 6px; border: 0; border-bottom: 1.25px solid #6e8877; border-left: 1.25px solid #6e8877; border-radius: 0; transform: translateY(-2px) rotate(-45deg); }
 .activity[data-busy="true"] .activity-label { background: linear-gradient(105deg, #73717f 30%, #777480 45%, #45424f 50%, #777480 55%, #73717f 70%); background-size: 230% 100%; background-clip: text; -webkit-background-clip: text; color: transparent; animation: activity-shimmer 2.3s ease-in-out infinite; }
-.activity-chevron { width: 12px; height: 12px; opacity: .55; transition: transform 160ms ease; }
-.activity[open] .activity-chevron { transform: rotate(180deg); }
 .activity-calls { margin: 8px 0 0 5px; padding: 0 0 0 16px; border-left: 1px solid #e4e3e9; list-style: none; }
 .activity-call { padding: 7px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 12px; line-height: 1.5; }
 .call-name { color: #73717f; }

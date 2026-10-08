@@ -1,4 +1,22 @@
-import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=7794d1d0';
+import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
+
+/* Conversation timing: pause → stream a paragraph → reading pause → next
+ * paragraph → reveal tools. Replies think briefly, then stream in the same way.
+ * Connection/status labels remain immediate so clicks always feel responsive. */
+const TIMING = Object.freeze({
+  openingPause: 700,
+  paragraphPause: 1000,
+  toolsPause: 650,
+  wordPause: 85,
+  characterPause: 6,
+  sentencePause: 280,
+  commaPause: 110,
+  linePause: 380,
+  replyPause: 1300,
+  replyLengthPause: 6,
+  maxReplyLengthPause: 900,
+  nextStreamPause: 200,
+});
 
 const byId = (id) => document.getElementById(id);
 const scroller = byId('conversation-scroll');
@@ -11,7 +29,9 @@ const skipButton = byId('skip-connections');
 const question = byId('context-question');
 const initialQuestion = question.textContent;
 const introMessages = [...document.querySelectorAll('.intro-message')];
+const introTexts = introMessages.map((element) => element.textContent);
 const reviewMessage = byId('review-message');
+const reviewText = reviewMessage.textContent;
 const feedback = byId('connection-feedback');
 const confirmation = byId('connection-confirmation');
 const activity = byId('activity');
@@ -27,6 +47,9 @@ const sidebarToggle = byId('sidebar-toggle');
 const backdrop = byId('sidebar-backdrop');
 const mobileQuery = matchMedia('(max-width: 760px)');
 const appTimers = new Set();
+const streams = new Map();
+const streamQueue = [];
+let activeStream = null;
 const rows = new Map();
 let flow;
 let generation = 0;
@@ -37,6 +60,9 @@ let sidebarOpen = false;
 let sidebarReturnFocus = sidebarToggle;
 let recommendationKey = '';
 let recommendationVersion = 0;
+let recommendationContent;
+let introductionVersion = 0;
+let introductionComplete = false;
 
 const names = (entries) => {
   const labels = entries.map((entry) => typeof entry === 'string' ? entry : entry.label);
@@ -64,6 +90,97 @@ function reveal(element) {
   if (!element.hidden) return;
   element.hidden = false;
   element.classList.add('message-enter');
+}
+
+function stopStreaming(element) {
+  const token = streams.get(element);
+  if (token && activeStream === token) {
+    activeStream = null;
+    later(startNextStream, TIMING.nextStreamPause);
+  }
+  streams.delete(element);
+  element.removeAttribute('aria-busy');
+  delete element.dataset.streaming;
+}
+
+function startNextStream() {
+  if (activeStream) return;
+  while (streamQueue.length) {
+    const next = streamQueue.shift();
+    if (streams.get(next.element) !== next.token) continue;
+    activeStream = next.token;
+    next.start();
+    return;
+  }
+}
+
+function streamMessage(element, text, onComplete = () => {}) {
+  stopStreaming(element);
+  const token = {};
+  streams.set(element, token);
+  const words = text.match(/\S+\s*/g) || [];
+  let position = 0;
+  let visibleText = '';
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function nextWord() {
+    if (streams.get(element) !== token) return;
+    const word = words[position++] || '';
+    visibleText = reducedMotion ? text : visibleText + word;
+    updateConversation(() => { element.textContent = visibleText; });
+    if (reducedMotion || position >= words.length) {
+      stopStreaming(element);
+      onComplete();
+      return;
+    }
+    const punctuationPause = /[.!?][”’"']?\s*$/.test(word) ? TIMING.sentencePause
+      : /[,;:][”’"']?\s*$/.test(word) ? TIMING.commaPause : 0;
+    const linePause = word.includes('\n') ? TIMING.linePause : 0;
+    later(nextWord, TIMING.wordPause + word.trim().length * TIMING.characterPause + punctuationPause + linePause);
+  }
+  streamQueue.push({ element, token, start: () => {
+    updateConversation(() => {
+      element.textContent = '';
+      element.setAttribute('aria-busy', 'true');
+      element.dataset.streaming = 'true';
+      reveal(element);
+    });
+    nextWord();
+  } });
+  startNextStream();
+}
+
+function finishIntroduction() {
+  if (!introductionComplete) {
+    introductionVersion += 1;
+    introductionComplete = true;
+    introMessages.forEach((element, index) => {
+      stopStreaming(element);
+      element.textContent = introTexts[index];
+      reveal(element);
+    });
+  }
+  reveal(connectionBox);
+}
+
+function startIntroduction() {
+  const version = ++introductionVersion;
+  introductionComplete = false;
+  function nextParagraph(index) {
+    if (version !== introductionVersion) return;
+    streamMessage(introMessages[index], introTexts[index], () => {
+      if (version !== introductionVersion) return;
+      if (index < introMessages.length - 1) {
+        later(() => nextParagraph(index + 1), TIMING.paragraphPause);
+      } else {
+        later(() => {
+          if (version !== introductionVersion) return;
+          introductionComplete = true;
+          updateConversation(() => reveal(connectionBox));
+        }, TIMING.toolsPause);
+      }
+    });
+  }
+  later(() => nextParagraph(0), TIMING.openingPause);
 }
 
 function makeToolRows() {
@@ -152,16 +269,31 @@ function suggestionFor(state) {
 function showRecommendation(key, ready, suggestion) {
   if (recommendationKey === key) return;
   recommendationKey = key;
+  recommendationContent = { ready, suggestion };
   const version = ++recommendationVersion;
-  readyMessage.textContent = ready;
-  suggestionMessage.textContent = suggestion;
+  stopStreaming(readyMessage);
+  stopStreaming(suggestionMessage);
+  readyMessage.hidden = true;
   suggestionMessage.hidden = true;
   suggestionMessage.classList.remove('message-enter');
   reveal(recommendation);
-  later(() => {
-    if (version !== recommendationVersion) return;
-    updateConversation(() => reveal(suggestionMessage));
-  }, 900);
+  streamMessage(readyMessage, ready, () => {
+    later(() => {
+      if (version !== recommendationVersion) return;
+      streamMessage(suggestionMessage, suggestion);
+    }, TIMING.paragraphPause);
+  });
+}
+
+function finishRecommendation() {
+  if (!recommendationKey || recommendation.hidden) return;
+  recommendationVersion += 1;
+  stopStreaming(readyMessage);
+  stopStreaming(suggestionMessage);
+  readyMessage.textContent = recommendationContent.ready;
+  suggestionMessage.textContent = recommendationContent.suggestion;
+  reveal(readyMessage);
+  reveal(suggestionMessage);
 }
 
 function render(state) {
@@ -175,7 +307,7 @@ function render(state) {
     }
     skipButton.textContent = state.connectedCount ? 'Continue with connected tools' : 'Skip for now';
     skipButton.disabled = state.skipped || state.connectedCount === TOOLS.length;
-    if (state.connectedCount) reveal(reviewMessage);
+    if (state.connectedCount && reviewMessage.hidden && !streams.has(reviewMessage)) streamMessage(reviewMessage, reviewText);
     feedback.hidden = !state.activityStarted;
     confirmation.hidden = !state.confirmation;
     if (confirmation.textContent !== (state.confirmation || '')) confirmation.textContent = state.confirmation || '';
@@ -212,16 +344,15 @@ function render(state) {
     } else {
       if (recommendationKey) recommendationVersion += 1;
       recommendationKey = '';
+      stopStreaming(readyMessage);
+      stopStreaming(suggestionMessage);
       recommendation.hidden = true;
     }
   });
 }
 
 function showConnections() {
-  updateConversation(() => {
-    introMessages.forEach(reveal);
-    reveal(connectionBox);
-  });
+  updateConversation(finishIntroduction);
   connectionBox.scrollIntoView({ block: 'nearest', behavior: 'auto' });
   const focusTarget = [...rows.values()].find(({ button }) => !button.disabled)?.button || connectionBox;
   focusTarget.focus({ preventScroll: true });
@@ -296,12 +427,13 @@ function beginNextReply() {
       request.element.className = 'agent-message message-enter';
       request.element.removeAttribute('role');
       request.element.removeAttribute('aria-label');
-      request.element.textContent = replyFor(request);
     });
-    responses.shift();
-    responding = false;
-    beginNextReply();
-  }, 850 + Math.min(request.text.length * 7, 700));
+    streamMessage(request.element, replyFor(request), () => {
+      responses.shift();
+      responding = false;
+      beginNextReply();
+    });
+  }, TIMING.replyPause + Math.min(request.text.length * TIMING.replyLengthPause, TIMING.maxReplyLengthPause));
 }
 
 function setMode(mode) {
@@ -319,6 +451,9 @@ function updateSendButton() {
 function resetConversation() {
   generation += 1;
   flow?.destroy();
+  for (const element of streams.keys()) stopStreaming(element);
+  streamQueue.length = 0;
+  activeStream = null;
   for (const timer of appTimers) clearTimeout(timer);
   appTimers.clear();
   responses = [];
@@ -340,11 +475,7 @@ function resetConversation() {
   } });
   render(flow.snapshot());
   scroller.scrollTop = 0;
-  reveal(introMessages[0]);
-  // The opening conversation unfolds before showing the tool choices.
-  later(() => updateConversation(() => reveal(introMessages[1])), 900);
-  later(() => updateConversation(() => reveal(introMessages[2])), 2000);
-  later(() => updateConversation(() => reveal(connectionBox)), 2600);
+  startIntroduction();
 }
 
 function setSidebar(open, restoreFocus = true) {
@@ -367,6 +498,8 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
   const text = prompt.value.trim();
   if (!text) return;
+  updateConversation(finishIntroduction);
+  updateConversation(finishRecommendation);
   const userMessage = document.createElement('p');
   userMessage.className = 'user-message message-enter';
   userMessage.textContent = text;

@@ -7,7 +7,15 @@ export const TOOLS = Object.freeze([
   { id: "gong", label: "Gong", reviewLabel: "Review sales calls" },
 ].map(Object.freeze));
 
-const DEFAULT_DELAYS = Object.freeze({ authorization: 1600, review: 4200, confirmation: 1700 });
+// Slightly different durations make parallel tools feel independent and leave
+// enough time to read each confirmation before it folds into the activity row.
+const AUTHORIZATION_DELAYS = Object.freeze({ notion: 2800, gmail: 3200, calendar: 2600, slack: 3000, gong: 3400 });
+const REVIEW_DELAYS = Object.freeze({ notion: 7200, gmail: 8200, calendar: 6500, slack: 7600, gong: 9000 });
+const DEFAULT_DELAYS = Object.freeze({
+  authorization: (id) => AUTHORIZATION_DELAYS[id],
+  review: (id) => REVIEW_DELAYS[id],
+  confirmation: 2400,
+});
 
 // Each delay accepts milliseconds or a function(toolId) for deterministic demos/tests.
 // onChange fires after changes; call snapshot() explicitly for the initial state.
@@ -43,7 +51,9 @@ export function createConnectionFlow({ onChange, clock = globalThis, delays = {}
   function schedule(kind, toolId, callback) {
     const custom = delays[kind];
     const duration = typeof custom === "function" ? custom(toolId) : custom;
-    const delay = Number.isFinite(duration) && duration >= 0 ? duration : DEFAULT_DELAYS[kind];
+    const fallback = DEFAULT_DELAYS[kind];
+    const defaultDuration = typeof fallback === "function" ? fallback(toolId) : fallback;
+    const delay = Number.isFinite(duration) && duration >= 0 ? duration : defaultDuration;
     const timer = clock.setTimeout(() => {
       timers.delete(timer);
       if (!destroyed) callback();
