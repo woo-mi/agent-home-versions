@@ -1,4 +1,4 @@
-import { DEFAULT_AGENT_SCHEDULE } from './agent-setup-flow.mjs?v=454da931';
+import { DEFAULT_AGENT_SCHEDULE } from './agent-setup-flow.mjs?v=97966219';
 
 /** Keep report/workflow documents mounted while switching the right panel's view. */
 export function createReportViews({ previews, onClose }) {
@@ -74,6 +74,7 @@ export function createReportViews({ previews, onClose }) {
   setSchedule();
   sync();
   return {
+    setSchedule,
     setActive(value) { active = value; sync(); },
     open(schedule) { setSchedule(schedule); select('report'); },
     reset() { setSchedule(); select('report'); },

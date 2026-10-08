@@ -288,3 +288,133 @@ test('custom zero delays still deliver each stage once', () => {
   assert.deepEqual(changes, ['offered', 'setting-up', 'complete']);
   assert.equal(clock.pending, 0);
 });
+
+test('editing a completed schedule retains committed values until the save finishes', () => {
+  const events = [];
+  const harness = createHarness({ onChange: state => events.push(state) });
+  const { clock, flow } = harness;
+  reachOffer(harness);
+  flow.setup();
+  clock.tick(2200);
+  const beforeEdit = flow.snapshot();
+  const edited = { day: 'Monday', time: '09:30', timezone: 'America/New_York', channel: '#revenue-leadership' };
+  const expected = { ...edited };
+  assert.equal(flow.updateSchedule(edited), true);
+  edited.day = 'Sunday';
+  edited.channel = '#changed-after-submission';
+  const pending = flow.snapshot();
+  assert.deepEqual(pending, { stage: 'updating', schedule: DEFAULT_AGENT_SCHEDULE });
+  assert.equal(clock.pending, 1);
+  clock.tick(899);
+  assert.deepEqual(flow.snapshot(), pending);
+  clock.tick(1);
+  const saved = flow.snapshot();
+  assert.deepEqual(saved, { stage: 'complete', schedule: expected });
+  assert.equal(clock.pending, 0);
+  assert.deepEqual(beforeEdit, { stage: 'complete', schedule: DEFAULT_AGENT_SCHEDULE });
+  assert.deepEqual(pending, { stage: 'updating', schedule: DEFAULT_AGENT_SCHEDULE });
+  assert.throws(() => { saved.schedule.day = 'Tuesday'; }, TypeError);
+  assert.throws(() => { saved.stage = 'updating'; }, TypeError);
+  assert.notEqual(saved.schedule, flow.snapshot().schedule);
+  assert.deepEqual(events.map(({ stage }) => stage), ['offered', 'setting-up', 'complete', 'updating', 'complete']);
+  assert.deepEqual(events[3].schedule, DEFAULT_AGENT_SCHEDULE);
+  assert.deepEqual(events[4].schedule, expected);
+});
+
+test('unchanged and invalid edits leave the committed schedule and timer untouched', () => {
+  const harness = createHarness();
+  const { clock, flow, changes } = harness;
+  reachOffer(harness);
+  flow.setup();
+  clock.tick(2200);
+  const committed = flow.snapshot();
+  for (const configuration of [
+    undefined, {}, { ...DEFAULT_AGENT_SCHEDULE }, { ...DEFAULT_AGENT_SCHEDULE, channel: ' #sales-pipeline ' },
+    null, [], 'Friday', { day: 'Funday' }, { time: '24:00' },
+    { timezone: 'Not/A_Timezone' }, { channel: '   ' },
+  ]) {
+    assert.equal(flow.updateSchedule(configuration), false);
+    assert.deepEqual(flow.snapshot(), committed);
+    assert.equal(clock.pending, 0);
+  }
+  assert.deepEqual(changes, ['offered', 'setting-up', 'complete']);
+});
+
+test('editing is allowed only after setup completes and cannot interrupt a pending save', () => {
+  const harness = createHarness();
+  const { clock, flow, changes } = harness;
+  const first = { ...DEFAULT_AGENT_SCHEDULE, day: 'Monday' };
+  const second = { ...DEFAULT_AGENT_SCHEDULE, day: 'Tuesday' };
+  assert.equal(flow.updateSchedule(first), false);
+  reachOffer(harness);
+  assert.equal(flow.updateSchedule(first), false);
+  flow.defer();
+  assert.equal(flow.updateSchedule(first), false);
+  flow.setup();
+  assert.equal(flow.updateSchedule(first), false);
+  clock.tick(2200);
+  assert.equal(flow.updateSchedule(first), true);
+  clock.tick(400);
+  assert.equal(flow.updateSchedule(first), false);
+  assert.equal(flow.updateSchedule(second), false);
+  assert.equal(flow.setup(second), false);
+  assert.equal(flow.defer(), false);
+  assert.equal(clock.pending, 1);
+  clock.tick(500);
+  assert.deepEqual(flow.snapshot(), { stage: 'complete', schedule: first });
+  assert.equal(flow.setup(second), false);
+  assert.equal(flow.updateSchedule(second), true);
+  clock.tick(900);
+  assert.deepEqual(flow.snapshot(), { stage: 'complete', schedule: second });
+  assert.deepEqual(changes.slice(-4), ['updating', 'complete', 'updating', 'complete']);
+});
+
+test('destroy during a schedule update cancels saving and retains the committed schedule', () => {
+  const harness = createHarness();
+  const { clock, flow, changes } = harness;
+  reachOffer(harness);
+  flow.setup();
+  clock.tick(2200);
+  flow.updateSchedule({ day: 'Monday' });
+  clock.tick(450);
+  flow.destroy();
+  flow.destroy();
+  assert.equal(clock.pending, 0);
+  assert.equal(flow.updateSchedule({ day: 'Tuesday' }), false);
+  clock.tick(100000);
+  assert.deepEqual(flow.snapshot(), { stage: 'updating', schedule: DEFAULT_AGENT_SCHEDULE });
+  assert.deepEqual(changes, ['offered', 'setting-up', 'complete', 'updating']);
+});
+
+test('onChange can destroy a schedule update immediately without leaking a save timer', () => {
+  const clock = fakeClock();
+  const changes = [];
+  const flow = createAgentSetupFlow({ clock, onChange: ({ stage }) => {
+    changes.push(stage);
+    if (stage === 'updating') flow.destroy();
+  } });
+  reachOffer({ clock, flow });
+  flow.setup();
+  clock.tick(2200);
+  assert.equal(flow.updateSchedule({ day: 'Monday' }), true);
+  assert.equal(clock.pending, 0);
+  clock.tick(100000);
+  assert.deepEqual(flow.snapshot(), { stage: 'updating', schedule: DEFAULT_AGENT_SCHEDULE });
+  assert.deepEqual(changes, ['offered', 'setting-up', 'complete', 'updating']);
+});
+
+test('a custom update delay saves once without changing setup timing', () => {
+  const harness = createHarness({ updateDelay: 0 });
+  const { clock, flow, changes } = harness;
+  reachOffer(harness);
+  flow.setup();
+  clock.tick(2199);
+  assert.equal(flow.snapshot().stage, 'setting-up');
+  clock.tick(1);
+  assert.equal(flow.updateSchedule({ day: 'Sunday' }), true);
+  assert.equal(flow.snapshot().stage, 'updating');
+  clock.tick(0);
+  assert.deepEqual(flow.snapshot(), { stage: 'complete', schedule: { ...DEFAULT_AGENT_SCHEDULE, day: 'Sunday' } });
+  assert.equal(clock.pending, 0);
+  assert.deepEqual(changes, ['offered', 'setting-up', 'complete', 'updating', 'complete']);
+});

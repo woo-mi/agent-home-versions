@@ -34,10 +34,12 @@ export function createAgentSetupFlow({
   clock = globalThis,
   reviewDelay = 5000,
   setupDelay = 2200,
+  updateDelay = 900,
 } = {}) {
   const now = () => typeof clock.now === 'function' ? clock.now() : Date.now();
   const duration = (value, fallback) => Number.isFinite(value) && value >= 0 ? value : fallback;
   const setupDuration = duration(setupDelay, 2200);
+  const updateDuration = duration(updateDelay, 900);
   let remainingReview = duration(reviewDelay, 5000);
   let reviewStartedAt = null;
   let reviewTimer = null;
@@ -116,6 +118,23 @@ export function createAgentSetupFlow({
     return true;
   }
 
+  function updateSchedule(configuration) {
+    if (destroyed || stage !== 'complete') return false;
+    const selected = normalizeAgentSchedule(configuration);
+    if (!selected || Object.keys(DEFAULT_AGENT_SCHEDULE).every(key => selected[key] === schedule[key])) return false;
+    stage = 'updating';
+    // Keep the committed schedule visible until the simulated save completes.
+    setupTimer = clock.setTimeout(() => {
+      setupTimer = null;
+      if (destroyed || stage !== 'updating') return;
+      schedule = selected;
+      stage = 'complete';
+      emit();
+    }, updateDuration);
+    emit();
+    return true;
+  }
+
   function destroy() {
     if (destroyed) return;
     destroyed = true;
@@ -128,5 +147,5 @@ export function createAgentSetupFlow({
     viewing = false;
   }
 
-  return Object.freeze({ snapshot, setViewing, defer, setup, destroy });
+  return Object.freeze({ snapshot, setViewing, defer, setup, updateSchedule, destroy });
 }

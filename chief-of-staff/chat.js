@@ -3,8 +3,8 @@ import { createChatScroll } from './chat-scroll.mjs?v=ce73c21e';
 import { createLiveAppChat } from './live-app-chat.mjs?v=4a79abc6';
 import { createLiveAppVersions } from './live-app-versions.mjs?v=81367341';
 import { createChatVersions } from './chat-versions.mjs?v=02619397';
-import { createAgentSetupChat } from './agent-setup-chat.mjs?v=238c571e';
-import { createReportViews } from './report-views.mjs?v=41c95bec';
+import { createAgentSetupChat } from './agent-setup-chat.mjs?v=ebafea7c';
+import { createReportViews } from './report-views.mjs?v=3e53c1e2';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -578,7 +578,7 @@ function prepareLiveAppPreview() {
 const chatVersions = createChatVersions({ update: updateConversation });
 const appVersions = createLiveAppVersions({ previews: { v1: 'live-app-preview.html?v=0ab9a542', v2: 'live-app-preview-v2.html?v=ef845f18' }, onClose: () => setLiveAppOpen(false) });
 const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=3c174308', workflow: 'workflow-preview.html?v=93006e22' }, onClose: () => setLiveAppOpen(false) });
-const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onOpenReport: () => {
+const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onScheduleChange: reportViews.setSchedule, onOpenReport: () => {
   reportViews.open(agentSetup.snapshot().schedule);
   setLiveAppOpen(true, true, 'report');
 } });

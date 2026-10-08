@@ -1,4 +1,4 @@
-import { createAgentSetupFlow } from './agent-setup-flow.mjs?v=454da931';
+import { createAgentSetupFlow } from './agent-setup-flow.mjs?v=97966219';
 
 const QUESTION = 'Would you like a weekly pipeline update every Friday, so you have time to review it before Monday’s meeting?';
 const DELIVERY_QUESTION = 'What time should I deliver it, and where should it go?';
@@ -9,7 +9,7 @@ function displayTime(value) {
 }
 
 /** Screen 6 follows the app walkthrough without replacing the current conversation. */
-export function createAgentSetupChat({ history, update, streamMessage, stopStreaming, later, onOpenReport }) {
+export function createAgentSetupChat({ history, update, streamMessage, stopStreaming, later, onOpenReport, onScheduleChange = () => {} }) {
   const byId = (id) => document.getElementById(id);
   const conversation = byId('agent-setup-conversation');
   const question = byId('agent-setup-question');
@@ -26,6 +26,7 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
   let panelOpen = false;
   let settingsShown = false;
   let settingsVersion = 0;
+  let savedLabel = 'Created';
 
   const readSchedule = () => Object.fromEntries(Object.entries(fields).map(([key, field]) => [key, field.value]));
 
@@ -48,16 +49,20 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
 
   function render(state) {
     const changed = state.stage !== previousStage;
+    const savedUpdate = changed && previousStage === 'updating' && state.stage === 'complete';
+    if (savedUpdate) savedLabel = 'Saved';
     previousStage = state.stage;
     update(() => {
-      const pending = state.stage === 'setting-up';
+      const pending = state.stage === 'setting-up' || state.stage === 'updating';
       const complete = state.stage === 'complete';
-      createButton.disabled = pending || complete;
-      createButton.dataset.state = complete ? 'connected' : pending ? 'connecting' : 'idle';
+      const draft = readSchedule();
+      const dirty = complete && Object.keys(fields).some((key) => draft[key] !== state.schedule[key]);
+      createButton.disabled = pending || (complete && !dirty);
+      createButton.dataset.state = complete && !dirty ? 'connected' : pending ? 'connecting' : 'idle';
       createButton.setAttribute('aria-busy', String(pending));
-      createLabel.textContent = complete ? 'Created' : pending ? 'Creating…' : 'Create weekly update';
-      for (const field of form.querySelectorAll('select')) field.disabled = pending || complete;
-      if (pending) {
+      createLabel.textContent = state.stage === 'updating' ? 'Saving…' : complete ? (dirty ? 'Save changes' : savedLabel) : pending ? 'Creating…' : 'Create weekly update';
+      for (const field of form.querySelectorAll('select')) field.disabled = pending;
+      if (state.stage === 'setting-up') {
         stopStreaming(result);
         result.hidden = true;
       }
@@ -81,8 +86,18 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
     } else if (state.stage === 'complete') {
       const currentVersion = version;
       const schedule = state.schedule;
+      onScheduleChange(schedule);
+      const confirmation = `Your pipeline update is ${savedUpdate ? 'now ' : ''}scheduled for ${schedule.day}s at ${displayTime(schedule.time)} (${schedule.timezone}) in ${schedule.channel}, ahead of your Monday review.`;
+      if (savedUpdate) {
+        stopStreaming(result);
+        update(() => {
+          result.textContent = confirmation;
+          result.hidden = false;
+          if (report.hidden) { history.append(report); report.hidden = false; }
+        });
+        return;
+      }
       update(() => { history.append(result); });
-      const confirmation = `Your pipeline update is scheduled for ${schedule.day}s at ${displayTime(schedule.time)} (${schedule.timezone}) in ${schedule.channel}, ahead of your Monday review.`;
       streamMessage(result, confirmation, () => later(() => {
         if (version === currentVersion && flow.snapshot().stage === 'complete') {
           update(() => { history.append(report); report.hidden = false; });
@@ -101,7 +116,7 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
       return false;
     }
     if (!form.reportValidity()) return false;
-    return flow.setup(readSchedule());
+    return flow.snapshot().stage === 'complete' ? flow.updateSchedule(readSchedule()) : flow.setup(readSchedule());
   }
 
   function reset() {
@@ -111,6 +126,7 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
     settingsShown = false;
     settingsVersion += 1;
     previousStage = '';
+    savedLabel = 'Created';
     history.before(conversation);
     conversation.append(question, deliveryQuestion, form, result, report);
     for (const element of [question, deliveryQuestion, result]) {
@@ -125,9 +141,9 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
   }
 
   form.addEventListener('submit', (event) => { event.preventDefault(); setup(); });
-  form.addEventListener('change', updateSummary);
+  form.addEventListener('change', () => { updateSummary(); render(flow.snapshot()); });
   byId('open-agent-report').addEventListener('click', () => {
-    if (flow.snapshot().stage === 'complete') onOpenReport();
+    if (['complete', 'updating'].includes(flow.snapshot().stage)) onOpenReport();
   });
   document.addEventListener('visibilitychange', syncViewing);
   reset();
