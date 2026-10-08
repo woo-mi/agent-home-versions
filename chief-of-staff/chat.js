@@ -1,17 +1,14 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 
-/* Conversation timing: pause → stream a paragraph → reading pause → next
- * paragraph → reveal tools. Replies think briefly, then stream in the same way.
+/* Conversation timing: brief pause → steady text stream → next paragraph
+ * → reveal tools. Replies think briefly, then stream in the same way.
  * Connection/status labels remain immediate so clicks always feel responsive. */
 const TIMING = Object.freeze({
   openingPause: 700,
-  paragraphPause: 1000,
+  paragraphPause: 600,
   toolsPause: 650,
-  wordPause: 85,
-  characterPause: 6,
-  sentencePause: 280,
-  commaPause: 110,
-  linePause: 380,
+  streamInterval: 40,
+  streamCharacters: 2,
   replyPause: 1300,
   replyLengthPause: 6,
   maxReplyLengthPause: 900,
@@ -72,9 +69,10 @@ const connectedTools = (state) => state.tools.filter(({ status }) => status === 
 const countLabel = (count) => `${count} tool${count === 1 ? '' : 's'}`;
 
 function updateConversation(change, forceScroll = false) {
-  const nearBottom = scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight < 90;
+  const previousHeight = scroller.scrollHeight;
+  const nearBottom = previousHeight - scroller.scrollTop - scroller.clientHeight < 90;
   change();
-  if (forceScroll || nearBottom) scroller.scrollTop = scroller.scrollHeight;
+  if (forceScroll || (nearBottom && scroller.scrollHeight > previousHeight)) scroller.scrollTop = scroller.scrollHeight;
 }
 
 function later(callback, delay) {
@@ -87,9 +85,7 @@ function later(callback, delay) {
 }
 
 function reveal(element) {
-  if (!element.hidden) return;
   element.hidden = false;
-  element.classList.add('message-enter');
 }
 
 function stopStreaming(element) {
@@ -118,33 +114,36 @@ function streamMessage(element, text, onComplete = () => {}) {
   stopStreaming(element);
   const token = {};
   streams.set(element, token);
-  const words = text.match(/\S+\s*/g) || [];
+  const characters = Array.from(text);
+  const textNode = document.createTextNode('');
   let position = 0;
-  let visibleText = '';
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function nextWord() {
+  function nextChunk() {
     if (streams.get(element) !== token) return;
-    const word = words[position++] || '';
-    visibleText = reducedMotion ? text : visibleText + word;
-    updateConversation(() => { element.textContent = visibleText; });
-    if (reducedMotion || position >= words.length) {
+    const end = reducedMotion ? characters.length : position + TIMING.streamCharacters;
+    const chunk = characters.slice(position, end).join('');
+    position = end;
+    updateConversation(() => { textNode.appendData(chunk); });
+    if (position >= characters.length) {
       stopStreaming(element);
       onComplete();
       return;
     }
-    const punctuationPause = /[.!?][”’"']?\s*$/.test(word) ? TIMING.sentencePause
-      : /[,;:][”’"']?\s*$/.test(word) ? TIMING.commaPause : 0;
-    const linePause = word.includes('\n') ? TIMING.linePause : 0;
-    later(nextWord, TIMING.wordPause + word.trim().length * TIMING.characterPause + punctuationPause + linePause);
+    later(nextChunk, TIMING.streamInterval);
   }
   streamQueue.push({ element, token, start: () => {
     updateConversation(() => {
-      element.textContent = '';
+      if (element.classList.contains('typing-message')) {
+        element.className = 'agent-message';
+        element.removeAttribute('role');
+        element.removeAttribute('aria-label');
+      }
+      element.replaceChildren(textNode);
       element.setAttribute('aria-busy', 'true');
       element.dataset.streaming = 'true';
       reveal(element);
     });
-    nextWord();
+    nextChunk();
   } });
   startNextStream();
 }
@@ -268,14 +267,21 @@ function suggestionFor(state) {
 
 function showRecommendation(key, ready, suggestion) {
   if (recommendationKey === key) return;
+  const updatingExisting = Boolean(recommendationKey) && !recommendation.hidden;
   recommendationKey = key;
   recommendationContent = { ready, suggestion };
   const version = ++recommendationVersion;
   stopStreaming(readyMessage);
   stopStreaming(suggestionMessage);
+  if (updatingExisting) {
+    readyMessage.textContent = ready;
+    suggestionMessage.textContent = suggestion;
+    reveal(readyMessage);
+    reveal(suggestionMessage);
+    return;
+  }
   readyMessage.hidden = true;
   suggestionMessage.hidden = true;
-  suggestionMessage.classList.remove('message-enter');
   reveal(recommendation);
   streamMessage(readyMessage, ready, () => {
     later(() => {
@@ -309,7 +315,8 @@ function render(state) {
     skipButton.disabled = state.skipped || state.connectedCount === TOOLS.length;
     if (state.connectedCount && reviewMessage.hidden && !streams.has(reviewMessage)) streamMessage(reviewMessage, reviewText);
     feedback.hidden = !state.activityStarted;
-    confirmation.hidden = !state.confirmation;
+    // Keep the confirmation line in place while a batch is being reviewed.
+    confirmation.hidden = !state.confirmation && state.pendingCount === 0;
     if (confirmation.textContent !== (state.confirmation || '')) confirmation.textContent = state.confirmation || '';
     activity.hidden = !state.activityStarted;
     activity.dataset.busy = String(state.pendingCount > 0);
@@ -326,22 +333,12 @@ function render(state) {
     // Replacing only the list keeps the user's expanded/collapsed choice intact.
     activityCalls.replaceChildren(...calls);
 
-    if (state.pendingCount) {
-      question.textContent = state.connectedCount
-        ? `${countLabel(state.connectedCount)} connected. I’m getting context while the remaining steps finish.`
-        : 'Connecting your tools. You can connect another source while this one gets ready.';
-    } else if (state.connectedCount) {
-      question.textContent = `${countLabel(state.connectedCount)} connected. You can add more context whenever you like.`;
-    } else {
-      question.textContent = state.skipped ? 'We can start without connected tools. Tell me what you’d like to focus on.' : initialQuestion;
-    }
-
     if (state.complete) {
       const idea = suggestionFor(state);
       showRecommendation(`connected:${idea.title}`, "Now that you're set up, here are a few things I can take care of for you.", idea.text);
     } else if (state.skipped && !state.activityStarted) {
       showRecommendation('skipped', 'We can start with what you tell me.', 'What would make your day easier—a daily brief, help organizing priorities, or something else? You can connect your tools whenever you’re ready.');
-    } else {
+    } else if (!state.activityStarted) {
       if (recommendationKey) recommendationVersion += 1;
       recommendationKey = '';
       stopStreaming(readyMessage);
@@ -416,18 +413,11 @@ function beginNextReply() {
     request.element.className = 'typing-message';
     request.element.setAttribute('role', 'status');
     request.element.setAttribute('aria-label', 'Owl is thinking');
-    for (let i = 0; i < 3; i += 1) {
-      const dot = document.createElement('span');
-      dot.setAttribute('aria-hidden', 'true');
-      request.element.append(dot);
-    }
+    const dot = document.createElement('span');
+    dot.setAttribute('aria-hidden', 'true');
+    request.element.append(dot);
   });
   later(() => {
-    updateConversation(() => {
-      request.element.className = 'agent-message message-enter';
-      request.element.removeAttribute('role');
-      request.element.removeAttribute('aria-label');
-    });
     streamMessage(request.element, replyFor(request), () => {
       responses.shift();
       responding = false;
@@ -458,13 +448,15 @@ function resetConversation() {
   appTimers.clear();
   responses = [];
   responding = false;
+  recommendationVersion += 1;
+  recommendationKey = '';
+  recommendationContent = undefined;
   history.replaceChildren();
   prompt.value = '';
   statusMessage.textContent = '';
   question.textContent = initialQuestion;
   [...introMessages, connectionBox, reviewMessage, feedback, recommendation].forEach((element) => {
     element.hidden = true;
-    element.classList.remove('message-enter');
   });
   activity.open = false;
   setMode('build');
@@ -501,7 +493,7 @@ form.addEventListener('submit', (event) => {
   updateConversation(finishIntroduction);
   updateConversation(finishRecommendation);
   const userMessage = document.createElement('p');
-  userMessage.className = 'user-message message-enter';
+  userMessage.className = 'user-message';
   userMessage.textContent = text;
   const reply = document.createElement('div');
   reply.hidden = true;
