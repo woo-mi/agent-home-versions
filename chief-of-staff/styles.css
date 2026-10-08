@@ -53,7 +53,7 @@ textarea::placeholder { color: var(--muted); opacity: 1; }
 .domain-control { width: 86px; }
 .chevron { pointer-events: none; width: 14px; height: 14px; position: absolute; right: 0; }
 .mode-toggle { display: flex; align-items: center; gap: 4px; padding: 4px; border-radius: 9px; background: var(--soft); }
-.mode { height: 30px; padding: 0 9px; border-radius: 7px; color: var(--muted); font-size: 14px; }
+.mode { height: 30px; padding: 0 9px; border-radius: 7px; color: #6d6b79; font-size: 14px; }
 .mode[aria-pressed="true"] { color: var(--ink); background: #fff; }
 .mode:hover { color: var(--ink); }
 .reasoning-control { width: 123px; padding-left: 12px; color: #4a4d53; }
