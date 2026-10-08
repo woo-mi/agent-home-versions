@@ -1,11 +1,15 @@
 /* Updated “2 Agent Chat connect”; previous comparison versions stay unchanged. */
 .chat-page[data-chat-version="v0"]:not(.live-app-open) {
   --chat-text-width: 748px;
-  --chat-card-width: 748px;
+  --chat-card-width: 613px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .agent-chip {
+  height: 32px;
 }
 
 :where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .conversation-scroll {
-  padding-top: 36px;
+  padding-top: 42px;
 }
 
 :where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .agent-message {
