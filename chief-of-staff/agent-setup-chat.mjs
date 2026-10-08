@@ -99,7 +99,7 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
       }
       update(() => { history.append(result); });
       streamMessage(result, confirmation, () => later(() => {
-        if (version === currentVersion && flow.snapshot().stage === 'complete') {
+        if (version === currentVersion && flow.snapshot().stage === 'complete' && report.hidden) {
           update(() => { history.append(report); report.hidden = false; });
         }
       }, 650));

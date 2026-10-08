@@ -3,7 +3,7 @@ import { createChatScroll } from './chat-scroll.mjs?v=ce73c21e';
 import { createLiveAppChat } from './live-app-chat.mjs?v=4a79abc6';
 import { createLiveAppVersions } from './live-app-versions.mjs?v=81367341';
 import { createChatVersions } from './chat-versions.mjs?v=02619397';
-import { createAgentSetupChat } from './agent-setup-chat.mjs?v=ebafea7c';
+import { createAgentSetupChat } from './agent-setup-chat.mjs?v=28228c37';
 import { createReportViews } from './report-views.mjs?v=3e53c1e2';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
