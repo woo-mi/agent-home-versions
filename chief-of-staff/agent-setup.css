@@ -1,5 +1,6 @@
 .agent-schedule-form {
-  width: min(var(--chat-card-width, 613px), 100%);
+  width: 100%;
+  max-width: var(--chat-card-width, 613px);
   margin: 4px 0 20px;
   border: 1px solid #e4e6ea;
   border-radius: 12px;

@@ -30,7 +30,8 @@
 .conversation-content { max-width: var(--chat-text-width); margin: 0 auto; }
 .agent-message { margin: 0 0 16px; font-size: 14px; line-height: 1.375; color: #24242a; white-space: pre-line; overflow-wrap: anywhere; }
 .chunk-reveal { animation: chunk-reveal 110ms cubic-bezier(0, 0, .38, .9) both; }
-.connection-box, .live-app-offer, .activity { width: min(var(--chat-card-width), 100%); }
+.connection-box, .live-app-offer, .activity { width: 100%; max-width: var(--chat-card-width); }
+.connection-box, .live-app-offer, .activity, .agent-schedule-form { transition: max-width var(--panel-duration) var(--panel-ease); }
 .connection-box { margin: 18px 0 20px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; }
 .connection-row { min-height: 54px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px solid #EDEDED; }
 .connection-name { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #24242a; min-width: 0; }
@@ -83,7 +84,8 @@
 .report-view-tabs button:hover:not([aria-selected="true"]) { color: #24242a; }
 .chat-page.live-app-open { --sidebar-width: 48px; --chat-text-width: 613px; --chat-card-width: 613px; }
 .live-app-open .live-app-panel { transform: translateX(0); visibility: visible; transition-delay: 0s; }
-/* The panel and conversation share one easing curve, without scaling chat text. */
+/* Opening: panel slides in as the sidebar and chat make room over 420ms.
+ * Closing reverses the same transition; interrupted motion continues in place. */
 .chat-shell { margin-right: 0; transition: margin-left var(--panel-duration) var(--panel-ease), margin-right var(--panel-duration) var(--panel-ease); }
 .chat-sidebar { overflow-x: hidden; transition: width var(--panel-duration) var(--panel-ease), padding var(--panel-duration) var(--panel-ease); }
 .sidebar-brand { overflow: hidden; transition: width var(--panel-duration) var(--panel-ease); }
@@ -112,7 +114,7 @@
 .typing-message span { width: 8px; height: 8px; border-radius: 50%; background: #333444; }
 .chat-footer { position: absolute; inset: auto 0 0; z-index: 2; padding: 0 24px 16px; pointer-events: none; }
 .chat-footer .composer { pointer-events: auto; }
-.chat-footer .composer, .chat-status { width: min(var(--chat-text-width), 100%); margin-left: auto; margin-right: auto; }
+.chat-footer .composer, .chat-status { width: 100%; margin-left: auto; margin-right: auto; }
 .chat-footer .composer { height: auto; min-height: 104px; padding: 14px 20px 14px 24px; gap: 24px; }
 .chat-footer textarea { flex: 0 0 18px; height: 18px; min-height: 18px; }
 .chat-footer .composer-tools { flex-wrap: wrap; row-gap: 10px; }

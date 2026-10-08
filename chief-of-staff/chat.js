@@ -553,9 +553,9 @@ function setSidebar(open, restoreFocus = true) {
 }
 
 function setLiveAppOpen(open, restoreFocus = true, kind = panelKind) {
-  // Open directly in the final layout; closing can still use the panel transition.
-  // New Chat and page navigation also settle without an in-flight transition.
-  const immediate = open || !restoreFocus;
+  // App and report share the reversible panel transition. Only New Chat and
+  // page navigation settle immediately so a reset cannot leave motion running.
+  const immediate = !restoreFocus;
   if (immediate) document.body.classList.add('live-app-reset');
   if (open) prepareLiveAppPreview();
   else if (restoreFocus && (liveAppPanel.contains(document.activeElement) || byId('app-version-control').contains(document.activeElement))) {
@@ -580,7 +580,7 @@ function setLiveAppOpen(open, restoreFocus = true, kind = panelKind) {
     chatVersions.setVisible(!open);
   });
   agentSetup.setViewing(open && panelKind === 'app');
-  if (open) chatScroll.settle();
+  if (open && immediate) chatScroll.settle();
   if (immediate) {
     // Commit every layout change before restoring transitions.
     liveAppPanel.getBoundingClientRect();
