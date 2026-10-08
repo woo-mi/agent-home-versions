@@ -19,7 +19,7 @@
 .sidebar-avatar { width: 24px; height: 24px; margin-left: -2px; margin-right: -2px; display: grid; place-items: center; border: 1px solid #e7b8de; border-radius: 50%; background: #fbe6f5; color: #9e168e; font-size: 11px; }
 .chat-shell { margin-left: var(--sidebar-width); height: 100vh; height: 100dvh; display: flex; flex-direction: column; }
 .chat-header { height: 74px; flex-shrink: 0; display: flex; align-items: flex-start; justify-content: center; padding: 14px 24px 8px; position: relative; }
-.agent-chip { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 1px 2px #0f11280a; font-size: 16px; line-height: 1.43; font-weight: 500; color: #15171b; letter-spacing: 0; margin: 0; background: #fff; }
+.agent-chip { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 1px 2px #0f11280a; font-size: 14px; line-height: 1.43; font-weight: 500; color: #15171b; letter-spacing: 0; margin: 0; background: #fff; }
 .agent-chip svg { width: 18px; height: 18px; }
 .sidebar-toggle, .close-sidebar { display: none; }
 .back-home { position: absolute; top: 18px; right: 22px; width: 36px; height: 36px; display: grid; place-items: center; color: #777780; border-radius: 8px; }
