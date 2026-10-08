@@ -7,6 +7,7 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
   const byId = (id) => document.getElementById(id);
   const offer = byId('live-app-offer');
   const buildButton = byId('build-live-app');
+  const buildLabel = byId('build-live-app-label');
   const deferButton = byId('defer-live-app');
   const deferred = byId('live-app-deferred');
   const conversation = byId('live-app-conversation');
@@ -63,8 +64,12 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
     const stageChanged = state.stage !== previousStage;
     previousStage = state.stage;
     update(() => {
-      buildButton.disabled = hasStarted;
-      buildButton.textContent = state.stage === 'complete' ? 'Completed' : hasStarted ? 'Selected' : 'Build';
+      const building = hasStarted && state.stage !== 'skipped' && state.stage !== 'complete';
+      buildButton.disabled = building || state.stage === 'complete';
+      buildButton.dataset.state = state.stage === 'complete' ? 'connected' : building ? 'connecting' : 'idle';
+      buildButton.setAttribute('aria-busy', String(building));
+      buildLabel.textContent = state.stage === 'complete' ? 'Completed' : building ? 'Building…' : 'Build';
+      deferButton.hidden = hasStarted;
       deferButton.disabled = hasStarted || state.stage === 'deferred';
       deferred.hidden = state.stage !== 'deferred';
       for (const tool of state.tools) {

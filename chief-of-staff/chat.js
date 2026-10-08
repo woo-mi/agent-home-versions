@@ -1,6 +1,6 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=50c6ed7b';
-import { createLiveAppChat } from './live-app-chat.mjs?v=9636b942';
+import { createLiveAppChat } from './live-app-chat.mjs?v=25bd59aa';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -73,7 +73,13 @@ const connectedTools = (state) => state.tools.filter(({ status }) => status === 
 const countLabel = (count) => `${count} tool${count === 1 ? '' : 's'}`;
 
 function updateConversation(change, forceScroll = false) {
-  chatScroll.update(change, forceScroll);
+  chatScroll.update(() => {
+    change();
+    const content = byId('conversation-content');
+    content.querySelector('.conversation-tail')?.classList.remove('conversation-tail');
+    const blocks = [...content.querySelectorAll('.agent-message, .user-message, .connection-box, .activity, .live-app-offer')];
+    blocks.findLast((element) => element.getClientRects().length > 0)?.classList.add('conversation-tail');
+  }, forceScroll);
 }
 
 function later(callback, delay) {

@@ -22,10 +22,8 @@
 .agent-chip { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 1px 2px #0f11280a; font-size: 14px; line-height: 1.43; font-weight: 500; color: #15171b; letter-spacing: 0; margin: 0; background: #fff; }
 .agent-chip svg { width: 18px; height: 18px; }
 .sidebar-toggle, .close-sidebar { display: none; }
-.back-home { position: absolute; top: 18px; right: 22px; width: 36px; height: 36px; display: grid; place-items: center; color: #777780; border-radius: 8px; }
-.back-home:hover { background: var(--soft); }
-.back-home svg, .sidebar-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.conversation-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 10px 24px 8px; scrollbar-width: none; overscroll-behavior-y: contain; overflow-anchor: none; scroll-behavior: auto; }
+.sidebar-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.conversation-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 10px 24px 80px; scrollbar-width: none; overscroll-behavior-y: contain; overflow-anchor: none; scroll-behavior: auto; }
 .conversation-scroll::-webkit-scrollbar { display: none; }
 .conversation-content { max-width: 810px; margin: 0 auto; }
 .agent-message { margin: 0 0 16px; font-size: 14px; line-height: 1.375; color: #24242a; white-space: pre-line; overflow-wrap: anywhere; }
@@ -61,10 +59,11 @@
 .defer-app { padding: 4px 0; color: #858391; font-size: 14px; line-height: 1.5; }
 .defer-app:hover:not(:disabled) { color: #333444; }
 .defer-app:disabled { cursor: default; opacity: .6; }
-.live-app-actions .connect-button:disabled { cursor: default; background: #f2f1f4; color: #73717f; }
+.live-app-actions .connect-button:disabled { cursor: default; }
 .crm-box, .crm-activity { width: min(613px, 100%); }
 .crm-box .connection-footer { padding: 3px 22px; }
 #live-app-complete, .chat-history > :last-child { margin-bottom: 0; }
+.conversation-tail { margin-bottom: 0 !important; }
 .live-app-panel { position: fixed; inset: 0 0 0 auto; width: calc((100vw - 48px) / 2); height: 100dvh; display: flex; flex-direction: column; border-left: 1px solid #e6e6e6; background: #fff; z-index: 25; }
 .live-app-panel-toolbar { height: 32px; flex-shrink: 0; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; }
 .live-app-panel-toolbar button { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 6px; }
@@ -101,7 +100,6 @@
   .close-sidebar { font-size: 24px; color: #777585; }
   .chat-header { height: 74px; padding-top: 14px; }
   .agent-chip { font-size: 14px; padding: 12px 14px; }
-  .back-home { right: 10px; }
   .conversation-scroll { padding-left: 20px; padding-right: 20px; }
   .agent-message { font-size: 14px; line-height: 1.5; }
   .chat-footer { padding-left: 16px; padding-right: 16px; }
