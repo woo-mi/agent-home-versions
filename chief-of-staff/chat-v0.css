@@ -156,6 +156,12 @@
   line-height: 21px;
 }
 
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete) .connection-name {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
 :where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-setup-offer, #agent-report-card) .connect-button {
   min-height: 29px;
   padding: 6px 10px;
@@ -201,7 +207,7 @@
 
 :where(.chat-page[data-chat-version="v0"]) .live-app-panel[data-view="app"][data-app-version="v0"] .live-app-panel-toolbar,
 .live-app-panel[data-view="app"][data-app-version="v2"] .live-app-panel-toolbar {
-  top: 11px;
+  top: 4px;
   right: 24px;
 }
 

@@ -7,7 +7,7 @@ const zoomLabel = document.getElementById('canvas-zoom');
 const status = document.getElementById('canvas-status');
 let scale = 1;
 let x = 0;
-let y = 52;
+let y = 48;
 let lastWidth = 0;
 let initialized = false;
 let drag = null;
@@ -34,7 +34,7 @@ function resetView(fit = false) {
   if (!canvas.clientWidth || !canvas.clientHeight) return;
   scale = fit ? Math.max(minScale, Math.min(1, (canvas.clientWidth - 64) / nodes.offsetWidth, (canvas.clientHeight - 104) / nodes.offsetHeight)) : 1;
   x = (canvas.clientWidth - nodes.offsetWidth * scale) / 2;
-  y = fit ? Math.max(24, (canvas.clientHeight - 52 - nodes.offsetHeight * scale) / 2) : 52;
+  y = fit ? Math.max(24, (canvas.clientHeight - 52 - nodes.offsetHeight * scale) / 2) : 48;
   initialized = true;
   render(true);
 }
