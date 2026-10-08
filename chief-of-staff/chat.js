@@ -1,14 +1,13 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 
-/* Conversation timing: brief pause → steady text stream → next paragraph
- * → reveal tools. Replies think briefly, then stream in the same way.
+/* Conversation timing: brief pause → complete sentence → pause → next sentence.
+ * Every sentence appears at once, without typing or entrance animations.
  * Connection/status labels remain immediate so clicks always feel responsive. */
 const TIMING = Object.freeze({
   openingPause: 700,
-  paragraphPause: 600,
+  paragraphPause: 1400,
   toolsPause: 650,
-  streamInterval: 40,
-  streamCharacters: 2,
+  sentencePause: 1400,
   replyPause: 1300,
   replyLengthPause: 6,
   maxReplyLengthPause: 900,
@@ -114,22 +113,20 @@ function streamMessage(element, text, onComplete = () => {}) {
   stopStreaming(element);
   const token = {};
   streams.set(element, token);
-  const characters = Array.from(text);
+  const sentences = [...new Intl.Segmenter('en', { granularity: 'sentence' }).segment(text)]
+    .map(({ segment }) => segment);
   const textNode = document.createTextNode('');
   let position = 0;
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function nextChunk() {
+  function nextSentence() {
     if (streams.get(element) !== token) return;
-    const end = reducedMotion ? characters.length : position + TIMING.streamCharacters;
-    const chunk = characters.slice(position, end).join('');
-    position = end;
-    updateConversation(() => { textNode.appendData(chunk); });
-    if (position >= characters.length) {
+    const sentence = sentences[position++] || '';
+    updateConversation(() => { textNode.appendData(sentence); });
+    if (position >= sentences.length) {
       stopStreaming(element);
       onComplete();
       return;
     }
-    later(nextChunk, TIMING.streamInterval);
+    later(nextSentence, TIMING.sentencePause);
   }
   streamQueue.push({ element, token, start: () => {
     updateConversation(() => {
@@ -143,7 +140,7 @@ function streamMessage(element, text, onComplete = () => {}) {
       element.dataset.streaming = 'true';
       reveal(element);
     });
-    nextChunk();
+    nextSentence();
   } });
   startNextStream();
 }
