@@ -20,11 +20,11 @@
         margin: 0;
       }
 
-      html { font-family: Inter, system-ui, sans-serif; color: #171717; background: #fff; scrollbar-width: none; }
+      html { font-synthesis: none; -webkit-font-smoothing: antialiased; font-family: Inter, system-ui, sans-serif; color: #171717; background: #fff; scrollbar-width: none; }
       html::-webkit-scrollbar { display: none; }
       body { min-width: 280px; }
       .preview-shell { position: relative; width: 100%; min-height: 100vh; padding-top: 44px; }
-      [data-pencil-id="tQcVy"] { position: relative !important; left: auto !important; top: auto !important; width: 100% !important; height: auto !important; min-height: 2256px; overflow: visible !important; border: 0 !important; }
+      [data-pencil-id="tQcVy"] { position: relative !important; left: auto !important; top: auto !important; width: 100% !important; height: auto !important; overflow: visible !important; border: 0 !important; }
       [data-pencil-id="LTCxO"] { border: 0 !important; box-shadow: inset 0 -1px #e6e6e6; overflow-x: auto; scrollbar-width: thin; }
       [data-pencil-id="U5IT6"] { border: 0 !important; box-shadow: inset 0 -2px #171717; }
       [data-pencil-id="xXMQU"] { min-width: 0; }
@@ -290,7 +290,7 @@
                 User progression through activation · last 90 days
               </div>
             </div>
-            <div class="chart-scroll" role="region" tabindex="0" aria-label="Trial-to-paid conversion chart"><div
+            <div class="chart-scroll" role="region" tabindex="0" aria-label="Trial-to-paid conversion chart" data-chart-width="606" data-chart-max-width="520" data-chart-readable-labels><div
               data-pencil-id="S91fpZ"
               data-pencil-name="Funnel · extracted data visualization · editable"
               style="background-color: #FFFFFF; box-sizing: border-box; flex-shrink: 0; height: 388.164px; position: relative; width: 100%"
@@ -776,7 +776,7 @@
                 </div>
               </div>
             </div>
-            <div class="chart-scroll" role="region" tabindex="0" aria-label="Shopper journey flow chart"><div
+            <div class="chart-scroll" role="region" tabindex="0" aria-label="Shopper journey flow chart" data-chart-width="606"><div
               data-pencil-id="FXLXn"
               data-pencil-name="Editable chart or icon"
               style="box-sizing: border-box; flex-shrink: 0; height: 380px; position: relative; width: 100%"
@@ -1564,7 +1564,7 @@
                   </div>
                 </div>
               </div>
-              <div class="chart-scroll" role="region" tabindex="0" aria-label="Checkout funnel chart"><div
+              <div class="chart-scroll" role="region" tabindex="0" aria-label="Checkout funnel chart" data-chart-width="606"><div
                 data-pencil-id="S9memt"
                 data-pencil-name="Editable chart or icon"
                 style="box-sizing: border-box; flex-shrink: 0; height: 224px; position: relative; width: 100%"
@@ -1791,7 +1791,7 @@
                   Daily orders · Dec 17 → Jan 16
                 </div>
               </div>
-              <div class="chart-scroll" role="region" tabindex="0" aria-label="New versus returning orders chart"><div
+              <div class="chart-scroll" role="region" tabindex="0" aria-label="New versus returning orders chart" data-chart-width="606"><div
                 data-pencil-id="tGenX"
                 data-pencil-name="Editable chart or icon"
                 style="box-sizing: border-box; flex-shrink: 0; height: 240px; position: relative; width: 606px"
@@ -2065,34 +2065,6 @@
         
       </div>
     </main>
-    <script>
-      // The exported chart coordinates extend to 603px, including every label.
-      // Scale the whole canvas uniformly so wider cards do not leave empty space.
-      const chartWidth = 606;
-      const charts = [...document.querySelectorAll('.chart-scroll')];
-      for (const region of charts) {
-        const canvas = region.firstElementChild;
-        const chartHeight = Number.parseFloat(canvas.style.height);
-        region.style.aspectRatio = `${chartWidth} / ${chartHeight}`;
-        Object.assign(canvas.style, {
-          position: 'absolute',
-          left: '0',
-          top: '0',
-          width: `${chartWidth}px`,
-          transformOrigin: 'top left',
-        });
-      }
-      function fitChart(region) {
-        const scale = region.clientWidth / chartWidth;
-        if (scale > 0) region.firstElementChild.style.transform = `scale(${scale})`;
-      }
-      const chartResize = new ResizeObserver((entries) => {
-        for (const { target } of entries) fitChart(target);
-      });
-      for (const region of charts) {
-        fitChart(region);
-        chartResize.observe(region);
-      }
-    </script>
+    <script src="app-chart-layout.js?v=ad399144"></script>
   </body>
 </html>
