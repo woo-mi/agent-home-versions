@@ -1,6 +1,6 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=50c6ed7b';
-import { createLiveAppChat } from './live-app-chat.mjs?v=eef1b18b';
+import { createLiveAppChat } from './live-app-chat.mjs?v=dec58b7d';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.

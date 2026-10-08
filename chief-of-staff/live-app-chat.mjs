@@ -100,7 +100,7 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
     if (state.stage === 'skipped') {
       streamMessage(result, 'We can come back to your CRM later. Connect HubSpot or Salesforce when you’re ready to build the app with your sales data.');
     } else if (state.stage === 'building') {
-      streamMessage(result, 'Succeed. The agent reads the CRM data and builds the app…');
+      streamMessage(result, 'Succeed. The agent reads the CRM data and builds the app.');
     } else if (state.stage === 'complete') {
       streamMessage(complete, 'The setup for your Weekly Sales Pipeline Review App is complete.');
     }
