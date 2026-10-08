@@ -3,7 +3,7 @@ import { createVersionMenu } from './version-menu.mjs?v=76591447';
 const VERSIONS = new Set(['v0', 'v1', 'v2']);
 
 /** Compare chat widths while keeping the same conversation and draft. */
-export function createChatVersions({ update }) {
+export function createChatVersions({ update, onChange = () => {} }) {
   const composer = document.getElementById('chat-form');
   const menu = createVersionMenu({
     controlId: 'chat-version-control',
@@ -23,6 +23,7 @@ export function createChatVersions({ update }) {
   function select(version, updateUrl = false) {
     if (!VERSIONS.has(version)) return;
     update(() => { document.body.dataset.chatVersion = version; });
+    onChange(version);
     menu.setSelection(version, `Chat ${version}`, `Chat layout ${version}`);
     if (updateUrl) {
       const url = new URL(location.href);

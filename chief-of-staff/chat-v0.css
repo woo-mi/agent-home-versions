@@ -1,57 +1,57 @@
-/* Updated “2 Agent Chat connect”; previous comparison versions stay unchanged. */
+/* Updated connect and live-app frames for Chat v0. */
 .chat-page[data-chat-version="v0"]:not(.live-app-open) {
   --chat-text-width: 748px;
   --chat-card-width: 613px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .agent-chip {
+:where(.chat-page[data-chat-version="v0"]) .agent-chip {
   height: 32px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .conversation-scroll {
+:where(.chat-page[data-chat-version="v0"]) .conversation-scroll {
   padding-top: 42px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .agent-message {
+:where(.chat-page[data-chat-version="v0"]) .agent-message {
   margin-bottom: 24px;
   font-size: 14px;
   line-height: 19px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box {
+:where(.chat-page[data-chat-version="v0"]) #connection-box {
   margin: 24px 0;
   border: 0;
   box-shadow: inset 0 0 0 1px #edf0f5;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row {
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-row {
   min-height: 53px;
   padding: 12px 14px;
   border-bottom: 0;
   box-shadow: none;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-rows > :nth-child(4) {
+:where(.chat-page[data-chat-version="v0"]) #connection-rows > :nth-child(4) {
   min-height: 54px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-rows > :last-child {
+:where(.chat-page[data-chat-version="v0"]) #connection-rows > :last-child {
   box-shadow: inset 0 -1px 0 #e8e8ea;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-name {
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-name {
   gap: 12px;
   font-size: 13px;
   line-height: 20px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .tool-logo {
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-name > svg {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row .connect-button {
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-row .connect-button {
   min-width: 69px;
   min-height: 29px;
   padding: 6px 10px;
@@ -59,25 +59,25 @@
   line-height: 17px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row .connect-button[data-state="connecting"],
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row .connect-button[data-state="connected"] {
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-row .connect-button[data-state="connecting"],
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-row .connect-button[data-state="connected"] {
   box-shadow: inset 0 0 0 1px #e4e6ea;
   color: #000;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connect-button[data-state="connecting"] {
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connect-button[data-state="connecting"] {
   min-width: 98px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connect-button[data-state="connecting"] .state-icon {
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connect-button[data-state="connecting"] .state-icon {
   display: none;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connect-button[data-state="connected"] {
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connect-button[data-state="connected"] {
   min-width: 103px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row .connect-button[data-state="connected"] .state-icon {
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box, #live-app-offer) .connect-button[data-state="connected"] .state-icon {
   position: relative;
   width: 16px;
   height: 16px;
@@ -86,42 +86,138 @@
   transform: none;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row .connect-button[data-state="connected"] .state-icon::before {
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box, #live-app-offer) .connect-button[data-state="connected"] .state-icon::before {
   content: "";
   position: absolute;
   inset: 0;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m3.1667 8.5179 3.5 4.3154 6.1666-9.6666' stroke='%23209855' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-footer {
+:where(.chat-page[data-chat-version="v0"]) #connection-box .connection-footer {
   width: 100%;
   height: 40px;
   padding: 0 max(17px, calc(100% - 596px)) 0 0;
   box-shadow: inset 0 -1px 0 #e8e8ea;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-footer button {
+:where(.chat-page[data-chat-version="v0"]) #connection-box .connection-footer button {
   padding: 0;
   color: #24242a80;
   line-height: 21px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .connection-confirmation {
+:where(.chat-page[data-chat-version="v0"]) .connection-confirmation {
   margin-bottom: 24px;
   font-size: 14px;
   line-height: 19px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .activity,
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .user-message {
+:where(.chat-page[data-chat-version="v0"]) .activity,
+:where(.chat-page[data-chat-version="v0"]) .user-message {
   margin-bottom: 24px;
 }
 
-:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .live-app-offer {
+:where(.chat-page[data-chat-version="v0"]) .live-app-offer {
   margin: 24px 0;
+}
+
+/* App recommendations and CRM use the lighter card treatment in screens 3–4. */
+:where(.chat-page[data-chat-version="v0"]) #crm-box {
+  margin: 24px 0;
+  border: 0;
+  box-shadow: inset 0 0 0 .5px #e4e6ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #crm-rows > :last-child {
+  box-shadow: inset 0 -.5px 0 #e8e8ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #crm-box .connection-footer {
+  min-height: 39px;
+  padding: 9px 22px;
+  box-shadow: inset 0 -1px 0 #e8e8ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #crm-box .connection-footer button {
+  padding: 0;
+  color: #24242a80;
+  line-height: 21px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete) {
+  min-height: 54px;
+  padding: 12.5px 14px;
+  border: 0;
+  box-shadow: inset 0 0 0 .5px #e4e6ea, inset 0 -1px 0 #e8e8ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete) .connection-name {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete) .connect-button {
+  min-height: 29px;
+  padding: 6px 10px;
+  border: 0;
+  line-height: 17px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #build-live-app[data-state="connected"],
+:where(.chat-page[data-chat-version="v0"]) #build-live-app[data-state="connecting"] {
+  color: #000;
+  box-shadow: inset 0 0 0 1px #e4e6ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #build-live-app[data-state="connecting"] .state-icon {
+  display: none;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .activity summary {
+  min-height: 19px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #24242a80;
+}
+
+/* The open app groups paragraphs more closely, with 24px between sections. */
+:where(.chat-page[data-chat-version="v0"].live-app-open) .conversation-scroll {
+  padding-top: 24px;
+}
+
+:where(.chat-page[data-chat-version="v0"].live-app-open) .agent-message,
+:where(.chat-page[data-chat-version="v0"].live-app-open) .connection-confirmation,
+:where(.chat-page[data-chat-version="v0"].live-app-open) #activity {
+  margin-bottom: 16px;
+}
+
+:where(.chat-page[data-chat-version="v0"].live-app-open) #connection-rows > :last-child {
+  box-shadow: inset 0 -.5px 0 #e8e8ea;
+}
+
+:where(.chat-page[data-chat-version="v0"].live-app-open) .live-app-panel {
+  border-left-width: .5px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .live-app-panel[data-view="app"][data-app-version="v0"] .live-app-panel-toolbar {
+  top: 11px;
+  right: 24px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open):has(#live-app-offer:not([hidden]))) .chat-header {
+  padding-top: 17px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open):has(#live-app-offer:not([hidden]))) .conversation-scroll {
+  padding-top: 38px;
 }
 
 :where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .chat-footer .composer {
   padding-top: 15px;
   padding-bottom: 13px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:has(#live-app-offer:not([hidden]))) .chat-footer .composer {
+  padding-top: 14px;
+  padding-bottom: 14px;
 }

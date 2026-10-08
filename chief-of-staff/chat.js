@@ -1,8 +1,8 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=ce73c21e';
-import { createLiveAppChat } from './live-app-chat.mjs?v=4a79abc6';
-import { createLiveAppVersions } from './live-app-versions.mjs?v=81367341';
-import { createChatVersions } from './chat-versions.mjs?v=b12b3e05';
+import { createLiveAppChat } from './live-app-chat.mjs?v=49dde280';
+import { createLiveAppVersions } from './live-app-versions.mjs?v=bd00ef23';
+import { createChatVersions } from './chat-versions.mjs?v=988a802b';
 import { createAgentSetupChat } from './agent-setup-chat.mjs?v=28228c37';
 import { createReportViews } from './report-views.mjs?v=3e53c1e2';
 
@@ -81,9 +81,9 @@ function updateConversation(change, forceScroll = false) {
   chatScroll.update(() => {
     change();
     const content = byId('conversation-content');
-    const connectingLabel = document.body.dataset.chatVersion === 'v0' && !document.body.classList.contains('live-app-open')
+    const connectingLabel = document.body.dataset.chatVersion === 'v0'
       ? 'Connecting...' : 'Connecting…';
-    for (const label of content.querySelectorAll('#connection-box [data-state="connecting"] .state-label')) {
+    for (const label of content.querySelectorAll('.connection-box [data-state="connecting"] .state-label')) {
       if (label.textContent !== connectingLabel) label.textContent = connectingLabel;
     }
     content.querySelector('.conversation-tail')?.classList.remove('conversation-tail');
@@ -580,8 +580,8 @@ function prepareLiveAppPreview() {
   reportViews.prepare();
 }
 
-const chatVersions = createChatVersions({ update: updateConversation });
-const appVersions = createLiveAppVersions({ previews: { v1: 'live-app-preview.html?v=0ab9a542', v2: 'live-app-preview-v2.html?v=ef845f18' }, onClose: () => setLiveAppOpen(false) });
+const appVersions = createLiveAppVersions({ previews: { v0: 'live-app-preview-v0.html?v=60b0a859', v1: 'live-app-preview.html?v=0ab9a542', v2: 'live-app-preview-v2.html?v=ef845f18' }, onClose: () => setLiveAppOpen(false) });
+const chatVersions = createChatVersions({ update: updateConversation, onChange: appVersions.setChatVersion });
 const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=3c174308', workflow: 'workflow-preview.html?v=93006e22' }, onClose: () => setLiveAppOpen(false) });
 const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onScheduleChange: reportViews.setSchedule, onOpenReport: () => {
   reportViews.open(agentSetup.snapshot().schedule);

@@ -54,6 +54,7 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
     stateIcon.className = 'state-icon';
     stateIcon.setAttribute('aria-hidden', 'true');
     const label = document.createElement('span');
+    label.className = 'state-label';
     button.append(stateIcon, label);
     button.addEventListener('click', () => connect(tool.id));
     row.append(name, button);

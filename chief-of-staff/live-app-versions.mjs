@@ -4,8 +4,9 @@ import { createVersionMenu } from './version-menu.mjs?v=76591447';
 export function createLiveAppVersions({ previews, onClose }) {
   let active = true;
   let selectedVersion = 'v1';
+  let chatVersion = 'v1';
   const frames = Object.entries(previews).map(([version, source]) => ({
-    version, source, element: document.getElementById(version === 'v1' ? 'live-app-preview' : 'live-app-preview-v2'),
+    version, source, element: document.getElementById(version === 'v1' ? 'live-app-preview' : `live-app-preview-${version}`),
   }));
   const menu = createVersionMenu({
     controlId: 'app-version-control',
@@ -17,8 +18,10 @@ export function createLiveAppVersions({ previews, onClose }) {
   function select(version, updateUrl = false) {
     if (!previews[version]) return;
     selectedVersion = version;
+    const previewVersion = chatVersion === 'v0' && version === 'v1' ? 'v0' : version;
+    document.getElementById('live-app-panel').dataset.appVersion = previewVersion;
     for (const frame of frames) {
-      const inactive = !active || frame.version !== version;
+      const inactive = !active || frame.version !== previewVersion;
       frame.element.classList.toggle('app-preview-inactive', inactive);
       frame.element.inert = inactive;
       frame.element.setAttribute('aria-hidden', String(inactive));
@@ -47,8 +50,9 @@ export function createLiveAppVersions({ previews, onClose }) {
     handleEscape: menu.handleEscape,
     setVisible: menu.setVisible,
     setActive(value) { active = value; select(selectedVersion); },
+    setChatVersion(value) { chatVersion = value; select(selectedVersion); },
     prepare() {
-      // Both documents stay mounted so their scroll positions survive comparison.
+      // Previews stay mounted so their scroll positions survive comparison.
       for (const { element, source } of frames) {
         if (!element.hasAttribute('src')) element.src = source;
       }
