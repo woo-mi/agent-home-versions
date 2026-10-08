@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=ab466a4d">
-  <link rel="stylesheet" href="chat.css?v=a4b8db11">
-  <script type="module" src="chat.js?v=8539361a"></script>
+  <link rel="stylesheet" href="chat.css?v=c857ada4">
+  <script type="module" src="chat.js?v=3d2522c5"></script>
 </head>
 <body class="chat-page">
   <a class="skip-link" href="#chat-prompt">Skip to conversation</a>
@@ -52,6 +52,7 @@
           <div id="connection-rows"></div>
           <div class="connection-footer"><button id="skip-connections" type="button">Skip for now</button></div>
         </section>
+        <p class="agent-message" id="connection-status" role="status" aria-atomic="true" hidden></p>
         <p class="agent-message" id="review-message" hidden>Thank you. I’ll do a deep dive. Back in a few minutes with some ideas for you.</p>
         <div class="connection-feedback" id="connection-feedback" hidden>
           <p class="connection-confirmation" id="connection-confirmation" role="status" aria-live="polite" hidden></p>

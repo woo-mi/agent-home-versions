@@ -23,9 +23,8 @@ const prompt = byId('chat-prompt');
 const sendButton = byId('chat-send');
 const form = byId('chat-form');
 const connectionBox = byId('connection-box');
+const connectionStatus = byId('connection-status');
 const skipButton = byId('skip-connections');
-const question = byId('context-question');
-const initialQuestion = question.textContent;
 const introMessages = [...document.querySelectorAll('.intro-message')];
 const introTexts = introMessages.map((element) => element.textContent);
 const reviewMessage = byId('review-message');
@@ -334,14 +333,15 @@ function render(state) {
     activityCalls.replaceChildren(...calls);
 
     if (state.pendingCount) {
-      question.textContent = state.connectedCount
+      connectionStatus.textContent = state.connectedCount
         ? `${countLabel(state.connectedCount)} connected. I’m getting context while the remaining steps finish.`
         : 'Connecting your tools. You can connect another source while this one gets ready.';
     } else if (state.connectedCount) {
-      question.textContent = `${countLabel(state.connectedCount)} connected. You can add more context whenever you like.`;
+      connectionStatus.textContent = `${countLabel(state.connectedCount)} connected. You can add more context whenever you like.`;
     } else {
-      question.textContent = state.skipped ? 'We can start without connected tools. Tell me what you’d like to focus on.' : initialQuestion;
+      connectionStatus.textContent = state.skipped ? 'We can start without connected tools. Tell me what you’d like to focus on.' : '';
     }
+    connectionStatus.hidden = !connectionStatus.textContent;
 
     if (state.complete) {
       const idea = suggestionFor(state);
@@ -464,8 +464,7 @@ function resetConversation() {
   history.replaceChildren();
   prompt.value = '';
   statusMessage.textContent = '';
-  question.textContent = initialQuestion;
-  [...introMessages, connectionBox, reviewMessage, feedback, recommendation].forEach((element) => {
+  [...introMessages, connectionBox, connectionStatus, reviewMessage, feedback, recommendation].forEach((element) => {
     element.hidden = true;
   });
   activity.open = false;

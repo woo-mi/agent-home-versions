@@ -47,10 +47,9 @@
 .activity { width: min(460px, 100%); margin-bottom: 18px; color: #73717f; }
 .activity summary { display: flex; align-items: center; gap: 8px; min-height: 32px; width: fit-content; max-width: 100%; cursor: pointer; list-style: none; font-size: 13px; line-height: 1.5; border-radius: 5px; }
 .activity summary::-webkit-details-marker { display: none; }
-.activity-symbol { width: 12px; height: 12px; flex-shrink: 0; border: 1px solid #bcbac5; border-radius: 50%; }
-.activity[data-busy="true"] .activity-symbol { border-color: #aaa8b3; }
-.activity[data-complete="true"] .activity-symbol { width: 11px; height: 6px; border: 0; border-bottom: 1.25px solid #6e8877; border-left: 1.25px solid #6e8877; border-radius: 0; transform: translateY(-2px) rotate(-45deg); }
-.activity[data-busy="true"] .activity-label { background: linear-gradient(105deg, #73717f 30%, #777480 45%, #45424f 50%, #777480 55%, #73717f 70%); background-size: 230% 100%; background-clip: text; -webkit-background-clip: text; color: transparent; animation: activity-shimmer 2.3s ease-in-out infinite; }
+.activity-symbol { display: none; flex-shrink: 0; }
+.activity[data-complete="true"] .activity-symbol { display: block; width: 11px; height: 6px; border-bottom: 1.25px solid #6e8877; border-left: 1.25px solid #6e8877; transform: translateY(-2px) rotate(-45deg); }
+.activity[data-busy="true"] .activity-label { background: linear-gradient(105deg, #73717f 35%, #96929f 44%, #c5c2cc 50%, #96929f 56%, #73717f 65%); background-size: 230% 100%; background-clip: text; -webkit-background-clip: text; color: transparent; animation: activity-shimmer 2.8s linear infinite; }
 .activity-calls { margin: 8px 0 0 5px; padding: 0 0 0 16px; border-left: 1px solid #e4e3e9; list-style: none; }
 .activity-call { padding: 7px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 12px; line-height: 1.5; }
 .call-name { color: #73717f; }
