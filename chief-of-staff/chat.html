@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=ab466a4d">
-  <link rel="stylesheet" href="chat.css?v=b83b3994">
-  <script type="module" src="chat.js?v=fb3a4f5a"></script>
+  <link rel="stylesheet" href="chat.css?v=15fc177e">
+  <script type="module" src="chat.js?v=74b147c3"></script>
 </head>
 <body class="chat-page">
   <a class="skip-link" href="#chat-prompt">Skip to conversation</a>
@@ -121,7 +121,19 @@
   </main>
   <aside class="live-app-panel" id="live-app-panel" aria-label="Weekly Sales Pipeline Review App preview" aria-hidden="true" inert>
     <div class="live-app-panel-toolbar"><button id="close-live-app" type="button" aria-label="Close app preview" title="Close app preview"><svg viewBox="0 0 24 24" aria-hidden="true"><path transform="translate(2.75 4.75)" d="M13 .25v14M0 12.5V2C0 .89543 .89543 0 2 0h14.5c1.10457 0 2 .89543 2 2v10.5c0 1.10457-.89543 2-2 2H2c-1.10457 0-2-.89543-2-2Z"/></svg></button></div>
-    <iframe id="live-app-preview" title="Weekly Sales Pipeline Review App"></iframe>
+    <iframe id="live-app-preview" title="Weekly Sales Pipeline Review App · v1"></iframe>
+    <iframe id="live-app-preview-v2" class="app-preview-inactive" title="Weekly Sales Pipeline Review App · v2" aria-hidden="true" inert></iframe>
   </aside>
+  <div class="app-version-control" id="app-version-control" hidden>
+    <button class="app-version-trigger" id="app-version-trigger" type="button" aria-label="App version v1" aria-haspopup="menu" aria-controls="app-version-menu" aria-expanded="false">
+      <svg class="layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-9 5 9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg>
+      <span id="app-version-label">v1</span>
+      <svg class="app-version-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m4 7 6 6 6-6"/></svg>
+    </button>
+    <ul class="app-version-menu" id="app-version-menu" role="menu" aria-label="App screen versions" hidden>
+      <li role="presentation"><button type="button" role="menuitemradio" aria-checked="true" tabindex="-1" data-app-version="v1" title="4 Agent Chat open live apps v1">v1</button></li>
+      <li role="presentation"><button type="button" role="menuitemradio" aria-checked="false" tabindex="-1" data-app-version="v2" title="5 Agent Chat open live apps v2">v2</button></li>
+    </ul>
+  </div>
 </body>
 </html>

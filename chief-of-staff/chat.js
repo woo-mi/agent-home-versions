@@ -1,6 +1,7 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=50c6ed7b';
 import { createLiveAppChat } from './live-app-chat.mjs?v=a8bdc8ad';
+import { createLiveAppVersions } from './live-app-versions.mjs?v=0a4c5e0c';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -527,7 +528,7 @@ function setLiveAppOpen(open, restoreFocus = true) {
   const immediate = !open && !restoreFocus;
   if (immediate) document.body.classList.add('live-app-reset');
   if (open) prepareLiveAppPreview();
-  else if (restoreFocus && liveAppPanel.contains(document.activeElement)) {
+  else if (restoreFocus && (liveAppPanel.contains(document.activeElement) || byId('app-version-control').contains(document.activeElement))) {
     byId('open-live-app').focus({ preventScroll: true });
   }
   updateConversation(() => {
@@ -535,6 +536,7 @@ function setLiveAppOpen(open, restoreFocus = true) {
     liveAppPanel.inert = !open;
     liveAppPanel.setAttribute('aria-hidden', String(!open));
     byId('open-live-app').setAttribute('aria-expanded', String(open));
+    appVersions.setVisible(open);
   });
   if (immediate) {
     // Commit the reset before restoring transitions; no animation can leak into a new chat.
@@ -545,20 +547,12 @@ function setLiveAppOpen(open, restoreFocus = true) {
 }
 
 function prepareLiveAppPreview() {
-  const preview = byId('live-app-preview');
-  if (!preview.hasAttribute('src')) preview.src = 'live-app-preview.html?v=0f057ec4';
+  appVersions.prepare();
 }
 
+const appVersions = createLiveAppVersions({ previews: { v1: 'live-app-preview.html?v=0f057ec4', v2: 'live-app-preview-v2.html?v=384079f4' }, onClose: () => setLiveAppOpen(false) });
 const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true), onReady: prepareLiveAppPreview });
 byId('close-live-app').addEventListener('click', () => setLiveAppOpen(false));
-byId('live-app-preview').addEventListener('load', () => {
-  byId('live-app-preview').contentDocument?.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      setLiveAppOpen(false);
-    }
-  });
-});
 sidebar.querySelectorAll('.sidebar-item').forEach((item) => {
   if (!item.hasAttribute('aria-label')) item.setAttribute('aria-label', item.textContent.trim());
 });
@@ -623,6 +617,7 @@ byId('close-sidebar').addEventListener('click', () => setSidebar(false));
 backdrop.addEventListener('click', () => setSidebar(false));
 sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setSidebar(false, false)));
 document.addEventListener('keydown', (event) => {
+  if (appVersions.handleEscape(event)) return;
   if (event.key === 'Escape' && document.body.classList.contains('live-app-open')) {
     event.preventDefault();
     setLiveAppOpen(false);
