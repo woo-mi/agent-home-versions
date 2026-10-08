@@ -1,9 +1,9 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=ce73c21e';
-import { createLiveAppChat } from './live-app-chat.mjs?v=a8bdc8ad';
+import { createLiveAppChat } from './live-app-chat.mjs?v=4a79abc6';
 import { createLiveAppVersions } from './live-app-versions.mjs?v=06120411';
 import { createChatVersions } from './chat-versions.mjs?v=02619397';
-import { createAgentSetupChat } from './agent-setup-chat.mjs?v=e403012e';
+import { createAgentSetupChat } from './agent-setup-chat.mjs?v=238c571e';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -80,7 +80,7 @@ function updateConversation(change, forceScroll = false) {
     change();
     const content = byId('conversation-content');
     content.querySelector('.conversation-tail')?.classList.remove('conversation-tail');
-    const blocks = [...content.querySelectorAll('.agent-message, .user-message, .connection-box, .activity, .live-app-offer')];
+    const blocks = [...content.querySelectorAll('.agent-message, .user-message, .connection-box, .activity, .live-app-offer, .agent-schedule-form')];
     blocks.findLast((element) => element.getClientRects().length > 0)?.classList.add('conversation-tail');
   }, forceScroll);
 }
@@ -384,7 +384,7 @@ function chooseAction(message) {
   const agentStage = agentSetup.snapshot().stage;
   if (agentStage === 'offered' || agentStage === 'deferred') {
     if (/^(?:not now|maybe later|skip(?: for now)?)[.!]?$/.test(normalized)) return { kind: 'agent-defer' };
-    if (/^(?:(?:yes|sure|okay|ok)\b|(?:please\s+)?(?:set\s+up|schedule)\b)/.test(normalized)) return { kind: 'agent-setup' };
+    if (/^(?:(?:yes|sure|okay|ok)(?:,?\s+please)?|(?:please\s+)?(?:set\s+up|create weekly update|schedule(?: it| weekly update)?))[.!]?$/.test(normalized)) return { kind: 'agent-setup' };
   }
   if (/\bconnect\b/.test(normalized) && !/\b(?:don't|do not|not)\s+connect\b/.test(normalized)) {
     const requested = ['hubspot', 'salesforce'].filter((id) => normalized.includes(id));
@@ -563,7 +563,10 @@ function prepareLiveAppPreview() {
 
 const chatVersions = createChatVersions({ update: updateConversation });
 const appVersions = createLiveAppVersions({ previews: { v1: 'live-app-preview.html?v=0ab9a542', v2: 'live-app-preview-v2.html?v=ef845f18' }, onClose: () => setLiveAppOpen(false) });
-const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later });
+const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onOpenReport: () => {
+  setLiveAppOpen(true);
+  document.querySelector('.live-app-panel iframe:not(.app-preview-inactive)')?.focus({ preventScroll: true });
+} });
 const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true), onReady: prepareLiveAppPreview });
 byId('close-live-app').addEventListener('click', () => setLiveAppOpen(false));
 sidebar.querySelectorAll('.sidebar-item').forEach((item) => {

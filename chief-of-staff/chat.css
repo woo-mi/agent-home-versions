@@ -65,10 +65,6 @@
 .crm-box .connection-footer { padding: 3px 22px; }
 .agent-setup-conversation { margin-top: 20px; }
 .agent-setup-icon { width: 24px; height: 24px; flex-shrink: 0; }
-#agent-setup-offer { padding-left: 13px; padding-right: 13px; }
-#agent-setup-offer .connection-name { line-height: 1.5; }
-#agent-setup-offer .defer-app { color: #24242a80; }
-#agent-setup-offer .connect-button { min-width: 57px; min-height: 29px; padding: 5px 9px; line-height: 17px; }
 #live-app-complete, .chat-history > :last-child { margin-bottom: 0; }
 .conversation-tail { margin-bottom: 0 !important; }
 .live-app-panel { position: fixed; inset: 0 0 0 auto; width: calc((100vw - 48px) / 2); height: 100dvh; display: flex; flex-direction: column; border-left: 1px solid #e6e6e6; background: #fff; z-index: 25; transform: translateX(100%); visibility: hidden; transition: transform var(--panel-duration) var(--panel-ease), visibility 0s linear var(--panel-duration); }
@@ -109,9 +105,13 @@
 .typing-message span { width: 8px; height: 8px; border-radius: 50%; background: #333444; }
 .chat-footer { flex-shrink: 0; padding: 0 24px 8px; background: #fff; }
 .chat-footer .composer, .chat-status { width: min(var(--chat-text-width), 100%); margin-left: auto; margin-right: auto; }
-.chat-page:not(.live-app-open) .chat-footer .composer { height: 122px; padding: 24px 20px 14px 24px; gap: 28px; border: 0; box-shadow: inset 0 0 0 1px #e9e8ed, 0 1px 2px #00000004; }
-.chat-page:not(.live-app-open) .chat-footer .composer:focus-within { box-shadow: inset 0 0 0 1px #bcbbc5, 0 1px 2px #00000004; }
-.chat-page:not(.live-app-open) .chat-footer textarea { height: 18px; min-height: 18px; }
+.chat-footer .composer { height: auto; min-height: 104px; padding: 14px 20px 14px 24px; gap: 24px; }
+.chat-footer textarea { flex: 0 0 18px; height: 18px; min-height: 18px; }
+.chat-footer .composer-tools { flex-wrap: wrap; row-gap: 10px; }
+.chat-footer .composer-right { margin-left: auto; }
+.chat-footer .mode { height: 26px; padding: 4px; line-height: 18px; }
+.chat-footer .mode:not([aria-pressed="true"]):not(:hover) { color: var(--muted); }
+.chat-footer .send-button { width: 34px; height: 34px; }
 .chat-status { margin-top: 0; margin-bottom: 8px; font-size: 12px; color: #777480; }
 .chat-status:empty { display: none; }
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -131,10 +131,14 @@
   .chat-footer { padding-left: 16px; padding-right: 16px; }
   .chat-footer .composer { min-height: 142px; padding-top: 16px; gap: 10px; }
   .chat-footer textarea { min-height: 36px; }
+  .chat-footer .mode { height: 30px; padding: 0 9px; }
   .connect-button { min-height: 36px; }
   .connection-row { min-height: 60px; padding: 10px 12px; }
   .activity summary { min-height: 40px; }
   .activity-call { align-items: flex-start; }
+}
+@media (max-width: 650px) {
+  .chat-footer .send-button { width: 40px; height: 40px; }
 }
 @media (max-width: 380px) {
   .conversation-scroll { padding-left: 16px; padding-right: 16px; }

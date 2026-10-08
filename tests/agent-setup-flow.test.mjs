@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createAgentSetupFlow } from '../chief-of-staff/agent-setup-flow.mjs';
+import { createAgentSetupFlow, DEFAULT_AGENT_SCHEDULE, normalizeAgentSchedule } from '../chief-of-staff/agent-setup-flow.mjs';
 
 function fakeClock() {
   let current = 0;
@@ -40,7 +40,7 @@ function createHarness(options = {}) {
 
 function reachOffer({ clock, flow }) {
   flow.setViewing(true);
-  clock.tick(12000);
+  clock.tick(5000);
   assert.equal(flow.snapshot().stage, 'offered');
 }
 
@@ -56,17 +56,17 @@ test('starts waiting without timers or notifications and returns defensive plain
   assert.equal(clock.pending, 0);
   assert.deepEqual(changes, []);
   flow.setViewing(true);
-  clock.tick(12000);
+  clock.tick(5000);
   assert.equal(initial.stage, 'waiting');
 });
 
-test('offers once after twelve seconds of viewing and not while the app is hidden', () => {
+test('offers once after exactly five seconds of viewing and not while the app is hidden', () => {
   const harness = createHarness();
   const { clock, flow, changes } = harness;
   clock.tick(60000);
   assert.equal(flow.snapshot().stage, 'waiting');
   assert.equal(flow.setViewing(true), true);
-  clock.tick(11999);
+  clock.tick(4999);
   assert.equal(flow.snapshot().stage, 'waiting');
   clock.tick(1);
   assert.deepEqual(changes, ['offered']);
@@ -81,17 +81,17 @@ test('offers once after twelve seconds of viewing and not while the app is hidde
 test('pause and resume retain cumulative viewing time across several visits', () => {
   const { clock, flow, changes } = createHarness();
   flow.setViewing(true);
-  clock.tick(4000);
+  clock.tick(1500);
   flow.setViewing(false);
   assert.equal(clock.pending, 0);
   clock.tick(80000);
   assert.equal(flow.snapshot().stage, 'waiting');
   flow.setViewing(true);
-  clock.tick(3000);
+  clock.tick(1000);
   flow.setViewing(false);
   clock.tick(90000);
   flow.setViewing(true);
-  clock.tick(4999);
+  clock.tick(2499);
   assert.equal(flow.snapshot().stage, 'waiting');
   clock.tick(1);
   assert.deepEqual(changes, ['offered']);
@@ -102,10 +102,10 @@ test('repeated view events do not duplicate or restart the review timer', () => 
   const { clock, flow, changes } = createHarness();
   assert.equal(flow.setViewing(false), false);
   flow.setViewing(true);
-  clock.tick(6000);
+  clock.tick(2500);
   for (let count = 0; count < 5; count += 1) assert.equal(flow.setViewing(true), false);
   assert.equal(clock.pending, 1);
-  clock.tick(5999);
+  clock.tick(2499);
   assert.equal(flow.snapshot().stage, 'waiting');
   clock.tick(1);
   assert.deepEqual(changes, ['offered']);
@@ -149,6 +149,81 @@ test('setup is idempotent and finishes after its own delay even when the panel c
   assert.deepEqual(changes, ['offered', 'setting-up', 'complete']);
 });
 
+test('setup without arguments preserves the default schedule in immutable snapshots', () => {
+  const harness = createHarness();
+  const { clock, flow } = harness;
+  reachOffer(harness);
+  assert.equal('schedule' in flow.snapshot(), false);
+  assert.equal(flow.setup(), true);
+  const pending = flow.snapshot();
+  assert.deepEqual(pending, { stage: 'setting-up', schedule: {
+    day: 'Friday', time: '07:00', timezone: 'America/Los_Angeles', channel: '#sales-pipeline',
+  } });
+  assert.equal(Object.getPrototypeOf(pending.schedule), Object.prototype);
+  assert.throws(() => { pending.schedule.day = 'Monday'; }, TypeError);
+  assert.throws(() => { DEFAULT_AGENT_SCHEDULE.day = 'Monday'; }, TypeError);
+  assert.notEqual(pending.schedule, DEFAULT_AGENT_SCHEDULE);
+  assert.notEqual(pending.schedule, flow.snapshot().schedule);
+  clock.tick(2200);
+  assert.deepEqual(flow.snapshot(), { stage: 'complete', schedule: DEFAULT_AGENT_SCHEDULE });
+  assert.equal(pending.stage, 'setting-up');
+});
+
+test('a submitted schedule is copied, retained through completion, and cannot be overwritten', () => {
+  const events = [];
+  const harness = createHarness({ onChange: (state) => events.push(state) });
+  const { clock, flow } = harness;
+  reachOffer(harness);
+  const configuration = { day: 'Tuesday', time: '14:30', timezone: 'Europe/London', channel: '#revenue-ops' };
+  const expected = { ...configuration };
+  assert.equal(flow.setup(configuration), true);
+  configuration.day = 'Sunday';
+  configuration.time = '00:00';
+  configuration.timezone = 'UTC';
+  configuration.channel = '#changed';
+  assert.equal(flow.setup(configuration), false);
+  assert.equal(clock.pending, 1);
+  assert.deepEqual(flow.snapshot().schedule, expected);
+  assert.deepEqual(events[1].schedule, expected);
+  clock.tick(2200);
+  assert.equal(flow.setup(configuration), false);
+  assert.deepEqual(flow.snapshot(), { stage: 'complete', schedule: expected });
+  assert.deepEqual(events.map(({ stage }) => stage), ['offered', 'setting-up', 'complete']);
+  assert.notEqual(events[1].schedule, events[2].schedule);
+});
+
+test('invalid schedules do not consume an offer or start a setup timer', () => {
+  const harness = createHarness();
+  const { clock, flow, changes } = harness;
+  reachOffer(harness);
+  const invalid = [
+    null, [], 'Friday',
+    { day: 'Funday' }, { day: 'friday' },
+    { time: '24:00' }, { time: '12:60' }, { time: '7:00' }, { time: 700 },
+    { timezone: 'Not/A_Timezone' }, { timezone: '' }, { timezone: null },
+    { channel: '   ' }, { channel: '#sales\n#other' }, { channel: 42 },
+  ];
+  for (const configuration of invalid) {
+    assert.equal(normalizeAgentSchedule(configuration), null);
+    assert.equal(flow.setup(configuration), false);
+    assert.deepEqual(flow.snapshot(), { stage: 'offered' });
+    assert.equal(clock.pending, 0);
+  }
+  assert.deepEqual(changes, ['offered']);
+  assert.equal(flow.setup({ day: 'Monday', time: '00:00', timezone: 'UTC' }), true);
+  assert.equal(clock.pending, 1);
+});
+
+test('schedule validation supports every weekday, valid boundary times, and partial defaults', () => {
+  for (const day of ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']) {
+    assert.deepEqual(normalizeAgentSchedule({ day, time: '23:59', timezone: 'UTC', channel: ' #sales ' }), {
+      day, time: '23:59', timezone: 'UTC', channel: '#sales',
+    });
+  }
+  assert.deepEqual(normalizeAgentSchedule(), DEFAULT_AGENT_SCHEDULE);
+  assert.deepEqual(normalizeAgentSchedule({ time: '00:00' }), { ...DEFAULT_AGENT_SCHEDULE, time: '00:00' });
+});
+
 test('destroy before viewing prevents all future transitions', () => {
   const { clock, flow, changes } = createHarness();
   flow.destroy();
@@ -165,7 +240,7 @@ test('destroy before viewing prevents all future transitions', () => {
 test('destroy during review clears its timer and suppresses the offer', () => {
   const { clock, flow, changes } = createHarness();
   flow.setViewing(true);
-  clock.tick(5000);
+  clock.tick(2000);
   flow.destroy();
   assert.equal(clock.pending, 0);
   clock.tick(100000);

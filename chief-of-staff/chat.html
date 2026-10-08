@@ -9,9 +9,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=ab466a4d">
-  <link rel="stylesheet" href="chat.css?v=ef8e2cf9">
-  <script type="module" src="chat.js?v=90ec0027"></script>
+  <link rel="stylesheet" href="styles.css?v=9f201844">
+  <link rel="stylesheet" href="chat.css?v=5f351879">
+  <link rel="stylesheet" href="agent-setup.css?v=2c22a877">
+  <script type="module" src="chat.js?v=3165a4c0"></script>
 </head>
 <body class="chat-page" data-chat-version="v1">
   <a class="skip-link" href="#chat-prompt">Skip to conversation</a>
@@ -87,11 +88,66 @@
         </section>
         <section class="agent-setup-conversation" id="agent-setup-conversation" aria-label="Set up your weekly pipeline agent" hidden>
           <p class="agent-message" id="agent-setup-question" hidden></p>
-          <section class="live-app-offer" id="agent-setup-offer" aria-label="Weekly Sales Pipeline Update" hidden>
+          <p class="agent-message" id="agent-schedule-question" hidden>What time should I deliver it, and where should it go?</p>
+          <form class="agent-schedule-form" id="agent-schedule-form" aria-labelledby="agent-schedule-title" hidden>
+            <div class="agent-schedule-header">
+              <img class="agent-setup-icon" src="agent-setup-icon.svg" width="24" height="24" alt="">
+              <h2 id="agent-schedule-title">Weekly Sales Pipeline Update</h2>
+              <span class="agent-schedule-badge">Weekly</span>
+            </div>
+            <div class="agent-schedule-settings">
+              <div class="agent-schedule-row agent-schedule-timing">
+                <div class="agent-schedule-field">
+                  <label for="agent-schedule-day">Day</label>
+                  <div class="agent-schedule-select agent-schedule-with-icon">
+                    <svg class="agent-schedule-leading-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4m8-4v4M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg>
+                    <select id="agent-schedule-day" name="day"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday" selected>Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>
+                    <svg class="agent-schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </div>
+                </div>
+                <div class="agent-schedule-field">
+                  <label for="agent-schedule-time">Time</label>
+                  <div class="agent-schedule-select agent-schedule-with-icon">
+                    <svg class="agent-schedule-leading-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                    <select id="agent-schedule-time" name="time"><option value="00:00">12:00 AM</option><option value="00:30">12:30 AM</option><option value="01:00">1:00 AM</option><option value="01:30">1:30 AM</option><option value="02:00">2:00 AM</option><option value="02:30">2:30 AM</option><option value="03:00">3:00 AM</option><option value="03:30">3:30 AM</option><option value="04:00">4:00 AM</option><option value="04:30">4:30 AM</option><option value="05:00">5:00 AM</option><option value="05:30">5:30 AM</option><option value="06:00">6:00 AM</option><option value="06:30">6:30 AM</option><option value="07:00" selected>7:00 AM</option><option value="07:30">7:30 AM</option><option value="08:00">8:00 AM</option><option value="08:30">8:30 AM</option><option value="09:00">9:00 AM</option><option value="09:30">9:30 AM</option><option value="10:00">10:00 AM</option><option value="10:30">10:30 AM</option><option value="11:00">11:00 AM</option><option value="11:30">11:30 AM</option><option value="12:00">12:00 PM</option><option value="12:30">12:30 PM</option><option value="13:00">1:00 PM</option><option value="13:30">1:30 PM</option><option value="14:00">2:00 PM</option><option value="14:30">2:30 PM</option><option value="15:00">3:00 PM</option><option value="15:30">3:30 PM</option><option value="16:00">4:00 PM</option><option value="16:30">4:30 PM</option><option value="17:00">5:00 PM</option><option value="17:30">5:30 PM</option><option value="18:00">6:00 PM</option><option value="18:30">6:30 PM</option><option value="19:00">7:00 PM</option><option value="19:30">7:30 PM</option><option value="20:00">8:00 PM</option><option value="20:30">8:30 PM</option><option value="21:00">9:00 PM</option><option value="21:30">9:30 PM</option><option value="22:00">10:00 PM</option><option value="22:30">10:30 PM</option><option value="23:00">11:00 PM</option><option value="23:30">11:30 PM</option></select>
+                    <svg class="agent-schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </div>
+                </div>
+                <div class="agent-schedule-field">
+                  <label for="agent-schedule-timezone">Timezone</label>
+                  <div class="agent-schedule-select">
+                    <select id="agent-schedule-timezone" name="timezone"><option value="America/Los_Angeles" selected>America/Los_Angeles</option><option value="America/Denver">America/Denver</option><option value="America/Chicago">America/Chicago</option><option value="America/New_York">America/New_York</option><option value="UTC">UTC</option><option value="Europe/London">Europe/London</option><option value="Asia/Seoul">Asia/Seoul</option></select>
+                    <svg class="agent-schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="agent-schedule-row agent-schedule-destination">
+                <div class="agent-schedule-field">
+                  <label for="agent-schedule-delivery">Deliver to</label>
+                  <div class="agent-schedule-select">
+                    <select id="agent-schedule-delivery" name="delivery"><option value="Slack">Slack</option></select>
+                    <svg class="agent-schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </div>
+                </div>
+                <div class="agent-schedule-field">
+                  <label for="agent-schedule-channel">Channel · connected workspace</label>
+                  <div class="agent-schedule-select">
+                    <select id="agent-schedule-channel" name="channel"><option value="#sales-pipeline">#sales-pipeline</option><option value="#sales">#sales</option><option value="#revenue-leadership">#revenue-leadership</option></select>
+                    <svg class="agent-schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="agent-schedule-footer">
+                <div class="agent-schedule-summaries" aria-live="polite" aria-atomic="true"><span id="agent-schedule-summary">Every Friday at 7:00 AM</span><span id="agent-delivery-summary">Slack · #sales-pipeline</span></div>
+                <button class="connect-button" id="create-weekly-update" type="submit" data-state="idle"><span class="state-icon" aria-hidden="true"></span><span id="create-weekly-update-label" aria-live="polite" aria-atomic="true">Create weekly update</span></button>
+              </div>
+            </div>
+          </form>
+          <p class="agent-message" id="agent-setup-result" aria-live="polite" hidden></p>
+          <section class="live-app-offer" id="agent-report-card" aria-label="Weekly Sales Pipeline Update report" hidden>
             <span class="connection-name"><img class="agent-setup-icon" src="agent-setup-icon.svg" width="24" height="24" alt=""><span>Weekly Sales Pipeline Update</span></span>
-            <div class="live-app-actions"><button class="defer-app" id="defer-agent-setup" type="button">Not now</button><button class="connect-button" id="set-up-agent" type="button" data-state="idle"><span class="state-icon" aria-hidden="true"></span><span id="set-up-agent-label" aria-live="polite" aria-atomic="true">Set up</span></button></div>
+            <div class="live-app-actions"><button class="connect-button" id="open-agent-report" type="button">Open report</button></div>
           </section>
-          <p class="agent-message" id="agent-setup-result" hidden></p>
         </section>
         <div class="chat-history" id="chat-history" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions"></div>
       </div>

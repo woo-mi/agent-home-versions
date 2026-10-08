@@ -1,24 +1,55 @@
+export const DEFAULT_AGENT_SCHEDULE = Object.freeze({
+  day: 'Friday',
+  time: '07:00',
+  timezone: 'America/Los_Angeles',
+  channel: '#sales-pipeline',
+});
+
+const DAYS = new Set(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
+
+/** Copy and validate form values; omitted fields use the prototype defaults. */
+export function normalizeAgentSchedule(configuration = {}) {
+  if (!configuration || typeof configuration !== 'object' || Array.isArray(configuration)) return null;
+  const schedule = Object.fromEntries(Object.entries(DEFAULT_AGENT_SCHEDULE).map(([key, fallback]) => [
+    key, configuration[key] === undefined ? fallback : configuration[key],
+  ]));
+  if (!DAYS.has(schedule.day) || typeof schedule.time !== 'string'
+    || !/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(schedule.time)) return null;
+  if (typeof schedule.timezone !== 'string' || !schedule.timezone.trim()) return null;
+  try {
+    // Intl validates the zone itself, independently of the viewer's local zone.
+    new Intl.DateTimeFormat('en-US', { timeZone: schedule.timezone });
+  } catch {
+    return null;
+  }
+  if (typeof schedule.channel !== 'string' || !schedule.channel.trim()
+    || schedule.channel.length > 100 || /[\r\n]/.test(schedule.channel)) return null;
+  schedule.channel = schedule.channel.trim();
+  return Object.freeze(schedule);
+}
+
 /** Simulated agent setup, offered after enough time viewing the completed app. */
 export function createAgentSetupFlow({
   onChange = () => {},
   clock = globalThis,
-  reviewDelay = 12000,
+  reviewDelay = 5000,
   setupDelay = 2200,
 } = {}) {
   const now = () => typeof clock.now === 'function' ? clock.now() : Date.now();
   const duration = (value, fallback) => Number.isFinite(value) && value >= 0 ? value : fallback;
   const setupDuration = duration(setupDelay, 2200);
-  let remainingReview = duration(reviewDelay, 12000);
+  let remainingReview = duration(reviewDelay, 5000);
   let reviewStartedAt = null;
   let reviewTimer = null;
   let reviewVersion = 0;
   let setupTimer = null;
   let stage = 'waiting';
+  let schedule;
   let viewing = false;
   let destroyed = false;
 
   function snapshot() {
-    return Object.freeze({ stage });
+    return Object.freeze({ stage, ...(schedule ? { schedule: Object.freeze({ ...schedule }) } : {}) });
   }
 
   function emit() {
@@ -68,8 +99,11 @@ export function createAgentSetupFlow({
     return true;
   }
 
-  function setup() {
+  function setup(configuration) {
     if (destroyed || !['offered', 'deferred'].includes(stage)) return false;
+    const selected = normalizeAgentSchedule(configuration);
+    if (!selected) return false;
+    schedule = selected;
     stage = 'setting-up';
     // Register before notifying so an onChange callback can safely destroy it.
     setupTimer = clock.setTimeout(() => {

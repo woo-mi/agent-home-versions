@@ -1,21 +1,50 @@
-import { createAgentSetupFlow } from './agent-setup-flow.mjs?v=e93380d4';
+import { createAgentSetupFlow } from './agent-setup-flow.mjs?v=454da931';
 
 const QUESTION = 'Would you like a weekly pipeline update every Friday, so you have time to review it before Monday’s meeting?';
+const DELIVERY_QUESTION = 'What time should I deliver it, and where should it go?';
+
+function displayTime(value) {
+  const [hours, minutes] = value.split(':').map(Number);
+  return `${hours % 12 || 12}:${String(minutes).padStart(2, '0')} ${hours < 12 ? 'AM' : 'PM'}`;
+}
 
 /** Screen 6 follows the app walkthrough without replacing the current conversation. */
-export function createAgentSetupChat({ history, update, streamMessage, stopStreaming, later }) {
+export function createAgentSetupChat({ history, update, streamMessage, stopStreaming, later, onOpenReport }) {
   const byId = (id) => document.getElementById(id);
   const conversation = byId('agent-setup-conversation');
   const question = byId('agent-setup-question');
-  const offer = byId('agent-setup-offer');
-  const setupButton = byId('set-up-agent');
-  const setupLabel = byId('set-up-agent-label');
-  const deferButton = byId('defer-agent-setup');
+  const deliveryQuestion = byId('agent-schedule-question');
+  const form = byId('agent-schedule-form');
+  const createButton = byId('create-weekly-update');
+  const createLabel = byId('create-weekly-update-label');
   const result = byId('agent-setup-result');
+  const report = byId('agent-report-card');
+  const fields = Object.fromEntries(['day', 'time', 'timezone', 'channel'].map((key) => [key, byId(`agent-schedule-${key}`)]));
   let flow;
   let version = 0;
   let previousStage = '';
   let panelOpen = false;
+  let settingsShown = false;
+  let settingsVersion = 0;
+
+  const readSchedule = () => Object.fromEntries(Object.entries(fields).map(([key, field]) => [key, field.value]));
+
+  function updateSummary() {
+    const schedule = readSchedule();
+    byId('agent-schedule-summary').textContent = `Every ${schedule.day} at ${displayTime(schedule.time)}`;
+    byId('agent-delivery-summary').textContent = `Delivered to Slack · ${schedule.channel}`;
+  }
+
+  function showSettings() {
+    if (settingsShown) return;
+    settingsShown = true;
+    const currentVersion = version;
+    const currentSettings = ++settingsVersion;
+    update(() => { history.append(deliveryQuestion, form); });
+    streamMessage(deliveryQuestion, DELIVERY_QUESTION, () => later(() => {
+      if (currentVersion === version && currentSettings === settingsVersion) update(() => { form.hidden = false; });
+    }, 650));
+  }
 
   function render(state) {
     const changed = state.stage !== previousStage;
@@ -23,11 +52,11 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
     update(() => {
       const pending = state.stage === 'setting-up';
       const complete = state.stage === 'complete';
-      setupButton.disabled = pending || complete;
-      setupButton.dataset.state = complete ? 'connected' : pending ? 'connecting' : 'idle';
-      setupButton.setAttribute('aria-busy', String(pending));
-      setupLabel.textContent = complete ? 'Completed' : pending ? 'Setting up…' : 'Set up';
-      deferButton.hidden = state.stage !== 'offered';
+      createButton.disabled = pending || complete;
+      createButton.dataset.state = complete ? 'connected' : pending ? 'connecting' : 'idle';
+      createButton.setAttribute('aria-busy', String(pending));
+      createLabel.textContent = complete ? 'Created' : pending ? 'Creating…' : 'Create weekly update';
+      for (const field of form.querySelectorAll('select')) field.disabled = pending || complete;
       if (pending) {
         stopStreaming(result);
         result.hidden = true;
@@ -38,14 +67,27 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
       const currentVersion = version;
       update(() => { history.append(conversation); conversation.hidden = false; });
       streamMessage(question, QUESTION, () => later(() => {
-        if (version === currentVersion) update(() => { offer.hidden = false; });
-      }, 650));
+        if (version === currentVersion && flow.snapshot().stage === 'offered') showSettings();
+      }, 1000));
     } else if (state.stage === 'deferred') {
+      if (form.hidden) {
+        settingsVersion += 1;
+        settingsShown = false;
+        stopStreaming(deliveryQuestion);
+        update(() => { deliveryQuestion.hidden = true; });
+      }
       update(() => { history.append(result); });
       streamMessage(result, 'No problem. We can set this up whenever you’re ready.');
     } else if (state.stage === 'complete') {
+      const currentVersion = version;
+      const schedule = state.schedule;
       update(() => { history.append(result); });
-      streamMessage(result, 'Your weekly pipeline update is set for every Friday, so you can review it before Monday’s meeting.');
+      const confirmation = `Your pipeline update is scheduled for ${schedule.day}s at ${displayTime(schedule.time)} (${schedule.timezone}) in ${schedule.channel}, ahead of your Monday review.`;
+      streamMessage(result, confirmation, () => later(() => {
+        if (version === currentVersion && flow.snapshot().stage === 'complete') {
+          update(() => { history.append(report); report.hidden = false; });
+        }
+      }, 650));
     }
   }
 
@@ -53,32 +95,46 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
     flow.setViewing(panelOpen && !document.hidden);
   }
 
+  function setup() {
+    if (form.hidden) {
+      showSettings();
+      return false;
+    }
+    if (!form.reportValidity()) return false;
+    return flow.setup(readSchedule());
+  }
+
   function reset() {
     version += 1;
     flow?.destroy();
     panelOpen = false;
+    settingsShown = false;
+    settingsVersion += 1;
     previousStage = '';
     history.before(conversation);
-    conversation.append(result);
-    for (const element of [question, result]) {
+    conversation.append(question, deliveryQuestion, form, result, report);
+    for (const element of [question, deliveryQuestion, result]) {
       stopStreaming(element);
       element.textContent = '';
     }
-    for (const element of [conversation, question, offer, result]) element.hidden = true;
+    for (const element of [conversation, question, deliveryQuestion, form, result, report]) element.hidden = true;
+    form.reset();
+    updateSummary();
     flow = createAgentSetupFlow({ onChange: render });
     render(flow.snapshot());
   }
 
-  setupButton.addEventListener('click', () => flow.setup());
-  deferButton.addEventListener('click', () => {
-    if (flow.defer()) setupButton.focus({ preventScroll: true });
+  form.addEventListener('submit', (event) => { event.preventDefault(); setup(); });
+  form.addEventListener('change', updateSummary);
+  byId('open-agent-report').addEventListener('click', () => {
+    if (flow.snapshot().stage === 'complete') onOpenReport();
   });
   document.addEventListener('visibilitychange', syncViewing);
   reset();
   return {
     reset,
     setViewing(open) { panelOpen = open; syncViewing(); },
-    setup: () => flow.setup(),
+    setup,
     defer: () => flow.defer(),
     snapshot: () => flow.snapshot(),
     destroy() { version += 1; panelOpen = false; flow.destroy(); },
