@@ -1,4 +1,4 @@
-.chat-page { --sidebar-width: 260px; --chat-text-width: 748px; --chat-card-width: 613px; --panel-duration: 420ms; --panel-ease: cubic-bezier(.22, .8, .25, 1); overflow-x: clip; }
+.chat-page { --sidebar-width: 260px; --chat-text-width: 748px; --chat-card-width: 613px; --chat-card-line: #d2d2d2; --panel-duration: 420ms; --panel-ease: cubic-bezier(.22, .8, .25, 1); overflow-x: clip; }
 .chat-page[data-chat-version="v2"] { --chat-card-width: 748px; }
 .chat-sidebar { position: fixed; inset: 0 auto 0 0; width: var(--sidebar-width); padding: 8px 6px 16px; display: flex; flex-direction: column; background: #f5f5f5d1; border-right: 1px solid #e6e6e6; z-index: 20; }
 .sidebar-brand-row { display: flex; justify-content: space-between; align-items: center; min-height: 40px; }
@@ -32,8 +32,8 @@
 .chunk-reveal { animation: chunk-reveal 110ms cubic-bezier(0, 0, .38, .9) both; }
 .connection-box, .live-app-offer, .activity { width: 100%; max-width: var(--chat-card-width); }
 .connection-box, .live-app-offer, .activity, .agent-schedule-form { transition: max-width var(--panel-duration) var(--panel-ease); }
-.connection-box { margin: 18px 0 20px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; }
-.connection-row { min-height: 54px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px solid #EDEDED; }
+.connection-box { margin: 18px 0 20px; border: 1px solid var(--chat-card-line); border-radius: 12px; overflow: hidden; background: #fff; }
+.connection-row { min-height: 54px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px solid var(--chat-card-line); }
 .connection-name { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #24242a; min-width: 0; }
 .connection-name svg { width: 24px; height: 24px; }
 .connect-button { display: flex; align-items: center; justify-content: center; gap: 4px; min-width: 76px; min-height: 30px; padding: 5px 10px; border: 1px solid transparent; border-radius: 24px; background: #333444; color: #fff; font-size: 12px; line-height: 1.43; font-weight: 500; transition: background-color 150ms ease, border-color 150ms ease; }
@@ -57,7 +57,7 @@
 .call-status { flex-shrink: 0; color: #73717f; font-size: 11px; }
 .call-status[data-state="complete"] { color: #53715f; }
 .chat-history { display: flex; flex-direction: column; gap: 0; }
-.live-app-offer { min-height: 54px; padding: 11px 14px; margin: 18px 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.live-app-offer { min-height: 54px; padding: 11px 14px; margin: 18px 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border: 1px solid var(--chat-card-line); border-radius: 12px; background: #fff; }
 .live-app-actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 .live-app-actions .connect-button { min-width: 56px; }
 .defer-app { padding: 4px 0; color: #858391; font-size: 14px; line-height: 1.5; }
