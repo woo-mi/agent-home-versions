@@ -104,6 +104,34 @@ test('an explicit send follows the latest even after the user has scrolled away'
   controller.destroy();
 });
 
+test('an instant layout change settles following without leaving a resize animation', () => {
+  const { controller, scroller, clock, observer } = surface();
+  controller.update(() => { scroller.scrollHeight += 200; });
+  clock.step();
+  controller.update(() => { scroller.scrollHeight += 120; });
+  controller.settle();
+  assert.equal(scroller.scrollTop, 920);
+  assert.equal(clock.pending, 0);
+  observer.notify();
+  scroller.dispatch('scroll');
+  assert.equal(clock.pending, 0, 'The panel resize must not restart motion');
+  controller.update(() => { scroller.scrollHeight += 100; });
+  assert.equal(clock.pending, 1, 'Later chat replies should still scroll naturally');
+  clock.settle();
+  assert.equal(scroller.scrollTop, 1020);
+  controller.destroy();
+});
+
+test('settling a layout leaves a reader who scrolled up in place', () => {
+  const { controller, scroller, clock, observer } = surface({ top: 150 });
+  controller.update(() => { scroller.scrollHeight += 200; });
+  controller.settle();
+  observer.notify();
+  assert.equal(scroller.scrollTop, 150);
+  assert.equal(clock.pending, 0);
+  controller.destroy();
+});
+
 test('animation also settles when the scrolling surface rounds to whole pixels', () => {
   const { controller, scroller, clock } = surface();
   let roundedTop = scroller.scrollTop;

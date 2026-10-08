@@ -93,6 +93,15 @@ export function createChatScroll(scroller, {
     refresh();
   }
 
+  function settle() {
+    if (destroyed) return;
+    stopFrame();
+    if (!touching && (following || elementTarget !== null)) {
+      writeTop(target());
+      finish();
+    }
+  }
+
   function update(change, force = false) {
     // Observe already-applied user scrolling before claiming the DOM mutation.
     // Nested updates belong to the same mutation, not a new user scroll.
@@ -201,5 +210,5 @@ export function createChatScroll(scroller, {
     for (const [name, handler] of listeners) scroller.removeEventListener(name, handler);
   }
 
-  return Object.freeze({ update, follow, refresh, cancel, reset, scrollToElement, destroy });
+  return Object.freeze({ update, follow, refresh, settle, cancel, reset, scrollToElement, destroy });
 }

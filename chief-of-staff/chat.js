@@ -1,5 +1,5 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
-import { createChatScroll } from './chat-scroll.mjs?v=50c6ed7b';
+import { createChatScroll } from './chat-scroll.mjs?v=ce73c21e';
 import { createLiveAppChat } from './live-app-chat.mjs?v=a8bdc8ad';
 import { createLiveAppVersions } from './live-app-versions.mjs?v=06120411';
 import { createChatVersions } from './chat-versions.mjs?v=02619397';
@@ -524,9 +524,9 @@ function setSidebar(open, restoreFocus = true) {
 }
 
 function setLiveAppOpen(open, restoreFocus = true) {
-  // Visibility transitions keep rapid open/close reversible, without delayed callbacks.
-  // New Chat and page navigation settle immediately, including an in-flight transition.
-  const immediate = !open && !restoreFocus;
+  // Open directly in the final layout; closing can still use the panel transition.
+  // New Chat and page navigation also settle without an in-flight transition.
+  const immediate = open || !restoreFocus;
   if (immediate) document.body.classList.add('live-app-reset');
   if (open) prepareLiveAppPreview();
   else if (restoreFocus && (liveAppPanel.contains(document.activeElement) || byId('app-version-control').contains(document.activeElement))) {
@@ -540,8 +540,9 @@ function setLiveAppOpen(open, restoreFocus = true) {
     appVersions.setVisible(open);
     chatVersions.setVisible(!open);
   });
+  if (open) chatScroll.settle();
   if (immediate) {
-    // Commit the reset before restoring transitions; no animation can leak into a new chat.
+    // Commit every layout change before restoring transitions.
     liveAppPanel.getBoundingClientRect();
     document.body.classList.remove('live-app-reset');
   }
