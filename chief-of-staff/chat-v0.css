@@ -144,19 +144,19 @@
   line-height: 21px;
 }
 
-:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete) {
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-report-card) {
   min-height: 54px;
   padding: 12.5px 14px;
   border: 0;
   box-shadow: inset 0 0 0 .5px #e4e6ea, inset 0 -1px 0 #e8e8ea;
 }
 
-:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete) .connection-name {
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-report-card) .connection-name {
   font-size: 14px;
   line-height: 21px;
 }
 
-:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete) .connect-button {
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-report-card) .connect-button {
   min-height: 29px;
   padding: 6px 10px;
   border: 0;
@@ -199,7 +199,8 @@
   border-left-width: .5px;
 }
 
-:where(.chat-page[data-chat-version="v0"]) .live-app-panel[data-view="app"][data-app-version="v0"] .live-app-panel-toolbar {
+:where(.chat-page[data-chat-version="v0"]) .live-app-panel[data-view="app"][data-app-version="v0"] .live-app-panel-toolbar,
+.live-app-panel[data-view="app"][data-app-version="v2"] .live-app-panel-toolbar {
   top: 11px;
   right: 24px;
 }
@@ -220,4 +221,96 @@
 :where(.chat-page[data-chat-version="v0"]:has(#live-app-offer:not([hidden]))) .chat-footer .composer {
   padding-top: 14px;
   padding-bottom: 14px;
+}
+
+/* Setup sections are flex siblings, so only one side supplies their 24px gap. */
+:where(.chat-page[data-chat-version="v0"]) #agent-setup-conversation {
+  margin: 24px 0;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #agent-setup-question {
+  margin: 0;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#agent-schedule-question, #agent-schedule-form, #agent-setup-result, #agent-report-card) {
+  margin: 0 0 24px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-setup-icon {
+  content: url("agent-setup-icon-v0.svg?v=54bdc6de");
+}
+
+:where(.chat-page[data-chat-version="v0"]) #agent-schedule-form {
+  border: 0;
+  box-shadow: inset 0 0 0 .5px #e4e6ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-header {
+  border: 0;
+  box-shadow: inset 0 -.5px 0 #e8e8ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-header h2 {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-badge,
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-summaries {
+  display: none;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-field label {
+  line-height: 15px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-select select {
+  line-height: 16px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-select svg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 14px 14px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-select svg > * {
+  visibility: hidden;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-day-icon {
+  background-image: url("calendar-days-v0.svg?v=d4202831");
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-time-icon {
+  background-image: url("clock-3-v0.svg?v=22ffd854");
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-chevron {
+  background-image: url("chevron-down-v0.svg?v=93a6170a");
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-footer {
+  justify-content: flex-end;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-footer .connect-button {
+  min-height: 29px;
+  padding: 6px 10px;
+  border: 0;
+  line-height: 17px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #create-weekly-update[data-state="connected"],
+:where(.chat-page[data-chat-version="v0"]) #create-weekly-update[data-state="connecting"] {
+  box-shadow: inset 0 0 0 1px #e4e6ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #create-weekly-update[data-state="idle"] {
+  min-width: 146px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #open-agent-report {
+  min-width: 90px;
 }

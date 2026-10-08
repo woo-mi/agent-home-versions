@@ -30,7 +30,7 @@
       [data-pencil-id="xXMQU"] { min-width: 0; }
       [data-pencil-id="H9PgR"] { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)); }
       [data-pencil-id="H9PgR"] > div { width: 100% !important; min-width: 0; }
-      .chart-scroll { width: 100%; min-width: 0; flex-shrink: 0; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; }
+      .chart-scroll { position: relative; width: 100%; min-width: 0; flex-shrink: 0; overflow: hidden; }
       .chart-scroll:focus-visible { outline: 2px solid #68678b; outline-offset: 3px; border-radius: 3px; }
       @media (max-width: 620px) {
         [data-pencil-id="NCOeq"], [data-pencil-id="O0ozt6"], [data-pencil-id="cwZw3"], [data-pencil-id="ohkld"] { height: auto !important; }
@@ -48,9 +48,7 @@
       [data-pencil-id="o6Rp4"] { border: 0 !important; box-shadow: inset 0 0 0 1px #e6e6e6; }
       [data-pencil-id="H9PgR"] > div, [data-pencil-id="ObV6t"], [data-pencil-id="ilb7c"], [data-pencil-id="Z3lAlq"], [data-pencil-id="ohkld"], [data-pencil-id="T5Zs4D"] { border: 0 !important; box-shadow: inset 0 0 0 .5px #e6e6e6; }
       [data-pencil-id="dvs6t"] { width: 100% !important; }
-      [data-pencil-id="S91fpZ"] { min-width: 584px; }
-      [data-pencil-id="FXLXn"], [data-pencil-id="tGenX"] { min-width: 606px; }
-      [data-pencil-id="S9memt"] { min-width: 574px; }
+      [data-pencil-id="ohkld"] { height: auto !important; }
       @media (max-width: 620px) {
         [data-pencil-id="htolS"] { padding-left: 16px !important; padding-right: 16px !important; }
       }
@@ -2067,5 +2065,34 @@
         
       </div>
     </main>
+    <script>
+      // The exported chart coordinates extend to 603px, including every label.
+      // Scale the whole canvas uniformly so wider cards do not leave empty space.
+      const chartWidth = 606;
+      const charts = [...document.querySelectorAll('.chart-scroll')];
+      for (const region of charts) {
+        const canvas = region.firstElementChild;
+        const chartHeight = Number.parseFloat(canvas.style.height);
+        region.style.aspectRatio = `${chartWidth} / ${chartHeight}`;
+        Object.assign(canvas.style, {
+          position: 'absolute',
+          left: '0',
+          top: '0',
+          width: `${chartWidth}px`,
+          transformOrigin: 'top left',
+        });
+      }
+      function fitChart(region) {
+        const scale = region.clientWidth / chartWidth;
+        if (scale > 0) region.firstElementChild.style.transform = `scale(${scale})`;
+      }
+      const chartResize = new ResizeObserver((entries) => {
+        for (const { target } of entries) fitChart(target);
+      });
+      for (const region of charts) {
+        fitChart(region);
+        chartResize.observe(region);
+      }
+    </script>
   </body>
 </html>
