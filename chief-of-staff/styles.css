@@ -70,7 +70,7 @@ textarea::placeholder { color: var(--muted); opacity: 1; }
 .tab[aria-selected="true"] { background: var(--ink); color: #fbfcfd; border-color: var(--ink); }
 .tab:hover { border-color: #a4a2b0; }
 .panel { width: min(100%, 400px); margin: 16px auto 0; }
-.agent-card { width: 100%; border: 1px solid var(--line); border-radius: 16px; padding: 11px 11px 17px 15px; transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
+.agent-card { display: block; width: 100%; border: 1px solid var(--line); border-radius: 16px; padding: 11px 11px 17px 15px; text-decoration: none; cursor: pointer; transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
 .agent-card:focus-within { background: #fcfcfd; border-color: #c9c7d2; box-shadow: 0 4px 14px #3334440a; }
 @media (hover: hover) and (pointer: fine) {
   .agent-card:hover { background: #fcfcfd; border-color: #c9c7d2; box-shadow: 0 4px 14px #3334440a; }

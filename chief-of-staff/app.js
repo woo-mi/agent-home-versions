@@ -84,14 +84,6 @@
       }
     });
 
-    byId('setup-button').addEventListener('click', (event) => {
-      event.preventDefault();
-      selectMode('build');
-      prompt.value = 'Set up a chief of staff that sends me a daily recap across sales, finance, and ops, comparing results to plan and highlighting risks and anything waiting on me.';
-      updateSendButton();
-      prompt.focus();
-    });
-
     byId('create-app').addEventListener('click', (event) => {
       event.preventDefault();
       selectMode('build');

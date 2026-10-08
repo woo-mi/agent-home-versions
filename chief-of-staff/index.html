@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5255933a">
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=ab466a4d">
+  <script src="app.js?v=047446c4" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#prompt">Skip to composer</a>
@@ -71,10 +71,10 @@
         <button class="tab" id="tab-agents" type="button" role="tab" aria-selected="true" aria-controls="agents-panel">Agents</button>
       </div>
       <div class="panel" id="agents-panel" role="tabpanel" aria-labelledby="tab-agents">
-        <article class="agent-card" aria-labelledby="agent-title">
-          <div class="card-top"><svg class="owl" aria-hidden="true"><use href="icons.svg#owl"></use></svg><button class="setup-button" id="setup-button" type="button">Set up</button></div>
-          <div class="card-copy"><h2 id="agent-title">Chief of staff</h2><p>Every day I pull the numbers across sales, finance, and ops, compare them to plan, and send you a two-line recap: the verdict, the biggest risk, and anything waiting on you.</p></div>
-        </article>
+        <a class="agent-card" href="chat.html" aria-labelledby="agent-title" aria-describedby="agent-description">
+          <div class="card-top"><svg class="owl" aria-hidden="true"><use href="icons.svg#owl"></use></svg><span class="setup-button">Set up</span></div>
+          <div class="card-copy"><h2 id="agent-title">Chief of staff</h2><p id="agent-description">Every day I pull the numbers across sales, finance, and ops, compare them to plan, and send you a two-line recap: the verdict, the biggest risk, and anything waiting on you.</p></div>
+        </a>
       </div>
       <div class="panel" id="apps-panel" role="tabpanel" aria-labelledby="tab-apps" hidden>
         <div class="empty-state"><p>No apps yet</p><button id="create-app" type="button">Create an app</button></div>

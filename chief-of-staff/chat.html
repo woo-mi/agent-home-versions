@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Chief of staff · Connect your tools</title>
+  <link rel="icon" href="../assets/wisdom-logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=ab466a4d">
+  <link rel="stylesheet" href="chat.css?v=942cb4b1">
+  <script type="module" src="chat.js?v=8f5f9120"></script>
+</head>
+<body class="chat-page">
+  <a class="skip-link" href="#chat-prompt">Skip to conversation</a>
+  <button class="sidebar-backdrop" id="sidebar-backdrop" type="button" aria-label="Close navigation" hidden></button>
+  <aside class="chat-sidebar" id="chat-sidebar" aria-label="Application navigation">
+    <div class="sidebar-brand-row"><a class="sidebar-brand" href="./" aria-label="Back to home"><svg aria-hidden="true"><use href="chat-icons.svg#wordmark"></use></svg></a><button class="close-sidebar" id="close-sidebar" type="button" aria-label="Close navigation">×</button></div>
+    <nav class="sidebar-nav" aria-label="Main"><button id="new-chat" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-new"></use></svg><span>New Chat</span></button>
+<button data-preview="Dashboards" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-apps"></use></svg><span>Dashboards</span></button>
+<a href="./" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-agents"></use></svg><span>Agents</span></a>
+<button data-preview="Domains" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-domains"></use></svg><span>Domains</span></button>
+<button id="show-connections" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-connections"></use></svg><span>Connections</span></button>
+<button data-preview="Chat Logs" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-chat"></use></svg><span>Chat Logs</span></button>
+<button data-preview="More" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-more"></use></svg><span>More</span></button>
+<button data-preview="Settings" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-settings"></use></svg><span>Settings</span></button></nav>
+    <section class="recent-chats" aria-label="Recent chats"><div class="recent-label">Recent</div><a class="recent-current" href="chat.html" aria-current="page"><span>Chief of staff</span><span>Agents</span></a><button type="button" data-preview="Recent chat" title="Ideal daily active users">Ideal daily active users</button>
+<button type="button" data-preview="Recent chat" title="Generate bar chart of quarterly EV sales">Generate bar chart of quarterly EV sales</button>
+<button type="button" data-preview="Recent chat" title="Release Blockers by Release Version">Release Blockers by Release Version</button>
+<button type="button" data-preview="Recent chat" title="New Deal Closed email">New Deal Closed email</button>
+<button type="button" data-preview="Recent chat" title="Pipeline coverage by segment">Pipeline coverage by segment</button>
+<button type="button" data-preview="Recent chat" title="Churn risk scoring for enterprise accounts">Churn risk scoring for enterprise accounts</button>
+<button type="button" data-preview="Recent chat" title="Lead source attribution explorer">Lead source attribution explorer</button>
+<button type="button" data-preview="Recent chat" title="Weekly revenue digest">Weekly revenue digest</button>
+<button type="button" data-preview="Recent chat" title="Contacts with job title ‘Manager’">Contacts with job title ‘Manager’</button>
+<button type="button" data-preview="Recent chat" title="EV adoption by state, 2024">EV adoption by state, 2024</button>
+<button type="button" data-preview="Recent chat" title="Support ticket deflection rate">Support ticket deflection rate</button></section>
+    <div class="sidebar-bottom"><button class="sidebar-item" type="button" data-preview="Notifications"><svg class="sidebar-notification" aria-hidden="true"><use href="icons.svg#notification"></use></svg><span>Notifications</span></button><button class="sidebar-item" type="button" data-preview="Profile"><span class="sidebar-avatar">W</span><span>Woomi Jeong</span></button></div>
+  </aside>
+  <main class="chat-shell">
+    <header class="chat-header"><button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open navigation" aria-controls="chat-sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><h1 class="agent-chip"><svg aria-hidden="true"><use href="chat-icons.svg#chat-owl"></use></svg>Chief of staff</h1><a class="back-home" href="./" aria-label="Back to home" title="Back to home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></a></header>
+    <div class="conversation-scroll" id="conversation-scroll">
+      <div class="conversation-content" id="conversation-content">
+        <div class="introduction" aria-live="polite" aria-relevant="additions">
+          <p class="agent-message intro-message" hidden>Hey Woomi, I'm Owl and here to help you.</p>
+          <p class="agent-message intro-message" hidden>Let’s make your daily brief useful. Connecting your tools helps me understand what you’re working on, what’s coming up, and what needs your attention.</p>
+          <p class="agent-message intro-message" id="context-question" hidden>The more context I have, the better I get. Would you like to connect your context so I can start?</p>
+        </div>
+        <section class="connection-box" id="connection-box" aria-label="Connect your tools" tabindex="-1" hidden>
+          <div id="connection-rows"></div>
+          <div class="connection-footer"><button id="skip-connections" type="button">Skip for now</button></div>
+        </section>
+        <p class="agent-message" id="review-message" hidden>Thank you. I’ll do a deep dive. Back in a few minutes with some ideas for you.</p>
+        <div class="connection-feedback" id="connection-feedback" hidden>
+          <p class="connection-confirmation" id="connection-confirmation" role="status" aria-live="polite" hidden></p>
+          <details class="activity" id="activity" hidden>
+            <summary><span class="activity-symbol" aria-hidden="true"></span><span class="activity-label" id="activity-label">Getting context from your tools…</span><svg class="activity-chevron" aria-hidden="true"><use href="icons.svg#chevron"></use></svg></summary>
+            <ul class="activity-calls" id="activity-calls" aria-label="Simulated tool activity"></ul>
+          </details>
+        </div>
+        <div class="recommendation" id="recommendation" hidden aria-live="polite"><p class="agent-message" id="ready-message"></p><p class="agent-message" id="suggestion-message"></p></div>
+        <div class="chat-history" id="chat-history" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions"></div>
+      </div>
+    </div>
+    <footer class="chat-footer">
+      <p class="chat-status" id="status-message" role="status"></p>
+            <form class="composer" id="chat-form">
+        <label class="visually-hidden" for="chat-prompt">Describe the app you want to build</label>
+        <textarea id="chat-prompt" name="prompt" rows="2" placeholder="Describe the app you want to build" aria-describedby="prototype-note"></textarea>
+        <div class="composer-tools">
+          <div class="composer-left">
+            <div class="select-control domain-control">
+              <label class="visually-hidden" for="domain">Workspace</label>
+              <select id="domain" name="domain"><option>B2b Sales</option><option>Finance</option><option>Operations</option></select>
+              <svg class="chevron" aria-hidden="true"><use href="icons.svg#chevron"></use></svg>
+            </div>
+            <div class="mode-toggle" role="group" aria-label="Composer mode">
+              <button id="mode-ask" class="mode" type="button" aria-pressed="false">Ask</button>
+              <button id="mode-build" class="mode" type="button" aria-pressed="true">Build</button>
+            </div>
+          </div>
+          <div class="composer-right">
+            <div class="select-control reasoning-control">
+              <svg class="brain" aria-hidden="true"><use href="icons.svg#brain"></use></svg>
+              <label class="visually-hidden" for="reasoning">Reasoning mode</label>
+              <select id="reasoning" name="reasoning"><option>Thinking</option><option>Quick</option></select>
+              <svg class="chevron" aria-hidden="true"><use href="icons.svg#chevron"></use></svg>
+            </div>
+            <button class="mic-button" type="button" data-preview="Voice input" aria-label="Voice input" title="Voice input"><svg aria-hidden="true"><use href="icons.svg#mic"></use></svg></button>
+            <button class="send-button" id="chat-send" type="submit" aria-label="Send message" title="Send request (⌘ or Ctrl + Enter)" disabled><svg aria-hidden="true"><use href="icons.svg#arrow"></use></svg></button>
+          </div>
+        </div>
+      </form>
+      <p class="prototype-note" id="prototype-note">Interactive prototype · Connections and context are simulated.</p>
+    </footer>
+  </main>
+</body>
+</html>
