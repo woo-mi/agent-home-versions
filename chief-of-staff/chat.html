@@ -10,10 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=edd7fc7a">
-  <link rel="stylesheet" href="chat.css?v=8eaabbfb">
+  <link rel="stylesheet" href="chat.css?v=91dbd12a">
   <link rel="stylesheet" href="agent-setup.css?v=2c22a877">
-  <link rel="stylesheet" href="chat-v0.css?v=63d82787">
-  <script type="module" src="chat.js?v=e8aae90f"></script>
+  <link rel="stylesheet" href="chat-v0.css?v=cd5d67c8">
+  <script type="module" src="chat.js?v=e941a631"></script>
 </head>
 <body class="chat-page" data-chat-version="v0">
   <a class="skip-link" href="#chat-prompt">Skip to conversation</a>
@@ -89,6 +89,10 @@
         </section>
         <section class="agent-setup-conversation" id="agent-setup-conversation" aria-label="Set up your weekly pipeline agent" hidden>
           <p class="agent-message" id="agent-setup-question" hidden></p>
+          <section class="live-app-offer" id="agent-setup-offer" aria-label="Suggested weekly pipeline agent" hidden>
+            <span class="connection-name"><img class="agent-setup-icon" src="agent-setup-icon.svg?v=006c3e51" width="24" height="24" alt=""><span>Weekly Sales Pipeline Update</span></span>
+            <div class="live-app-actions"><button class="connect-button" id="set-up-agent" type="button" aria-controls="agent-schedule-form" aria-expanded="false">Set up agent</button></div>
+          </section>
           <p class="agent-message" id="agent-schedule-question" hidden>What time should I deliver it, and where should it go?</p>
           <form class="agent-schedule-form" id="agent-schedule-form" aria-labelledby="agent-schedule-title" hidden>
             <div class="agent-schedule-header">

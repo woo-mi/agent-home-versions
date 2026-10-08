@@ -3,7 +3,7 @@ import { createChatScroll } from './chat-scroll.mjs?v=ce73c21e';
 import { createLiveAppChat } from './live-app-chat.mjs?v=49dde280';
 import { createLiveAppVersions } from './live-app-versions.mjs?v=bd00ef23';
 import { createChatVersions } from './chat-versions.mjs?v=7b280f62';
-import { createAgentSetupChat } from './agent-setup-chat.mjs?v=28228c37';
+import { createAgentSetupChat } from './agent-setup-chat.mjs?v=e3c3a244';
 import { createReportViews } from './report-views.mjs?v=3e53c1e2';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
@@ -391,7 +391,7 @@ function chooseAction(message) {
   const agentStage = agentSetup.snapshot().stage;
   if (agentStage === 'offered' || agentStage === 'deferred') {
     if (/^(?:not now|maybe later|skip(?: for now)?)[.!]?$/.test(normalized)) return { kind: 'agent-defer' };
-    if (/^(?:(?:yes|sure|okay|ok)(?:,?\s+please)?|(?:please\s+)?(?:set\s+up|create weekly update|schedule(?: it| weekly update)?))[.!]?$/.test(normalized)) return { kind: 'agent-setup' };
+    if (/^(?:(?:yes|sure|okay|ok)(?:,?\s+please)?|(?:please\s+)?(?:set\s+up(?:\s+agent)?|create weekly update|schedule(?: it| weekly update)?))[.!]?$/.test(normalized)) return { kind: 'agent-setup' };
   }
   if (/\bconnect\b/.test(normalized) && !/\b(?:don't|do not|not)\s+connect\b/.test(normalized)) {
     const requested = ['hubspot', 'salesforce'].filter((id) => normalized.includes(id));
@@ -582,7 +582,7 @@ function prepareLiveAppPreview() {
 
 const appVersions = createLiveAppVersions({ previews: { v0: 'live-app-preview-v0.html?v=9f54cb89', v1: 'live-app-preview.html?v=0ab9a542', v2: 'live-app-preview-v2.html?v=b36a99de' }, onClose: () => setLiveAppOpen(false) });
 const chatVersions = createChatVersions({ update: updateConversation, onChange: appVersions.setChatVersion });
-const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=3c174308', workflow: 'workflow-preview.html?v=93006e22' }, onClose: () => setLiveAppOpen(false) });
+const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=736470ec', workflow: 'workflow-preview.html?v=93006e22' }, onClose: () => setLiveAppOpen(false) });
 const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onScheduleChange: reportViews.setSchedule, onOpenReport: () => {
   reportViews.open(agentSetup.snapshot().schedule);
   setLiveAppOpen(true, true, 'report');

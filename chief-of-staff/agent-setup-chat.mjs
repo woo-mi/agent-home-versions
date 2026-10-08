@@ -8,11 +8,13 @@ function displayTime(value) {
   return `${hours % 12 || 12}:${String(minutes).padStart(2, '0')} ${hours < 12 ? 'AM' : 'PM'}`;
 }
 
-/** Screen 6 follows the app walkthrough without replacing the current conversation. */
+/** Offer the weekly agent after the walkthrough, then wait for the user to set it up. */
 export function createAgentSetupChat({ history, update, streamMessage, stopStreaming, later, onOpenReport, onScheduleChange = () => {} }) {
   const byId = (id) => document.getElementById(id);
   const conversation = byId('agent-setup-conversation');
   const question = byId('agent-setup-question');
+  const offer = byId('agent-setup-offer');
+  const setupButton = byId('set-up-agent');
   const deliveryQuestion = byId('agent-schedule-question');
   const form = byId('agent-schedule-form');
   const createButton = byId('create-weekly-update');
@@ -37,11 +39,16 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
   }
 
   function showSettings() {
-    if (settingsShown) return;
+    if (settingsShown || !['offered', 'deferred'].includes(flow.snapshot().stage)) return;
     settingsShown = true;
     const currentVersion = version;
     const currentSettings = ++settingsVersion;
-    update(() => { history.append(deliveryQuestion, form); });
+    update(() => {
+      offer.hidden = false;
+      setupButton.disabled = true;
+      setupButton.setAttribute('aria-expanded', 'true');
+      history.append(deliveryQuestion, form);
+    });
     streamMessage(deliveryQuestion, DELIVERY_QUESTION, () => later(() => {
       if (currentVersion === version && currentSettings === settingsVersion) update(() => { form.hidden = false; });
     }, 650));
@@ -72,14 +79,19 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
       const currentVersion = version;
       update(() => { history.append(conversation); conversation.hidden = false; });
       streamMessage(question, QUESTION, () => later(() => {
-        if (version === currentVersion && flow.snapshot().stage === 'offered') showSettings();
-      }, 1000));
+        if (version === currentVersion && flow.snapshot().stage === 'offered') update(() => { offer.hidden = false; });
+      }, 650));
     } else if (state.stage === 'deferred') {
       if (form.hidden) {
         settingsVersion += 1;
         settingsShown = false;
         stopStreaming(deliveryQuestion);
-        update(() => { deliveryQuestion.hidden = true; });
+        update(() => {
+          offer.hidden = false;
+          deliveryQuestion.hidden = true;
+          setupButton.disabled = false;
+          setupButton.setAttribute('aria-expanded', 'false');
+        });
       }
       update(() => { history.append(result); });
       streamMessage(result, 'No problem. We can set this up whenever you’re ready.');
@@ -128,12 +140,14 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
     previousStage = '';
     savedLabel = 'Created';
     history.before(conversation);
-    conversation.append(question, deliveryQuestion, form, result, report);
+    conversation.append(question, offer, deliveryQuestion, form, result, report);
     for (const element of [question, deliveryQuestion, result]) {
       stopStreaming(element);
       element.textContent = '';
     }
-    for (const element of [conversation, question, deliveryQuestion, form, result, report]) element.hidden = true;
+    for (const element of [conversation, question, offer, deliveryQuestion, form, result, report]) element.hidden = true;
+    setupButton.disabled = false;
+    setupButton.setAttribute('aria-expanded', 'false');
     form.reset();
     updateSummary();
     flow = createAgentSetupFlow({ onChange: render });
@@ -141,6 +155,7 @@ export function createAgentSetupChat({ history, update, streamMessage, stopStrea
   }
 
   form.addEventListener('submit', (event) => { event.preventDefault(); setup(); });
+  setupButton.addEventListener('click', showSettings);
   form.addEventListener('change', () => { updateSummary(); render(flow.snapshot()); });
   byId('open-agent-report').addEventListener('click', () => {
     if (['complete', 'updating'].includes(flow.snapshot().stage)) onOpenReport();

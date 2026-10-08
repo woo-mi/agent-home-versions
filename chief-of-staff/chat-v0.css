@@ -144,19 +144,19 @@
   line-height: 21px;
 }
 
-:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-report-card) {
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-setup-offer, #agent-report-card) {
   min-height: 54px;
   padding: 12.5px 14px;
   border: 0;
   box-shadow: inset 0 0 0 .5px #e4e6ea, inset 0 -1px 0 #e8e8ea;
 }
 
-:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-report-card) .connection-name {
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-setup-offer, #agent-report-card) .connection-name {
   font-size: 14px;
   line-height: 21px;
 }
 
-:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-report-card) .connect-button {
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-setup-offer, #agent-report-card) .connect-button {
   min-height: 29px;
   padding: 6px 10px;
   border: 0;
@@ -225,7 +225,7 @@
 
 /* Setup sections are flex siblings, so only one side supplies their 24px gap. */
 :where(.chat-page[data-chat-version="v0"]) #agent-setup-conversation {
-  margin: 24px 0;
+  margin: 24px 0 0;
 }
 
 :where(.chat-page[data-chat-version="v0"]) #agent-setup-question {
@@ -234,6 +234,18 @@
 
 :where(.chat-page[data-chat-version="v0"]) :is(#agent-schedule-question, #agent-schedule-form, #agent-setup-result, #agent-report-card) {
   margin: 0 0 24px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #agent-setup-offer {
+  margin: 24px 0 0;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #agent-schedule-question {
+  margin-top: 24px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #set-up-agent {
+  min-width: 93px;
 }
 
 :where(.chat-page[data-chat-version="v0"]) .agent-setup-icon {
