@@ -1,6 +1,7 @@
 import { createVersionMenu } from './version-menu.mjs?v=76591447';
 
 const VERSIONS = new Set(['v0', 'v1', 'v2']);
+const DEFAULT_VERSION = 'v0';
 
 /** Compare chat widths while keeping the same conversation and draft. */
 export function createChatVersions({ update, onChange = () => {} }) {
@@ -27,7 +28,7 @@ export function createChatVersions({ update, onChange = () => {} }) {
     menu.setSelection(version, `Chat ${version}`, `Chat layout ${version}`);
     if (updateUrl) {
       const url = new URL(location.href);
-      if (version === 'v1') url.searchParams.delete('chat');
+      if (version === DEFAULT_VERSION) url.searchParams.delete('chat');
       else url.searchParams.set('chat', version);
       window.history.replaceState(null, '', url);
     }
@@ -39,7 +40,7 @@ export function createChatVersions({ update, onChange = () => {} }) {
   observer.observe(menu.trigger);
   window.addEventListener('resize', positionControl);
   const requestedVersion = new URLSearchParams(location.search).get('chat');
-  select(VERSIONS.has(requestedVersion) ? requestedVersion : 'v1');
+  select(VERSIONS.has(requestedVersion) ? requestedVersion : DEFAULT_VERSION);
 
   return {
     handleEscape: menu.handleEscape,

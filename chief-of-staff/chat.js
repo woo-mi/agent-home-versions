@@ -2,7 +2,7 @@ import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=ce73c21e';
 import { createLiveAppChat } from './live-app-chat.mjs?v=49dde280';
 import { createLiveAppVersions } from './live-app-versions.mjs?v=bd00ef23';
-import { createChatVersions } from './chat-versions.mjs?v=988a802b';
+import { createChatVersions } from './chat-versions.mjs?v=7b280f62';
 import { createAgentSetupChat } from './agent-setup-chat.mjs?v=28228c37';
 import { createReportViews } from './report-views.mjs?v=3e53c1e2';
 
