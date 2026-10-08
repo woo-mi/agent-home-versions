@@ -1,6 +1,6 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=50c6ed7b';
-import { createLiveAppChat } from './live-app-chat.mjs?v=dec58b7d';
+import { createLiveAppChat } from './live-app-chat.mjs?v=9636b942';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -45,6 +45,7 @@ const sidebar = byId('chat-sidebar');
 const shell = document.querySelector('.chat-shell');
 const sidebarToggle = byId('sidebar-toggle');
 const backdrop = byId('sidebar-backdrop');
+const liveAppPanel = byId('live-app-panel');
 const mobileQuery = matchMedia('(max-width: 760px)');
 const appTimers = new Set();
 const streams = new Map();
@@ -467,6 +468,7 @@ function updateSendButton() {
 }
 
 function resetConversation() {
+  setLiveAppOpen(false, false);
   generation += 1;
   flow?.destroy();
   for (const element of streams.keys()) stopStreaming(element);
@@ -513,7 +515,30 @@ function setSidebar(open, restoreFocus = true) {
   else if (wasOpen && restoreFocus) sidebarReturnFocus?.focus({ preventScroll: true });
 }
 
-const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow() });
+function setLiveAppOpen(open, restoreFocus = true) {
+  updateConversation(() => {
+    document.body.classList.toggle('live-app-open', open);
+    liveAppPanel.hidden = !open;
+    byId('open-live-app').setAttribute('aria-expanded', String(open));
+    if (open && !byId('live-app-preview').hasAttribute('src')) byId('live-app-preview').src = 'live-app-preview.html?v=80219989';
+  });
+  if (open) byId('close-live-app').focus({ preventScroll: true });
+  else if (restoreFocus) byId('open-live-app').focus({ preventScroll: true });
+}
+
+const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true) });
+byId('close-live-app').addEventListener('click', () => setLiveAppOpen(false));
+byId('live-app-preview').addEventListener('load', () => {
+  byId('live-app-preview').contentDocument?.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setLiveAppOpen(false);
+    }
+  });
+});
+sidebar.querySelectorAll('.sidebar-item').forEach((item) => {
+  if (!item.hasAttribute('aria-label')) item.setAttribute('aria-label', item.textContent.trim());
+});
 makeToolRows();
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -575,6 +600,11 @@ byId('close-sidebar').addEventListener('click', () => setSidebar(false));
 backdrop.addEventListener('click', () => setSidebar(false));
 sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setSidebar(false, false)));
 document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !liveAppPanel.hidden) {
+    event.preventDefault();
+    setLiveAppOpen(false);
+    return;
+  }
   if (!sidebarOpen) return;
   if (event.key === 'Escape') {
     event.preventDefault();

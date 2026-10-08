@@ -3,7 +3,7 @@ import { createLiveAppFlow, CRM_TOOLS } from './live-app-flow.mjs?v=a1829340';
 const TIMING = { offerPause: 650, toolsPause: 650 };
 const CRM_PROMPT = 'Connect your CRM so I can bring in your opportunities, sales stages, and regional performance.';
 
-export function createLiveAppChat({ history, update, streamMessage, stopStreaming, later, follow }) {
+export function createLiveAppChat({ history, update, streamMessage, stopStreaming, later, follow, onOpen }) {
   const byId = (id) => document.getElementById(id);
   const offer = byId('live-app-offer');
   const buildButton = byId('build-live-app');
@@ -23,6 +23,16 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
   let previousStage = '';
   let version = 0;
   let hasStarted = false;
+  let buildMessageReady = false;
+
+  function showCompletedApp() {
+    const currentVersion = version;
+    later(() => {
+      if (currentVersion === version && buildMessageReady && flow.snapshot().stage === 'complete') {
+        update(() => { complete.hidden = false; });
+      }
+    }, TIMING.offerPause);
+  }
 
   for (const tool of CRM_TOOLS) {
     const row = document.createElement('div');
@@ -54,7 +64,7 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
     previousStage = state.stage;
     update(() => {
       buildButton.disabled = hasStarted;
-      buildButton.textContent = hasStarted ? 'Selected' : 'Build';
+      buildButton.textContent = state.stage === 'complete' ? 'Completed' : hasStarted ? 'Selected' : 'Build';
       deferButton.disabled = hasStarted || state.stage === 'deferred';
       deferred.hidden = state.stage !== 'deferred';
       for (const tool of state.tools) {
@@ -90,6 +100,7 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
       });
       calls.replaceChildren(...items);
       if (state.activeCount) {
+        buildMessageReady = false;
         stopStreaming(result);
         stopStreaming(complete);
         result.hidden = true;
@@ -100,9 +111,12 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
     if (state.stage === 'skipped') {
       streamMessage(result, 'We can come back to your CRM later. Connect HubSpot or Salesforce when you’re ready to build the app with your sales data.');
     } else if (state.stage === 'building') {
-      streamMessage(result, 'Succeed. The agent reads the CRM data and builds the app.');
+      streamMessage(result, 'Succeed. The agent reads the CRM data and builds the app.', () => {
+        buildMessageReady = true;
+        if (flow.snapshot().stage === 'complete') showCompletedApp();
+      });
     } else if (state.stage === 'complete') {
-      streamMessage(complete, 'The setup for your Weekly Sales Pipeline Review App is complete.');
+      if (buildMessageReady) showCompletedApp();
     }
   }
 
@@ -139,11 +153,11 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
     flow?.destroy();
     previousStage = '';
     hasStarted = false;
+    buildMessageReady = false;
     history.before(conversation);
     for (const element of [prompt, result, complete]) stopStreaming(element);
     for (const element of [offer, deferred, conversation, prompt, box, activity, result, complete]) element.hidden = true;
     result.textContent = '';
-    complete.textContent = '';
     activity.open = false;
     flow = createLiveAppFlow({ onChange: render });
     render(flow.snapshot());
@@ -152,6 +166,9 @@ export function createLiveAppChat({ history, update, streamMessage, stopStreamin
   buildButton.addEventListener('click', start);
   deferButton.addEventListener('click', () => flow.defer());
   skipButton.addEventListener('click', () => flow.skip());
+  byId('open-live-app').addEventListener('click', () => {
+    if (flow.snapshot().stage === 'complete') onOpen();
+  });
   reset();
   return {
     showOffer, start, connect, reset,
