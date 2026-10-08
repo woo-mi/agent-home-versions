@@ -1,4 +1,6 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
+import { createChatScroll } from './chat-scroll.mjs?v=50c6ed7b';
+import { createLiveAppChat } from './live-app-chat.mjs?v=eef1b18b';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -18,6 +20,7 @@ const TIMING = Object.freeze({
 
 const byId = (id) => document.getElementById(id);
 const scroller = byId('conversation-scroll');
+const chatScroll = createChatScroll(scroller, { content: byId('conversation-content') });
 const history = byId('chat-history');
 const prompt = byId('chat-prompt');
 const sendButton = byId('chat-send');
@@ -69,10 +72,7 @@ const connectedTools = (state) => state.tools.filter(({ status }) => status === 
 const countLabel = (count) => `${count} tool${count === 1 ? '' : 's'}`;
 
 function updateConversation(change, forceScroll = false) {
-  const previousHeight = scroller.scrollHeight;
-  const nearBottom = previousHeight - scroller.scrollTop - scroller.clientHeight < 90;
-  change();
-  if (forceScroll || (nearBottom && scroller.scrollHeight > previousHeight)) scroller.scrollTop = scroller.scrollHeight;
+  chatScroll.update(change, forceScroll);
 }
 
 function later(callback, delay) {
@@ -283,7 +283,9 @@ function showRecommendation(key, ready, suggestion) {
   streamMessage(readyMessage, ready, () => {
     later(() => {
       if (version !== recommendationVersion) return;
-      streamMessage(suggestionMessage, suggestion);
+      streamMessage(suggestionMessage, suggestion, () => {
+        if (version === recommendationVersion && key.startsWith('connected:')) liveApps.showOffer();
+      });
     }, TIMING.paragraphPause);
   });
 }
@@ -297,6 +299,7 @@ function finishRecommendation() {
   suggestionMessage.textContent = recommendationContent.suggestion;
   reveal(readyMessage);
   reveal(suggestionMessage);
+  if (recommendationKey.startsWith('connected:')) liveApps.showOffer();
 }
 
 function render(state) {
@@ -343,9 +346,9 @@ function render(state) {
     }
     connectionStatus.hidden = !connectionStatus.textContent;
 
+    if (liveApps.hasStarted()) return;
     if (state.complete) {
-      const idea = suggestionFor(state);
-      showRecommendation(`connected:${idea.title}`, "Now that you're set up, here are a few things I can take care of for you.", idea.text);
+      showRecommendation('connected:sales-pipeline', "Now that you're set up, here are a few things I can take care of for you.", 'I noticed you have a Sales Pipeline Review every Monday. Would you like me to build an app to help you track pipeline health and prepare for that meeting?');
     } else if (state.skipped && !state.activityStarted) {
       showRecommendation('skipped', 'We can start with what you tell me.', 'What would make your day easier—a daily brief, help organizing priorities, or something else? You can connect your tools whenever you’re ready.');
     } else {
@@ -354,20 +357,27 @@ function render(state) {
       stopStreaming(readyMessage);
       stopStreaming(suggestionMessage);
       recommendation.hidden = true;
+      liveApps.hideOffer();
     }
   });
 }
 
 function showConnections() {
   updateConversation(finishIntroduction);
-  connectionBox.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+  chatScroll.scrollToElement(connectionBox);
   const focusTarget = [...rows.values()].find(({ button }) => !button.disabled)?.button || connectionBox;
   focusTarget.focus({ preventScroll: true });
 }
 
 function chooseAction(message) {
   const normalized = message.toLowerCase().trim();
+  if (/\bconnect\b/.test(normalized) && !/\b(?:don't|do not|not)\s+connect\b/.test(normalized)) {
+    const requested = ['hubspot', 'salesforce'].filter((id) => normalized.includes(id));
+    if (requested.length) return { kind: 'crm-connect', ids: requested };
+  }
   if (/^(?:skip(?: for now)?|not now|maybe later|continue without (?:tools|connections))[.!]?$/.test(normalized)) {
+    if (liveApps.hasStarted()) return { kind: liveApps.snapshot().activeCount ? 'crm-status' : 'crm-skip' };
+    if (!byId('live-app-offer').hidden) return { kind: 'live-app-defer' };
     flow.skip();
     return { kind: 'skip' };
   }
@@ -381,7 +391,8 @@ function chooseAction(message) {
     }
   }
   if (!recommendation.hidden && flow.snapshot().complete && /^(?:(?:yes|sure|okay|ok)\b|(?:please\s+)?(?:build|create|make)\b|let[’']s\s+(?:build|create|make)\b)/.test(normalized)) {
-    return { kind: 'plan' };
+    if (liveApps.hasStarted() && liveApps.snapshot().stage !== 'skipped') return { kind: 'crm-status' };
+    return { kind: 'live-app-build' };
   }
   return { kind: 'message', mode: currentMode };
 }
@@ -389,6 +400,13 @@ function chooseAction(message) {
 function replyFor(request) {
   const state = flow.snapshot();
   const connected = connectedTools(state);
+  if (request.action.kind === 'crm-status') {
+    const crm = liveApps.snapshot();
+    if (crm.activeCount) return 'Your CRM connection is still in progress. I’ll finish confirming access, then prepare the Weekly Sales Pipeline Review App.';
+    if (crm.stage === 'building') return 'I’m reading your CRM context and preparing the Weekly Sales Pipeline Review App.';
+    if (crm.stage === 'complete') return 'The setup for your Weekly Sales Pipeline Review App is complete. Your connected CRM context is ready.';
+    return 'Choose HubSpot or Salesforce above so I can bring your sales context into the app.';
+  }
   if (request.action.kind === 'connect') {
     const requested = state.tools.filter(({ id }) => request.action.ids.includes(id));
     const authorizing = requested.filter(({ status }) => status === 'connecting');
@@ -456,6 +474,7 @@ function resetConversation() {
   activeStream = null;
   for (const timer of appTimers) clearTimeout(timer);
   appTimers.clear();
+  liveApps.reset();
   responses = [];
   responding = false;
   recommendationVersion += 1;
@@ -475,7 +494,7 @@ function resetConversation() {
     if (generation === currentGeneration) render(state);
   } });
   render(flow.snapshot());
-  scroller.scrollTop = 0;
+  chatScroll.reset();
   startIntroduction();
 }
 
@@ -494,6 +513,7 @@ function setSidebar(open, restoreFocus = true) {
   else if (wasOpen && restoreFocus) sidebarReturnFocus?.focus({ preventScroll: true });
 }
 
+const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow() });
 makeToolRows();
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -508,13 +528,20 @@ form.addEventListener('submit', (event) => {
   reply.hidden = true;
   updateConversation(() => history.append(userMessage, reply), true);
   const action = chooseAction(text);
-  responses.push({ text, action, element: reply });
+  if (action.kind === 'live-app-build' || action.kind === 'crm-connect' || action.kind === 'crm-skip' || action.kind === 'live-app-defer') {
+    reply.remove();
+    if (action.kind === 'live-app-build') liveApps.start();
+    else if (action.kind === 'crm-connect') action.ids.forEach((id) => liveApps.connect(id));
+    else if (action.kind === 'crm-skip') liveApps.skip();
+    else liveApps.defer();
+  } else {
+    responses.push({ text, action, element: reply });
+  }
   prompt.value = '';
   updateSendButton();
   statusMessage.textContent = '';
   prompt.focus({ preventScroll: true });
   beginNextReply();
-  scroller.scrollTop = scroller.scrollHeight;
 });
 prompt.addEventListener('input', updateSendButton);
 prompt.addEventListener('keydown', (event) => {
@@ -568,6 +595,8 @@ document.addEventListener('keydown', (event) => {
 mobileQuery.addEventListener('change', () => setSidebar(false));
 window.addEventListener('pagehide', () => {
   flow.destroy();
+  liveApps.destroy();
+  chatScroll.cancel();
   for (const timer of appTimers) clearTimeout(timer);
   appTimers.clear();
 });

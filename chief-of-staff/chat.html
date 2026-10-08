@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=ab466a4d">
-  <link rel="stylesheet" href="chat.css?v=991d40c8">
-  <script type="module" src="chat.js?v=656499a0"></script>
+  <link rel="stylesheet" href="chat.css?v=29f21437">
+  <script type="module" src="chat.js?v=74cc0d29"></script>
 </head>
 <body class="chat-page">
   <a class="skip-link" href="#chat-prompt">Skip to conversation</a>
@@ -41,7 +41,7 @@
   </aside>
   <main class="chat-shell">
     <header class="chat-header"><button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open navigation" aria-controls="chat-sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><h1 class="agent-chip"><svg aria-hidden="true"><use href="chat-icons.svg#chat-owl"></use></svg>Chief of staff</h1><a class="back-home" href="./" aria-label="Back to home" title="Back to home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></a></header>
-    <div class="conversation-scroll" id="conversation-scroll">
+    <div class="conversation-scroll" id="conversation-scroll" tabindex="0" role="region" aria-label="Chat conversation">
       <div class="conversation-content" id="conversation-content">
         <div class="introduction" aria-live="polite" aria-relevant="additions">
           <p class="agent-message intro-message" hidden>Hey Woomi, I'm Owl and here to help you.</p>
@@ -61,7 +61,27 @@
             <ul class="activity-calls" id="activity-calls" aria-label="Simulated tool activity"></ul>
           </details>
         </div>
-        <div class="recommendation" id="recommendation" hidden aria-live="polite"><p class="agent-message" id="ready-message"></p><p class="agent-message" id="suggestion-message"></p></div>
+        <div class="recommendation" id="recommendation" hidden aria-live="polite">
+          <p class="agent-message" id="ready-message"></p><p class="agent-message" id="suggestion-message"></p>
+          <section class="live-app-offer" id="live-app-offer" aria-label="Suggested live app" hidden>
+            <span class="connection-name"><svg aria-hidden="true"><use href="live-app-icons.svg#live-app"></use></svg><span>Weekly Sales Pipeline Review App</span></span>
+            <div class="live-app-actions"><button class="defer-app" id="defer-live-app" type="button">Not now</button><button class="connect-button" id="build-live-app" type="button">Build</button></div>
+          </section>
+          <p class="agent-message" id="live-app-deferred" hidden>No problem. We can come back to this app whenever you’re ready.</p>
+        </div>
+        <section id="live-app-conversation" aria-label="Set up your live app" hidden>
+          <p class="agent-message" id="crm-prompt" hidden>Connect your CRM so I can bring in your opportunities, sales stages, and regional performance.</p>
+          <section class="connection-box crm-box" id="crm-box" aria-label="Connect your CRM" hidden>
+            <div id="crm-rows"></div>
+            <div class="connection-footer"><button id="skip-crm" type="button">Skip for now</button></div>
+          </section>
+          <details class="activity crm-activity" id="crm-activity" hidden>
+            <summary title="Show or hide CRM activity"><span class="activity-label" id="crm-activity-label"></span></summary>
+            <ul class="activity-calls" id="crm-activity-calls" aria-label="Simulated CRM activity"></ul>
+          </details>
+          <p class="agent-message" id="crm-result" aria-live="polite" hidden></p>
+          <p class="agent-message" id="live-app-complete" aria-live="polite" hidden></p>
+        </section>
         <div class="chat-history" id="chat-history" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions"></div>
       </div>
     </div>
