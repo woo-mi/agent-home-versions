@@ -1,15 +1,15 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 
-/* Conversation timing: brief pause → complete sentence → pause → next sentence.
- * Every sentence appears together; only the new sentence fades into place.
+/* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
+ * Each paragraph appears as one chunk, including all its sentences.
  * Connection/status labels remain immediate so clicks always feel responsive. */
 const TIMING = Object.freeze({
   openingPause: 700,
   paragraphPause: 750,
   toolsPause: 650,
-  sentencePauseBase: 420,
-  sentencePausePerWord: 24,
-  sentencePauseMaximum: 1100,
+  chunkPauseBase: 650,
+  chunkPausePerWord: 24,
+  chunkPauseMaximum: 1600,
   replyPause: 1300,
   replyLengthPause: 6,
   maxReplyLengthPause: 900,
@@ -110,31 +110,31 @@ function startNextStream() {
   }
 }
 
-function sentencePause(text) {
+function chunkPause(text) {
   const words = text.trim().split(/\s+/).length;
-  return Math.min(TIMING.sentencePauseMaximum, TIMING.sentencePauseBase + words * TIMING.sentencePausePerWord);
+  return Math.min(TIMING.chunkPauseMaximum, TIMING.chunkPauseBase + words * TIMING.chunkPausePerWord);
 }
 
 function streamMessage(element, text, onComplete = () => {}) {
   stopStreaming(element);
   const token = {};
   streams.set(element, token);
-  const sentences = [...new Intl.Segmenter('en', { granularity: 'sentence' }).segment(text)]
-    .map(({ segment }) => segment);
+  // Preserve paragraph separators and single newlines inside lists.
+  const chunks = text.match(/[\s\S]+?(?:(?:\r?\n[\t ]*){2,}|$)/g) || [''];
   let position = 0;
-  function nextSentence() {
+  function nextChunk() {
     if (streams.get(element) !== token) return;
-    const sentence = sentences[position++] || '';
-    const sentenceElement = document.createElement('span');
-    sentenceElement.className = 'sentence-reveal';
-    sentenceElement.textContent = sentence;
-    updateConversation(() => { element.append(sentenceElement); });
-    if (position >= sentences.length) {
+    const chunk = chunks[position++];
+    const chunkElement = document.createElement('span');
+    chunkElement.className = 'chunk-reveal';
+    chunkElement.textContent = chunk;
+    updateConversation(() => { element.append(chunkElement); });
+    if (position >= chunks.length) {
       stopStreaming(element);
-      onComplete(sentence);
+      onComplete(chunk);
       return;
     }
-    later(nextSentence, sentencePause(sentence));
+    later(nextChunk, chunkPause(chunk));
   }
   streamQueue.push({ element, token, start: () => {
     updateConversation(() => {
@@ -148,7 +148,7 @@ function streamMessage(element, text, onComplete = () => {}) {
       element.dataset.streaming = 'true';
       reveal(element);
     });
-    nextSentence();
+    nextChunk();
   } });
   startNextStream();
 }
@@ -171,10 +171,10 @@ function startIntroduction() {
   introductionComplete = false;
   function nextParagraph(index) {
     if (version !== introductionVersion) return;
-    streamMessage(introMessages[index], introTexts[index], (lastSentence) => {
+    streamMessage(introMessages[index], introTexts[index], (lastChunk) => {
       if (version !== introductionVersion) return;
       if (index < introMessages.length - 1) {
-        later(() => nextParagraph(index + 1), sentencePause(lastSentence));
+        later(() => nextParagraph(index + 1), chunkPause(lastChunk));
       } else {
         later(() => {
           if (version !== introductionVersion) return;
