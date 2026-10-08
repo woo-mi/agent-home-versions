@@ -550,7 +550,7 @@ function prepareLiveAppPreview() {
   appVersions.prepare();
 }
 
-const appVersions = createLiveAppVersions({ previews: { v1: 'live-app-preview.html?v=0f057ec4', v2: 'live-app-preview-v2.html?v=384079f4' }, onClose: () => setLiveAppOpen(false) });
+const appVersions = createLiveAppVersions({ previews: { v1: 'live-app-preview.html?v=0ab9a542', v2: 'live-app-preview-v2.html?v=ef845f18' }, onClose: () => setLiveAppOpen(false) });
 const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true), onReady: prepareLiveAppPreview });
 byId('close-live-app').addEventListener('click', () => setLiveAppOpen(false));
 sidebar.querySelectorAll('.sidebar-item').forEach((item) => {
