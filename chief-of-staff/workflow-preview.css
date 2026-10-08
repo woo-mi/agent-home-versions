@@ -1,0 +1,19 @@
+:root { font-family: Inter, system-ui, sans-serif; color: #24242a; background: #fff; font-synthesis: none; -webkit-font-smoothing: antialiased; }
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+body { display: flex; flex-direction: column; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, #workflow-canvas:focus-visible { outline: 2px solid #68678b; outline-offset: -3px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+#workflow-header { position: relative !important; left: auto !important; top: auto !important; width: 100% !important; height: 99px !important; flex-shrink: 0; border: 0 !important; }
+#workflow-canvas { position: relative; flex: 1; min-height: 0; overflow: hidden; box-shadow: inset 0 1px 0 #ececee; background-color: #fafafa; background-image: radial-gradient(circle, #dddee2 .65px, transparent .8px); background-size: 20px 20px; background-position: 2px 2px; cursor: grab; touch-action: none; }
+#workflow-canvas[data-pan="false"] { cursor: default; }
+#workflow-canvas[data-dragging="true"] { cursor: grabbing; user-select: none; }
+#workflow-nodes { position: absolute !important; left: 0 !important; top: 0 !important; transform-origin: 0 0; transform: translate(calc(50vw - 120.5px), 52px); will-change: transform; }
+.canvas-controls { position: absolute; left: 16px; bottom: 16px; display: grid; grid-template-columns: 32px 30px 46px 30px 34px; align-items: center; width: 174px; height: 34px; border: 1px solid #dddee2; border-radius: 7px; background: #fff; cursor: default; }
+.canvas-controls button { display: grid; place-items: center; height: 32px; min-width: 0; padding: 0; border: 0; border-radius: 6px; background: transparent; color: #242429; font-size: 14px; line-height: 1.45; }
+.canvas-controls button:hover:not(:disabled) { background: #f2f2f4; }
+.canvas-controls button:disabled { opacity: .35; cursor: default; }
+.canvas-controls #canvas-reset, .canvas-controls #canvas-fit { font-size: 11px; }
+.canvas-controls svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+.canvas-controls output { pointer-events: none; }

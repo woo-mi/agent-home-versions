@@ -2,6 +2,8 @@ import { createVersionMenu } from './version-menu.mjs?v=76591447';
 
 /** Compare app designs without restarting the conversation or either preview. */
 export function createLiveAppVersions({ previews, onClose }) {
+  let active = true;
+  let selectedVersion = 'v1';
   const frames = Object.entries(previews).map(([version, source]) => ({
     version, source, element: document.getElementById(version === 'v1' ? 'live-app-preview' : 'live-app-preview-v2'),
   }));
@@ -14,8 +16,9 @@ export function createLiveAppVersions({ previews, onClose }) {
 
   function select(version, updateUrl = false) {
     if (!previews[version]) return;
+    selectedVersion = version;
     for (const frame of frames) {
-      const inactive = frame.version !== version;
+      const inactive = !active || frame.version !== version;
       frame.element.classList.toggle('app-preview-inactive', inactive);
       frame.element.inert = inactive;
       frame.element.setAttribute('aria-hidden', String(inactive));
@@ -43,6 +46,7 @@ export function createLiveAppVersions({ previews, onClose }) {
   return {
     handleEscape: menu.handleEscape,
     setVisible: menu.setVisible,
+    setActive(value) { active = value; select(selectedVersion); },
     prepare() {
       // Both documents stay mounted so their scroll positions survive comparison.
       for (const { element, source } of frames) {

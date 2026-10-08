@@ -10,9 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=9f201844">
-  <link rel="stylesheet" href="chat.css?v=5f351879">
+  <link rel="stylesheet" href="chat.css?v=c1d0605e">
   <link rel="stylesheet" href="agent-setup.css?v=2c22a877">
-  <script type="module" src="chat.js?v=3165a4c0"></script>
+  <script type="module" src="chat.js?v=8d19fffb"></script>
 </head>
 <body class="chat-page" data-chat-version="v1">
   <a class="skip-link" href="#chat-prompt">Skip to conversation</a>
@@ -146,7 +146,7 @@
           <p class="agent-message" id="agent-setup-result" aria-live="polite" hidden></p>
           <section class="live-app-offer" id="agent-report-card" aria-label="Weekly Sales Pipeline Update report" hidden>
             <span class="connection-name"><img class="agent-setup-icon" src="agent-setup-icon.svg" width="24" height="24" alt=""><span>Weekly Sales Pipeline Update</span></span>
-            <div class="live-app-actions"><button class="connect-button" id="open-agent-report" type="button">Open report</button></div>
+            <div class="live-app-actions"><button class="connect-button" id="open-agent-report" type="button" aria-controls="live-app-panel" aria-expanded="false">Open report</button></div>
           </section>
         </section>
         <div class="chat-history" id="chat-history" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions"></div>
@@ -185,8 +185,14 @@
   </main>
   <aside class="live-app-panel" id="live-app-panel" aria-label="Weekly Sales Pipeline Review App preview" aria-hidden="true" inert>
     <div class="live-app-panel-toolbar"><button id="close-live-app" type="button" aria-label="Close app preview" title="Close app preview"><svg viewBox="0 0 24 24" aria-hidden="true"><path transform="translate(2.75 4.75)" d="M13 .25v14M0 12.5V2C0 .89543 .89543 0 2 0h14.5c1.10457 0 2 .89543 2 2v10.5c0 1.10457-.89543 2-2 2H2c-1.10457 0-2-.89543-2-2Z"/></svg></button></div>
+    <div class="report-view-tabs" id="report-view-tabs" role="tablist" aria-label="Weekly update view" hidden>
+      <button id="report-tab" type="button" role="tab" data-report-view="report" aria-selected="true" aria-controls="report-preview" tabindex="0">Report</button>
+      <button id="workflow-tab" type="button" role="tab" data-report-view="workflow" aria-selected="false" aria-controls="workflow-preview" tabindex="-1">Workflow</button>
+    </div>
     <iframe id="live-app-preview" title="Weekly Sales Pipeline Review App · v1"></iframe>
     <iframe id="live-app-preview-v2" class="app-preview-inactive" title="Weekly Sales Pipeline Review App · v2" aria-hidden="true" inert></iframe>
+    <iframe id="report-preview" class="report-preview app-preview-inactive" title="Weekly Sales Pipeline Update report" aria-hidden="true" inert></iframe>
+    <iframe id="workflow-preview" class="report-preview app-preview-inactive" title="Weekly Sales Pipeline Update workflow" aria-hidden="true" inert></iframe>
   </aside>
   <div class="app-version-control" id="app-version-control" hidden>
     <button class="app-version-trigger" id="app-version-trigger" type="button" aria-label="App version v1" aria-haspopup="menu" aria-controls="app-version-menu" aria-expanded="false">

@@ -1,9 +1,10 @@
 import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=ce73c21e';
 import { createLiveAppChat } from './live-app-chat.mjs?v=4a79abc6';
-import { createLiveAppVersions } from './live-app-versions.mjs?v=06120411';
+import { createLiveAppVersions } from './live-app-versions.mjs?v=81367341';
 import { createChatVersions } from './chat-versions.mjs?v=02619397';
 import { createAgentSetupChat } from './agent-setup-chat.mjs?v=238c571e';
+import { createReportViews } from './report-views.mjs?v=41c95bec';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -67,6 +68,7 @@ let recommendationVersion = 0;
 let recommendationContent;
 let introductionVersion = 0;
 let introductionComplete = false;
+let panelKind = 'app';
 
 const names = (entries) => {
   const labels = entries.map((entry) => typeof entry === 'string' ? entry : entry.label);
@@ -483,6 +485,7 @@ function updateSendButton() {
 
 function resetConversation() {
   setLiveAppOpen(false, false);
+  reportViews.reset();
   generation += 1;
   flow?.destroy();
   for (const element of streams.keys()) stopStreaming(element);
@@ -530,44 +533,56 @@ function setSidebar(open, restoreFocus = true) {
   else if (wasOpen && restoreFocus) sidebarReturnFocus?.focus({ preventScroll: true });
 }
 
-function setLiveAppOpen(open, restoreFocus = true) {
+function setLiveAppOpen(open, restoreFocus = true, kind = panelKind) {
   // Open directly in the final layout; closing can still use the panel transition.
   // New Chat and page navigation also settle without an in-flight transition.
   const immediate = open || !restoreFocus;
   if (immediate) document.body.classList.add('live-app-reset');
   if (open) prepareLiveAppPreview();
   else if (restoreFocus && (liveAppPanel.contains(document.activeElement) || byId('app-version-control').contains(document.activeElement))) {
-    byId('open-live-app').focus({ preventScroll: true });
+    byId(panelKind === 'report' ? 'open-agent-report' : 'open-live-app').focus({ preventScroll: true });
   }
+  if (open) panelKind = kind;
+  else if (!restoreFocus) panelKind = 'app';
   updateConversation(() => {
     document.body.classList.toggle('live-app-open', open);
     liveAppPanel.inert = !open;
     liveAppPanel.setAttribute('aria-hidden', String(!open));
-    byId('open-live-app').setAttribute('aria-expanded', String(open));
-    appVersions.setVisible(open);
+    const report = panelKind === 'report';
+    liveAppPanel.dataset.view = panelKind;
+    liveAppPanel.setAttribute('aria-label', report ? 'Weekly Sales Pipeline Update report' : 'Weekly Sales Pipeline Review App preview');
+    byId('close-live-app').setAttribute('aria-label', report ? 'Close report' : 'Close app preview');
+    byId('close-live-app').title = report ? 'Close report' : 'Close app preview';
+    byId('open-live-app').setAttribute('aria-expanded', String(open && !report));
+    byId('open-agent-report').setAttribute('aria-expanded', String(open && report));
+    appVersions.setActive(!report);
+    reportViews.setActive(report);
+    appVersions.setVisible(open && !report);
     chatVersions.setVisible(!open);
   });
-  agentSetup.setViewing(open);
+  agentSetup.setViewing(open && panelKind === 'app');
   if (open) chatScroll.settle();
   if (immediate) {
     // Commit every layout change before restoring transitions.
     liveAppPanel.getBoundingClientRect();
     document.body.classList.remove('live-app-reset');
   }
-  if (open) byId('close-live-app').focus({ preventScroll: true });
+  if (open) byId(panelKind === 'report' ? 'report-tab' : 'close-live-app').focus({ preventScroll: true });
 }
 
 function prepareLiveAppPreview() {
   appVersions.prepare();
+  reportViews.prepare();
 }
 
 const chatVersions = createChatVersions({ update: updateConversation });
 const appVersions = createLiveAppVersions({ previews: { v1: 'live-app-preview.html?v=0ab9a542', v2: 'live-app-preview-v2.html?v=ef845f18' }, onClose: () => setLiveAppOpen(false) });
+const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=20a3a961', workflow: 'workflow-preview.html?v=8e329585' }, onClose: () => setLiveAppOpen(false) });
 const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onOpenReport: () => {
-  setLiveAppOpen(true);
-  document.querySelector('.live-app-panel iframe:not(.app-preview-inactive)')?.focus({ preventScroll: true });
+  reportViews.open(agentSetup.snapshot().schedule);
+  setLiveAppOpen(true, true, 'report');
 } });
-const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true), onReady: prepareLiveAppPreview });
+const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true, true, 'app'), onReady: prepareLiveAppPreview });
 byId('close-live-app').addEventListener('click', () => setLiveAppOpen(false));
 sidebar.querySelectorAll('.sidebar-item').forEach((item) => {
   if (!item.hasAttribute('aria-label')) item.setAttribute('aria-label', item.textContent.trim());
