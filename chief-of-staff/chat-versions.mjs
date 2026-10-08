@@ -1,5 +1,7 @@
 import { createVersionMenu } from './version-menu.mjs?v=76591447';
 
+const VERSIONS = new Set(['v0', 'v1', 'v2']);
+
 /** Compare chat widths while keeping the same conversation and draft. */
 export function createChatVersions({ update }) {
   const composer = document.getElementById('chat-form');
@@ -19,7 +21,7 @@ export function createChatVersions({ update }) {
   }
 
   function select(version, updateUrl = false) {
-    if (version !== 'v1' && version !== 'v2') return;
+    if (!VERSIONS.has(version)) return;
     update(() => { document.body.dataset.chatVersion = version; });
     menu.setSelection(version, `Chat ${version}`, `Chat layout ${version}`);
     if (updateUrl) {
@@ -35,7 +37,8 @@ export function createChatVersions({ update }) {
   observer.observe(composer);
   observer.observe(menu.trigger);
   window.addEventListener('resize', positionControl);
-  select(new URLSearchParams(location.search).get('chat') === 'v2' ? 'v2' : 'v1');
+  const requestedVersion = new URLSearchParams(location.search).get('chat');
+  select(VERSIONS.has(requestedVersion) ? requestedVersion : 'v1');
 
   return {
     handleEscape: menu.handleEscape,

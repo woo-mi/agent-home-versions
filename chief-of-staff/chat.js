@@ -2,7 +2,7 @@ import { createConnectionFlow, TOOLS } from './connection-flow.mjs?v=fc65af86';
 import { createChatScroll } from './chat-scroll.mjs?v=ce73c21e';
 import { createLiveAppChat } from './live-app-chat.mjs?v=4a79abc6';
 import { createLiveAppVersions } from './live-app-versions.mjs?v=81367341';
-import { createChatVersions } from './chat-versions.mjs?v=02619397';
+import { createChatVersions } from './chat-versions.mjs?v=b12b3e05';
 import { createAgentSetupChat } from './agent-setup-chat.mjs?v=28228c37';
 import { createReportViews } from './report-views.mjs?v=3e53c1e2';
 
@@ -81,6 +81,11 @@ function updateConversation(change, forceScroll = false) {
   chatScroll.update(() => {
     change();
     const content = byId('conversation-content');
+    const connectingLabel = document.body.dataset.chatVersion === 'v0' && !document.body.classList.contains('live-app-open')
+      ? 'Connecting...' : 'Connecting…';
+    for (const label of content.querySelectorAll('#connection-box [data-state="connecting"] .state-label')) {
+      if (label.textContent !== connectingLabel) label.textContent = connectingLabel;
+    }
     content.querySelector('.conversation-tail')?.classList.remove('conversation-tail');
     const blocks = [...content.querySelectorAll('.agent-message, .user-message, .connection-box, .activity, .live-app-offer, .agent-schedule-form')];
     blocks.findLast((element) => element.getClientRects().length > 0)?.classList.add('conversation-tail');

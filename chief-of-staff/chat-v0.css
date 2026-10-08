@@ -1,0 +1,123 @@
+/* Updated “2 Agent Chat connect”; previous comparison versions stay unchanged. */
+.chat-page[data-chat-version="v0"]:not(.live-app-open) {
+  --chat-text-width: 748px;
+  --chat-card-width: 748px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .conversation-scroll {
+  padding-top: 36px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .agent-message {
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box {
+  margin: 24px 0;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #edf0f5;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row {
+  min-height: 53px;
+  padding: 12px 14px;
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-rows > :nth-child(4) {
+  min-height: 54px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-rows > :last-child {
+  box-shadow: inset 0 -1px 0 #e8e8ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-name {
+  gap: 12px;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .tool-logo {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row .connect-button {
+  min-width: 69px;
+  min-height: 29px;
+  padding: 6px 10px;
+  border: 0;
+  line-height: 17px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row .connect-button[data-state="connecting"],
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row .connect-button[data-state="connected"] {
+  box-shadow: inset 0 0 0 1px #e4e6ea;
+  color: #000;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connect-button[data-state="connecting"] {
+  min-width: 98px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connect-button[data-state="connecting"] .state-icon {
+  display: none;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connect-button[data-state="connected"] {
+  min-width: 103px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row .connect-button[data-state="connected"] .state-icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  border: 0;
+  transform: none;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-row .connect-button[data-state="connected"] .state-icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m3.1667 8.5179 3.5 4.3154 6.1666-9.6666' stroke='%23209855' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-footer {
+  width: 100%;
+  height: 40px;
+  padding: 0 max(17px, calc(100% - 596px)) 0 0;
+  box-shadow: inset 0 -1px 0 #e8e8ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) #connection-box .connection-footer button {
+  padding: 0;
+  color: #24242a80;
+  line-height: 21px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .connection-confirmation {
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .activity,
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .user-message {
+  margin-bottom: 24px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .live-app-offer {
+  margin: 24px 0;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .chat-footer .composer {
+  padding-top: 15px;
+  padding-bottom: 13px;
+}
