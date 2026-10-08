@@ -14,6 +14,7 @@ const menu = createVersionMenu({
 function select(version, updateUrl = false) {
   if (!versions.has(version)) return;
   document.body.dataset.homeVersion = version;
+  document.dispatchEvent(new Event('home-version-change'));
   description.textContent = version === 'v1' ? originalDescription : shortDescription;
   menu.setSelection(version, `Home ${version}`, `Home version ${version}`);
   if (updateUrl) {

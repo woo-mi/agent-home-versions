@@ -18,14 +18,23 @@
       sendButton.disabled = prompt.value.trim().length === 0;
     }
 
+    function updateHeading() {
+      const homeVersion = document.body.dataset.homeVersion || 'v1';
+      pageTitle.textContent = currentMode === 'ask'
+        ? 'What do you want to ask, Woomi?'
+        : homeVersion === 'v1'
+          ? 'What should we work on in Agents, Woomi?'
+          : 'What do you want to build, Woomi?';
+    }
+
+    document.addEventListener('home-version-change', updateHeading);
+
     function selectMode(mode) {
       currentMode = mode;
       Object.entries(modes).forEach(([name, button]) => {
         button.setAttribute('aria-pressed', String(name === mode));
       });
-      pageTitle.textContent = mode === 'build'
-        ? 'What do you want to build, Woomi?'
-        : 'What do you want to ask, Woomi?';
+      updateHeading();
       prompt.placeholder = mode === 'build'
         ? 'Describe the app you want to build'
         : 'Ask Wisdom about your data';
