@@ -594,7 +594,7 @@ function prepareLiveAppPreview() {
   reportViews.prepare();
 }
 
-const appVersions = createLiveAppVersions({ previews: { v0: 'live-app-preview-v0.html?v=1d23f43e', v1: 'live-app-preview.html?v=812b03af', v2: 'live-app-preview-v2.html?v=18e896fd' }, onClose: () => setLiveAppOpen(false) });
+const appVersions = createLiveAppVersions({ previews: { v0: 'live-app-preview-v0.html?v=51fc0539', v1: 'live-app-preview.html?v=246bcca2', v2: 'live-app-preview-v2.html?v=69211e59' }, onClose: () => setLiveAppOpen(false) });
 const chatVersions = createChatVersions({ update: updateConversation, onChange: appVersions.setChatVersion });
 const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=9bfbfb37', workflow: 'workflow-preview.html?v=422a551c' }, onClose: () => setLiveAppOpen(false) });
 const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onScheduleChange: reportViews.setSchedule, onOpenReport: () => {
