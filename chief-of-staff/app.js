@@ -13,6 +13,14 @@
     const tabs = { apps: byId('tab-apps'), agents: byId('tab-agents') };
     const panels = { apps: byId('apps-panel'), agents: byId('agents-panel') };
     let currentMode = 'build';
+    const navigationToggle = byId('home-navigation-toggle');
+    navigationToggle.addEventListener('click', () => {
+      const expanded = document.body.classList.toggle('navigation-expanded');
+      const label = expanded ? 'Close navigation' : 'Open navigation';
+      navigationToggle.setAttribute('aria-expanded', String(expanded));
+      navigationToggle.setAttribute('aria-label', label);
+      navigationToggle.title = label;
+    });
 
     function updateSendButton() {
       sendButton.disabled = prompt.value.trim().length === 0;

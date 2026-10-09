@@ -36,7 +36,27 @@ svg { display: block; flex-shrink: 0; }
 .notification { width: 40px; padding: 0; }
 .notification svg { width: 40px; height: 36px; }
 .profile { width: 40px; height: 36px; display: grid; place-items: center; }
-.profile span { width: 24px; height: 24px; display: grid; place-items: center; border: 1px solid #e7b8de; border-radius: 50%; background: #fbe6f5; color: #9e168e; font-size: 11px; }
+.profile > span:not(.rail-label) { width: 24px; height: 24px; display: grid; place-items: center; border: 1px solid #e7b8de; border-radius: 50%; background: #fbe6f5; color: #9e168e; font-size: 11px; }
+.home-brand-row { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 11px; margin-top: 8px; flex-shrink: 0; }
+.home-brand-row .brand { margin-top: 0; }
+.home-brand-wordmark, .rail-label { display: none; }
+.home-page .navigation-toggle { display: grid; place-items: center; width: 36px; height: 36px; padding: 8px; flex-shrink: 0; border-radius: 6px; }
+.home-page .navigation-toggle svg { width: 20px; height: 20px; fill: none; stroke: #626268; stroke-width: 1.5; }
+.home-page .navigation-toggle:hover { background: #e9e9eb; }
+.home-page .rail-nav { margin-top: 0; }
+.home-page.navigation-expanded { --rail: 260px; }
+.home-page.navigation-expanded .home-brand-row { flex-direction: row; justify-content: space-between; padding: 0 6px; gap: 0; }
+.home-page.navigation-expanded .brand, .home-page.navigation-expanded .home-brand-wordmark { width: 126px; }
+.home-page.navigation-expanded .home-brand-wordmark { display: block; }
+.home-page.navigation-expanded .home-brand-mark { display: none; }
+.home-page.navigation-expanded .rail-nav { margin-top: 11px; }
+.home-page.navigation-expanded .rail-label { display: block; white-space: nowrap; }
+.home-page.navigation-expanded .rail-button, .home-page.navigation-expanded .profile { display: flex; align-items: center; justify-content: flex-start; width: calc(100% - 12px); padding: 8px; gap: 12px; font-size: 14px; line-height: 20px; text-decoration: none; }
+.home-page.navigation-expanded .rail-divider { width: calc(100% - 24px); }
+.home-page.navigation-expanded .rail-bottom { width: 100%; display: flex; flex-direction: column; align-items: center; }
+.home-page.navigation-expanded .notification { padding: 0 8px; gap: 2px; }
+.home-page.navigation-expanded .notification svg { margin-left: -10px; }
+.home-page.navigation-expanded .profile { padding-left: 6px; gap: 10px; }
 .workspace { margin-left: var(--rail); min-height: 100svh; padding: clamp(96px, 29.54vh, 340px) 32px 64px; }
 .home { width: min(100%, 810px); margin: 0 auto; }
 h1 { font-size: 26px; font-weight: 500; line-height: 1.29; text-align: center; letter-spacing: -.45px; margin: 0 0 24px; }

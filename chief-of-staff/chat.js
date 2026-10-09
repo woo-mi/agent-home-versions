@@ -61,6 +61,7 @@ chatOverlayObserver.observe(chatHeader);
 chatOverlayObserver.observe(chatFooter);
 syncChatOverlays();
 const sidebarToggle = byId('sidebar-toggle');
+const desktopNavigationToggle = byId('chat-navigation-toggle');
 const backdrop = byId('sidebar-backdrop');
 const liveAppPanel = byId('live-app-panel');
 const panelToolbar = byId('live-app-panel-toolbar');
@@ -554,6 +555,14 @@ function setSidebar(open, restoreFocus = true) {
   else if (wasOpen && restoreFocus) sidebarReturnFocus?.focus({ preventScroll: true });
 }
 
+function setDesktopNavigation(collapsed) {
+  document.body.classList.toggle('navigation-collapsed', collapsed);
+  const label = collapsed ? 'Open navigation' : 'Close navigation';
+  desktopNavigationToggle.setAttribute('aria-expanded', String(!collapsed));
+  desktopNavigationToggle.setAttribute('aria-label', label);
+  desktopNavigationToggle.title = label;
+}
+
 function syncPanelToggle() {
   const open = document.body.classList.contains('live-app-open');
   const label = `${open ? 'Close' : 'Open'} ${panelKind === 'report' ? 'report' : 'app preview'}`;
@@ -574,6 +583,7 @@ function markPanelReady(kind) {
 
 function setLiveAppOpen(open, restoreFocus = true, kind = panelKind) {
   if (open && !availablePanels.has(kind)) return;
+  const wasOpen = document.body.classList.contains('live-app-open');
   // App and report share the reversible panel transition. Only New Chat and
   // page navigation settle immediately so a reset cannot leave motion running.
   const immediate = !restoreFocus;
@@ -584,6 +594,8 @@ function setLiveAppOpen(open, restoreFocus = true, kind = panelKind) {
   else if (!restoreFocus) panelKind = 'app';
   updateConversation(() => {
     document.body.classList.toggle('live-app-open', open);
+    // Preserve a manual sidebar choice when switching between open previews.
+    if (open !== wasOpen || immediate) setDesktopNavigation(open);
     liveAppPanel.inert = !open;
     liveAppPanel.setAttribute('aria-hidden', String(!open));
     const report = panelKind === 'report';
@@ -621,6 +633,9 @@ const agentSetup = createAgentSetupChat({ history, update: updateConversation, s
 } });
 const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true, true, 'app'), onReady: () => markPanelReady('app') });
 panelToggle.addEventListener('click', () => setLiveAppOpen(!document.body.classList.contains('live-app-open')));
+desktopNavigationToggle.addEventListener('click', () => {
+  updateConversation(() => setDesktopNavigation(!document.body.classList.contains('navigation-collapsed')));
+});
 sidebar.querySelectorAll('.sidebar-item').forEach((item) => {
   if (!item.hasAttribute('aria-label')) item.setAttribute('aria-label', item.textContent.trim());
 });
