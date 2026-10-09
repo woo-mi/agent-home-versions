@@ -5,9 +5,11 @@
 .agent-suggestions-group-heading { margin: 0 0 10px 2px; color: #8687a2; font-size: 12px; font-weight: 500; line-height: 16px; }
 .agent-suggestions-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
 .agent-suggestions-card { min-width: 0; min-height: 145px; padding: 14px 12px 18px 16px; border-radius: 12px; outline: 1px solid #d4d8e3; background: #fff; }
+.agent-suggestions-card:hover, .agent-suggestions-card:focus-within { outline-color: #a6a4b0; }
 .agent-suggestions-card-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; min-height: 24px; margin-bottom: 9px; }
 .agent-suggestions-artwork { flex-shrink: 0; pointer-events: none; }
-.agent-suggestions-use { height: 24px; padding: 0 12px; border: 1px solid #d4d4d4; border-radius: 999px; background: #fff; color: #232323; font-size: 12px; font-weight: 500; line-height: 16px; cursor: pointer; }
+.agent-suggestions-use { height: 24px; padding: 0 12px; border: 1px solid #d4d4d4; border-radius: 999px; background: #fff; color: #232323; font-size: 12px; font-weight: 500; line-height: 16px; cursor: pointer; opacity: 0; pointer-events: none; }
+.agent-suggestions-card:hover .agent-suggestions-use, .agent-suggestions-card:focus-within .agent-suggestions-use { opacity: 1; pointer-events: auto; }
 .agent-suggestions-use:hover { background: #f5f5f6; border-color: #aaaab3; }
 .agent-suggestions-use:focus-visible,
 .agent-suggestions-list-button:focus-visible { outline: 2px solid #68678b; outline-offset: 4px; }
@@ -20,8 +22,7 @@
 .agent-suggestions-list-group + .agent-suggestions-list-group { margin-top: 56px; }
 .agent-suggestions-list-group[data-group="2"] { margin-top: 58px; }
 .agent-suggestions-list-group[data-group="3"] { margin-top: 60px; }
-.agent-suggestions-list-heading { margin: 0 0 14px; color: #333444; font-size: 18px; font-weight: 600; line-height: 23px; }
-.agent-suggestions-list-group[data-group="3"] .agent-suggestions-list-heading { margin-bottom: 11px; }
+.agent-suggestions-list-heading { margin: 0 0 28px; color: #333444; font-size: 18px; font-weight: 600; line-height: 23px; }
 .agent-suggestions-list-items { display: grid; gap: 24px; margin: 0; padding: 0; list-style: none; }
 .agent-suggestions-list-group[data-group="0"] .agent-suggestions-list-item:first-child { margin-bottom: 2px; }
 .agent-suggestions-list-group[data-group="0"] .agent-suggestions-list-item:nth-child(2) { margin-bottom: 1px; }
