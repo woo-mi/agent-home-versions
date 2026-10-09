@@ -45,7 +45,17 @@ export function mountAgentSuggestions(panel, { onPreview }) {
     }
     icon.classList.add('agent-suggestions-artwork');
     icon.style.display = 'block';
-    if (accent) icon.style.setProperty('--suggestion-icon-accent', accent);
+    if (accent) {
+      icon.style.setProperty('--suggestion-icon-accent', accent);
+      // Normalize the exported main icons while preserving their SVG strokes.
+      const scale = 24 / Number.parseFloat(icon.style.width);
+      for (const node of [icon, ...icon.querySelectorAll('[style]')]) {
+        for (const property of ['width', 'height', 'left', 'top']) {
+          const value = node.style[property];
+          if (value.endsWith('px')) node.style[property] = `${Number.parseFloat(value) * scale}px`;
+        }
+      }
+    }
     icon.setAttribute('aria-hidden', 'true');
     return icon;
   }

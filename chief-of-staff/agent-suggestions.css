@@ -30,7 +30,6 @@
 .agent-suggestions-list-button { position: relative; isolation: isolate; display: flex; align-items: flex-start; gap: 11px; width: 100%; padding: 0 max(0px, calc(100% - 654px)) 0 0; border: 0; border-radius: 4px; color: #333444; background: transparent; text-align: left; cursor: pointer; }
 .agent-suggestions-list-button::before { content: ""; position: absolute; inset: -12px -16px; z-index: -1; border: 1px solid transparent; border-radius: 16px; }
 .agent-suggestions-list-wide { padding-right: 0; }
-.agent-suggestions-list-first { gap: 7px; }
 .agent-suggestions-list-copy { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .agent-suggestions-list-first .agent-suggestions-list-copy { gap: 1px; }
 .agent-suggestions-list-title { font-size: 15px; font-weight: 500; line-height: 19px; }
