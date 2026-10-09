@@ -10,9 +10,8 @@
 .agent-suggestions-artwork { flex-shrink: 0; pointer-events: none; }
 .agent-suggestions-card-header > .agent-suggestions-artwork { color: #333444; }
 .agent-suggestions-card:hover .agent-suggestions-card-header > .agent-suggestions-artwork { color: var(--suggestion-icon-accent, #333444); }
-.agent-suggestions-use { height: 24px; padding: 0 12px; border: 1px solid #d4d4d4; border-radius: 999px; background: #fff; color: #232323; font-size: 12px; font-weight: 500; line-height: 16px; cursor: pointer; opacity: 0; pointer-events: none; }
+.agent-suggestions-use { height: 24px; padding: 0 12px; border: 1px solid #171717; border-radius: 999px; background: #171717; color: #fff; font-size: 12px; font-weight: 500; line-height: 16px; cursor: pointer; opacity: 0; pointer-events: none; }
 .agent-suggestions-card:hover .agent-suggestions-use, .agent-suggestions-card:focus-within .agent-suggestions-use { opacity: 1; pointer-events: auto; }
-.agent-suggestions-use:hover { background: #f5f5f6; border-color: #aaaab3; }
 .agent-suggestions-use:focus-visible,
 .agent-suggestions-list-button:focus-visible { outline: 2px solid #68678b; outline-offset: 4px; }
 .agent-suggestions-card-copy { width: calc(100% - 4px); }
