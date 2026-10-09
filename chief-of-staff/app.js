@@ -10,7 +10,6 @@
     const statusMessage = byId('status-message');
     const dialog = byId('prototype-dialog');
     const modes = { ask: byId('mode-ask'), build: byId('mode-build') };
-    const tabs = { apps: byId('tab-apps'), agents: byId('tab-agents') };
     const panels = { apps: byId('apps-panel'), agents: byId('agents-panel') };
     let currentMode = 'build';
     const navigationToggle = byId('home-navigation-toggle');
@@ -40,14 +39,10 @@
       document.querySelector('label[for="prompt"]').textContent = prompt.placeholder;
     }
 
-    function selectTab(tab, focus = false) {
-      Object.entries(tabs).forEach(([name, button]) => {
-        const selected = name === tab;
-        button.setAttribute('aria-selected', String(selected));
-        button.tabIndex = selected ? 0 : -1;
-        panels[name].hidden = !selected;
+    function selectPanel(selectedPanel) {
+      Object.entries(panels).forEach(([name, panel]) => {
+        panel.hidden = name !== selectedPanel;
       });
-      if (focus) tabs[tab].focus();
     }
 
     Object.entries(modes).forEach(([mode, button]) => {
@@ -57,31 +52,8 @@
       });
     });
 
-    const tabNames = Object.keys(tabs);
     document.querySelectorAll('[data-tab-target]').forEach((button) => {
-      button.addEventListener('click', () => selectTab(button.dataset.tabTarget));
-    });
-    Object.entries(tabs).forEach(([tab, button]) => {
-      button.addEventListener('click', (event) => {
-        event.preventDefault();
-        selectTab(tab);
-      });
-      button.addEventListener('keydown', (event) => {
-        let nextTab;
-        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-          const direction = event.key === 'ArrowRight' ? 1 : -1;
-          const index = tabNames.indexOf(tab);
-          nextTab = tabNames[(index + direction + tabNames.length) % tabNames.length];
-        } else if (event.key === 'Home') {
-          nextTab = tabNames[0];
-        } else if (event.key === 'End') {
-          nextTab = tabNames[tabNames.length - 1];
-        }
-        if (nextTab) {
-          event.preventDefault();
-          selectTab(nextTab, true);
-        }
-      });
+      button.addEventListener('click', () => selectPanel(button.dataset.tabTarget));
     });
 
     prompt.addEventListener('input', updateSendButton);
@@ -124,13 +96,13 @@
       prompt.value = '';
       statusMessage.textContent = '';
       selectMode('build');
-      selectTab('agents');
+      selectPanel('agents');
       updateSendButton();
       prompt.focus();
     });
 
     selectMode('build');
-    selectTab('agents');
+    selectPanel('agents');
     updateSendButton();
   }
 
