@@ -1,0 +1,255 @@
+{
+  "source": {
+    "fileName": "central+icon+system+v1.35.fig",
+    "figmaFileKey": "DHvlntO88oQJCoiawCCr3d",
+    "exportedAt": "2026-08-06T06:12:59.209Z",
+    "sha256": "499a69a8967e76f6fcd7e05d2abe5d3584afa871f6454a57f88c13fea2d721c5",
+    "format": "fig-kiwi version 106"
+  },
+  "variant": {
+    "filled": "on",
+    "stroke": 1.5,
+    "radius": 2,
+    "join": "round"
+  },
+  "geometryNotes": [
+    "Local exports preserve original float32 M/L/Q/C/Z path coordinates, winding rules, paint and transforms without contour redrawing.",
+    "Product radar.svg intentionally maps to gauge: its outlined counterpart 5564:2487 exactly matches the Churn radar design icon.",
+    "Browser exports stopwatch.svg and plan.svg were preserved byte for byte; the decoded command sequences match within native SVG decimal rounding."
+  ],
+  "assets": [
+    {
+      "asset": "stopwatch.svg",
+      "componentName": "stopwatch, track",
+      "familyNodeId": "5727:60093",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "5727:60128",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5727-60128",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "5727:60129"
+      ],
+      "fillGeometryBlobIds": [
+        11501,
+        11502
+      ],
+      "method": "Unchanged native Figma SVG export",
+      "sha256": "cd2d578eeba8d26aa5b8b8f959c2872f3aa8e67bb6bcd8552c0c10902f8d56b4"
+    },
+    {
+      "asset": "plan.svg",
+      "componentName": "animate-path, animation, jump",
+      "familyNodeId": "15011:27834",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "15011:27902",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=15011-27902",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "15011:27903"
+      ],
+      "fillGeometryBlobIds": [
+        104935
+      ],
+      "method": "Unchanged native Figma SVG export",
+      "sha256": "f885c149178c2586363df4250d3bb7a03afcd5eddd20dfcdb4a3ec4508da4d28"
+    },
+    {
+      "asset": "radar.svg",
+      "componentName": "gauge, tachometer, performance, speed, scale",
+      "familyNodeId": "5564:2406",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "5564:2492",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5564-2492",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "5564:2895"
+      ],
+      "fillGeometryBlobIds": [
+        3489,
+        3490
+      ],
+      "method": "Direct local .fig fillGeometry command decoding with original winding rules and transforms",
+      "sha256": "03cf6c669564a5072bccc9ed90a92f2ee9909fd58df8832df29aeaf5337d4776"
+    },
+    {
+      "asset": "numbered-list.svg",
+      "componentName": "numbered-list",
+      "familyNodeId": "5656:58292",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "5656:58327",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5656-58327",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "12759:28119",
+        "12759:28120",
+        "12759:28121",
+        "12759:28122"
+      ],
+      "fillGeometryBlobIds": [
+        59054,
+        59017,
+        59056,
+        59058
+      ],
+      "method": "Direct local .fig fillGeometry command decoding with original winding rules and transforms",
+      "sha256": "8d44b12e059ab9761eaf4cf9d24976fd0571aa805d1dcbadf671ddafb6024f3b"
+    },
+    {
+      "asset": "dollar-circle.svg",
+      "componentName": "coin-dollar, currency, money",
+      "familyNodeId": "5612:66134",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "5612:66211",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5612-66211",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "12600:25677"
+      ],
+      "fillGeometryBlobIds": [
+        56851
+      ],
+      "method": "Direct local .fig fillGeometry command decoding with original winding rules and transforms",
+      "sha256": "1d788fa5c85be40fe29347f1e0290a1d6cc8f08d6f91bf41e6296c9a8c499ed4"
+    },
+    {
+      "asset": "crosshair.svg",
+      "componentName": "target-2, zoom, crosshair",
+      "familyNodeId": "5537:1038",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "5537:1182",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5537-1182",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "5551:1444"
+      ],
+      "fillGeometryBlobIds": [
+        2491
+      ],
+      "method": "Direct local .fig fillGeometry command decoding with original winding rules and transforms",
+      "sha256": "971f39faa65a73f47382645d863f013c3827c0fe489f96f1d1d37684eece7cd3"
+    },
+    {
+      "asset": "stethoscope.svg",
+      "componentName": "stethoscope, check, diagnostics, analyze",
+      "familyNodeId": "15303:27742",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "15303:27796",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=15303-27796",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "15303:27797"
+      ],
+      "fillGeometryBlobIds": [
+        108537
+      ],
+      "method": "Direct local .fig fillGeometry command decoding with original winding rules and transforms",
+      "sha256": "a14e8f384dfe5abf7c3f1996f7b3e95eba36a65027133817ec06974662827958"
+    },
+    {
+      "asset": "bug.svg",
+      "componentName": "bug, issue",
+      "familyNodeId": "6899:61930",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "6899:61984",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=6899-61984",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "6899:61986"
+      ],
+      "fillGeometryBlobIds": [
+        19962
+      ],
+      "method": "Direct local .fig fillGeometry command decoding with original winding rules and transforms",
+      "sha256": "6c2eb3b6b57253c9805b0b3474423d952f073c92c4dbfedf663d9aac19d3cb4f"
+    },
+    {
+      "asset": "storefront.svg",
+      "componentName": "store-1",
+      "familyNodeId": "11557:25544",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "11557:25606",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=11557-25606",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "11557:25607"
+      ],
+      "fillGeometryBlobIds": [
+        50589,
+        50590,
+        50591,
+        50563
+      ],
+      "method": "Direct local .fig fillGeometry command decoding with original winding rules and transforms",
+      "sha256": "15a7c0bdd2cf3f3f34580085fbf20890a8ae2b14ce2fbbbd9de42430b66635da"
+    },
+    {
+      "asset": "receipt.svg",
+      "componentName": "receipt-bill, purchase, invoice",
+      "familyNodeId": "7314:63928",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "7314:63980",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=7314-63980",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "7314:63982"
+      ],
+      "fillGeometryBlobIds": [
+        20419
+      ],
+      "method": "Direct local .fig fillGeometry command decoding with original winding rules and transforms",
+      "sha256": "ac881d469f83003db3d46d6a197d098920fd80bea3986b1e0bd78e6a95016fd5"
+    },
+    {
+      "asset": "gift.svg",
+      "componentName": "gift-1, present",
+      "familyNodeId": "5612:69681",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "5612:69774",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5612-69774",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "5612:70230"
+      ],
+      "fillGeometryBlobIds": [
+        7546,
+        7547,
+        7548
+      ],
+      "method": "Direct local .fig fillGeometry command decoding with original winding rules and transforms",
+      "sha256": "0de45255f73aae1e7dfe30b2d7820d3c21cd9384a72f48a37b1944bda5f0f0aa"
+    }
+  ]
+}

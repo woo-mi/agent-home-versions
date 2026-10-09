@@ -7,8 +7,8 @@
 .agent-suggestions-card:hover, .agent-suggestions-card:focus-within { border-color: #a6a4b0; }
 .agent-suggestions-card-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; min-height: 24px; margin-bottom: 9px; }
 .agent-suggestions-artwork { flex-shrink: 0; pointer-events: none; }
-.agent-suggestions-card-header > .agent-suggestions-artwork { color: #333444; }
-.agent-suggestions-card:hover .agent-suggestions-card-header > .agent-suggestions-artwork { color: var(--suggestion-icon-accent, #333444); }
+.agent-suggestions-main-icon { display: block; width: 24px; height: 24px; background: currentColor; mask: no-repeat center / contain; -webkit-mask: no-repeat center / contain; }
+.agent-suggestions-card-header > .agent-suggestions-artwork { color: var(--suggestion-icon-accent, #333444); }
 .agent-suggestions-use { height: 24px; padding: 0 12px; border: 1px solid #171717; border-radius: 999px; background: #171717; color: #fff; font-size: 12px; font-weight: 500; line-height: 16px; cursor: pointer; opacity: 0; pointer-events: none; }
 .agent-suggestions-card:hover .agent-suggestions-use, .agent-suggestions-card:focus-within .agent-suggestions-use { opacity: 1; pointer-events: auto; }
 .agent-suggestions-use:focus-visible { outline: 2px solid #68678b; outline-offset: 4px; }
