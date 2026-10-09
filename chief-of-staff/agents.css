@@ -22,7 +22,7 @@
 .agents-main { margin-left: var(--agents-sidebar-width); padding: 32px 80px 48px; }
 .agents-main > h1 { margin: 0 0 24px; color: #171717; font-size: 18px; font-weight: 500; line-height: 23px; letter-spacing: 0; text-align: left; }
 .agents-topbar { display: flex; align-items: center; justify-content: space-between; min-height: 32px; margin-bottom: 24px; }
-.agents-tabs { display: flex; align-items: center; margin-left: -14px; }
+.agents-tabs { display: flex; align-items: center; }
 .agents-tabs button { height: 32px; padding: 0 14px; border-radius: 999px; font-size: 12px; font-weight: 500; color: #8687a2; }
 #mine-tab { width: 57px; text-align: left; }
 #suggestions-tab { width: 100px; }

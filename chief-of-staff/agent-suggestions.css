@@ -1,9 +1,9 @@
 .agent-suggestions-gallery { box-sizing: border-box; }
 .agent-suggestions-gallery { display: grid; gap: 40px; }
 .agent-suggestions-group { min-width: 0; }
-.agent-suggestions-group-heading { margin: 0 0 10px; color: #8687a2; font-size: 12px; font-weight: 500; line-height: 16px; }
+.agent-suggestions-group-heading { margin: 0 0 16px; color: #8687a2; font-size: 12px; font-weight: 500; line-height: 16px; }
 .agent-suggestions-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
-.agent-suggestions-card { min-width: 0; min-height: 145px; padding: 13px 11px 17px 15px; border: 1px solid #d4d8e3; border-radius: 12px; background: #fff; }
+.agent-suggestions-card { min-width: 0; min-height: 145px; padding: 13px 11px 17px 15px; border: 1px solid #d4d8e3; border-radius: 16px; background: #fff; }
 .agent-suggestions-card:hover, .agent-suggestions-card:focus-within { border-color: #a6a4b0; }
 .agent-suggestions-card-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; min-height: 24px; margin-bottom: 9px; }
 .agent-suggestions-artwork { flex-shrink: 0; pointer-events: none; }
@@ -17,6 +17,12 @@
 .agent-suggestions-card-description { margin: 0; color: #14181f66; font-size: 12px; font-weight: 400; line-height: 16px; }
 .agent-suggestions-card-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-height: 16px; margin-top: 12px; color: #14181fb3; font-size: 12px; font-weight: 400; line-height: 16px; }
 .agent-suggestions-meta-item { display: inline-flex; align-items: center; gap: 2px; white-space: nowrap; }
+@media (min-width: 1101px) {
+  .agent-suggestions-card-grid { align-items: stretch; }
+  /* The header, four group headings, and three section gaps total 383px.
+     Leave room for three full card rows and two-thirds of the fourth. */
+  .agent-suggestions-card { min-height: max(156px, calc((100svh - 383px) * 3 / 11)); }
+}
 @media (max-width: 1100px) {
   .agent-suggestions-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
