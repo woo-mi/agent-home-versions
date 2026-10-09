@@ -34,7 +34,7 @@ export function mountAgentSuggestions(panel, { onPreview }) {
     for (const node of [icon, ...icon.querySelectorAll('*')]) {
       for (const attribute of [...node.attributes]) {
         let value = attribute.value;
-        if (accent) value = value.replaceAll('#333444', accent);
+        if (accent) value = value.replaceAll('#333444', 'currentColor');
         if (attribute.name === 'id' && ids.has(value)) value = ids.get(value);
         else for (const [id, replacement] of ids) {
           value = value.replaceAll(`url(#${id})`, `url(#${replacement})`);
@@ -45,6 +45,7 @@ export function mountAgentSuggestions(panel, { onPreview }) {
     }
     icon.classList.add('agent-suggestions-artwork');
     icon.style.display = 'block';
+    if (accent) icon.style.setProperty('--suggestion-icon-accent', accent);
     icon.setAttribute('aria-hidden', 'true');
     return icon;
   }

@@ -8,6 +8,8 @@
 .agent-suggestions-card:hover, .agent-suggestions-card:focus-within { outline-color: #a6a4b0; }
 .agent-suggestions-card-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; min-height: 24px; margin-bottom: 9px; }
 .agent-suggestions-artwork { flex-shrink: 0; pointer-events: none; }
+.agent-suggestions-card-header > .agent-suggestions-artwork { color: #333444; }
+.agent-suggestions-card:hover .agent-suggestions-card-header > .agent-suggestions-artwork { color: var(--suggestion-icon-accent, #333444); }
 .agent-suggestions-use { height: 24px; padding: 0 12px; border: 1px solid #d4d4d4; border-radius: 999px; background: #fff; color: #232323; font-size: 12px; font-weight: 500; line-height: 16px; cursor: pointer; opacity: 0; pointer-events: none; }
 .agent-suggestions-card:hover .agent-suggestions-use, .agent-suggestions-card:focus-within .agent-suggestions-use { opacity: 1; pointer-events: auto; }
 .agent-suggestions-use:hover { background: #f5f5f6; border-color: #aaaab3; }

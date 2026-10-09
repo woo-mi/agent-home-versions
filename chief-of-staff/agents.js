@@ -1,4 +1,4 @@
-import { mountAgentSuggestions } from './agent-suggestions.mjs?v=f52f25a9';
+import { mountAgentSuggestions } from './agent-suggestions.mjs?v=6d8c3f84';
 import { createVersionMenu } from './version-menu.mjs?v=76591447';
 
 const byId = (id) => document.getElementById(id);
