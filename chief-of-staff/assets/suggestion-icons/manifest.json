@@ -250,6 +250,27 @@
       ],
       "method": "Direct local .fig fillGeometry command decoding with original winding rules and transforms",
       "sha256": "0de45255f73aae1e7dfe30b2d7820d3c21cd9384a72f48a37b1944bda5f0f0aa"
+    },
+    {
+      "asset": "downtime.svg",
+      "componentName": "power-plant, coal, gas, factory",
+      "familyNodeId": "8881:33638",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "variantNodeId": "8881:33691",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=8881-33691",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "8881:33692"
+      ],
+      "fillGeometryBlobIds": [
+        28190,
+        28195
+      ],
+      "method": "Direct local .fig fillGeometry command decoding with original winding rules and transforms",
+      "sha256": "3b9006f919221ae8c44b3b1c5066b340ba841821208695113342b2908dbe03c9"
     }
   ]
 }

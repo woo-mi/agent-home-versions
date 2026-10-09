@@ -1,4 +1,4 @@
-import { mountAgentSuggestions } from './agent-suggestions.mjs?v=99cff659';
+import { mountAgentSuggestions } from './agent-suggestions.mjs?v=bf94c9a7';
 
 const byId = (id) => document.getElementById(id);
 const status = byId('agents-status');
