@@ -58,8 +58,8 @@
 .agent-search input { font: inherit; min-width: 0; width: 100%; border: 0; background: transparent; outline: none; font-size: 14px; line-height: 18px; color: #4d4d4d; }
 .agent-search input::placeholder { color: #4d4d4d; opacity: 1; }
 .agent-search:focus-within { outline: 2px solid #68678b; outline-offset: 2px; }
-.agent-table-wrap { width: calc(100% - 3px); padding: 13px 15px 21px; border: 1px solid #e4e6ea; border-radius: 16px; overflow-x: auto; }
-.agent-table { table-layout: fixed; border-collapse: collapse; width: 100%; min-width: 760px; font-size: 12px; line-height: 16px; color: #2f2f31; }
+.agent-table-wrap { --table-gutter: 15px; width: calc(100% - 3px); padding: 13px var(--table-gutter) 21px; border: 1px solid #e4e6ea; border-radius: 16px; overflow-x: auto; }
+.agent-table { --row-hover: #f2f2f2; table-layout: fixed; border-collapse: collapse; width: 100%; min-width: 760px; font-size: 12px; line-height: 16px; color: #2f2f31; }
 .agent-table .logs-col, .agent-table .owner-col { width: 18.27%; }
 .agent-table .modified-col { width: 14.21%; }
 .agent-table .action-col { width: 49px; }
@@ -69,7 +69,11 @@
 .agent-table th button { display: flex; align-items: center; gap: 2px; padding: 0; font-size: inherit; }
 .agent-table th svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1; }
 .agent-table td { height: 48px; padding: 10px 6px; }
-.agent-table tbody tr:hover { background: #fafafa; }
+.agent-table td:first-child, .agent-table td:last-child { position: relative; }
+.agent-table td:first-child::before, .agent-table td:last-child::after { content: ""; position: absolute; top: 0; bottom: 0; width: var(--table-gutter); }
+.agent-table td:first-child::before { left: calc(-1 * var(--table-gutter)); }
+.agent-table td:last-child::after { right: calc(-1 * var(--table-gutter)); }
+.agent-table tbody tr:hover, .agent-table tbody tr:hover td:first-child::before, .agent-table tbody tr:hover td:last-child::after { background: var(--row-hover); }
 .agent-table td:first-child { padding: 10px 12px; }
 .agent-name-cell { display: flex; align-items: center; gap: 8px; }
 .list-agent-icon { display: block; flex-shrink: 0; width: 14px; height: 14px; }
