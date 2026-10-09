@@ -1,41 +1,22 @@
-.agent-suggestions-gallery,
-.agent-suggestions-list { box-sizing: border-box; }
+.agent-suggestions-gallery { box-sizing: border-box; }
 .agent-suggestions-gallery { display: grid; gap: 40px; }
 .agent-suggestions-group { min-width: 0; }
-.agent-suggestions-group-heading { margin: 0 0 10px 2px; color: #8687a2; font-size: 12px; font-weight: 500; line-height: 16px; }
+.agent-suggestions-group-heading { margin: 0 0 10px; color: #8687a2; font-size: 12px; font-weight: 500; line-height: 16px; }
 .agent-suggestions-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; }
-.agent-suggestions-card { min-width: 0; min-height: 145px; padding: 14px 12px 18px 16px; border-radius: 12px; outline: 1px solid #d4d8e3; background: #fff; }
-.agent-suggestions-card:hover, .agent-suggestions-card:focus-within { outline-color: #a6a4b0; }
+.agent-suggestions-card { min-width: 0; min-height: 145px; padding: 13px 11px 17px 15px; border: 1px solid #d4d8e3; border-radius: 12px; background: #fff; }
+.agent-suggestions-card:hover, .agent-suggestions-card:focus-within { border-color: #a6a4b0; }
 .agent-suggestions-card-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; min-height: 24px; margin-bottom: 9px; }
 .agent-suggestions-artwork { flex-shrink: 0; pointer-events: none; }
 .agent-suggestions-card-header > .agent-suggestions-artwork { color: #333444; }
 .agent-suggestions-card:hover .agent-suggestions-card-header > .agent-suggestions-artwork { color: var(--suggestion-icon-accent, #333444); }
 .agent-suggestions-use { height: 24px; padding: 0 12px; border: 1px solid #171717; border-radius: 999px; background: #171717; color: #fff; font-size: 12px; font-weight: 500; line-height: 16px; cursor: pointer; opacity: 0; pointer-events: none; }
 .agent-suggestions-card:hover .agent-suggestions-use, .agent-suggestions-card:focus-within .agent-suggestions-use { opacity: 1; pointer-events: auto; }
-.agent-suggestions-use:focus-visible,
-.agent-suggestions-list-button:focus-visible { outline: 2px solid #68678b; outline-offset: 4px; }
+.agent-suggestions-use:focus-visible { outline: 2px solid #68678b; outline-offset: 4px; }
 .agent-suggestions-card-copy { width: calc(100% - 4px); }
 .agent-suggestions-card-title { margin: 0 0 2px; color: #333444; font-size: 13px; font-weight: 500; line-height: 18px; }
 .agent-suggestions-card-description { margin: 0; color: #14181f66; font-size: 12px; font-weight: 400; line-height: 16px; }
 .agent-suggestions-card-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-height: 16px; margin-top: 12px; color: #14181fb3; font-size: 12px; font-weight: 400; line-height: 16px; }
 .agent-suggestions-meta-item { display: inline-flex; align-items: center; gap: 2px; white-space: nowrap; }
-.agent-suggestions-list { width: min(100%, 674px); margin: 0 auto; padding-top: 8px; }
-.agent-suggestions-list-group + .agent-suggestions-list-group { margin-top: 56px; }
-.agent-suggestions-list-group[data-group="2"] { margin-top: 58px; }
-.agent-suggestions-list-group[data-group="3"] { margin-top: 60px; }
-.agent-suggestions-list-heading { margin: 0 0 28px; color: #333444; font-size: 18px; font-weight: 600; line-height: 23px; }
-.agent-suggestions-list-items { display: grid; gap: 24px; margin: 0; padding: 0; list-style: none; }
-.agent-suggestions-list-group[data-group="0"] .agent-suggestions-list-item:first-child { margin-bottom: 2px; }
-.agent-suggestions-list-group[data-group="0"] .agent-suggestions-list-item:nth-child(2) { margin-bottom: 1px; }
-.agent-suggestions-list-button { position: relative; isolation: isolate; display: flex; align-items: flex-start; gap: 11px; width: 100%; padding: 0 max(0px, calc(100% - 654px)) 0 0; border: 0; border-radius: 4px; color: #333444; background: transparent; text-align: left; cursor: pointer; }
-.agent-suggestions-list-button::before { content: ""; position: absolute; inset: -12px -16px; z-index: -1; border: 1px solid transparent; border-radius: 16px; }
-.agent-suggestions-list-wide { padding-right: 0; }
-.agent-suggestions-list-copy { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.agent-suggestions-list-first .agent-suggestions-list-copy { gap: 1px; }
-.agent-suggestions-list-title { font-size: 15px; font-weight: 500; line-height: 19px; }
-.agent-suggestions-list-description { color: #858391; font-size: 12px; font-weight: 400; line-height: 16px; }
-.agent-suggestions-list-button:hover::before { background: #fff; border-color: #a6a4b0; box-shadow: 0 4px 14px #3334440a; }
-.agent-suggestions-list-button:hover > .agent-suggestions-artwork { color: var(--suggestion-icon-accent, #333444); }
 @media (max-width: 1100px) {
   .agent-suggestions-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

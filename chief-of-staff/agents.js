@@ -1,5 +1,4 @@
-import { mountAgentSuggestions } from './agent-suggestions.mjs?v=44305a8a';
-import { createVersionMenu } from './version-menu.mjs?v=76591447';
+import { mountAgentSuggestions } from './agent-suggestions.mjs?v=34b11df8';
 
 const byId = (id) => document.getElementById(id);
 const status = byId('agents-status');
@@ -14,30 +13,19 @@ const filterOptions = byId('filter-options');
 const dialog = byId('agent-details');
 let detailTrigger;
 let ascending = false;
-const requestedVersion = new URLSearchParams(location.search).get('suggestions');
-let suggestionVersion = requestedVersion === 'v2' ? 'v2' : 'v1';
-const suggestionGallery = mountAgentSuggestions(suggestionsPanel, {
+const requestedView = new URLSearchParams(location.search);
+const openSuggestions = requestedView.get('view') === 'suggestions'
+  || ['v1', 'v2'].includes(requestedView.get('suggestions'));
+mountAgentSuggestions(suggestionsPanel, {
   onPreview: ({ title, description }) => showDetails(document.activeElement, title, description),
-});
-const suggestionMenu = createVersionMenu({
-  controlId: 'suggestion-version-control',
-  triggerId: 'suggestion-version-trigger',
-  menuId: 'suggestion-version-menu',
-  onSelect: setSuggestionVersion,
 });
 
 function updateSuggestionsUrl(visible) {
   const url = new URL(location.href);
-  if (visible) url.searchParams.set('suggestions', suggestionVersion);
-  else url.searchParams.delete('suggestions');
+  url.searchParams.delete('suggestions');
+  if (visible) url.searchParams.set('view', 'suggestions');
+  else url.searchParams.delete('view');
   if (url.href !== location.href) history.replaceState(null, '', url);
-}
-
-function setSuggestionVersion(version) {
-  suggestionVersion = version === 'v2' ? 'v2' : 'v1';
-  suggestionGallery.setVersion(suggestionVersion);
-  suggestionMenu.setSelection(suggestionVersion, `Suggestions ${suggestionVersion}`, `Suggestions version, ${suggestionVersion}`);
-  if (!suggestionsPanel.hidden) updateSuggestionsUrl(true);
 }
 
 function selectTab(index, focus = false) {
@@ -47,7 +35,6 @@ function selectTab(index, focus = false) {
   });
   minePanel.hidden = index !== 0;
   suggestionsPanel.hidden = index !== 1;
-  suggestionMenu.setVisible(index === 1);
   closeFilter();
   updateSuggestionsUrl(index === 1);
   if (focus) tabs[index].focus();
@@ -92,7 +79,6 @@ document.addEventListener('click', (event) => {
   if (!event.target.closest('.filter-control')) closeFilter();
 });
 document.addEventListener('keydown', (event) => {
-  if (suggestionMenu.handleEscape(event)) return;
   if (event.key === 'Escape' && !filterOptions.hidden) {
     event.preventDefault();
     closeFilter(true);
@@ -154,8 +140,7 @@ byId('toggle-navigation').addEventListener('click', () => {
   byId('toggle-navigation').title = label;
 });
 
-setSuggestionVersion(suggestionVersion);
-selectTab(requestedVersion === 'v1' || requestedVersion === 'v2' ? 1 : 0);
+selectTab(openSuggestions ? 1 : 0);
 document.querySelectorAll('[data-preview]').forEach((button) => {
   button.addEventListener('click', () => {
     status.classList.remove('visually-hidden');
