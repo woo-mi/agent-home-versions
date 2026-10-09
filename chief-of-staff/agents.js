@@ -109,10 +109,6 @@ function showDetails(trigger, title, description, entries = []) {
   byId('agent-details-setup').hidden = entries.length > 0;
   dialog.showModal();
 }
-document.querySelectorAll('[data-template]').forEach((card) => {
-  const description = card.querySelector('.template-description');
-  card.addEventListener('click', () => showDetails(card, card.querySelector('.template-title').textContent, description.textContent));
-});
 document.querySelectorAll('[data-agent]').forEach((button) => {
   button.addEventListener('click', () => {
     const row = rows[Number(button.dataset.agent)];
