@@ -613,7 +613,7 @@ function prepareLiveAppPreview() {
   reportViews.prepare();
 }
 
-const appPreview = createLiveAppPreview({ source: 'live-app-preview-v3.html?v=fb478781', onClose: () => setLiveAppOpen(false) });
+const appPreview = createLiveAppPreview({ source: 'live-app-preview-v3.html?v=0d582437', onClose: () => setLiveAppOpen(false) });
 const reportViews = createReportViews({ previews: { report: 'report-preview.html?v=9bfbfb37', workflow: 'workflow-preview.html?v=4ffa5c09' }, onClose: () => setLiveAppOpen(false) });
 const agentSetup = createAgentSetupChat({ history, update: updateConversation, streamMessage, stopStreaming, later, onScheduleChange: reportViews.setSchedule, onReady: () => markPanelReady('report'), onOpenReport: () => {
   reportViews.open(agentSetup.snapshot().schedule);
