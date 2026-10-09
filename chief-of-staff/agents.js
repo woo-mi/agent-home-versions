@@ -110,7 +110,39 @@ function showDetails(trigger, title, description, entries = []) {
   dialog.showModal();
 }
 document.querySelectorAll('[data-template]').forEach((card) => {
-  card.addEventListener('click', () => showDetails(card, card.querySelector('.template-title').textContent, card.querySelector('.template-description').textContent));
+  const description = card.querySelector('.template-description');
+  card.addEventListener('click', () => showDetails(card, card.querySelector('.template-title').textContent, description.dataset.fullDescription || description.textContent));
+});
+document.querySelectorAll('.template-description-with-chip').forEach((description) => {
+  const text = description.querySelector('.template-description-text').firstChild;
+  const chip = description.querySelector('.template-format-chip');
+  const fullText = text.textContent;
+  const words = fullText.trim().split(/\s+/);
+  description.dataset.fullDescription = fullText;
+  const range = document.createRange();
+  let previousWidth;
+  function fitDescription() {
+    const width = description.clientWidth;
+    if (!width || width === previousWidth) return;
+    previousWidth = width;
+    text.textContent = fullText;
+    const lineHeight = parseFloat(getComputedStyle(description).lineHeight);
+    function fits() {
+      range.selectNodeContents(text);
+      const lines = Array.from(range.getClientRects());
+      const lastLine = lines.at(-1);
+      const badge = chip.getBoundingClientRect();
+      return lines.length <= 2 && lastLine && Math.abs(badge.top + badge.height / 2 - lastLine.top - lastLine.height / 2) < lineHeight / 2;
+    }
+    if (fits()) return;
+    for (let count = words.length - 1; count >= 0; count -= 1) {
+      text.textContent = `${words.slice(0, count).join(' ')}…`;
+      if (fits()) break;
+    }
+  }
+  new ResizeObserver(fitDescription).observe(description);
+  document.fonts.ready.then(() => { previousWidth = undefined; fitDescription(); });
+  fitDescription();
 });
 document.querySelectorAll('[data-agent]').forEach((button) => {
   button.addEventListener('click', () => {
