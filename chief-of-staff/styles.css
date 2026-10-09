@@ -72,9 +72,9 @@ textarea::placeholder { color: var(--muted); opacity: 1; }
 .tab:hover { border-color: #a4a2b0; }
 .panel { width: min(100%, 400px); margin: 16px auto 0; }
 .agent-card { display: block; width: 100%; border: 1px solid var(--line); border-radius: 16px; padding: 11px 11px 17px 15px; text-decoration: none; cursor: pointer; transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
-.agent-card:focus-within { background: #fcfcfd; border-color: #c9c7d2; box-shadow: 0 4px 14px #3334440a; }
+.agent-card:focus-within { background: #fcfcfd; border-color: #a6a4b0; box-shadow: 0 4px 14px #3334440a; }
 @media (hover: hover) and (pointer: fine) {
-  .agent-card:hover { background: #fcfcfd; border-color: #c9c7d2; box-shadow: 0 4px 14px #3334440a; }
+  .agent-card:hover { background: #fcfcfd; border-color: #a6a4b0; box-shadow: 0 4px 14px #3334440a; }
 }
 .card-top { display: flex; align-items: flex-end; justify-content: space-between; min-height: 27px; margin-bottom: 8px; }
 .owl { width: 18px; height: 18px; }
