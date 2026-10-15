@@ -1,0 +1,67 @@
+/* Revisit screens share the existing chat shell and panel motion. */
+.chat-page.revisit-page[data-chat-version="v0"]:not(.live-app-open) { --chat-text-width: 764px; }
+.revisit-page .chat-header { padding-top: 19px; }
+.revisit-page .agent-chip { height: 38px; padding: 10px 12px 8px; }
+.revisit-page.revisit-active .conversation-scroll { --conversation-top-gap: 24px; }
+.revisit-page .sidebar-item[aria-current="page"] { background: #e4e6ea; color: #15171b; }
+.workflow-nav-icon { width: 20px; height: 20px; flex-shrink: 0; }
+.revisit-page.navigation-collapsed .sidebar-item > .workflow-nav-icon { opacity: 1; visibility: visible; }
+.revisit-page .recent-chats { margin-top: 32px; }
+.revisit-thread { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; width: 100%; color: #24242a; }
+.revisit-thread p { margin: 0; }
+.revisit-thread + #onboarding-thread[hidden] + .chat-history:not(:empty) { margin-top: 24px; }
+.meeting-banner { display: flex; align-items: center; gap: 10px; padding: 12px 14px; min-height: 44px; border-radius: 12px; background: #f2f4ff; color: #1e3a8a; font-size: 14px; font-weight: 500; line-height: 20px; }
+.meeting-banner img, .pipeline-change > img { flex-shrink: 0; }
+.revisit-message { font-size: 14px; line-height: 20px; width: 100%; }
+.pipeline-changes, .meeting-app-card, .revisit-metrics { width: 100%; max-width: 613px; }
+.pipeline-changes, .meeting-app-card { border-radius: 12px; box-shadow: inset 0 0 0 1px #e4e6ea; overflow: hidden; background: white; }
+.pipeline-change { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 67px; padding: 14px; }
+.pipeline-change:not(:last-child) { box-shadow: inset 0 -1px #e8e8ea; }
+.change-copy { min-width: 0; font-size: 14px; line-height: 20px; }
+.change-copy .change-detail { margin-top: 2px; font-size: 12px; line-height: 17px; color: #63666d; }
+.change-value { font-size: 12px; font-weight: 600; line-height: 17px; white-space: nowrap; }
+.positive { color: #209855; }
+.negative { color: #f04438; }
+.change-value.agenda { color: #63666d; font-weight: 400; }
+.meeting-app-header { display: flex; align-items: center; gap: 12px; padding: 14px; min-height: 67px; }
+.meeting-app-icon { align-self: flex-start; width: 20px; height: 20px; flex-shrink: 0; }
+.meeting-app-header .change-copy { flex: 1; }
+.meeting-app-header .connect-button { flex-shrink: 0; min-height: 29px; border: 0; padding: 6px 10px; line-height: 17px; }
+.meeting-thumbnails { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 0 14px 14px; }
+.meeting-thumbnails img { display: block; width: 100%; height: auto; aspect-ratio: 569 / 315; }
+.revisit-answer { width: 100%; display: flex; justify-content: flex-end; }
+.revisit-answer p { background: #333444; color: white; border-radius: 20px; padding: 11px 18px; font-size: 15px; line-height: 23px; }
+.revisit-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.revisit-metric { display: flex; flex-direction: column; justify-content: center; gap: 6px; min-height: 102px; padding: 12px; border-radius: 10px; box-shadow: inset 0 0 0 1px #e6e6e6; }
+.revisit-metric h2 { margin: 0; color: #63666d; font-size: 12px; line-height: 16px; font-weight: 400; white-space: nowrap; }
+.revisit-metric .metric-value { font-size: 20px; font-weight: 500; line-height: 25px; }
+.revisit-metric .metric-change { font-size: 12px; line-height: 16px; white-space: nowrap; color: #63666d; }
+.revisit-metric .positive { color: #008767; }
+.revisit-page.revisit-active .chat-footer .composer { flex-direction: row; align-items: center; gap: 12px; min-height: 56px; height: auto; padding: 13.5px 13.5px 13.5px 18px; border-radius: 100px; box-shadow: inset 0 0 0 1px #bfc1cf; }
+.revisit-page.revisit-active .chat-footer .composer:focus-within { box-shadow: inset 0 0 0 1px #858391, 0 0 0 3px #33344406; }
+.revisit-page.revisit-active .chat-footer textarea { flex: 1; min-width: 0; min-height: 20px; height: 20px; max-height: 120px; font-size: 14px; line-height: 20px; }
+.revisit-page.revisit-active .chat-footer textarea::placeholder { color: #00000061; }
+.revisit-page.revisit-active .composer-tools { display: contents; }
+.revisit-page.revisit-active .composer-left { display: none; }
+.revisit-page.revisit-active .composer-right { flex-shrink: 0; gap: 14px; }
+.revisit-page.revisit-active .reasoning-control { padding: 0; width: 99px; height: 29px; }
+.revisit-page.revisit-active .reasoning-control .brain { display: none; }
+.revisit-page.revisit-active .reasoning-control select { padding: 6px 26px 6px 10px; line-height: 17px; color: #14181fb3; }
+.revisit-page.revisit-active .reasoning-control .chevron { right: 8px; width: 12px; height: 12px; }
+.revisit-page.revisit-active .mic-button { width: 18px; height: 26px; color: #14181fb3; }
+.revisit-page.revisit-active .chat-footer .send-button { width: 26px; height: 26px; border-radius: 50%; }
+.revisit-page.revisit-active .send-button:disabled { background: #eceef4; }
+.revisit-page.revisit-active .chat-history > .user-message { background: #333444; color: #fff; border-radius: 20px; }
+.revisit-page.revisit-active .live-app-panel-toolbar { top: 4px; right: 24px; }
+.revisit-page.revisit-active:not(.live-app-open) .live-app-panel-toolbar { display: none; }
+.revisit-page.revisit-active.live-app-open .live-app-panel-toolbar { pointer-events: none; visibility: hidden; }
+.revisit-page.revisit-active .live-app-panel { border-left: 0; }
+.revisit-page.revisit-active .live-app-panel::before { content: ""; position: absolute; z-index: 4; inset: 0 auto 0 0; width: 1px; background: #e6e6e6; pointer-events: none; }
+@media (max-width: 1100px) and (min-width: 761px) {
+  .revisit-page.live-app-open { --chat-text-width: 100%; }
+  .revisit-page.live-app-open .meeting-banner { font-size: 12px; }
+  .revisit-page.live-app-open .pipeline-change { grid-template-columns: 18px minmax(0, 1fr); }
+  .revisit-page.live-app-open .change-value { grid-column: 2; }
+  .revisit-page.live-app-open .revisit-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .revisit-page.live-app-open .meeting-app-header { flex-wrap: wrap; }
+}

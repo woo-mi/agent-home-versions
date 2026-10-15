@@ -1,0 +1,108 @@
+{
+  "sourceFrame": "AxkrY",
+  "sourceExport": "agents-iteration-2.html",
+  "sourceCardSize": [
+    502,
+    106
+  ],
+  "sourceOffset": [
+    362,
+    8
+  ],
+  "cssPlacement": {
+    "width": "134px",
+    "height": "88px",
+    "top": "8px",
+    "right": "6px"
+  },
+  "assets": [
+    {
+      "file": "daily-brief-thumbnail.svg",
+      "title": "Daily brief",
+      "width": 134,
+      "height": 88,
+      "layers": [
+        {
+          "node": "L7gQT",
+          "x": 4.6824787935479435,
+          "y": 0.6345870177809978,
+          "width": 127.75,
+          "height": 85.0
+        },
+        {
+          "node": "e5hPg",
+          "x": 3.3395026109832315,
+          "y": 6.002975454845076,
+          "width": 125.25,
+          "height": 81.25
+        }
+      ]
+    },
+    {
+      "file": "weekly-update-thumbnail.svg",
+      "title": "Weekly update",
+      "width": 134,
+      "height": 88,
+      "layers": [
+        {
+          "node": "AoSg5",
+          "x": 3.1048565080222374,
+          "y": 1.0898246551710962,
+          "width": 127.75,
+          "height": 85.0
+        },
+        {
+          "node": "laxd0",
+          "x": 1.9185131000452884,
+          "y": 5.549920200066557,
+          "width": 125.25,
+          "height": 81.25
+        }
+      ]
+    },
+    {
+      "file": "quarterly-business-review-thumbnail.svg",
+      "title": "Quarterly business review",
+      "width": 134,
+      "height": 88,
+      "layers": [
+        {
+          "node": "X7MKEi",
+          "x": 4.682619521061895,
+          "y": 0.6347137173030113,
+          "width": 127.75,
+          "height": 85.0
+        },
+        {
+          "node": "q03u0",
+          "x": 3.156934306569326,
+          "y": 5.840692517588312,
+          "width": 124.75,
+          "height": 80.5
+        }
+      ]
+    },
+    {
+      "file": "monday-headlines-thumbnail.svg",
+      "title": "Monday headlines",
+      "width": 134,
+      "height": 88,
+      "layers": [
+        {
+          "node": "Nojfc",
+          "x": 3.1048565080222374,
+          "y": 1.0898246551710962,
+          "width": 127.75,
+          "height": 85.0
+        },
+        {
+          "node": "sAzN6",
+          "x": 1.735944795631383,
+          "y": 5.387637262809793,
+          "width": 124.75,
+          "height": 80.5
+        }
+      ]
+    }
+  ]
+}

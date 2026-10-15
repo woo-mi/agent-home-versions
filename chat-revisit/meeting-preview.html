@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Weekly Sales Pipeline Review App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="meeting-preview.css?v=e6fff428"></head>
+<body>
+<header class="panel-toolbar">
+  <label class="period-control"><span class="sr-only">Highlight revenue period</span><select id="meeting-period"><option value="30">Last 30 days</option><option value="90">Last 90 days</option><option value="365">Last 12 months</option></select><svg aria-hidden="true" viewBox="0 0 12 12"><path d="m3 4.5 3 3 3-3"/></svg></label>
+  <button id="close-meeting-preview" class="close-panel" type="button" aria-label="Close app preview"><div
+          data-pencil-id="aSwel"
+          data-pencil-name="filled=off, stroke=1.5, radius=2, join=round (7).svg"
+          style="box-sizing: border-box; flex-shrink: 0; height: 18px; overflow: hidden; position: relative; width: 18px"
+        >
+          <svg
+            data-pencil-id="SvBHN"
+            viewBox="0 0 18.5 14.5"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; height: 10.875px; left: 2.063px; overflow: visible; position: absolute; top: 3.563px; width: 13.875px; z-index: 0"
+          >
+            <path
+              d="M13 0.25l0 14m-13-1.75l0-10.5c0-1.10457 0.89543-2 2-2l14.5 0c1.10457 0 2 0.89543 2 2l0 10.5c0 1.10457-0.89543 2-2 2l-14.5 0c-1.10457 0-2-0.89543-2-2z"
+              fill="none"
+              stroke="#000"
+              stroke-width="1.125"
+              stroke-linejoin="round"
+              vector-effect="non-scaling-stroke"
+            ></path>
+          </svg>
+        </div></button>
+</header>
+<main class="panel-surface" id="overview">
+  <header class="app-heading"><h1>Weekly Sales Pipeline Review App</h1><p>Sessions, checkout and post-purchase — the whole shopper journey in one view · updated 4 min ago</p></header>
+  <nav class="app-tabs" aria-label="App sections"><a class="is-current" href="#overview" aria-current="location">Overview</a><a href="#category-chart">Merchandising</a><a href="#top-products">Fulfillment</a><a href="#conversion-funnel">Customers</a></nav>
+  <dl class="metrics"><div class="metric"><dt>Net revenue</dt><dd class="metric-value">$4.82M</dd><dd class="metric-delta">+12.4% vs last month</dd></div><div class="metric"><dt>Orders</dt><dd class="metric-value">38,410</dd><dd class="metric-delta">+6.1% vs last month</dd></div><div class="metric"><dt>Average order value</dt><dd class="metric-value">$125.50</dd><dd class="metric-delta">+5.9% vs last month</dd></div><div class="metric"><dt>Return rate</dt><dd class="metric-value">2.1%</dd><dd class="metric-delta">−0.3pt vs last month</dd></div></dl>
+  <section class="chart-card funnel-card" id="conversion-funnel" aria-labelledby="funnel-title">
+    <header><h2 id="funnel-title">Trial-to-paid conversion</h2><p>User progression through activation · last 90 days</p></header>
+    <div class="chart-region" data-native-width="606" data-native-height="388.164"><div
+              data-pencil-id="KHTpn"
+              data-pencil-name="Funnel · extracted data visualization · editable"
+              style="background-color: #FFFFFF; box-sizing: border-box; flex-shrink: 0; height: 388.164px; position: relative; width: 100%"
+            >
+              <svg
+                data-pencil-id="p5ylx"
+                data-pencil-name="Funnel silhouette · original Catmull-Rom curve"
+                viewBox="455 224 1120 889"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 345px; left: 168.336px; overflow: visible; position: absolute; top: 12.272px; width: 406px; z-index: 0"
+              >
+                <defs><linearGradient id="meeting-funnel-gradient" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0" stop-color="#1B66C4"/><stop offset="1" stop-color="#C3408B"/></linearGradient>
+                  <clipPath id="clip-p5ylx-fill">
+                    <path
+                      d="M455 224c12.34409 37.04167 53.40323 148.16667 74.06452 222.25 20.66129 74.08333 12.60753 148.16667 49.90322 222.25 37.2957 74.08333 132.57097 148.16667 173.87097 222.25 41.3 74.08333 61.60753 185.20833 73.92903 222.25l376.46452 0c12.32151-37.04167 32.62903-148.16667 73.92903-222.25 41.3-74.08333 136.57527-148.16667 173.87097-222.25 37.2957-74.08333 29.24194-148.16667 49.90322-222.25 20.66129-74.08333 61.72043-185.20833 74.06452-222.25z"
+                    ></path>
+                  </clipPath>
+                </defs>
+                <rect x="455" y="224" width="1120" height="889" fill="url(#meeting-funnel-gradient)" fill-opacity="0.95" clip-path="url(#clip-p5ylx-fill)"/>
+                <path
+                  d="M455 224c12.34409 37.04167 53.40323 148.16667 74.06452 222.25 20.66129 74.08333 12.60753 148.16667 49.90322 222.25 37.2957 74.08333 132.57097 148.16667 173.87097 222.25 41.3 74.08333 61.60753 185.20833 73.92903 222.25l376.46452 0c12.32151-37.04167 32.62903-148.16667 73.92903-222.25 41.3-74.08333 136.57527-148.16667 173.87097-222.25 37.2957-74.08333 29.24194-148.16667 49.90322-222.25 20.66129-74.08333 61.72043-185.20833 74.06452-222.25z"
+                  fill="none"
+                  stroke-width="1"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-id="V5KsW"
+                data-pencil-name="Visited · Guide"
+                viewBox="53 224 402 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1.012px; left: 12.275px; overflow: visible; position: absolute; top: 12.272px; width: 156.061px; z-index: 1"
+              >
+                <path
+                  d="M53 224h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1.012"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-id="Ebps6"
+                data-pencil-name="Visited · Inner guide"
+                viewBox="455 224 1120 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1.012px; left: 168.336px; opacity: 0.85; overflow: visible; position: absolute; top: 12.272px; width: 434.796px; z-index: 2"
+              >
+                <path
+                  d="M455 224h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  stroke-width="1.012"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="n3h7Sj"
+                data-pencil-name="Visited label"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; left: 12px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 15px; white-space: nowrap; z-index: 3"
+              >
+                Visited
+              </div>
+              <div
+                data-pencil-id="ZN89C"
+                data-pencil-name="Visited conversion"
+                style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 12px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 33px; white-space: nowrap; z-index: 4"
+              >
+                100.0%
+              </div>
+              <div
+                data-pencil-id="VGQkp"
+                data-pencil-name="Visited total"
+                style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 13.664px; font-style: normal; font-weight: 400; left: 333px; letter-spacing: 0px; line-height: 16px; position: absolute; text-align: center; top: 15px; width: 77.642px; z-index: 5"
+              >
+                12.4K
+              </div>
+              <svg
+                data-pencil-id="AexiI"
+                data-pencil-name="Signed up · Guide"
+                viewBox="53 446.25 476.0645161290322 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1.012px; left: 12.275px; overflow: visible; position: absolute; top: 98.552px; width: 184.813px; z-index: 6"
+              >
+                <path
+                  d="M53 446.25h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1.012"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-id="oTX75"
+                data-pencil-name="Signed up · Inner guide"
+                viewBox="529.0645161290322 446.25 971.8709677419356 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1.012px; left: 197.088px; opacity: 0.85; overflow: visible; position: absolute; top: 98.552px; width: 377.291px; z-index: 7"
+              >
+                <path
+                  d="M529.06452 446.25h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  stroke-width="1.012"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="eCuQM"
+                data-pencil-name="Frame 85"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px; height: fit-content; justify-content: flex-start; left: 12px; position: absolute; top: 101px; width: fit-content; z-index: 8"
+              >
+                <div
+                  data-pencil-id="lth5p"
+                  data-pencil-name="Signed up label"
+                  style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Signed up
+                </div>
+                <div
+                  data-pencil-id="d9abG"
+                  data-pencil-name="Signed up conversion"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  86.8%
+                </div>
+              </div>
+              <div
+                data-pencil-id="t5U5ss"
+                data-pencil-name="Signed up total"
+                style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 13.664px; font-style: normal; font-weight: 400; left: 333px; letter-spacing: 0px; line-height: 16px; position: absolute; text-align: center; top: 101.28px; width: 77.642px; z-index: 9"
+              >
+                10.76K
+              </div>
+              <svg
+                data-pencil-id="c9kwZz"
+                data-pencil-name="Activated · Guide"
+                viewBox="53 668.5 525.9677419354839 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1.012px; left: 12.275px; overflow: visible; position: absolute; top: 184.832px; width: 204.186px; z-index: 10"
+              >
+                <path
+                  d="M53 668.5h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1.012"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-id="b1dbW"
+                data-pencil-name="Activated · Inner guide"
+                viewBox="578.9677419354839 668.5 872.0645161290322 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1.012px; left: 216.461px; opacity: 0.85; overflow: visible; position: absolute; top: 184.832px; width: 338.545px; z-index: 11"
+              >
+                <path
+                  d="M578.96774 668.5h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  stroke-width="1.012"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="w2y6k"
+                data-pencil-name="Frame 86"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px; height: fit-content; justify-content: flex-start; left: 12px; position: absolute; top: 187px; width: fit-content; z-index: 12"
+              >
+                <div
+                  data-pencil-id="z4mUT4"
+                  data-pencil-name="Activated label"
+                  style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Activated
+                </div>
+                <div
+                  data-pencil-id="W4D9j"
+                  data-pencil-name="Activated conversion"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  77.9%
+                </div>
+              </div>
+              <div
+                data-pencil-id="Y6gpG"
+                data-pencil-name="Activated total"
+                style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 13.664px; font-style: normal; font-weight: 400; left: 333px; letter-spacing: 0px; line-height: 16px; position: absolute; text-align: center; top: 187.56px; width: 77.642px; z-index: 13"
+              >
+                9.65K
+              </div>
+              <svg
+                data-pencil-id="mJ5l1"
+                data-pencil-name="Subscribed · Guide"
+                viewBox="53 890.75 699.8387096774193 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1.012px; left: 12.275px; overflow: visible; position: absolute; top: 271.112px; width: 271.685px; z-index: 14"
+              >
+                <path
+                  d="M53 890.75h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1.012"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-id="pmUSS"
+                data-pencil-name="Subscribed · Inner guide"
+                viewBox="752.8387096774193 890.75 524.3225806451615 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1.012px; left: 283.96px; opacity: 0.85; overflow: visible; position: absolute; top: 271.112px; width: 203.548px; z-index: 15"
+              >
+                <path
+                  d="M752.83871 890.75h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  stroke-width="1.012"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="IJ7b2"
+                data-pencil-name="Frame 87"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px; height: fit-content; justify-content: flex-start; left: 12px; position: absolute; top: 274px; width: fit-content; z-index: 16"
+              >
+                <div
+                  data-pencil-id="oKCE5"
+                  data-pencil-name="Subscribed label"
+                  style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  Subscribed
+                </div>
+                <div
+                  data-pencil-id="TmIMi"
+                  data-pencil-name="Subscribed conversion"
+                  style="box-sizing: border-box; color: #6B6B6B; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 14px; text-align: left; white-space: nowrap"
+                >
+                  46.8%
+                </div>
+              </div>
+              <div
+                data-pencil-id="iurEA"
+                data-pencil-name="Subscribed total"
+                style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 13.664px; font-style: normal; font-weight: 400; left: 333px; letter-spacing: 0px; line-height: 16px; position: absolute; text-align: center; top: 273.84px; width: 77.642px; z-index: 17"
+              >
+                5.8K
+              </div>
+              <svg
+                data-pencil-id="vbCNO"
+                data-pencil-name="Retained · Guide"
+                viewBox="53 1113 773.7677419354839 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1.012px; left: 12.275px; overflow: visible; position: absolute; top: 357.392px; width: 300.385px; z-index: 18"
+              >
+                <path
+                  d="M53 1113h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2"
+                  fill="none"
+                  stroke="#C9CFDD"
+                  stroke-width="1.012"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <svg
+                data-pencil-id="PkIuj"
+                data-pencil-name="Retained · Inner guide"
+                viewBox="826.7677419354839 1113 376.4645161290323 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1.012px; left: 312.66px; opacity: 0.85; overflow: visible; position: absolute; top: 357.392px; width: 146.148px; z-index: 19"
+              >
+                <path
+                  d="M826.76774 1113h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2m7.4 0h1.2"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  stroke-width="1.012"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="HKwp4"
+                data-pencil-name="Retained label"
+                style="box-sizing: border-box; color: #404040; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; left: 12.275px; letter-spacing: 0px; line-height: 14px; position: absolute; text-align: left; top: 360.497px; white-space: nowrap; z-index: 20"
+              >
+                Retained
+              </div>
+            <button class="funnel-hit" type="button" data-detail="Visited · 12.4K · 100.0%" style="top:12.272px;height:72px" aria-label="Visited · 12.4K · 100.0%"></button><button class="funnel-hit" type="button" data-detail="Signed up · 10.76K · 86.8%" style="top:98.552px;height:72px" aria-label="Signed up · 10.76K · 86.8%"></button><button class="funnel-hit" type="button" data-detail="Activated · 9.65K · 77.9%" style="top:184.832px;height:72px" aria-label="Activated · 9.65K · 77.9%"></button><button class="funnel-hit" type="button" data-detail="Subscribed · 5.8K · 46.8%" style="top:271.112px;height:72px" aria-label="Subscribed · 5.8K · 46.8%"></button><button class="funnel-hit" type="button" data-detail="Retained" style="top:357.392px;height:28px" aria-label="Retained"></button></div></div>
+  </section>
+  <section class="chart-card category-card" id="category-chart" aria-labelledby="category-title">
+    <header><h2 id="category-title">Revenue by product category</h2><p id="category-description">Net of returns · last 12 months · click a column to focus a month</p></header>
+    <div class="chart-legend" aria-label="Product categories"><span class="legend-item"><i style="--category-color:#45b5d1"></i>Apparel</span><span class="legend-item"><i style="--category-color:#0073b9"></i>Footwear</span><span class="legend-item"><i style="--category-color:#33a363"></i>Accessories</span><span class="legend-item"><i style="--category-color:#fd8b00"></i>Home</span><span class="legend-item"><i style="--category-color:#9558cb"></i>Outdoor</span></div>
+    <div class="chart-region" data-native-width="612" data-native-height="274"><div
+              data-pencil-id="ohw2G"
+              data-pencil-name="Editable chart or icon"
+              style="box-sizing: border-box; flex-shrink: 0; height: 274px; overflow: hidden; position: relative; width: 612px"
+            >
+              <svg
+                data-pencil-id="J79TA"
+                viewBox="0 0 783 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 234px; width: 599.745px; z-index: 0"
+              >
+                <path d="M0 0l783 0" fill="#000000"></path>
+                <path
+                  d="M0 0l783 0"
+                  fill="none"
+                  stroke="#E6E6E6"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="KRdSy"
+                data-pencil-name="0"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 216.375px; white-space: nowrap; z-index: 1"
+              >
+                0
+              </div>
+              <svg
+                data-pencil-id="dmgyc"
+                viewBox="0 0 783 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 192px; width: 599.745px; z-index: 2"
+              >
+                <path d="M0 0l783 0" fill="#000000"></path>
+                <path
+                  d="M0 0l783 0"
+                  fill="none"
+                  stroke="#E6E6E6"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="QfrKl"
+                data-pencil-name="100"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 174.375px; white-space: nowrap; z-index: 3"
+              >
+                100
+              </div>
+              <svg
+                data-pencil-id="Tt7en"
+                viewBox="0 0 783 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 150px; width: 599.745px; z-index: 4"
+              >
+                <path d="M0 0l783 0" fill="#000000"></path>
+                <path
+                  d="M0 0l783 0"
+                  fill="none"
+                  stroke="#E6E6E6"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="UXJ1b"
+                data-pencil-name="200"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 132.375px; white-space: nowrap; z-index: 5"
+              >
+                200
+              </div>
+              <svg
+                data-pencil-id="j7Rrul"
+                viewBox="0 0 783 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 108px; width: 599.745px; z-index: 6"
+              >
+                <path d="M0 0l783 0" fill="#000000"></path>
+                <path
+                  d="M0 0l783 0"
+                  fill="none"
+                  stroke="#E6E6E6"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="cIw6s"
+                data-pencil-name="300"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 90.375px; white-space: nowrap; z-index: 7"
+              >
+                300
+              </div>
+              <svg
+                data-pencil-id="Xe7Xr"
+                viewBox="0 0 783 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 66px; width: 599.745px; z-index: 8"
+              >
+                <path d="M0 0l783 0" fill="#000000"></path>
+                <path
+                  d="M0 0l783 0"
+                  fill="none"
+                  stroke="#E6E6E6"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="IJWlH"
+                data-pencil-name="400"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 48.375px; white-space: nowrap; z-index: 9"
+              >
+                400
+              </div>
+              <svg
+                data-pencil-id="kNpD9"
+                viewBox="0 0 783 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 24px; width: 599.745px; z-index: 10"
+              >
+                <path d="M0 0l783 0" fill="#000000"></path>
+                <path
+                  d="M0 0l783 0"
+                  fill="none"
+                  stroke="#E6E6E6"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-pencil-id="I7YNFn"
+                data-pencil-name="500"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 0px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 6.375px; white-space: nowrap; z-index: 11"
+              >
+                500
+              </div>
+              <div
+                data-pencil-id="pilI0"
+                data-pencil-name="$K"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 500; left: 26.043px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 6.375px; white-space: nowrap; z-index: 12"
+              >
+                $K
+              </div>
+              <svg
+                data-pencil-id="v7gy7R"
+                viewBox="0 0 783 1"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; height: 1px; left: 0px; overflow: visible; position: absolute; top: 234px; width: 599.745px; z-index: 13"
+              >
+                <path d="M0 0l783 0" fill="#000000"></path>
+                <path
+                  d="M0 0l783 0"
+                  fill="none"
+                  stroke="#4D4D4D"
+                  stroke-width="1"
+                  vector-effect="non-scaling-stroke"
+                ></path>
+              </svg>
+              <div
+                data-month="0" data-pencil-id="Fqzjc"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 42px; left: 42.894px; position: absolute; top: 192px; width: 40.596px; z-index: 14"
+              ></div>
+              <div
+                data-month="0" data-pencil-id="DXCKg"
+                style="background-color: #0073B9; box-sizing: border-box; height: 29px; left: 42.894px; position: absolute; top: 163px; width: 40.596px; z-index: 15"
+              ></div>
+              <div
+                data-month="0" data-pencil-id="r9Kko"
+                style="background-color: #33A363; box-sizing: border-box; height: 21px; left: 42.894px; position: absolute; top: 142px; width: 40.596px; z-index: 16"
+              ></div>
+              <div
+                data-month="0" data-pencil-id="jtgIM"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 16px; left: 42.894px; position: absolute; top: 126px; width: 40.596px; z-index: 17"
+              ></div>
+              <div
+                data-month="0" data-pencil-id="P7Sj2b"
+                style="background-color: #9558cb; box-sizing: border-box; height: 11px; left: 42.894px; position: absolute; top: 115px; width: 40.596px; z-index: 18"
+              ></div>
+              <div
+                data-pencil-id="zBRZ1"
+                data-pencil-name="286"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 51.064px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 95.375px; white-space: nowrap; z-index: 19"
+              >
+                286
+              </div>
+              <div
+                data-pencil-id="EYTpy"
+                data-pencil-name="Jan"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 51.889px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 20"
+              >
+                Jan
+              </div>
+              <div
+                data-pencil-id="yIj0Y"
+                data-pencil-name="2025"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 48.577px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 256.375px; white-space: nowrap; z-index: 21"
+              >
+                2025
+              </div>
+              <div
+                data-month="1" data-pencil-id="GMo2b"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 51px; left: 89.617px; position: absolute; top: 183px; width: 40.596px; z-index: 22"
+              ></div>
+              <div
+                data-month="1" data-pencil-id="s1XSk"
+                style="background-color: #0073B9; box-sizing: border-box; height: 30px; left: 89.617px; position: absolute; top: 153px; width: 40.596px; z-index: 23"
+              ></div>
+              <div
+                data-month="1" data-pencil-id="SudSR"
+                style="background-color: #33A363; box-sizing: border-box; height: 21px; left: 89.617px; position: absolute; top: 132px; width: 40.596px; z-index: 24"
+              ></div>
+              <div
+                data-month="1" data-pencil-id="CUtQa"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 16px; left: 89.617px; position: absolute; top: 116px; width: 40.596px; z-index: 25"
+              ></div>
+              <div
+                data-month="1" data-pencil-id="Kyfbj"
+                style="background-color: #9558cb; box-sizing: border-box; height: 12px; left: 89.617px; position: absolute; top: 105px; width: 40.596px; z-index: 26"
+              ></div>
+              <div
+                data-pencil-id="yOYe5"
+                data-pencil-name="304"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 97.515px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 87.375px; white-space: nowrap; z-index: 27"
+              >
+                304
+              </div>
+              <div
+                data-pencil-id="e2rZJC"
+                data-pencil-name="Feb"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 98.507px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 28"
+              >
+                Feb
+              </div>
+              <div
+                data-month="2" data-pencil-id="e4HbI9"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 55px; left: 136.34px; position: absolute; top: 179px; width: 40.596px; z-index: 29"
+              ></div>
+              <div
+                data-month="2" data-pencil-id="fElsF"
+                style="background-color: #0073B9; box-sizing: border-box; height: 32px; left: 136.34px; position: absolute; top: 147px; width: 40.596px; z-index: 30"
+              ></div>
+              <div
+                data-month="2" data-pencil-id="BJjBY"
+                style="background-color: #33A363; box-sizing: border-box; height: 23px; left: 136.34px; position: absolute; top: 124px; width: 40.596px; z-index: 31"
+              ></div>
+              <div
+                data-month="2" data-pencil-id="tmMvp"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 20px; left: 136.34px; position: absolute; top: 105px; width: 40.596px; z-index: 32"
+              ></div>
+              <div
+                data-month="2" data-pencil-id="FFc9p"
+                style="background-color: #9558cb; box-sizing: border-box; height: 13px; left: 136.34px; position: absolute; top: 92px; width: 40.596px; z-index: 33"
+              ></div>
+              <div
+                data-pencil-id="EtP0O"
+                data-pencil-name="338"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 144.466px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 73.375px; white-space: nowrap; z-index: 34"
+              >
+                338
+              </div>
+              <div
+                data-pencil-id="LNW7L"
+                data-pencil-name="Mar"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 144.793px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 35"
+              >
+                Mar
+              </div>
+              <div
+                data-month="3" data-pencil-id="kfHFr"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 51px; left: 183.064px; position: absolute; top: 183px; width: 40.596px; z-index: 36"
+              ></div>
+              <div
+                data-month="3" data-pencil-id="Dtk8Z"
+                style="background-color: #0073B9; box-sizing: border-box; height: 34px; left: 183.064px; position: absolute; top: 149px; width: 40.596px; z-index: 37"
+              ></div>
+              <div
+                data-month="3" data-pencil-id="M0O7qy"
+                style="background-color: #33A363; box-sizing: border-box; height: 23px; left: 183.064px; position: absolute; top: 126px; width: 40.596px; z-index: 38"
+              ></div>
+              <div
+                data-month="3" data-pencil-id="dCjQJ"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 18px; left: 183.064px; position: absolute; top: 109px; width: 40.596px; z-index: 39"
+              ></div>
+              <div
+                data-month="3" data-pencil-id="x8XC55"
+                style="background-color: #9558cb; box-sizing: border-box; height: 12px; left: 183.064px; position: absolute; top: 98px; width: 40.596px; z-index: 40"
+              ></div>
+              <div
+                data-pencil-id="YSVEZ"
+                data-pencil-name="325"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 191.377px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 78.375px; white-space: nowrap; z-index: 41"
+              >
+                325
+              </div>
+              <div
+                data-pencil-id="o6CZq"
+                data-pencil-name="Apr"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 192.264px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 42"
+              >
+                Apr
+              </div>
+              <div
+                data-month="4" data-pencil-id="Q9oTw"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 55px; left: 229.787px; position: absolute; top: 179px; width: 40.596px; z-index: 43"
+              ></div>
+              <div
+                data-month="4" data-pencil-id="azrC1"
+                style="background-color: #0073B9; box-sizing: border-box; height: 38px; left: 229.787px; position: absolute; top: 141px; width: 40.596px; z-index: 44"
+              ></div>
+              <div
+                data-month="4" data-pencil-id="AA4O2"
+                style="background-color: #33A363; box-sizing: border-box; height: 23px; left: 229.787px; position: absolute; top: 118px; width: 40.596px; z-index: 45"
+              ></div>
+              <div
+                data-month="4" data-pencil-id="XDkbD"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 20px; left: 229.787px; position: absolute; top: 98px; width: 40.596px; z-index: 46"
+              ></div>
+              <div
+                data-month="4" data-pencil-id="w2gAx"
+                style="background-color: #9558cb; box-sizing: border-box; height: 15px; left: 229.787px; position: absolute; top: 83px; width: 40.596px; z-index: 47"
+              ></div>
+              <div
+                data-pencil-id="a0jeyS"
+                data-pencil-name="366"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 237.899px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 61.375px; white-space: nowrap; z-index: 48"
+              >
+                366
+              </div>
+              <div
+                data-pencil-id="Gb4BX"
+                data-pencil-name="May"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 237.455px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 49"
+              >
+                May
+              </div>
+              <div
+                data-month="5" data-pencil-id="ABXNX"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 66px; left: 276.511px; position: absolute; top: 168px; width: 40.596px; z-index: 50"
+              ></div>
+              <div
+                data-month="5" data-pencil-id="ZwaFa"
+                style="background-color: #0073B9; box-sizing: border-box; height: 38px; left: 276.511px; position: absolute; top: 130px; width: 40.596px; z-index: 51"
+              ></div>
+              <div
+                data-month="5" data-pencil-id="RkyNX"
+                style="background-color: #33A363; box-sizing: border-box; height: 27px; left: 276.511px; position: absolute; top: 103px; width: 40.596px; z-index: 52"
+              ></div>
+              <div
+                data-month="5" data-pencil-id="oJTCP"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 20px; left: 276.511px; position: absolute; top: 83px; width: 40.596px; z-index: 53"
+              ></div>
+              <div
+                data-month="5" data-pencil-id="eLja4"
+                style="background-color: #9558cb; box-sizing: border-box; height: 15px; left: 276.511px; position: absolute; top: 68px; width: 40.596px; z-index: 54"
+              ></div>
+              <div
+                data-pencil-id="O7KWy"
+                data-pencil-name="385"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 284.746px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 53.375px; white-space: nowrap; z-index: 55"
+              >
+                385
+              </div>
+              <div
+                data-pencil-id="vFVOS"
+                data-pencil-name="Jun"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 285.37px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 56"
+              >
+                Jun
+              </div>
+              <div
+                data-month="6" data-pencil-id="oVFml"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 62px; left: 323.234px; position: absolute; top: 172px; width: 40.596px; z-index: 57"
+              ></div>
+              <div
+                data-month="6" data-pencil-id="dLRUX"
+                style="background-color: #0073B9; box-sizing: border-box; height: 36px; left: 323.234px; position: absolute; top: 137px; width: 40.596px; z-index: 58"
+              ></div>
+              <div
+                data-month="6" data-pencil-id="sUaIR"
+                style="background-color: #33A363; box-sizing: border-box; height: 26px; left: 323.234px; position: absolute; top: 111px; width: 40.596px; z-index: 59"
+              ></div>
+              <div
+                data-month="6" data-pencil-id="UZj1i"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 19px; left: 323.234px; position: absolute; top: 92px; width: 40.596px; z-index: 60"
+              ></div>
+              <div
+                data-month="6" data-pencil-id="ngXOb"
+                style="background-color: #9558cb; box-sizing: border-box; height: 14px; left: 323.234px; position: absolute; top: 78px; width: 40.596px; z-index: 61"
+              ></div>
+              <div
+                data-pencil-id="QkZxw"
+                data-pencil-name="374"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 331.783px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 58.375px; white-space: nowrap; z-index: 62"
+              >
+                374
+              </div>
+              <div
+                data-pencil-id="uNWWi"
+                data-pencil-name="Jul"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 333.695px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 63"
+              >
+                Jul
+              </div>
+              <div
+                data-pencil-id="pcOyI"
+                data-pencil-name="2026"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 328.794px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 256.375px; white-space: nowrap; z-index: 64"
+              >
+                2026
+              </div>
+              <div
+                data-month="7" data-pencil-id="IGQ4y"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 66px; left: 369.191px; position: absolute; top: 168px; width: 40.596px; z-index: 65"
+              ></div>
+              <div
+                data-month="7" data-pencil-id="gxLr9"
+                style="background-color: #0073B9; box-sizing: border-box; height: 44px; left: 369.191px; position: absolute; top: 124px; width: 40.596px; z-index: 66"
+              ></div>
+              <div
+                data-month="7" data-pencil-id="pJ4lV"
+                style="background-color: #33A363; box-sizing: border-box; height: 27px; left: 369.191px; position: absolute; top: 97px; width: 40.596px; z-index: 67"
+              ></div>
+              <div
+                data-month="7" data-pencil-id="EsCGV"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 26px; left: 369.191px; position: absolute; top: 72px; width: 40.596px; z-index: 68"
+              ></div>
+              <div
+                data-month="7" data-pencil-id="mUHzH"
+                style="background-color: #9558cb; box-sizing: border-box; height: 15px; left: 369.191px; position: absolute; top: 58px; width: 40.596px; z-index: 69"
+              ></div>
+              <div
+                data-pencil-id="y7ZRF"
+                data-pencil-name="410"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 378.983px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 43.375px; white-space: nowrap; z-index: 70"
+              >
+                410
+              </div>
+              <div
+                data-pencil-id="kKJJ3"
+                data-pencil-name="Aug"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 378.166px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 71"
+              >
+                Aug
+              </div>
+              <div
+                data-month="8" data-pencil-id="FrzmI"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 66px; left: 415.915px; position: absolute; top: 168px; width: 40.596px; z-index: 72"
+              ></div>
+              <div
+                data-month="8" data-pencil-id="cma0S"
+                style="background-color: #0073B9; box-sizing: border-box; height: 45px; left: 415.915px; position: absolute; top: 124px; width: 40.596px; z-index: 73"
+              ></div>
+              <div
+                data-month="8" data-pencil-id="X9EKlL"
+                style="background-color: #33A363; box-sizing: border-box; height: 30px; left: 415.915px; position: absolute; top: 96px; width: 40.596px; z-index: 74"
+              ></div>
+              <div
+                data-month="8" data-pencil-id="WwXSD"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 24px; left: 415.915px; position: absolute; top: 72px; width: 40.596px; z-index: 75"
+              ></div>
+              <div
+                data-month="8" data-pencil-id="U86OGT"
+                style="background-color: #9558cb; box-sizing: border-box; height: 15px; left: 415.915px; position: absolute; top: 57px; width: 40.596px; z-index: 76"
+              ></div>
+              <div
+                data-pencil-id="E4exoo"
+                data-pencil-name="428"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 424.73px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 35.375px; white-space: nowrap; z-index: 77"
+              >
+                428
+              </div>
+              <div
+                data-pencil-id="sxY0M"
+                data-pencil-name="Sep"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 425.154px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 78"
+              >
+                Sep
+              </div>
+              <div
+                data-month="9" data-pencil-id="PH1B4"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 68px; left: 462.638px; position: absolute; top: 166px; width: 40.596px; z-index: 79"
+              ></div>
+              <div
+                data-month="9" data-pencil-id="ooTaV"
+                style="background-color: #0073B9; box-sizing: border-box; height: 46px; left: 462.638px; position: absolute; top: 120px; width: 40.596px; z-index: 80"
+              ></div>
+              <div
+                data-month="9" data-pencil-id="gTGjS"
+                style="background-color: #33A363; box-sizing: border-box; height: 33px; left: 462.638px; position: absolute; top: 87px; width: 40.596px; z-index: 81"
+              ></div>
+              <div
+                data-month="9" data-pencil-id="OisIs"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 24px; left: 462.638px; position: absolute; top: 63px; width: 40.596px; z-index: 82"
+              ></div>
+              <div
+                data-month="9" data-pencil-id="vRPaz"
+                style="background-color: #9558cb; box-sizing: border-box; height: 18px; left: 462.638px; position: absolute; top: 45px; width: 40.596px; z-index: 83"
+              ></div>
+              <div
+                data-pencil-id="ywDU2"
+                data-pencil-name="457"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 471.796px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 23.375px; white-space: nowrap; z-index: 84"
+              >
+                457
+              </div>
+              <div
+                data-pencil-id="TrUmZ"
+                data-pencil-name="Oct"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 472.676px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 85"
+              >
+                Oct
+              </div>
+              <div
+                data-month="10" data-pencil-id="icpFx"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 84px; left: 509.362px; position: absolute; top: 150px; width: 40.596px; z-index: 86"
+              ></div>
+              <div
+                data-month="10" data-pencil-id="uh6HF"
+                style="background-color: #0073B9; box-sizing: border-box; height: 49px; left: 509.362px; position: absolute; top: 101px; width: 40.596px; z-index: 87"
+              ></div>
+              <div
+                data-month="10" data-pencil-id="i0pfD"
+                style="background-color: #33A363; box-sizing: border-box; height: 35px; left: 509.362px; position: absolute; top: 66px; width: 40.596px; z-index: 88"
+              ></div>
+              <div
+                data-month="10" data-pencil-id="KCWhx"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 26px; left: 509.362px; position: absolute; top: 40px; width: 40.596px; z-index: 89"
+              ></div>
+              <div
+                data-month="10" data-pencil-id="L7uUIc"
+                style="background-color: #9558cb; box-sizing: border-box; height: 19px; left: 509.362px; position: absolute; top: 21px; width: 40.596px; z-index: 90"
+              ></div>
+              <div
+                data-pencil-id="uSB8C"
+                data-pencil-name="500"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 518.165px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 5.375px; white-space: nowrap; z-index: 91"
+              >
+                500
+              </div>
+              <div
+                data-pencil-id="LSh5T"
+                data-pencil-name="Nov"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 518.331px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 92"
+              >
+                Nov
+              </div>
+              <div
+                data-month="11" data-pencil-id="ZrnqO"
+                style="background-color: #45b5d1; box-sizing: border-box; height: 80px; left: 556.085px; position: absolute; top: 154px; width: 40.596px; z-index: 93"
+              ></div>
+              <div
+                data-month="11" data-pencil-id="v2hKct"
+                style="background-color: #0073B9; box-sizing: border-box; height: 47px; left: 556.085px; position: absolute; top: 107px; width: 40.596px; z-index: 94"
+              ></div>
+              <div
+                data-month="11" data-pencil-id="EYNZx"
+                style="background-color: #33A363; box-sizing: border-box; height: 33px; left: 556.085px; position: absolute; top: 74px; width: 40.596px; z-index: 95"
+              ></div>
+              <div
+                data-month="11" data-pencil-id="c7fhyI"
+                style="background-color: #fd8b00; box-sizing: border-box; height: 29px; left: 556.085px; position: absolute; top: 45px; width: 40.596px; z-index: 96"
+              ></div>
+              <div
+                data-month="11" data-pencil-id="zAMDC"
+                style="background-color: #9558cb; box-sizing: border-box; height: 18px; left: 556.085px; position: absolute; top: 27px; width: 40.596px; z-index: 97"
+              ></div>
+              <div
+                data-pencil-id="sP9zZ"
+                data-pencil-name="494"
+                style="box-sizing: border-box; color: #666; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 600; left: 564.705px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 8.375px; white-space: nowrap; z-index: 98"
+              >
+                494
+              </div>
+              <div
+                data-pencil-id="UjtH1"
+                data-pencil-name="Dec"
+                style="box-sizing: border-box; color: #8F8F8F; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 565.144px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 240.375px; white-space: nowrap; z-index: 99"
+              >
+                Dec
+              </div>
+            <button class="month-hit" type="button" data-month-index="0" data-value="286" style="left:40.894px;width:44.596px" aria-label="Jan, net revenue $286 thousand. Focus month" aria-pressed="false"></button><button class="month-hit" type="button" data-month-index="1" data-value="304" style="left:87.617px;width:44.596px" aria-label="Feb, net revenue $304 thousand. Focus month" aria-pressed="false"></button><button class="month-hit" type="button" data-month-index="2" data-value="338" style="left:134.34px;width:44.596px" aria-label="Mar, net revenue $338 thousand. Focus month" aria-pressed="false"></button><button class="month-hit" type="button" data-month-index="3" data-value="325" style="left:181.064px;width:44.596px" aria-label="Apr, net revenue $325 thousand. Focus month" aria-pressed="false"></button><button class="month-hit" type="button" data-month-index="4" data-value="366" style="left:227.787px;width:44.596px" aria-label="May, net revenue $366 thousand. Focus month" aria-pressed="false"></button><button class="month-hit" type="button" data-month-index="5" data-value="385" style="left:274.511px;width:44.596px" aria-label="Jun, net revenue $385 thousand. Focus month" aria-pressed="false"></button><button class="month-hit" type="button" data-month-index="6" data-value="374" style="left:321.234px;width:44.596px" aria-label="Jul, net revenue $374 thousand. Focus month" aria-pressed="false"></button><button class="month-hit" type="button" data-month-index="7" data-value="410" style="left:367.191px;width:44.596px" aria-label="Aug, net revenue $410 thousand. Focus month" aria-pressed="false"></button><button class="month-hit" type="button" data-month-index="8" data-value="428" style="left:413.915px;width:44.596px" aria-label="Sep, net revenue $428 thousand. Focus month" aria-pressed="false"></button><button class="month-hit" type="button" data-month-index="9" data-value="457" style="left:460.638px;width:44.596px" aria-label="Oct, net revenue $457 thousand. Focus month" aria-pressed="false"></button><button class="month-hit" type="button" data-month-index="10" data-value="500" style="left:507.362px;width:44.596px" aria-label="Nov, net revenue $500 thousand. Focus month" aria-pressed="false"></button><button class="month-hit" type="button" data-month-index="11" data-value="494" style="left:554.085px;width:44.596px" aria-label="Dec, net revenue $494 thousand. Focus month" aria-pressed="false"></button></div></div>
+    <button id="clear-month" class="clear-focus" type="button" hidden>Clear month focus</button>
+  </section>
+  <section class="chart-card products-card" id="top-products" aria-labelledby="products-title">
+    <header><h2 id="products-title">Top products by revenue</h2><p>Last 30 days · net of returns</p></header>
+    <table><colgroup><col class="rank-column"><col class="name-column"><col class="category-column"><col class="revenue-column"></colgroup><thead><tr><th scope="col">#</th><th scope="col">Product</th><th scope="col">Category</th><th scope="col">Revenue</th></tr></thead><tbody><tr><td>1</td><th scope="row">Trail Runner GTX</th><td><span class="product-category"><i style="--category-color:#0073b9"></i>Footwear</span></td><td>$284,120</td></tr><tr><td>2</td><th scope="row">Merino Base Layer</th><td><span class="product-category"><i style="--category-color:#45b5d1"></i>Apparel</span></td><td>$241,880</td></tr><tr><td>3</td><th scope="row">Packable Down Jacket</th><td><span class="product-category"><i style="--category-color:#45b5d1"></i>Apparel</span></td><td>$198,405</td></tr><tr><td>4</td><th scope="row">Insulated Tumbler 32oz</th><td><span class="product-category"><i style="--category-color:#fd8b00"></i>Home</span></td><td>$163,940</td></tr></tbody></table>
+  </section>
+</main>
+<div class="chart-tooltip" role="tooltip" id="chart-tooltip" hidden></div><p class="sr-only" role="status" id="meeting-status"></p>
+<script src="meeting-preview.js?v=7ba9742c"></script>
+</body></html>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Sales Pipeline Review · Owl</title>
+  <link rel="icon" href="../assets/wisdom-logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=75e0819d">
+  <link rel="stylesheet" href="chat.css?v=1082f50b">
+  <link rel="stylesheet" href="agent-setup.css?v=0a9c7e02">
+  <link rel="stylesheet" href="chat-v0.css?v=4df78aee">
+  <link rel="stylesheet" href="revisit.css?v=5d91a055">
+  <script type="module" src="chat.js?v=e1bc358d"></script>
+</head>
+<body class="chat-page revisit-page revisit-active" data-chat-version="v0">
+  <a class="skip-link" href="#chat-prompt">Skip to conversation</a>
+  <button class="sidebar-backdrop" id="sidebar-backdrop" type="button" aria-label="Close navigation" hidden></button>
+  <aside class="chat-sidebar" id="chat-sidebar" aria-label="Application navigation">
+    <div class="sidebar-brand-row"><a class="sidebar-brand" href="./" aria-label="Back to home"><svg aria-hidden="true"><use href="chat-icons.svg#wordmark"></use></svg></a><button class="desktop-navigation-toggle" id="chat-navigation-toggle" type="button" aria-label="Close navigation" title="Close navigation" aria-controls="chat-sidebar" aria-expanded="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M15 3v18"/></svg></button><button class="close-sidebar" id="close-sidebar" type="button" aria-label="Close navigation">×</button></div>
+    <nav class="sidebar-nav" aria-label="Main"><button id="new-chat" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-new"></use></svg><span>New Chat</span></button>
+<a href="./" aria-current="page" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-agents"></use></svg><span>Owl</span></a>
+<button data-preview="Apps" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-apps"></use></svg><span>Apps</span></button>
+<button data-preview="Workflows" type="button" class="sidebar-item"><span class="workflow-nav-icon" aria-hidden="true"><div
+                    style="box-sizing: border-box; height: 20px; overflow: hidden; position: relative; width: 20px; z-index: 0"
+                  >
+                    <svg
+                      viewBox="5.960464477539062e-7 0 9.87959897518158 11"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 9.167px; left: 5.884px; overflow: visible; position: absolute; top: 5.417px; width: 8.233px; z-index: 0"
+                    >
+                      <path
+                        d="M7.4398 0l-5.687 0c-1.81 0-2.429 2.411-0.843 3.283l8.06 4.434c1.586 0.872 0.967 3.283-0.843 3.283l-5.687 0"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.25"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <svg
+                      viewBox="0 0 16.5 16.5"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 13.75px; left: 3.125px; overflow: visible; position: absolute; top: 3.125px; width: 13.75px; z-index: 1"
+                    >
+                      <path
+                        d="M11 2l0 1.5c0 1.10457 0.89543 2 2 2l1.5 0c1.10457 0 2-0.89543 2-2l0-1.5c0-1.10457-0.89543-2-2-2l-1.5 0c-1.10457 0-2 0.89543-2 2m-11 11l0 1.5c0 1.10457 0.89543 2 2 2l1.5 0c1.10457 0 2-0.89543 2-2l0-1.5c0-1.10457-0.89543-2-2-2l-1.5 0c-1.10457 0-2 0.89543-2 2"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.25"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div></span><span>Workflows</span></button>
+<button data-preview="Domains" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-domains"></use></svg><span>Domains</span></button>
+<button id="show-connections" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-connections"></use></svg><span>Connections</span></button>
+<button data-preview="Chat Logs" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-chat"></use></svg><span>Chat Logs</span></button>
+<button data-preview="More" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-more"></use></svg><span>More</span></button>
+<button data-preview="Settings" type="button" class="sidebar-item"><svg aria-hidden="true"><use href="icons.svg#nav-settings"></use></svg><span>Settings</span></button></nav>
+    <section class="recent-chats" aria-label="Recent chats"><div class="recent-label">Recent</div><button type="button" data-preview="Recent chat" title="Ideal daily active users">Ideal daily active users</button>
+<button type="button" data-preview="Recent chat" title="Generate bar chart of quarterly EV sales">Generate bar chart of quarterly EV sales</button>
+<button type="button" data-preview="Recent chat" title="Release Blockers by Release Version">Release Blockers by Release Version</button>
+<button type="button" data-preview="Recent chat" title="New Deal Closed email">New Deal Closed email</button>
+<button type="button" data-preview="Recent chat" title="Pipeline coverage by segment">Pipeline coverage by segment</button>
+<button type="button" data-preview="Recent chat" title="Churn risk scoring for enterprise accounts">Churn risk scoring for enterprise accounts</button>
+<button type="button" data-preview="Recent chat" title="Lead source attribution explorer">Lead source attribution explorer</button>
+<button type="button" data-preview="Recent chat" title="Weekly revenue digest">Weekly revenue digest</button>
+<button type="button" data-preview="Recent chat" title="Contacts with job title ‘Manager’">Contacts with job title ‘Manager’</button>
+<button type="button" data-preview="Recent chat" title="EV adoption by state, 2024">EV adoption by state, 2024</button>
+<button type="button" data-preview="Recent chat" title="Support ticket deflection rate">Support ticket deflection rate</button></section>
+    <div class="sidebar-bottom"><button class="sidebar-item" type="button" data-preview="Notifications"><svg class="sidebar-notification" aria-hidden="true"><use href="icons.svg#notification"></use></svg><span>Notifications</span></button><button class="sidebar-item" type="button" data-preview="Profile"><span class="sidebar-avatar">W</span><span>Woomi Jeong</span></button></div>
+  </aside>
+  <main class="chat-shell">
+    <header class="chat-header"><button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open navigation" aria-controls="chat-sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><h1 class="agent-chip"><svg aria-hidden="true"><use href="chat-icons.svg#chat-owl"></use></svg>Chief of staff</h1></header>
+    <div class="conversation-scroll" id="conversation-scroll" tabindex="0" role="region" aria-label="Chat conversation">
+      <div class="conversation-content" id="conversation-content">
+        <section class="revisit-thread" id="revisit-thread" aria-label="Sales pipeline meeting brief">
+          <div class="meeting-banner"><img src="assets/revisit-calendar-clock.svg" width="18" height="18" alt=""><span>Sales Pipeline Review starts in 30 min · 9:00 AM · 6 attendees</span></div>
+          <p class="revisit-message">Morning, Woomi. Since Friday's update, 3 things changed that will come up:</p>
+          <section class="pipeline-changes" aria-label="Changes since Friday">
+            <div class="pipeline-change"><img src="assets/revisit-arrow-up-right.svg" width="18" height="18" alt=""><div class="change-copy"><p>Orbis Retail Group moved to Closed Won</p><p class="change-detail">Lena K. · Sat 4:12 PM · EMEA now at 92% of quota</p></div><span class="change-value positive">+$540K</span></div>
+            <div class="pipeline-change"><img src="assets/revisit-arrow-down-right.svg" width="18" height="18" alt=""><div class="change-copy"><p>Tamarack Energy slipped to Q1</p><p class="change-detail">Tomás V. · close date Dec 12 → Jan 20 · removed from Q4 forecast</p></div><span class="change-value negative">−$470K</span></div>
+            <div class="pipeline-change"><img src="assets/revisit-triangle-alert.svg" width="18" height="18" alt=""><div class="change-copy"><p>Halcyon Health · procurement blocked on security review</p><p class="change-detail">First on today's agenda (you asked Fri) · Lena K. tagged</p></div><span class="change-value agenda">Agenda #1</span></div>
+          </section>
+          <section class="meeting-app-card" aria-label="Weekly Sales Pipeline Review App">
+            <div class="meeting-app-header"><span class="meeting-app-icon" aria-hidden="true"><div
+                style="box-sizing: border-box; flex-shrink: 0; height: 20px; overflow: hidden; position: relative; width: 20px"
+              >
+                <svg
+                  viewBox="0 0 8 1"
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; height: 0.833px; left: 5px; overflow: visible; position: absolute; top: 6.667px; width: 6.667px; z-index: 0"
+                >
+                  <path
+                    d="M0.5 1c-0.27614 0-0.5-0.22386-0.5-0.5 0-0.27614 0.22386-0.5 0.5-0.5 0.27614 0 0.5 0.22386 0.5 0.5 0 0.27614-0.22386 0.5-0.5 0.5m3.5 0c-0.27614 0-0.5-0.22386-0.5-0.5 0-0.27614 0.22386-0.5 0.5-0.5 0.27614 0 0.5 0.22386 0.5 0.5 0 0.27614-0.22386 0.5-0.5 0.5m3.5 0c-0.27614 0-0.5-0.22386-0.5-0.5 0-0.27614 0.22386-0.5 0.5-0.5 0.27614 0 0.5 0.22386 0.5 0.5 0 0.27614-0.22386 0.5-0.5 0.5"
+                    fill="#000"
+                  ></path>
+                </svg>
+                <svg
+                  viewBox="0 0 8 1"
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; height: 1px; left: 5px; overflow: visible; position: absolute; top: 6.667px; width: 6.667px; z-index: 1"
+                >
+                  <path
+                    d="M0.5 1c-0.27614 0-0.5-0.22386-0.5-0.5 0-0.27614 0.22386-0.5 0.5-0.5 0.27614 0 0.5 0.22386 0.5 0.5 0 0.27614-0.22386 0.5-0.5 0.5m3.5 0c-0.27614 0-0.5-0.22386-0.5-0.5 0-0.27614 0.22386-0.5 0.5-0.5 0.27614 0 0.5 0.22386 0.5 0.5 0 0.27614-0.22386 0.5-0.5 0.5m3.5 0c-0.27614 0-0.5-0.22386-0.5-0.5 0-0.27614 0.22386-0.5 0.5-0.5 0.27614 0 0.5 0.22386 0.5 0.5 0 0.27614-0.22386 0.5-0.5 0.5"
+                    fill="none"
+                    stroke="#24242a"
+                    stroke-width="1"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    vector-effect="non-scaling-stroke"
+                  ></path>
+                </svg>
+                <svg
+                  viewBox="0 0 18.5 15.5"
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; height: 12.917px; left: 2.292px; overflow: visible; position: absolute; top: 3.958px; width: 15.417px; z-index: 2"
+                >
+                  <path
+                    d="M18.5 7l0-5c0-1.10457-0.89543-2-2-2l-14.5 0c-1.10457 0-2 0.89543-2 2l0 11.5c0 1.10457 0.89543 2 2 2l8 0"
+                    fill="none"
+                    stroke="#24242a"
+                    stroke-width="1.25"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    vector-effect="non-scaling-stroke"
+                  ></path>
+                </svg>
+                <svg
+                  viewBox="-5.066394805908203e-7 -2.9802322387695312e-8 8.00429967045784 8.004300147294998"
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; height: 6.67px; left: 12.498px; overflow: visible; position: absolute; top: 11.665px; width: 6.67px; z-index: 3"
+                >
+                  <path
+                    d="M5.24215 2.18715l-0.696-1.812c-0.08588-0.22585-0.30237-0.37515-0.544-0.37515-0.24163 0-0.45812 0.1493-0.544 0.37515l-0.697 1.812c-0.10134 0.26426-0.30992 0.4732-0.574 0.575l-1.812 0.696c-0.22585 0.08588-0.37515 0.30237-0.37515 0.544 0 0.24163 0.1493 0.45812 0.37515 0.544l1.812 0.697c0.26426 0.10134 0.4732 0.30992 0.575 0.574l0.696 1.812c0.08588 0.22585 0.30237 0.37515 0.544 0.37515 0.24163 0 0.45812-0.1493 0.544-0.37515l0.697-1.812c0.10134-0.26426 0.30992-0.4732 0.574-0.575l1.812-0.696c0.22585-0.08588 0.37515-0.30237 0.37515-0.544 0-0.24163-0.1493-0.45812-0.37515-0.544l-1.812-0.697c-0.26426-0.10134-0.4732-0.30992-0.575-0.574"
+                    fill="#24242a"
+                  ></path>
+                </svg>
+              </div></span><div class="change-copy"><p>Weekly Sales Pipeline Review App</p><p class="change-detail">Refreshed 8:29 AM · Q4 forecast now $6.2M</p></div><button class="connect-button" id="open-for-meeting" type="button" aria-controls="live-app-panel" aria-expanded="false">Open for meeting</button></div>
+            <div class="meeting-thumbnails" aria-label="App preview"><img src="assets/meeting-funnel-thumbnail.png" width="569" height="315" alt="Trial-to-paid conversion funnel"><img src="assets/meeting-category-thumbnail.png" width="569" height="315" alt="Revenue by product category"><img src="assets/meeting-products-thumbnail.png" width="569" height="315" alt="Top products by revenue"></div>
+          </section>
+          <p class="revisit-message">Would you like to see progress of your metrics?</p>
+          <div class="revisit-answer"><p>Yes</p></div>
+          <section class="revisit-metrics" aria-label="Current metrics">
+            <article class="revisit-metric"><h2>Net revenue</h2><p class="metric-value positive">$4.82M</p><p class="metric-change positive">+12.4% vs last month</p></article>
+            <article class="revisit-metric"><h2>Orders</h2><p class="metric-value positive">38,410</p><p class="metric-change positive">+6.1% vs last month</p></article>
+            <article class="revisit-metric"><h2>Average order value</h2><p class="metric-value">$125.50</p><p class="metric-change">+5.9% vs last month</p></article>
+            <article class="revisit-metric"><h2>Return rate</h2><p class="metric-value">2.1%</p><p class="metric-change">−0.3pt vs last month</p></article>
+          </section>
+        </section>
+
+        <div id="onboarding-thread" hidden>
+        <div class="introduction" aria-live="polite" aria-relevant="additions">
+          <p class="agent-message intro-message" hidden>Hey Woomi, I'm Owl, your Sales Ops Analyst, and here to help you.</p>
+          <p class="agent-message intro-message" hidden>Let’s make your daily brief useful. Connecting your tools helps me understand what you’re working on, what’s coming up, and what needs your attention.</p>
+          <p class="agent-message intro-message" id="context-question" hidden>The more context I have, the better I get. Would you like to connect your context so I can start?</p>
+        </div>
+        <section class="connection-box" id="connection-box" aria-label="Connect your tools" tabindex="-1" hidden>
+          <div id="connection-rows"></div>
+          <div class="connection-footer"><button id="skip-connections" type="button">Skip for now</button></div>
+        </section>
+        <p class="agent-message" id="connection-status" role="status" aria-atomic="true" hidden></p>
+        <p class="agent-message" id="review-message" hidden>Thank you. I’ll do a deep dive. Back in a few minutes with some ideas for you.</p>
+        <div class="connection-feedback" id="connection-feedback" hidden>
+          <p class="connection-confirmation" id="connection-confirmation" role="status" aria-live="polite" hidden></p>
+          <details class="activity" id="activity" hidden>
+            <summary title="Show or hide tool activity"><span class="activity-label" id="activity-label">Getting context from your tools…</span></summary>
+            <ul class="activity-calls" id="activity-calls" aria-label="Simulated tool activity"></ul>
+          </details>
+        </div>
+        <div class="recommendation" id="recommendation" hidden aria-live="polite">
+          <p class="agent-message" id="ready-message"></p><p class="agent-message" id="suggestion-message"></p>
+          <section class="live-app-offer" id="live-app-offer" aria-label="Suggested live app" hidden>
+            <span class="connection-name"><svg aria-hidden="true"><use href="live-app-icons.svg#live-app"></use></svg><span>Weekly Sales Pipeline Review App</span></span>
+            <div class="live-app-actions"><button class="defer-app" id="defer-live-app" type="button">Not now</button><button class="connect-button" id="build-live-app" type="button" data-state="idle"><span class="state-icon" aria-hidden="true"></span><span id="build-live-app-label" aria-live="polite" aria-atomic="true">Build</span></button></div>
+          </section>
+          <p class="agent-message" id="live-app-deferred" hidden>No problem. We can come back to this app whenever you’re ready.</p>
+        </div>
+        <section id="live-app-conversation" aria-label="Set up your live app" hidden>
+          <p class="agent-message" id="crm-prompt" hidden>Connect your CRM so I can bring in your opportunities, sales stages, and regional performance.</p>
+          <section class="connection-box crm-box" id="crm-box" aria-label="Connect your CRM" hidden>
+            <div id="crm-rows"></div>
+            <div class="connection-footer"><button id="skip-crm" type="button">Skip for now</button></div>
+          </section>
+          <details class="activity crm-activity" id="crm-activity" hidden>
+            <summary title="Show or hide CRM activity"><span class="activity-label" id="crm-activity-label"></span></summary>
+            <ul class="activity-calls" id="crm-activity-calls" aria-label="Simulated CRM activity"></ul>
+          </details>
+          <p class="agent-message" id="crm-result" aria-live="polite" hidden></p>
+          <section class="live-app-offer" id="live-app-complete" aria-label="Completed live app" hidden>
+            <span class="connection-name"><svg aria-hidden="true"><use href="live-app-icons.svg#live-app"></use></svg><span>Weekly Sales Pipeline Review App</span></span>
+            <div class="live-app-actions"><button class="connect-button" id="open-live-app" type="button" aria-controls="live-app-panel" aria-expanded="false">Open App</button></div>
+          </section>
+        </section>
+        <section class="agent-setup-conversation" id="agent-setup-conversation" aria-label="Set up your weekly pipeline agent" hidden>
+          <p class="agent-message" id="agent-setup-question" hidden></p>
+          <section class="live-app-offer" id="agent-setup-offer" aria-label="Suggested weekly pipeline agent" hidden>
+            <span class="connection-name"><img class="agent-setup-icon" src="agent-setup-icon.svg?v=006c3e51" width="24" height="24" alt=""><span>Weekly Sales Pipeline Update</span></span>
+            <div class="live-app-actions"><button class="connect-button" id="set-up-agent" type="button" aria-controls="agent-schedule-form" aria-expanded="false">Set up agent</button></div>
+          </section>
+          <p class="agent-message" id="agent-schedule-question" hidden>What time should I deliver it, and where should it go?</p>
+          <form class="agent-schedule-form" id="agent-schedule-form" aria-labelledby="agent-schedule-title" hidden>
+            <div class="agent-schedule-header">
+              <img class="agent-setup-icon" src="agent-setup-icon.svg?v=006c3e51" width="24" height="24" alt="">
+              <h2 id="agent-schedule-title">Weekly Sales Pipeline Update</h2>
+              <span class="agent-schedule-badge">Weekly</span>
+            </div>
+            <div class="agent-schedule-settings">
+              <div class="agent-schedule-row agent-schedule-timing">
+                <div class="agent-schedule-field">
+                  <label for="agent-schedule-day">Day</label>
+                  <div class="agent-schedule-select agent-schedule-with-icon">
+                    <svg class="agent-schedule-leading-icon agent-schedule-day-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4m8-4v4M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg>
+                    <select id="agent-schedule-day" name="day"><option value="Monday">Monday</option><option value="Tuesday">Tuesday</option><option value="Wednesday">Wednesday</option><option value="Thursday">Thursday</option><option value="Friday" selected>Friday</option><option value="Saturday">Saturday</option><option value="Sunday">Sunday</option></select>
+                    <svg class="agent-schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </div>
+                </div>
+                <div class="agent-schedule-field">
+                  <label for="agent-schedule-time">Time</label>
+                  <div class="agent-schedule-select agent-schedule-with-icon">
+                    <svg class="agent-schedule-leading-icon agent-schedule-time-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                    <select id="agent-schedule-time" name="time"><option value="00:00">12:00 AM</option><option value="00:30">12:30 AM</option><option value="01:00">1:00 AM</option><option value="01:30">1:30 AM</option><option value="02:00">2:00 AM</option><option value="02:30">2:30 AM</option><option value="03:00">3:00 AM</option><option value="03:30">3:30 AM</option><option value="04:00">4:00 AM</option><option value="04:30">4:30 AM</option><option value="05:00">5:00 AM</option><option value="05:30">5:30 AM</option><option value="06:00">6:00 AM</option><option value="06:30">6:30 AM</option><option value="07:00" selected>7:00 AM</option><option value="07:30">7:30 AM</option><option value="08:00">8:00 AM</option><option value="08:30">8:30 AM</option><option value="09:00">9:00 AM</option><option value="09:30">9:30 AM</option><option value="10:00">10:00 AM</option><option value="10:30">10:30 AM</option><option value="11:00">11:00 AM</option><option value="11:30">11:30 AM</option><option value="12:00">12:00 PM</option><option value="12:30">12:30 PM</option><option value="13:00">1:00 PM</option><option value="13:30">1:30 PM</option><option value="14:00">2:00 PM</option><option value="14:30">2:30 PM</option><option value="15:00">3:00 PM</option><option value="15:30">3:30 PM</option><option value="16:00">4:00 PM</option><option value="16:30">4:30 PM</option><option value="17:00">5:00 PM</option><option value="17:30">5:30 PM</option><option value="18:00">6:00 PM</option><option value="18:30">6:30 PM</option><option value="19:00">7:00 PM</option><option value="19:30">7:30 PM</option><option value="20:00">8:00 PM</option><option value="20:30">8:30 PM</option><option value="21:00">9:00 PM</option><option value="21:30">9:30 PM</option><option value="22:00">10:00 PM</option><option value="22:30">10:30 PM</option><option value="23:00">11:00 PM</option><option value="23:30">11:30 PM</option></select>
+                    <svg class="agent-schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </div>
+                </div>
+                <div class="agent-schedule-field">
+                  <label for="agent-schedule-timezone">Timezone</label>
+                  <div class="agent-schedule-select">
+                    <select id="agent-schedule-timezone" name="timezone"><option value="America/Los_Angeles" selected>America/Los_Angeles</option><option value="America/Denver">America/Denver</option><option value="America/Chicago">America/Chicago</option><option value="America/New_York">America/New_York</option><option value="UTC">UTC</option><option value="Europe/London">Europe/London</option><option value="Asia/Seoul">Asia/Seoul</option></select>
+                    <svg class="agent-schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="agent-schedule-row agent-schedule-destination">
+                <div class="agent-schedule-field">
+                  <label for="agent-schedule-delivery">Deliver to</label>
+                  <div class="agent-schedule-select">
+                    <select id="agent-schedule-delivery" name="delivery"><option value="Slack">Slack</option></select>
+                    <svg class="agent-schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </div>
+                </div>
+                <div class="agent-schedule-field">
+                  <label for="agent-schedule-channel">Channel · connected workspace</label>
+                  <div class="agent-schedule-select">
+                    <select id="agent-schedule-channel" name="channel"><option value="#sales-pipeline">#sales-pipeline</option><option value="#sales">#sales</option><option value="#revenue-leadership">#revenue-leadership</option></select>
+                    <svg class="agent-schedule-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="agent-schedule-footer">
+                <div class="agent-schedule-summaries" aria-live="polite" aria-atomic="true"><span id="agent-schedule-summary">Every Friday at 7:00 AM</span><span id="agent-delivery-summary">Slack · #sales-pipeline</span></div>
+                <button class="connect-button" id="create-weekly-update" type="submit" data-state="idle"><span class="state-icon" aria-hidden="true"></span><span id="create-weekly-update-label" aria-live="polite" aria-atomic="true">Create weekly update</span></button>
+              </div>
+            </div>
+          </form>
+          <p class="agent-message" id="agent-setup-result" aria-live="polite" hidden></p>
+          <section class="live-app-offer" id="agent-report-card" aria-label="Weekly Sales Pipeline Update report" hidden>
+            <span class="connection-name"><img class="agent-setup-icon" src="agent-setup-icon.svg?v=006c3e51" width="24" height="24" alt=""><span>Weekly Sales Pipeline Update</span></span>
+            <div class="live-app-actions"><button class="connect-button" id="open-agent-report" type="button" aria-controls="live-app-panel" aria-expanded="false">Open Report</button></div>
+          </section>
+        </section>
+        </div>
+        <div class="chat-history" id="chat-history" role="log" aria-label="Conversation" aria-live="polite" aria-relevant="additions"></div>
+      </div>
+    </div>
+    <footer class="chat-footer">
+      <p class="chat-status" id="status-message" role="status"></p>
+            <form class="composer" id="chat-form">
+        <label class="visually-hidden" for="chat-prompt">Get quick answers and dig in with follow-ups</label>
+        <textarea id="chat-prompt" name="prompt" rows="1" placeholder="Get quick answers and dig in with follow-ups"></textarea>
+        <div class="composer-tools">
+          <div class="composer-left">
+            <div class="select-control domain-control">
+              <label class="visually-hidden" for="domain">Workspace</label>
+              <select id="domain" name="domain"><option>B2b Sales</option><option>Finance</option><option>Operations</option></select>
+              <svg class="chevron" aria-hidden="true"><use href="icons.svg#chevron"></use></svg>
+            </div>
+            <div class="mode-toggle" role="group" aria-label="Composer mode">
+              <button id="mode-ask" class="mode" type="button" aria-pressed="false">Ask</button>
+              <button id="mode-build" class="mode" type="button" aria-pressed="true">Build</button>
+            </div>
+          </div>
+          <div class="composer-right">
+            <div class="select-control reasoning-control">
+              <svg class="brain" aria-hidden="true"><use href="icons.svg#brain"></use></svg>
+              <label class="visually-hidden" for="reasoning">Reasoning mode</label>
+              <select id="reasoning" name="reasoning"><option>Thinking</option><option>Quick</option></select>
+              <svg class="chevron" aria-hidden="true"><use href="icons.svg#chevron"></use></svg>
+            </div>
+            <input id="chat-attachment" type="file" hidden><button class="mic-button attach-button" id="chat-attach" type="button" aria-label="Attach a file" title="Attach a file"><img src="assets/revisit-paperclip.svg" width="18" height="18" alt=""></button>
+            <button class="mic-button" id="chat-mic" type="button" data-preview="Voice input" aria-label="Voice input" title="Voice input"><img src="assets/revisit-mic.svg" width="18" height="18" alt=""></button>
+            <button class="send-button" id="chat-send" type="submit" aria-label="Send message" title="Send request (⌘ or Ctrl + Enter)" disabled><svg aria-hidden="true"><use href="icons.svg#arrow"></use></svg></button>
+          </div>
+        </div>
+      </form>
+    </footer>
+  </main>
+  <div class="live-app-panel-toolbar" id="live-app-panel-toolbar" hidden><button id="close-live-app" type="button" aria-label="Open app preview" title="Open app preview" aria-controls="live-app-panel" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path transform="translate(2.75 4.75)" d="M13 .25v14M0 12.5V2C0 .89543 .89543 0 2 0h14.5c1.10457 0 2 .89543 2 2v10.5c0 1.10457-.89543 2-2 2H2c-1.10457 0-2-.89543-2-2Z"/></svg></button></div>
+  <aside class="live-app-panel" id="live-app-panel" aria-label="Weekly Sales Pipeline Review App preview" aria-hidden="true" inert>
+    <div class="report-view-tabs" id="report-view-tabs" role="tablist" aria-label="Weekly update view" hidden>
+      <button id="report-tab" type="button" role="tab" data-report-view="report" aria-selected="true" aria-controls="report-preview" tabindex="0">Report</button>
+      <button id="workflow-tab" type="button" role="tab" data-report-view="workflow" aria-selected="false" aria-controls="workflow-preview" tabindex="-1">Workflow</button>
+    </div>
+    <iframe id="live-app-preview-v3" title="Weekly Sales Pipeline Review App" aria-hidden="false"></iframe>
+    <iframe id="report-preview" class="report-preview app-preview-inactive" title="Weekly Sales Pipeline Update report" aria-hidden="true" inert></iframe>
+    <iframe id="workflow-preview" class="report-preview app-preview-inactive" title="Weekly Sales Pipeline Update workflow" aria-hidden="true" inert></iframe>
+  </aside>
+</body>
+</html>

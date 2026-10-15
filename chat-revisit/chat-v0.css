@@ -1,0 +1,324 @@
+/* Updated connect and live-app frames for Chat v0. */
+.chat-page[data-chat-version="v0"]:not(.live-app-open) {
+  --chat-text-width: 748px;
+  --chat-card-width: 613px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-chip {
+  height: 32px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .conversation-scroll {
+  --conversation-top-gap: 42px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-message {
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #connection-box {
+  margin: 24px 0;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--chat-card-line);
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-row {
+  min-height: 53px;
+  padding: 12px 14px;
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #connection-rows > :nth-child(4) {
+  min-height: 54px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #connection-rows > :last-child {
+  box-shadow: inset 0 -1px 0 var(--chat-card-line);
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-name {
+  gap: 12px;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-name > svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-row .connect-button {
+  min-width: 69px;
+  min-height: 29px;
+  padding: 6px 10px;
+  border: 0;
+  line-height: 17px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-row .connect-button[data-state="connecting"],
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connection-row .connect-button[data-state="connected"] {
+  box-shadow: inset 0 0 0 1px #e4e6ea;
+  color: #000;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connect-button[data-state="connecting"] {
+  min-width: 98px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connect-button[data-state="connecting"] .state-icon {
+  display: none;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box) .connect-button[data-state="connected"] {
+  min-width: 103px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box, #live-app-offer) .connect-button[data-state="connected"] .state-icon {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  border: 0;
+  transform: none;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#connection-box, #crm-box, #live-app-offer) .connect-button[data-state="connected"] .state-icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='m3.1667 8.5179 3.5 4.3154 6.1666-9.6666' stroke='%23209855' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #connection-box .connection-footer {
+  width: 100%;
+  height: 40px;
+  padding: 0 max(17px, calc(100% - 596px)) 0 0;
+  box-shadow: inset 0 -1px 0 var(--chat-card-line);
+}
+
+:where(.chat-page[data-chat-version="v0"]) #connection-box .connection-footer button {
+  padding: 0;
+  color: #24242a80;
+  line-height: 21px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .connection-confirmation {
+  margin-bottom: 24px;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .activity,
+:where(.chat-page[data-chat-version="v0"]) .user-message {
+  margin-bottom: 24px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .live-app-offer {
+  margin: 24px 0;
+}
+
+/* Use a full 1px outline so the light card edges remain distinguishable. */
+:where(.chat-page[data-chat-version="v0"]) #crm-box {
+  margin: 24px 0;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--chat-card-line);
+}
+
+:where(.chat-page[data-chat-version="v0"]) #crm-rows > :last-child {
+  box-shadow: inset 0 -1px 0 var(--chat-card-line);
+}
+
+:where(.chat-page[data-chat-version="v0"]) #crm-box .connection-footer {
+  min-height: 39px;
+  padding: 9px 22px;
+  box-shadow: inset 0 -1px 0 var(--chat-card-line);
+}
+
+:where(.chat-page[data-chat-version="v0"]) #crm-box .connection-footer button {
+  padding: 0;
+  color: #24242a80;
+  line-height: 21px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-setup-offer, #agent-report-card) {
+  min-height: 54px;
+  padding: 12.5px 14px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--chat-card-line);
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-setup-offer, #agent-report-card) .connection-name {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete) .connection-name {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#live-app-offer, #live-app-complete, #agent-setup-offer, #agent-report-card) .connect-button {
+  min-height: 29px;
+  padding: 6px 10px;
+  border: 0;
+  line-height: 17px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #build-live-app[data-state="connected"],
+:where(.chat-page[data-chat-version="v0"]) #build-live-app[data-state="connecting"] {
+  color: #000;
+  box-shadow: inset 0 0 0 1px #e4e6ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #build-live-app[data-state="connecting"] .state-icon {
+  display: none;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .activity summary {
+  min-height: 19px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #24242a80;
+}
+
+/* The open app groups paragraphs more closely, with 24px between sections. */
+:where(.chat-page[data-chat-version="v0"].live-app-open) .conversation-scroll {
+  --conversation-top-gap: 24px;
+}
+
+:where(.chat-page[data-chat-version="v0"].live-app-open) .agent-message,
+:where(.chat-page[data-chat-version="v0"].live-app-open) .connection-confirmation,
+:where(.chat-page[data-chat-version="v0"].live-app-open) #activity {
+  margin-bottom: 16px;
+}
+
+:where(.chat-page[data-chat-version="v0"].live-app-open) #connection-rows > :last-child {
+  box-shadow: inset 0 -1px 0 var(--chat-card-line);
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open):has(#live-app-offer:not([hidden]))) .chat-header {
+  padding-top: 17px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open):has(#live-app-offer:not([hidden]))) .conversation-scroll {
+  --conversation-top-gap: 38px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:not(.live-app-open)) .chat-footer .composer {
+  padding-top: 15px;
+  padding-bottom: 13px;
+}
+
+:where(.chat-page[data-chat-version="v0"]:has(#live-app-offer:not([hidden]))) .chat-footer .composer {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+/* Setup sections are flex siblings, so only one side supplies their 24px gap. */
+:where(.chat-page[data-chat-version="v0"]) #agent-setup-conversation {
+  margin: 24px 0 0;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #agent-setup-question {
+  margin: 0;
+}
+
+:where(.chat-page[data-chat-version="v0"]) :is(#agent-schedule-question, #agent-schedule-form, #agent-setup-result, #agent-report-card) {
+  margin: 0 0 24px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #agent-setup-offer {
+  margin: 24px 0 0;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #agent-schedule-question {
+  margin-top: 24px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #set-up-agent {
+  min-width: 93px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-setup-icon {
+  content: url("agent-setup-icon-v0.svg?v=54bdc6de");
+}
+
+:where(.chat-page[data-chat-version="v0"]) #agent-schedule-form {
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--chat-card-line);
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-header {
+  border: 0;
+  box-shadow: inset 0 -1px 0 var(--chat-card-line);
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-header h2 {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-badge,
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-summaries {
+  display: none;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-field label {
+  line-height: 15px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-select select {
+  line-height: 16px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-select svg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 14px 14px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-select svg > * {
+  visibility: hidden;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-day-icon {
+  background-image: url("calendar-days-v0.svg?v=d4202831");
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-time-icon {
+  background-image: url("clock-3-v0.svg?v=22ffd854");
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-chevron {
+  background-image: url("chevron-down-v0.svg?v=93a6170a");
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-footer {
+  justify-content: flex-end;
+}
+
+:where(.chat-page[data-chat-version="v0"]) .agent-schedule-footer .connect-button {
+  min-height: 29px;
+  padding: 6px 10px;
+  border: 0;
+  line-height: 17px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #create-weekly-update[data-state="connected"],
+:where(.chat-page[data-chat-version="v0"]) #create-weekly-update[data-state="connecting"] {
+  box-shadow: inset 0 0 0 1px #e4e6ea;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #create-weekly-update[data-state="idle"] {
+  min-width: 146px;
+}
+
+:where(.chat-page[data-chat-version="v0"]) #open-agent-report {
+  min-width: 93px;
+}
