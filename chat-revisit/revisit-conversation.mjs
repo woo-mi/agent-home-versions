@@ -1,14 +1,14 @@
 // Leave longer reading pauses after the denser cards than after short replies.
 const PACING = Object.freeze({
-  opening: 900,
-  banner: 1600,
-  greeting: 2000,
-  changes: 4200,
-  app: 3000,
-  question: 1800,
-  metricsResponse: 1500,
-  metricsReading: 3500,
-  reportResponse: 1800,
+  opening: 700,
+  banner: 1100,
+  greeting: 1400,
+  changes: 2800,
+  app: 2000,
+  question: 1200,
+  metricsResponse: 1100,
+  metricsReading: 2500,
+  reportResponse: 1200,
 });
 
 /** Play the designed revisit conversation in chunks, with live replies available. */
