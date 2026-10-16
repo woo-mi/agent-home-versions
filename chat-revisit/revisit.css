@@ -5,6 +5,7 @@
 .revisit-owl-icon { display: block; width: 18px; height: 18px; flex-shrink: 0; }
 .revisit-page.revisit-active .conversation-scroll { --conversation-top-gap: 14px; scroll-padding-bottom: calc(var(--chat-footer-height, 72px) + 16px); }
 .revisit-page .sidebar-item[aria-current="page"] { background: #e4e6ea; color: #15171b; }
+.revisit-page .owl-nav-icon { display: block; width: 20px; height: 20px; flex: 0 0 20px; }
 .workflow-nav-icon { width: 20px; height: 20px; flex-shrink: 0; }
 .revisit-page.navigation-collapsed .sidebar-item > .workflow-nav-icon { opacity: 1; visibility: visible; }
 .revisit-page .recent-chats { margin-top: 32px; }
