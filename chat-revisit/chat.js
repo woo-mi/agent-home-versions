@@ -4,7 +4,7 @@ import { createLiveAppChat } from './live-app-chat.mjs?v=eebd70c3';
 import { createLiveAppPreview } from './live-app-preview.mjs?v=7eea3c12';
 import { createAgentSetupChat } from './agent-setup-chat.mjs?v=1c4929c3';
 import { createReportViews } from './report-views.mjs?v=3e53c1e2';
-import { createRevisitConversation } from './revisit-conversation.mjs?v=33c5fb55';
+import { createRevisitConversation } from './revisit-conversation.mjs?v=0c7bd933';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.

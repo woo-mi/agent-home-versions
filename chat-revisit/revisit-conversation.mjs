@@ -1,3 +1,16 @@
+// Leave longer reading pauses after the denser cards than after short replies.
+const PACING = Object.freeze({
+  opening: 900,
+  banner: 1600,
+  greeting: 2000,
+  changes: 4200,
+  app: 3000,
+  question: 1800,
+  metricsResponse: 1500,
+  metricsReading: 3500,
+  reportResponse: 1800,
+});
+
 /** Play the designed revisit conversation in chunks, with live replies available. */
 export function createRevisitConversation({ history, update, streamMessage, stopStreaming, later, onAppReady, onReportReady, onChoice = () => {} }) {
   const byId = (id) => document.getElementById(id);
@@ -28,7 +41,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
   let metricsShown = false;
   let weeklyAccepted = false;
 
-  function schedule(callback, delay = 750) {
+  function schedule(callback, delay) {
     const current = version;
     later(() => { if (current === version) callback(); }, delay);
   }
@@ -89,7 +102,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
     update(() => { metrics.hidden = false; });
     schedule(() => {
       if (!weeklyAccepted) acceptWeekly(weeklyText, { userInitiated: false });
-    }, 1200);
+    }, PACING.metricsReading);
   }
 
   function acceptMetrics(text = yesText, { userInitiated = true } = {}) {
@@ -101,7 +114,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
       sent(yes, text);
       yesRow.hidden = false;
     }, userInitiated);
-    schedule(showMetrics, 900);
+    schedule(showMetrics, PACING.metricsResponse);
     if (userInitiated) onChoice();
     return true;
   }
@@ -119,7 +132,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
     schedule(() => {
       update(() => { report.hidden = false; });
       onReportReady();
-    }, 1000);
+    }, PACING.reportResponse);
     if (userInitiated) onChoice();
     return true;
   }
@@ -157,14 +170,14 @@ export function createRevisitConversation({ history, update, streamMessage, stop
                   streamMessage(question, questionText, () => {
                     if (current !== version) return;
                     introComplete = true;
-                    schedule(() => acceptMetrics(yesText, { userInitiated: false }), 650);
+                    schedule(() => acceptMetrics(yesText, { userInitiated: false }), PACING.question);
                   });
-                });
-              });
-            });
+                }, PACING.app);
+              }, PACING.changes);
+            }, PACING.greeting);
           });
-        });
-      }, 700);
+        }, PACING.banner);
+      }, PACING.opening);
     },
     respond(text) {
       const value = text.trim().toLowerCase();
