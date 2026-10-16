@@ -1,11 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
   <circle cx="10" cy="10" r="7.7083333333" fill="#7a4cb6" stroke="#7a4cb6" stroke-width="1.5"/>
-  <svg x="2.2916666667" y="6.1665852865" width="7.7083333333" height="3.8333332539" viewBox="0 0 9 4.5" preserveAspectRatio="none" overflow="visible">
-    <path d="M0 4.5c0-2.48528 2.01472-4.5 4.5-4.5 2.48528 0 4.5 2.01472 4.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
-  </svg>
-  <svg x="10" y="6.1665852865" width="7.7083333333" height="3.8333332539" viewBox="0 0 9 4.5" preserveAspectRatio="none" overflow="visible">
-    <path d="M0 4.5c0-2.48528 2.01472-4.5 4.5-4.5 2.48528 0 4.5 2.01472 4.5 4.5" fill="none" stroke="#fff" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
-  </svg>
+  <path d="M2.2916666667 9.9999185403c0 -2.1170903265 1.7255703704 -3.8333332539 3.8541666667 -3.8333332539 2.1285962963 0 3.8541666667 1.7162429274 3.8541666667 3.8333332539" fill="none" stroke="#fff" stroke-width="1.5"/>
+  <path d="M10 9.9999185403c0 -2.1170903265 1.7255703704 -3.8333332539 3.8541666667 -3.8333332539 2.1285962963 0 3.8541666667 1.7162429274 3.8541666667 3.8333332539" fill="none" stroke="#fff" stroke-width="1.5"/>
   <circle cx="6.25" cy="10" r="1.0416666667" fill="#fff"/>
   <circle cx="13.75" cy="10" r="1.0416666667" fill="#fff"/>
   <path d="M10 10v1.875" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
