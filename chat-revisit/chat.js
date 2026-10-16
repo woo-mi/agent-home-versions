@@ -733,7 +733,7 @@ function prepareLiveAppPreview() {
   appFrame.title = revisitMode ? 'Weekly Sales Pipeline Review meeting view' : 'Weekly Sales Pipeline Review App';
   if (revisitMode) {
     if (availablePanels.has('app') && !appFrame.hasAttribute('src')) appFrame.src = 'meeting-preview.html?v=8c31c9c8';
-    if (availablePanels.has('report') && !reportFrame.hasAttribute('src')) reportFrame.src = 'revisit-report.html?v=cce75202';
+    if (availablePanels.has('report') && !reportFrame.hasAttribute('src')) reportFrame.src = 'revisit-report.html?v=b307fd17';
   } else {
     appPreview.prepare();
     reportViews.prepare();
