@@ -6,7 +6,6 @@ const PACING = Object.freeze({
   changes: 2800,
   app: 2000,
   metricsResponse: 1100,
-  metricsReading: 2500,
   reportResponse: 1200,
 });
 
@@ -39,7 +38,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
   let metricsAccepted = false;
   let metricsShown = false;
   let weeklyAccepted = false;
-  let composerReplyOffered = false;
+  const composerRepliesOffered = new Set();
 
   function schedule(callback, delay) {
     const current = version;
@@ -64,7 +63,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
     metricsAccepted = false;
     metricsShown = false;
     weeklyAccepted = false;
-    composerReplyOffered = false;
+    composerRepliesOffered.clear();
   }
 
   function finishIntro() {
@@ -101,9 +100,6 @@ export function createRevisitConversation({ history, update, streamMessage, stop
     if (metricsShown) return;
     metricsShown = true;
     update(() => { metrics.hidden = false; });
-    schedule(() => {
-      if (!weeklyAccepted) acceptWeekly(weeklyText, { userInitiated: false });
-    }, PACING.metricsReading);
   }
 
   function acceptMetrics(text = yesText, { userInitiated = true } = {}) {
@@ -180,9 +176,16 @@ export function createRevisitConversation({ history, update, streamMessage, stop
       }, PACING.opening);
     },
     offerComposerReply() {
-      if (!introComplete || metricsAccepted || question.hidden || composerReplyOffered) return null;
-      composerReplyOffered = true;
-      return yesText.trim();
+      if (!introComplete || question.hidden) return null;
+      if (!metricsAccepted && !composerRepliesOffered.has('metrics')) {
+        composerRepliesOffered.add('metrics');
+        return yesText.trim();
+      }
+      if (metricsShown && !weeklyAccepted && !composerRepliesOffered.has('weekly')) {
+        composerRepliesOffered.add('weekly');
+        return weeklyText.trim();
+      }
+      return null;
     },
     respond(text) {
       const value = text.trim().toLowerCase();

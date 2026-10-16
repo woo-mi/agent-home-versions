@@ -10,6 +10,7 @@
 .revisit-page .recent-chats { margin-top: 32px; }
 .revisit-thread { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; width: 100%; color: #24242a; }
 .revisit-thread p { margin: 0; }
+#revisit-metrics-question { margin-top: 16px; }
 .revisit-page.revisit-active .chunk-reveal { animation-duration: 240ms; }
 .revisit-thread + #onboarding-thread[hidden] + .chat-history:not(:empty) { margin-top: 24px; }
 .meeting-banner { display: flex; align-items: center; gap: 10px; padding: 12px 14px; min-height: 44px; border-radius: 12px; background: #f2f4ff; color: #1e3a8a; font-size: 14px; font-weight: 500; line-height: 20px; }
