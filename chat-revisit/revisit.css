@@ -3,7 +3,7 @@
 .revisit-page .chat-header { padding-top: 19px; }
 .revisit-page .agent-chip { height: 38px; min-width: 0; padding: 10px 12px 8px; color: #fff; background: #7a4cb6; box-shadow: 0 1px 2px #0f11280a; }
 .revisit-owl-icon { display: block; width: 18px; height: 18px; flex-shrink: 0; }
-.revisit-page.revisit-active .conversation-scroll { --conversation-top-gap: 24px; scroll-padding-bottom: calc(var(--chat-footer-height, 72px) + 16px); }
+.revisit-page.revisit-active .conversation-scroll { --conversation-top-gap: 14px; scroll-padding-bottom: calc(var(--chat-footer-height, 72px) + 16px); }
 .revisit-page .sidebar-item[aria-current="page"] { background: #e4e6ea; color: #15171b; }
 .workflow-nav-icon { width: 20px; height: 20px; flex-shrink: 0; }
 .revisit-page.navigation-collapsed .sidebar-item > .workflow-nav-icon { opacity: 1; visibility: visible; }

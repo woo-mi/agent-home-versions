@@ -139,7 +139,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
 
   return {
     restore,
-    start({ complete = false } = {}) {
+    start({ complete = false, ready = false } = {}) {
       restore();
       if (complete) {
         finishIntro();
@@ -150,6 +150,10 @@ export function createRevisitConversation({ history, update, streamMessage, stop
           yesRow.hidden = metrics.hidden = weeklyRow.hidden = report.hidden = false;
         });
         onReportReady();
+        return;
+      }
+      if (ready) {
+        finishIntro();
         return;
       }
       schedule(() => {
