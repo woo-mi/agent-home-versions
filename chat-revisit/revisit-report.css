@@ -4,6 +4,7 @@ html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
 body { display: flex; flex-direction: column; }
 button { font: inherit; cursor: pointer; }
 button:focus-visible, [role="tabpanel"]:focus-visible { outline: 2px solid #7278b5; outline-offset: 2px; }
+#close-revisit-report:focus { outline: none; }
 [data-pencil-id] { min-width: 0; }
 .report-toolbar { display: flex; flex: 0 0 44px; height: 44px; align-items: flex-start; justify-content: space-between; gap: 10px; padding: 12px 32px 0; }
 .report-tabs { display: flex; align-items: center; gap: 2px; height: 32px; padding: 3px; border-radius: 8px; background: #f1f2f4; }

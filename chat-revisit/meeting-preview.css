@@ -13,6 +13,7 @@ button, select { font: inherit; }
 button, a, select { -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; }
 button:focus-visible, a:focus-visible, select:focus-visible { outline: 2px solid #7278b5; outline-offset: 3px; }
+#close-meeting-preview:focus { outline: none; }
 .panel-toolbar { height: 44px; padding: 12px 32px 0; display: flex; align-items: flex-start; justify-content: space-between; }
 .period-control { position: relative; display: block; }
 .period-control select { appearance: none; height: 32px; padding: 0 33px 0 13px; border: 1px solid #e6e6e6; border-radius: 8px; background: #fff; color: #171717; font-size: 13px; line-height: 16px; font-weight: 500; cursor: pointer; }
