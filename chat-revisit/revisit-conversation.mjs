@@ -1,4 +1,4 @@
-/** Reveal the revisit brief in chunks, then wait for real user choices. */
+/** Play the designed revisit conversation in chunks, with live replies available. */
 export function createRevisitConversation({ history, update, streamMessage, stopStreaming, later, onAppReady, onReportReady, onChoice = () => {} }) {
   const byId = (id) => document.getElementById(id);
   const banner = byId('revisit-banner');
@@ -88,11 +88,11 @@ export function createRevisitConversation({ history, update, streamMessage, stop
     metricsShown = true;
     update(() => { metrics.hidden = false; });
     schedule(() => {
-      if (!weeklyAccepted) update(() => { weeklyRow.hidden = false; });
-    }, 650);
+      if (!weeklyAccepted) acceptWeekly(weeklyText, { userInitiated: false });
+    }, 1200);
   }
 
-  function acceptMetrics(text = yesText) {
+  function acceptMetrics(text = yesText, { userInitiated = true } = {}) {
     if (metricsAccepted) return false;
     finishIntro();
     metricsAccepted = true;
@@ -100,13 +100,13 @@ export function createRevisitConversation({ history, update, streamMessage, stop
       relocateAfterMessages(weeklyAccepted ? [yesRow, metrics] : [yesRow, metrics, weeklyRow], weeklyAccepted);
       sent(yes, text);
       yesRow.hidden = false;
-    }, true);
+    }, userInitiated);
     schedule(showMetrics, 900);
-    onChoice();
+    if (userInitiated) onChoice();
     return true;
   }
 
-  function acceptWeekly(text = weeklyText) {
+  function acceptWeekly(text = weeklyText, { userInitiated = true } = {}) {
     if (weeklyAccepted) return false;
     finishIntro();
     weeklyAccepted = true;
@@ -115,12 +115,12 @@ export function createRevisitConversation({ history, update, streamMessage, stop
       relocateAfterMessages([weeklyRow, report]);
       sent(weekly, text);
       weeklyRow.hidden = false;
-    }, true);
+    }, userInitiated);
     schedule(() => {
       update(() => { report.hidden = false; });
       onReportReady();
     }, 1000);
-    onChoice();
+    if (userInitiated) onChoice();
     return true;
   }
 
@@ -157,7 +157,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
                   streamMessage(question, questionText, () => {
                     if (current !== version) return;
                     introComplete = true;
-                    schedule(() => update(() => { yesRow.hidden = false; }), 650);
+                    schedule(() => acceptMetrics(yesText, { userInitiated: false }), 650);
                   });
                 });
               });
