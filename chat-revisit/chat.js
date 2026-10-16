@@ -4,7 +4,7 @@ import { createLiveAppChat } from './live-app-chat.mjs?v=eebd70c3';
 import { createLiveAppPreview } from './live-app-preview.mjs?v=7eea3c12';
 import { createAgentSetupChat } from './agent-setup-chat.mjs?v=1c4929c3';
 import { createReportViews } from './report-views.mjs?v=3e53c1e2';
-import { createRevisitConversation } from './revisit-conversation.mjs?v=bebcfff9';
+import { createRevisitConversation } from './revisit-conversation.mjs?v=bf2e675c';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -38,6 +38,7 @@ const appFrame = byId('live-app-preview-v3');
 const reportFrame = byId('report-preview');
 let revisitMode = Boolean(revisitThread);
 let attachments = [];
+let ownedComposerReply = null;
 const connectionBox = byId('connection-box');
 const connectionStatus = byId('connection-status');
 const skipButton = byId('skip-connections');
@@ -531,6 +532,42 @@ function updateSendButton() {
   sendButton.disabled = !prompt.value.trim() && attachments.length === 0;
 }
 
+function cancelComposerReply() {
+  // Pending character callbacks hold this object; dropping it cancels their writes.
+  ownedComposerReply = null;
+}
+
+function startComposerReply() {
+  if (!revisitMode || ownedComposerReply || prompt.value !== '' || attachments.length) return;
+  const text = revisitConversation?.offerComposerReply();
+  if (!text) return;
+  const reply = { text, rendered: '', position: 0 };
+  ownedComposerReply = reply;
+  function nextCharacter() {
+    if (ownedComposerReply !== reply) return;
+    if (!revisitMode || prompt.value !== reply.rendered) {
+      cancelComposerReply();
+      return;
+    }
+    reply.rendered = reply.text.slice(0, ++reply.position);
+    prompt.value = reply.rendered;
+    prompt.setSelectionRange(reply.rendered.length, reply.rendered.length);
+    updateSendButton();
+    if (reply.position < reply.text.length) later(nextCharacter, 200);
+  }
+  // The first character immediately enables Send; the rest remains a gentle draft.
+  nextCharacter();
+}
+
+function completeComposerReply() {
+  const reply = ownedComposerReply;
+  if (reply && prompt.value === reply.rendered) {
+    prompt.value = reply.text;
+    updateSendButton();
+  }
+  cancelComposerReply();
+}
+
 function updateViewRoute(view, replace = false) {
   const url = new URL(location.href);
   if (view) url.searchParams.set('view', view);
@@ -540,6 +577,7 @@ function updateViewRoute(view, replace = false) {
 }
 
 function resetConversation({ revisit = false, syncRoute = true, completeRevisit = false } = {}) {
+  cancelComposerReply();
   const changedMode = revisitMode !== revisit;
   revisitMode = revisit && Boolean(revisitThread);
   document.body.classList.toggle('revisit-active', revisitMode);
@@ -743,6 +781,7 @@ sidebar.querySelectorAll('.sidebar-item').forEach((item) => {
 makeToolRows();
 form.addEventListener('submit', (event) => {
   event.preventDefault();
+  completeComposerReply();
   const submittedAttachments = attachments.map((file) => file.name);
   const text = prompt.value.trim() || (submittedAttachments.length ? 'Review these attachments.' : '');
   if (!text) return;
@@ -783,7 +822,14 @@ form.addEventListener('submit', (event) => {
   prompt.focus({ preventScroll: true });
   beginNextReply();
 });
-prompt.addEventListener('input', updateSendButton);
+prompt.addEventListener('focus', startComposerReply);
+prompt.addEventListener('click', startComposerReply);
+prompt.addEventListener('beforeinput', cancelComposerReply);
+prompt.addEventListener('compositionstart', cancelComposerReply);
+prompt.addEventListener('input', () => {
+  cancelComposerReply();
+  updateSendButton();
+});
 prompt.addEventListener('keydown', (event) => {
   if (event.key === 'Enter' && !event.isComposing && (!event.shiftKey || event.metaKey || event.ctrlKey)) {
     event.preventDefault();
@@ -855,6 +901,7 @@ document.addEventListener('keydown', (event) => {
 });
 mobileQuery.addEventListener('change', () => setSidebar(false));
 window.addEventListener('pagehide', () => {
+  cancelComposerReply();
   setLiveAppOpen(false, false, panelKind, false);
   flow.destroy();
   liveApps.destroy();

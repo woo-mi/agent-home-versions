@@ -5,7 +5,6 @@ const PACING = Object.freeze({
   greeting: 1400,
   changes: 2800,
   app: 2000,
-  question: 1200,
   metricsResponse: 1100,
   metricsReading: 2500,
   reportResponse: 1200,
@@ -40,6 +39,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
   let metricsAccepted = false;
   let metricsShown = false;
   let weeklyAccepted = false;
+  let composerReplyOffered = false;
 
   function schedule(callback, delay) {
     const current = version;
@@ -64,6 +64,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
     metricsAccepted = false;
     metricsShown = false;
     weeklyAccepted = false;
+    composerReplyOffered = false;
   }
 
   function finishIntro() {
@@ -74,7 +75,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
     update(() => {
       greeting.textContent = greetingText;
       question.textContent = questionText;
-      for (const element of [banner, greeting, changes, app, question, yesRow]) element.hidden = false;
+      for (const element of [banner, greeting, changes, app, question]) element.hidden = false;
     });
     introComplete = true;
     onAppReady();
@@ -150,7 +151,7 @@ export function createRevisitConversation({ history, update, streamMessage, stop
         update(() => {
           sent(yes, yesText);
           sent(weekly, weeklyText);
-          metrics.hidden = weeklyRow.hidden = report.hidden = false;
+          yesRow.hidden = metrics.hidden = weeklyRow.hidden = report.hidden = false;
         });
         onReportReady();
         return;
@@ -170,7 +171,6 @@ export function createRevisitConversation({ history, update, streamMessage, stop
                   streamMessage(question, questionText, () => {
                     if (current !== version) return;
                     introComplete = true;
-                    schedule(() => acceptMetrics(yesText, { userInitiated: false }), PACING.question);
                   });
                 }, PACING.app);
               }, PACING.changes);
@@ -178,6 +178,11 @@ export function createRevisitConversation({ history, update, streamMessage, stop
           });
         }, PACING.banner);
       }, PACING.opening);
+    },
+    offerComposerReply() {
+      if (!introComplete || metricsAccepted || question.hidden || composerReplyOffered) return null;
+      composerReplyOffered = true;
+      return yesText.trim();
     },
     respond(text) {
       const value = text.trim().toLowerCase();
