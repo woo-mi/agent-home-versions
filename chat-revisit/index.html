@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="chat.css?v=1082f50b">
   <link rel="stylesheet" href="agent-setup.css?v=0a9c7e02">
   <link rel="stylesheet" href="chat-v0.css?v=4df78aee">
-  <link rel="stylesheet" href="revisit.css?v=5d91a055">
-  <script type="module" src="chat.js?v=e1bc358d"></script>
+  <link rel="stylesheet" href="revisit.css?v=21b4cdbb">
+  <script type="module" src="chat.js?v=632117ec"></script>
 </head>
 <body class="chat-page revisit-page revisit-active" data-chat-version="v0">
   <a class="skip-link" href="#chat-prompt">Skip to conversation</a>
@@ -79,18 +79,76 @@
     <div class="sidebar-bottom"><button class="sidebar-item" type="button" data-preview="Notifications"><svg class="sidebar-notification" aria-hidden="true"><use href="icons.svg#notification"></use></svg><span>Notifications</span></button><button class="sidebar-item" type="button" data-preview="Profile"><span class="sidebar-avatar">W</span><span>Woomi Jeong</span></button></div>
   </aside>
   <main class="chat-shell">
-    <header class="chat-header"><button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open navigation" aria-controls="chat-sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><h1 class="agent-chip"><svg aria-hidden="true"><use href="chat-icons.svg#chat-owl"></use></svg>Chief of staff</h1></header>
+    <header class="chat-header"><button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Open navigation" aria-controls="chat-sidebar" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><h1 class="agent-chip"><span class="revisit-owl-icon" aria-hidden="true"><div
+          style="box-sizing: border-box; flex-shrink: 0; height: 18px; overflow: hidden; position: relative; width: 18px"
+        >
+          <svg
+            viewBox="0 -2 2 4.5"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; height: 3.375px; left: 8.25px; overflow: visible; position: absolute; top: 9.75px; width: 1.5px; z-index: 0"
+          >
+            <path d="M0 0c0 0 0.5-2 1-2 0.5 0 1 2 1 2l-1 2.5-1-2.5z" fill="#ffffff"></path>
+          </svg>
+          <div
+            style="border-radius: 50%; border: 1.125px solid #ffffff; box-sizing: border-box; height: 18px; left: 0px; position: absolute; top: 0px; width: 18px; z-index: 1"
+          ></div>
+          <div
+            style="background-color: #ffffff; border-radius: 50%; box-sizing: border-box; height: 3px; left: 11.25px; position: absolute; top: 7.5px; width: 3px; z-index: 2"
+          ></div>
+          <div
+            style="background-color: #ffffff; border-radius: 50%; box-sizing: border-box; height: 3px; left: 3.75px; position: absolute; top: 7.5px; width: 3px; z-index: 3"
+          ></div>
+          <svg
+            viewBox="-17 -16.5 19.342000007629395 18.28600025177002"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; height: 7.033px; left: 17.059px; overflow: visible; position: absolute; top: 0.75px; transform-origin: top left; transform: scaleX(-1); width: 8.059px; z-index: 4"
+          >
+            <path
+              d="M-5.758-11.625l-1.8 2.925-4.442-7.8 0 3.5-5-3.5 5 9.5 14.342 8.786-8.1-13.411z"
+              fill="#ffffff"
+            ></path>
+            <path
+              d="M-5.758-11.625l-1.8 2.925-4.442-7.8 0 3.5-5-3.5 5 9.5 14.342 8.786-8.1-13.411z"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="1.125"
+              stroke-linejoin="round"
+              vector-effect="non-scaling-stroke"
+            ></path>
+          </svg>
+          <svg
+            viewBox="-17 -16.5 19.342000007629395 18.28600025177002"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; height: 7.033px; left: 0.75px; overflow: visible; position: absolute; top: 0.75px; width: 8.059px; z-index: 5"
+          >
+            <path
+              d="M-5.758-11.625l-1.8 2.925-4.442-7.8 0 3.5-5-3.5 5 9.5 14.342 8.786-8.1-13.411z"
+              fill="#ffffff"
+            ></path>
+            <path
+              d="M-5.758-11.625l-1.8 2.925-4.442-7.8 0 3.5-5-3.5 5 9.5 14.342 8.786-8.1-13.411z"
+              fill="none"
+              stroke="#ffffff"
+              stroke-width="1.125"
+              stroke-linejoin="round"
+              vector-effect="non-scaling-stroke"
+            ></path>
+          </svg>
+        </div></span>Owl</h1></header>
     <div class="conversation-scroll" id="conversation-scroll" tabindex="0" role="region" aria-label="Chat conversation">
       <div class="conversation-content" id="conversation-content">
-        <section class="revisit-thread" id="revisit-thread" aria-label="Sales pipeline meeting brief">
-          <div class="meeting-banner"><img src="assets/revisit-calendar-clock.svg" width="18" height="18" alt=""><span>Sales Pipeline Review starts in 30 min · 9:00 AM · 6 attendees</span></div>
-          <p class="revisit-message">Morning, Woomi. Since Friday's update, 3 things changed that will come up:</p>
-          <section class="pipeline-changes" aria-label="Changes since Friday">
+        <section class="revisit-thread" id="revisit-thread" aria-label="Sales pipeline meeting brief" aria-live="polite" aria-relevant="additions">
+          <div class="meeting-banner" id="revisit-banner" hidden><img src="assets/revisit-calendar-clock.svg" width="18" height="18" alt=""><span>Sales Pipeline Review starts in 30 min · 9:00 AM · 6 attendees</span></div>
+          <p class="revisit-message" id="revisit-greeting" hidden>Morning, Woomi. Since Friday's update, 3 things changed that will come up:</p>
+          <section class="pipeline-changes" id="revisit-changes" aria-label="Changes since Friday" hidden>
             <div class="pipeline-change"><img src="assets/revisit-arrow-up-right.svg" width="18" height="18" alt=""><div class="change-copy"><p>Orbis Retail Group moved to Closed Won</p><p class="change-detail">Lena K. · Sat 4:12 PM · EMEA now at 92% of quota</p></div><span class="change-value positive">+$540K</span></div>
             <div class="pipeline-change"><img src="assets/revisit-arrow-down-right.svg" width="18" height="18" alt=""><div class="change-copy"><p>Tamarack Energy slipped to Q1</p><p class="change-detail">Tomás V. · close date Dec 12 → Jan 20 · removed from Q4 forecast</p></div><span class="change-value negative">−$470K</span></div>
             <div class="pipeline-change"><img src="assets/revisit-triangle-alert.svg" width="18" height="18" alt=""><div class="change-copy"><p>Halcyon Health · procurement blocked on security review</p><p class="change-detail">First on today's agenda (you asked Fri) · Lena K. tagged</p></div><span class="change-value agenda">Agenda #1</span></div>
           </section>
-          <section class="meeting-app-card" aria-label="Weekly Sales Pipeline Review App">
+          <section class="meeting-app-card" id="revisit-meeting-card" aria-label="Weekly Sales Pipeline Review App" hidden>
             <div class="meeting-app-header"><span class="meeting-app-icon" aria-hidden="true"><div
                 style="box-sizing: border-box; flex-shrink: 0; height: 20px; overflow: hidden; position: relative; width: 20px"
               >
@@ -148,16 +206,77 @@
                     fill="#24242a"
                   ></path>
                 </svg>
-              </div></span><div class="change-copy"><p>Weekly Sales Pipeline Review App</p><p class="change-detail">Refreshed 8:29 AM · Q4 forecast now $6.2M</p></div><button class="connect-button" id="open-for-meeting" type="button" aria-controls="live-app-panel" aria-expanded="false">Open for meeting</button></div>
+              </div></span><div class="change-copy"><p>Weekly Sales Pipeline Review App</p><p class="change-detail">Refreshed 8:29 AM · Q4 forecast now $6.2M</p></div><button class="connect-button" id="open-for-meeting" type="button" aria-controls="live-app-panel" aria-expanded="false">Open</button></div>
             <div class="meeting-thumbnails" aria-label="App preview"><img src="assets/meeting-funnel-thumbnail.png" width="569" height="315" alt="Trial-to-paid conversion funnel"><img src="assets/meeting-category-thumbnail.png" width="569" height="315" alt="Revenue by product category"><img src="assets/meeting-products-thumbnail.png" width="569" height="315" alt="Top products by revenue"></div>
           </section>
-          <p class="revisit-message">Would you like to see progress of your metrics?</p>
-          <div class="revisit-answer"><p>Yes</p></div>
-          <section class="revisit-metrics" aria-label="Current metrics">
-            <article class="revisit-metric"><h2>Net revenue</h2><p class="metric-value positive">$4.82M</p><p class="metric-change positive">+12.4% vs last month</p></article>
-            <article class="revisit-metric"><h2>Orders</h2><p class="metric-value positive">38,410</p><p class="metric-change positive">+6.1% vs last month</p></article>
+          <p class="revisit-message" id="revisit-metrics-question" hidden>Would you like to see progress of your metrics?</p>
+          <div class="revisit-user-row" hidden><button class="revisit-reply" id="revisit-yes" type="button">Yes</button></div>
+          <section class="revisit-metrics" id="revisit-metrics" aria-label="Current metrics" hidden>
+            <article class="revisit-metric"><h2>Net revenue</h2><p class="metric-value">$4.82M</p><p class="metric-change positive">+12.4% vs last month</p></article>
+            <article class="revisit-metric"><h2>Orders</h2><p class="metric-value">38,410</p><p class="metric-change positive">+6.1% vs last month</p></article>
             <article class="revisit-metric"><h2>Average order value</h2><p class="metric-value">$125.50</p><p class="metric-change">+5.9% vs last month</p></article>
             <article class="revisit-metric"><h2>Return rate</h2><p class="metric-value">2.1%</p><p class="metric-change">−0.3pt vs last month</p></article>
+          </section>
+          <div class="revisit-user-row" hidden><button class="revisit-reply" id="revisit-weekly-prompt" type="button">Great. Can you show me weekly update too?</button></div>
+          <section class="revisit-report-offer" id="revisit-report-offer" aria-label="Weekly update" hidden>
+            <span class="revisit-report-name"><span class="revisit-report-icon" aria-hidden="true"><div
+                style="box-sizing: border-box; flex-shrink: 0; height: 24px; overflow: hidden; position: relative; width: 24px"
+              >
+                <svg
+                  viewBox="0 0 9 4.5"
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; height: 4.6px; left: 2.75px; overflow: visible; position: absolute; top: 7.4px; width: 9.25px; z-index: 0"
+                >
+                  <path
+                    d="M0 4.5c0-2.48528 2.01472-4.5 4.5-4.5 2.48528 0 4.5 2.01472 4.5 4.5"
+                    fill="none"
+                    stroke="#24242a"
+                    stroke-width="1.8"
+                    vector-effect="non-scaling-stroke"
+                  ></path>
+                </svg>
+                <svg
+                  viewBox="0 0 9 4.5"
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; height: 4.6px; left: 12px; overflow: visible; position: absolute; top: 7.4px; width: 9.25px; z-index: 1"
+                >
+                  <path
+                    d="M0 4.5c0-2.48528 2.01472-4.5 4.5-4.5 2.48528 0 4.5 2.01472 4.5 4.5"
+                    fill="none"
+                    stroke="#24242a"
+                    stroke-width="1.8"
+                    vector-effect="non-scaling-stroke"
+                  ></path>
+                </svg>
+                <div
+                  style="background-color: #24242a; border-radius: 50%; box-sizing: border-box; height: 2.5px; left: 6.25px; position: absolute; top: 10.75px; width: 2.5px; z-index: 2"
+                ></div>
+                <div
+                  style="background-color: #24242a; border-radius: 50%; box-sizing: border-box; height: 2.5px; left: 15.25px; position: absolute; top: 10.75px; width: 2.5px; z-index: 3"
+                ></div>
+                <svg
+                  viewBox="0 0 1 3"
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; height: 2.25px; left: 12px; overflow: visible; position: absolute; top: 12px; width: 1.8px; z-index: 4"
+                >
+                  <path
+                    d="M0 0l0 3"
+                    fill="none"
+                    stroke="#24242a"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    vector-effect="non-scaling-stroke"
+                  ></path>
+                </svg>
+                <div
+                  style="border-radius: 50%; box-sizing: border-box; height: 18.5px; left: 2.75px; outline-offset: -0.9px; outline: 1.8px solid #24242a; position: absolute; top: 2.75px; width: 18.5px; z-index: 5"
+                ></div>
+              </div></span><span>Weekly update</span></span>
+            <button class="connect-button" id="open-revisit-report" type="button" aria-controls="live-app-panel" aria-expanded="false">Open report</button>
           </section>
         </section>
 

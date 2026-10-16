@@ -4,6 +4,7 @@ import { createLiveAppChat } from './live-app-chat.mjs?v=eebd70c3';
 import { createLiveAppPreview } from './live-app-preview.mjs?v=7eea3c12';
 import { createAgentSetupChat } from './agent-setup-chat.mjs?v=1c4929c3';
 import { createReportViews } from './report-views.mjs?v=3e53c1e2';
+import { createRevisitConversation } from './revisit-conversation.mjs?v=cbe42e0a';
 
 /* Conversation timing: brief pause → complete paragraph → pause → next paragraph.
  * Each paragraph appears as one chunk, including all its sentences.
@@ -31,8 +32,10 @@ const form = byId('chat-form');
 const revisitThread = byId('revisit-thread');
 const onboardingThread = byId('onboarding-thread');
 const meetingButton = byId('open-for-meeting');
+const revisitReportButton = byId('open-revisit-report');
 const attachmentInput = byId('chat-attachment');
 const appFrame = byId('live-app-preview-v3');
+const reportFrame = byId('report-preview');
 let revisitMode = Boolean(revisitThread);
 let attachments = [];
 const connectionBox = byId('connection-box');
@@ -450,7 +453,7 @@ function replyFor(request) {
       return `I’ve added ${names(request.attachments)} to this prototype conversation. File contents aren’t processed in this mock.\n\nTell me which details you’d like to compare with the pipeline review.`;
     }
     if (/\b(?:meeting|agenda|prepare|prep)\b/.test(message)) {
-      return 'For your meeting, start with what changed since the last review, then cover the deals that need attention and the next action for each owner.\n\nUse Open for meeting to review the pipeline app alongside this conversation.';
+      return 'For your meeting, start with what changed since the last review, then cover the deals that need attention and the next action for each owner.\n\nUse Open on the pipeline app to review it alongside this conversation.';
     }
     if (/\b(?:risk|slip|block|attention)\w*\b/.test(message)) {
       return 'I’d focus the review on deals that slipped, opportunities without a clear next step, and changes in pipeline coverage.\n\nFor each one, confirm the owner, the blocker, and the next customer commitment. The meeting view keeps those details next to the pipeline metrics.';
@@ -536,7 +539,7 @@ function updateViewRoute(view, replace = false) {
   window.history[replace ? 'replaceState' : 'pushState'](window.history.state, '', url);
 }
 
-function resetConversation({ revisit = false, syncRoute = true } = {}) {
+function resetConversation({ revisit = false, syncRoute = true, completeRevisit = false } = {}) {
   const changedMode = revisitMode !== revisit;
   revisitMode = revisit && Boolean(revisitThread);
   document.body.classList.toggle('revisit-active', revisitMode);
@@ -544,7 +547,10 @@ function resetConversation({ revisit = false, syncRoute = true } = {}) {
   if (onboardingThread) onboardingThread.hidden = revisitMode;
   availablePanels.clear();
   setLiveAppOpen(false, false, 'app', false);
-  if (changedMode) appFrame.removeAttribute('src');
+  if (changedMode) {
+    appFrame.removeAttribute('src');
+    reportFrame.removeAttribute('src');
+  }
   reportViews.reset();
   generation += 1;
   flow?.destroy();
@@ -560,6 +566,7 @@ function resetConversation({ revisit = false, syncRoute = true } = {}) {
   recommendationVersion += 1;
   recommendationKey = '';
   recommendationContent = undefined;
+  revisitConversation?.restore();
   history.replaceChildren();
   prompt.value = '';
   attachments = [];
@@ -576,8 +583,8 @@ function resetConversation({ revisit = false, syncRoute = true } = {}) {
     if (generation === currentGeneration && !revisitMode) render(state);
   } });
   if (revisitMode) {
-    markPanelReady('app');
-    chatScroll.reset({ follow: false });
+    revisitConversation.start({ complete: completeRevisit });
+    chatScroll.reset({ follow: !completeRevisit });
   } else {
     render(flow.snapshot());
     chatScroll.reset();
@@ -611,7 +618,7 @@ function setDesktopNavigation(collapsed) {
 
 function syncPanelToggle() {
   const open = document.body.classList.contains('live-app-open');
-  const label = `${open ? 'Close' : 'Open'} ${revisitMode ? 'meeting view' : panelKind === 'report' ? 'report' : 'app preview'}`;
+  const label = `${open ? 'Close' : 'Open'} ${revisitMode ? panelKind === 'report' ? 'weekly update report' : 'meeting view' : panelKind === 'report' ? 'report' : 'app preview'}`;
   panelToolbar.hidden = !availablePanels.size;
   panelToggle.setAttribute('aria-expanded', String(open));
   panelToggle.setAttribute('aria-label', label);
@@ -627,9 +634,11 @@ function markPanelReady(kind) {
   syncPanelToggle();
 }
 
-function focusMeetingView() {
-  const closeButton = appFrame.contentDocument?.getElementById('close-meeting-preview');
-  (closeButton || appFrame).focus({ preventScroll: true });
+function focusRevisitPanel() {
+  const report = panelKind === 'report';
+  const frame = report ? reportFrame : appFrame;
+  const closeButton = frame.contentDocument?.getElementById(report ? 'close-revisit-report' : 'close-meeting-preview');
+  (closeButton || frame).focus({ preventScroll: true });
 }
 
 function setLiveAppOpen(open, restoreFocus = true, kind = panelKind, syncRoute = true) {
@@ -640,7 +649,7 @@ function setLiveAppOpen(open, restoreFocus = true, kind = panelKind, syncRoute =
   const immediate = !restoreFocus;
   if (immediate) document.body.classList.add('live-app-reset');
   if (open) prepareLiveAppPreview();
-  else if (restoreFocus && availablePanels.size) (revisitMode ? meetingButton : panelToggle)?.focus({ preventScroll: true });
+  else if (restoreFocus && availablePanels.size) (revisitMode ? panelKind === 'report' ? revisitReportButton : meetingButton : panelToggle)?.focus({ preventScroll: true });
   if (open) panelKind = kind;
   else if (!restoreFocus) panelKind = 'app';
   updateConversation(() => {
@@ -651,16 +660,22 @@ function setLiveAppOpen(open, restoreFocus = true, kind = panelKind, syncRoute =
     liveAppPanel.setAttribute('aria-hidden', String(!open));
     const report = panelKind === 'report';
     liveAppPanel.dataset.view = panelKind;
-    liveAppPanel.setAttribute('aria-label', revisitMode ? 'Weekly Sales Pipeline Review meeting view' : report ? 'Weekly Sales Pipeline Update report' : 'Weekly Sales Pipeline Review App preview');
+    liveAppPanel.setAttribute('aria-label', revisitMode ? report ? 'Weekly Sales Pipeline Update report' : 'Weekly Sales Pipeline Review meeting view' : report ? 'Weekly Sales Pipeline Update report' : 'Weekly Sales Pipeline Review App preview');
     syncPanelToggle();
     byId('open-live-app').setAttribute('aria-expanded', String(open && !report));
     byId('open-agent-report').setAttribute('aria-expanded', String(open && report));
-    meetingButton?.setAttribute('aria-expanded', String(open && revisitMode));
+    meetingButton?.setAttribute('aria-expanded', String(open && revisitMode && !report));
+    revisitReportButton?.setAttribute('aria-expanded', String(open && revisitMode && report));
     appPreview.setActive(!report);
-    reportViews.setActive(report);
+    reportViews.setActive(!revisitMode && report);
+    if (revisitMode) {
+      reportFrame.classList.toggle('app-preview-inactive', !report);
+      reportFrame.inert = !report;
+      reportFrame.setAttribute('aria-hidden', String(!report));
+    }
   });
   agentSetup.setViewing(!revisitMode && open && panelKind === 'app');
-  if (revisitMode && syncRoute) updateViewRoute(open ? 'meeting' : '');
+  if (revisitMode && syncRoute) updateViewRoute(open ? panelKind === 'report' ? 'report' : 'meeting' : '');
   if (open && immediate) chatScroll.settle();
   if (immediate) {
     // Commit every layout change before restoring transitions.
@@ -668,7 +683,7 @@ function setLiveAppOpen(open, restoreFocus = true, kind = panelKind, syncRoute =
     document.body.classList.remove('live-app-reset');
   }
   if (open) {
-    if (revisitMode) focusMeetingView();
+    if (revisitMode) focusRevisitPanel();
     else {
       const focusTarget = panelKind === 'report' ? byId('report-view-tabs').querySelector('[aria-selected="true"]') : panelToggle;
       (focusTarget || panelToggle).focus({ preventScroll: true });
@@ -679,7 +694,8 @@ function setLiveAppOpen(open, restoreFocus = true, kind = panelKind, syncRoute =
 function prepareLiveAppPreview() {
   appFrame.title = revisitMode ? 'Weekly Sales Pipeline Review meeting view' : 'Weekly Sales Pipeline Review App';
   if (revisitMode) {
-    if (!appFrame.hasAttribute('src')) appFrame.src = 'meeting-preview.html?v=a2e25702';
+    if (availablePanels.has('app') && !appFrame.hasAttribute('src')) appFrame.src = 'meeting-preview.html?v=a2e25702';
+    if (availablePanels.has('report') && !reportFrame.hasAttribute('src')) reportFrame.src = 'revisit-report.html?v=ad43d2bd';
   } else {
     appPreview.prepare();
     reportViews.prepare();
@@ -693,16 +709,29 @@ const agentSetup = createAgentSetupChat({ history, update: updateConversation, s
   setLiveAppOpen(true, true, 'report');
 } });
 const liveApps = createLiveAppChat({ history, update: updateConversation, streamMessage, stopStreaming, later, follow: () => chatScroll.follow(), onOpen: () => setLiveAppOpen(true, true, 'app'), onReady: () => markPanelReady('app') });
+const revisitConversation = revisitThread ? createRevisitConversation({
+  history, update: updateConversation, streamMessage, stopStreaming, later,
+  onAppReady: () => markPanelReady('app'),
+  onReportReady: () => markPanelReady('report'),
+  onChoice: () => { statusMessage.textContent = ''; prompt.focus({ preventScroll: true }); },
+}) : null;
 panelToggle.addEventListener('click', () => setLiveAppOpen(!document.body.classList.contains('live-app-open')));
 meetingButton?.addEventListener('click', () => {
   markPanelReady('app');
   setLiveAppOpen(true, true, 'app');
 });
-appFrame.addEventListener('load', () => {
-  if (revisitMode && document.body.classList.contains('live-app-open') && document.activeElement === appFrame) focusMeetingView();
+revisitReportButton?.addEventListener('click', () => {
+  markPanelReady('report');
+  setLiveAppOpen(true, true, 'report');
+});
+for (const [kind, frame] of [['app', appFrame], ['report', reportFrame]]) frame.addEventListener('load', () => {
+  if (revisitMode && panelKind === kind && document.body.classList.contains('live-app-open') && document.activeElement === frame) focusRevisitPanel();
 });
 window.addEventListener('message', (event) => {
-  if (event.origin !== location.origin || event.source !== appFrame.contentWindow || event.data?.type !== 'close-app-preview') return;
+  if (event.origin !== location.origin) return;
+  const fromApp = event.source === appFrame.contentWindow && event.data?.type === 'close-app-preview' && panelKind === 'app';
+  const fromReport = event.source === reportFrame.contentWindow && event.data?.type === 'close-report-preview' && panelKind === 'report';
+  if (!fromApp && !fromReport) return;
   if (document.body.classList.contains('live-app-open')) setLiveAppOpen(false);
 });
 desktopNavigationToggle.addEventListener('click', () => {
@@ -717,6 +746,11 @@ form.addEventListener('submit', (event) => {
   const submittedAttachments = attachments.map((file) => file.name);
   const text = prompt.value.trim() || (submittedAttachments.length ? 'Review these attachments.' : '');
   if (!text) return;
+  if (revisitMode && submittedAttachments.length === 0 && revisitConversation.respond(text)) {
+    prompt.value = '';
+    updateSendButton();
+    return;
+  }
   if (!revisitMode) {
     updateConversation(finishIntroduction);
     updateConversation(finishRecommendation);
@@ -839,8 +873,13 @@ function restoreViewFromUrl(reset = false) {
   const view = new URLSearchParams(location.search).get('view');
   const revisit = Boolean(revisitThread) && view !== 'new';
   // Panel navigation keeps the live conversation, draft, and iframe mounted.
-  if (reset || revisit !== revisitMode) resetConversation({ revisit, syncRoute: false });
-  setLiveAppOpen(revisit && view === 'meeting', !reset, 'app', false);
+  if (reset || revisit !== revisitMode) resetConversation({ revisit, syncRoute: false, completeRevisit: view === 'meeting' || view === 'report' });
+  setLiveAppOpen(revisit && (view === 'meeting' || view === 'report'), !reset, view === 'report' ? 'report' : 'app', false);
+  if (reset && revisit && (view === 'meeting' || view === 'report')) {
+    syncChatOverlays();
+    chatScroll.scrollToElement(byId('revisit-report-offer'));
+    chatScroll.settle();
+  }
 }
 window.addEventListener('popstate', () => restoreViewFromUrl());
 restoreViewFromUrl(true);
