@@ -64,7 +64,7 @@
         width: calc(100% - var(--sidebar-width)) !important;
         height: 100dvh !important;
         margin-left: var(--sidebar-width);
-        padding: 14px var(--conversation-gutter) calc(104px + env(safe-area-inset-bottom)) !important;
+        padding: 174px var(--conversation-gutter) calc(104px + env(safe-area-inset-bottom)) !important;
         overflow-x: hidden;
         overflow-y: auto;
         overscroll-behavior: contain;
@@ -74,6 +74,20 @@
       [data-pencil-id="KdKin"] {
         width: 100% !important;
         max-width: 764px;
+      }
+
+      /* Float the identity and message indicator above the scrolling thread. */
+      [data-pencil-id="Qgz9s"] {
+        position: fixed;
+        top: 14px;
+        left: var(--sidebar-width);
+        right: 0;
+        width: auto !important;
+        padding: 0 var(--conversation-gutter) 12px;
+        overflow: hidden;
+        scrollbar-gutter: stable;
+        pointer-events: none;
+        z-index: 90;
       }
 
       [data-pencil-id="mFi4p"] {
@@ -109,7 +123,12 @@
         flex-shrink: 1 !important;
       }
 
-      [data-pencil-id="iyL0t"] { width: 100% !important; }
+      [data-pencil-id="iyL0t"] {
+        position: static !important;
+        width: fit-content !important;
+        max-width: 100%;
+        margin-top: 14px;
+      }
       .composer-dock {
         position: fixed;
         left: var(--sidebar-width);
@@ -179,7 +198,8 @@
         [data-pencil-id="BiA9g"] [data-pencil-name^="Personal —"] { flex-wrap: wrap; }
         [data-pencil-id="BiA9g"] [data-pencil-name="Frame 60"] { flex-basis: 100% !important; }
         [data-pencil-id="ZhJNI"] { display: none !important; }
-        [data-pencil-id="Fr1yZ"], .composer-dock { scrollbar-gutter: auto; }
+        [data-pencil-id="Fr1yZ"],
+        [data-pencil-id="Qgz9s"], .composer-dock { scrollbar-gutter: auto; }
       }
 
       @supports not (height: 100dvh) {
@@ -1370,6 +1390,55 @@
               Active now
             </div>
           </div>
+            <div
+              data-pencil-id="iyL0t"
+              data-pencil-name="New messages"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; gap: 0px; height: fit-content; justify-content: center; left: 0px; position: absolute; top: -10px; width: 764px; z-index: 47"
+            >
+              <div
+                data-pencil-id="hmlAR"
+                data-pencil-name="Pill"
+                style="align-items: center; background-color: #333444; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; padding: 6px 10px 6px 12px; width: fit-content"
+              >
+                <svg
+                  data-pencil-id="StGp7"
+                  data-pencil-name="Icon arrow-up"
+                  data-icon-name="arrow-up"
+                  data-icon-set="lucide"
+                  viewBox="0 0 13.99993896484375 14"
+                  preserveAspectRatio="xMidYMid meet"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; flex-shrink: 0; height: 14px; width: 14px"
+                >
+                  <path
+                    d="M6.84619 2.35156q-0.08545 0.01367-0.15723 0.06494-0.06836 0.04785-2.16699 2.14649l-1.66455 1.69531q-0.36572 0.3623-0.46484 0.50244-0.05469 0.08545-0.05469 0.19824l0 0.04102q0 0.23926 0.18115 0.42041 0.11279 0.11279 0.28028 0.14697 0.16748 0.03418 0.32129-0.02051 0.08545-0.02734 0.32128-0.25976 0.23926-0.23242 1.37403-1.36377 1.58252-1.58252 1.59619-1.58252 0.01367 0 0.01367 3.42822l0 3.01123q0 0.44775 0.03418 0.53321 0.0376 0.08203 0.11963 0.16748 0.08545 0.08203 0.18799 0.1333 0.10596 0.04785 0.23242 0.04785 0.12646 0 0.229-0.04785 0.10596-0.05127 0.18799-0.1333 0.08545-0.08545 0.11963-0.16748 0.0376-0.08545 0.0376-0.53321l0-3.01123q0-3.42822 0.01367-3.42822 0.01367 0 1.59619 1.58252 1.13477 1.13135 1.37061 1.36377 0.23926 0.23242 0.32471 0.25976 0.15381 0.05469 0.32128 0.02051 0.16748-0.03418 0.28028-0.14697 0.18115-0.18115 0.18115-0.42041l0-0.04102q0-0.11279-0.05469-0.19824-0.09912-0.14014-0.46484-0.51611l-1.67822-1.68164q-2.10205-2.1123-2.17041-2.14649-0.06836-0.0376-0.16065-0.06494-0.09229-0.02734-0.14014-0.02734-0.04785 0-0.14697 0.02734z"
+                    fill="#FFFFFF"
+                  ></path>
+                </svg>
+                <div
+                  data-pencil-id="ZwJee"
+                  data-pencil-name="Text"
+                  style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 17px; text-align: left; white-space: nowrap"
+                >
+                  5 new messages
+                </div>
+                <svg
+                  data-pencil-id="I3e7x"
+                  data-pencil-name="Icon x"
+                  data-icon-name="x"
+                  data-icon-set="lucide"
+                  viewBox="0 0 13.99993896484375 14"
+                  preserveAspectRatio="xMidYMid meet"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; flex-shrink: 0; height: 14px; width: 14px"
+                >
+                  <path
+                    d="M3.34619 2.93945q-0.25293 0.08545-0.37939 0.30762-0.04102 0.08545-0.04102 0.25293 0 0.16748 0.04102 0.25293 0.04443 0.08203 1.62353 1.66455l1.58252 1.58252-1.58252 1.58252q-1.5791 1.58252-1.62353 1.66797-0.04102 0.08203-0.04102 0.23584 0 0.15381 0.03418 0.23926 0.0376 0.08203 0.1333 0.18115 0.09912 0.0957 0.18115 0.1333 0.08545 0.03418 0.23926 0.03418 0.15381 0 0.23584-0.04102 0.08545-0.04443 1.66797-1.62353l1.58252-1.58252 1.58252 1.58252q1.58252 1.5791 1.66455 1.62353 0.08545 0.04102 0.23926 0.04102 0.15381 0 0.23584-0.03418 0.08545-0.0376 0.18115-0.1333 0.09912-0.09912 0.1333-0.18115 0.0376-0.08545 0.0376-0.23926 0-0.15381-0.04443-0.23584-0.04101-0.08545-1.62012-1.66797l-1.58252-1.58252 1.58252-1.58252q1.5791-1.58252 1.62012-1.66455 0.04443-0.08545 0.04443-0.25293 0-0.16748-0.04102-0.25293-0.09912-0.16748-0.28027-0.2666-0.05811-0.02734-0.09912-0.04102-0.04102-0.01367-0.15381-0.01367-0.11279 0-0.15381 0.01367-0.04101 0.01367-0.11279 0.04102-0.09912 0.05811-1.66455 1.62695l-1.56885 1.56543-2.82666-2.81299q-0.31104-0.29395-0.42041-0.37939-0.08545-0.05469-0.19824-0.05469l-0.02735 0q-0.14014 0-0.18115 0.01367z"
+                    fill="#FFFFFF"
+                  ></path>
+                </svg>
+              </div>
+            </div>
         </div>
         <div
           data-pencil-id="KdKin"
@@ -3594,55 +3663,7 @@
                 As it stands, the Product domain could crawl people_ops.
               </div>
             </div>
-            <div
-              data-pencil-id="iyL0t"
-              data-pencil-name="New messages"
-              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; gap: 0px; height: fit-content; justify-content: center; left: 0px; position: absolute; top: -10px; width: 764px; z-index: 47"
-            >
-              <div
-                data-pencil-id="hmlAR"
-                data-pencil-name="Pill"
-                style="align-items: center; background-color: #333444; border-radius: 16px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; padding: 6px 10px 6px 12px; width: fit-content"
-              >
-                <svg
-                  data-pencil-id="StGp7"
-                  data-pencil-name="Icon arrow-up"
-                  data-icon-name="arrow-up"
-                  data-icon-set="lucide"
-                  viewBox="0 0 13.99993896484375 14"
-                  preserveAspectRatio="xMidYMid meet"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style="box-sizing: border-box; flex-shrink: 0; height: 14px; width: 14px"
-                >
-                  <path
-                    d="M6.84619 2.35156q-0.08545 0.01367-0.15723 0.06494-0.06836 0.04785-2.16699 2.14649l-1.66455 1.69531q-0.36572 0.3623-0.46484 0.50244-0.05469 0.08545-0.05469 0.19824l0 0.04102q0 0.23926 0.18115 0.42041 0.11279 0.11279 0.28028 0.14697 0.16748 0.03418 0.32129-0.02051 0.08545-0.02734 0.32128-0.25976 0.23926-0.23242 1.37403-1.36377 1.58252-1.58252 1.59619-1.58252 0.01367 0 0.01367 3.42822l0 3.01123q0 0.44775 0.03418 0.53321 0.0376 0.08203 0.11963 0.16748 0.08545 0.08203 0.18799 0.1333 0.10596 0.04785 0.23242 0.04785 0.12646 0 0.229-0.04785 0.10596-0.05127 0.18799-0.1333 0.08545-0.08545 0.11963-0.16748 0.0376-0.08545 0.0376-0.53321l0-3.01123q0-3.42822 0.01367-3.42822 0.01367 0 1.59619 1.58252 1.13477 1.13135 1.37061 1.36377 0.23926 0.23242 0.32471 0.25976 0.15381 0.05469 0.32128 0.02051 0.16748-0.03418 0.28028-0.14697 0.18115-0.18115 0.18115-0.42041l0-0.04102q0-0.11279-0.05469-0.19824-0.09912-0.14014-0.46484-0.51611l-1.67822-1.68164q-2.10205-2.1123-2.17041-2.14649-0.06836-0.0376-0.16065-0.06494-0.09229-0.02734-0.14014-0.02734-0.04785 0-0.14697 0.02734z"
-                    fill="#FFFFFF"
-                  ></path>
-                </svg>
-                <div
-                  data-pencil-id="ZwJee"
-                  data-pencil-name="Text"
-                  style="box-sizing: border-box; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 500; letter-spacing: 0px; line-height: 17px; text-align: left; white-space: nowrap"
-                >
-                  5 new messages
-                </div>
-                <svg
-                  data-pencil-id="I3e7x"
-                  data-pencil-name="Icon x"
-                  data-icon-name="x"
-                  data-icon-set="lucide"
-                  viewBox="0 0 13.99993896484375 14"
-                  preserveAspectRatio="xMidYMid meet"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style="box-sizing: border-box; flex-shrink: 0; height: 14px; width: 14px"
-                >
-                  <path
-                    d="M3.34619 2.93945q-0.25293 0.08545-0.37939 0.30762-0.04102 0.08545-0.04102 0.25293 0 0.16748 0.04102 0.25293 0.04443 0.08203 1.62353 1.66455l1.58252 1.58252-1.58252 1.58252q-1.5791 1.58252-1.62353 1.66797-0.04102 0.08203-0.04102 0.23584 0 0.15381 0.03418 0.23926 0.0376 0.08203 0.1333 0.18115 0.09912 0.0957 0.18115 0.1333 0.08545 0.03418 0.23926 0.03418 0.15381 0 0.23584-0.04102 0.08545-0.04443 1.66797-1.62353l1.58252-1.58252 1.58252 1.58252q1.58252 1.5791 1.66455 1.62353 0.08545 0.04102 0.23926 0.04102 0.15381 0 0.23584-0.03418 0.08545-0.0376 0.18115-0.1333 0.09912-0.09912 0.1333-0.18115 0.0376-0.08545 0.0376-0.23926 0-0.15381-0.04443-0.23584-0.04101-0.08545-1.62012-1.66797l-1.58252-1.58252 1.58252-1.58252q1.5791-1.58252 1.62012-1.66455 0.04443-0.08545 0.04443-0.25293 0-0.16748-0.04102-0.25293-0.09912-0.16748-0.28027-0.2666-0.05811-0.02734-0.09912-0.04102-0.04102-0.01367-0.15381-0.01367-0.11279 0-0.15381 0.01367-0.04101 0.01367-0.11279 0.04102-0.09912 0.05811-1.66455 1.62695l-1.56885 1.56543-2.82666-2.81299q-0.31104-0.29395-0.42041-0.37939-0.08545-0.05469-0.19824-0.05469l-0.02735 0q-0.14014 0-0.18115 0.01367z"
-                    fill="#FFFFFF"
-                  ></path>
-                </svg>
-              </div>
-            </div>
+
           </div>
           <div class="composer-dock">
           <div
