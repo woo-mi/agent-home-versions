@@ -1,12 +1,3 @@
-/* Leave room for the prototype controls below the floating composer. */
-body[data-prototype-version] .composer-dock {
-  padding-bottom: calc(76px + env(safe-area-inset-bottom));
-}
-
-body[data-prototype-version] [data-pencil-id="Fr1yZ"] {
-  padding-bottom: calc(156px + env(safe-area-inset-bottom)) !important;
-}
-
 .prototype-versions {
   position: fixed;
   right: 16px;
