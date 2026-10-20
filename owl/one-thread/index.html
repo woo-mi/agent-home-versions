@@ -64,7 +64,7 @@
         width: calc(100% - var(--sidebar-width)) !important;
         height: 100dvh !important;
         margin-left: var(--sidebar-width);
-        padding: 14px var(--conversation-gutter) 24px !important;
+        padding: 14px var(--conversation-gutter) calc(104px + env(safe-area-inset-bottom)) !important;
         overflow-x: hidden;
         overflow-y: auto;
         overscroll-behavior: contain;
@@ -110,7 +110,26 @@
       }
 
       [data-pencil-id="iyL0t"] { width: 100% !important; }
-      [data-pencil-id="vsRix"] { gap: 16px !important; }
+      .composer-dock {
+        position: fixed;
+        left: var(--sidebar-width);
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        padding: 24px var(--conversation-gutter) calc(24px + env(safe-area-inset-bottom));
+        background: linear-gradient(to bottom, #ffffff00, #ffffff 28px);
+        overflow: hidden;
+        scrollbar-gutter: stable;
+        pointer-events: none;
+        z-index: 100;
+      }
+
+      [data-pencil-id="vsRix"] {
+        gap: 16px !important;
+        max-width: 764px !important;
+        pointer-events: auto;
+      }
       [data-pencil-id="ZE6Oz"] { flex: 1 1 0 !important; overflow: hidden; }
       [data-pencil-id="vK9wT"] { text-overflow: ellipsis; overflow: hidden; }
 
@@ -161,7 +180,7 @@
         [data-pencil-id="BiA9g"] [data-pencil-name^="Personal —"] { flex-wrap: wrap; }
         [data-pencil-id="BiA9g"] [data-pencil-name="Frame 60"] { flex-basis: 100% !important; }
         [data-pencil-id="ZhJNI"] { display: none !important; }
-        [data-pencil-id="Fr1yZ"] { scrollbar-gutter: auto; }
+        [data-pencil-id="Fr1yZ"], .composer-dock { scrollbar-gutter: auto; }
       }
 
       @supports not (height: 100dvh) {
@@ -3626,6 +3645,7 @@
               </div>
             </div>
           </div>
+          <div class="composer-dock">
           <div
             data-pencil-id="vsRix"
             data-pencil-name="Composer"
@@ -3730,6 +3750,7 @@
               </div>
             </div>
           </div>
+          </div>
         </div>
       <div
         data-pencil-id="mFi4p"
@@ -3756,5 +3777,26 @@
       </div>
       </div>
     </div>
+    <script>
+      (() => {
+        const conversation = document.querySelector('[data-pencil-id="Fr1yZ"]');
+        let reviewingHistory = false;
+
+        // Open at the latest message, including after web fonts finish sizing.
+        // Once the viewer starts navigating, leave their scroll position alone.
+        const showLatest = () => {
+          if (!reviewingHistory) conversation.scrollTop = conversation.scrollHeight;
+        };
+        for (const event of ['wheel', 'touchstart', 'pointerdown', 'keydown']) {
+          conversation.addEventListener(event, () => { reviewingHistory = true; },
+            { once: true, passive: true });
+        }
+
+        history.scrollRestoration = 'manual';
+        showLatest();
+        document.fonts.ready.then(showLatest);
+        window.addEventListener('load', showLatest, { once: true });
+      })();
+    </script>
   </body>
 </html>
