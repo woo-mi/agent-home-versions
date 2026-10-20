@@ -23,6 +23,7 @@
 }
 
 .notion-tick-mark {
+  position: relative;
   flex-shrink: 0;
   width: 16px;
   height: 2px;
@@ -30,7 +31,17 @@
   background: #e6e5e3;
 }
 
+/* Include the space around each line in its hover target. */
+.notion-tick-mark::before {
+  content: "";
+  position: absolute;
+  inset: -6px -11px -6px -17px;
+}
+
 .notion-tick-mark:first-child { background: #32302d; }
+@media (hover: hover) {
+  .notion-tick-mark:hover { background: #32302d; }
+}
 .notion-tick-trigger:focus-visible { outline: 2px solid #333444; outline-offset: 2px; }
 .notion-tick-nav[data-open="true"] .notion-tick-mark { visibility: hidden; }
 
