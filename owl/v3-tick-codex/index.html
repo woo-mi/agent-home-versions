@@ -295,6 +295,8 @@
     </style>
     <link rel="stylesheet" href="../version-control.css?v=2" />
     <script src="../version-control.js" defer></script>
+    <link rel="stylesheet" href="navigator.css?v=1" />
+    <script src="navigator.js?v=1" defer></script>
   </head>
   <body data-prototype-version="v3" style="background-color: #FFFFFF">
     <div
@@ -4398,6 +4400,17 @@
 
       </div>
     </div>
+    <nav id="codex-timeline" class="codex-timeline" aria-label="Conversation timeline"></nav>
+    <aside id="codex-preview" class="codex-preview" aria-label="Message preview" aria-hidden="true" data-open="false" inert>
+      <button id="codex-preview-jump" class="codex-preview-jump" type="button">
+        <span id="codex-preview-title" class="codex-preview-title"></span>
+        <span id="codex-preview-excerpt" class="codex-preview-excerpt"></span>
+      </button>
+      <button id="codex-preview-bookmark" class="codex-preview-bookmark" type="button" aria-label="Bookmark message" aria-pressed="false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+      </button>
+    </aside>
+    <div id="codex-timeline-status" class="codex-timeline-status" role="status" aria-live="polite"></div>
     <script>
       (() => {
         const conversation = document.querySelector('[data-pencil-id="Fr1yZ"]');
@@ -4408,6 +4421,7 @@
         const profileToggle = document.getElementById('profile-toggle');
         const profilePanel = document.getElementById('profile-panel');
         let reviewingHistory = false;
+        document.addEventListener('codex-navigate', () => { reviewingHistory = true; });
 
         // Open at the latest message, including after web fonts finish sizing.
         // Once the viewer starts navigating, leave their scroll position alone.
