@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light">
-    <meta name="description" content="Owl chat thread prototype agenda.">
+    <meta name="description" content="Owl chat thread and navigator prototype agenda.">
     <title>Owl</title>
     <style>
       * { box-sizing: border-box; }
@@ -37,6 +37,7 @@
         line-height: 1.4;
         font-weight: 500;
       }
+      section + section { margin-top: 28px; }
       ul {
         display: grid;
         gap: 16px;
@@ -70,6 +71,13 @@
           <li>one thread</li>
           <li>one thread with sub chat - Slack</li>
           <li>one thread with sub chat - Inline</li>
+        </ul>
+      </section>
+      <section aria-labelledby="navigator-agenda">
+        <h2 id="navigator-agenda">Navigator</h2>
+        <ul>
+          <li>categorized by timeline</li>
+          <li>categorized by features</li>
         </ul>
       </section>
     </main>
