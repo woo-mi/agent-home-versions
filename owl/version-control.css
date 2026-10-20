@@ -1,0 +1,91 @@
+/* Leave room for the prototype controls below the floating composer. */
+body[data-prototype-version] .composer-dock {
+  padding-bottom: calc(76px + env(safe-area-inset-bottom));
+}
+
+body[data-prototype-version] [data-pencil-id="Fr1yZ"] {
+  padding-bottom: calc(156px + env(safe-area-inset-bottom)) !important;
+}
+
+.prototype-versions {
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 150;
+  color: #1c1c1c;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.prototype-version-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid rgba(228, 228, 230, .08);
+  border-radius: 16px;
+  background: #4a4a4a;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .16);
+}
+
+.prototype-version-trigger:hover { background: #3f3f3f; }
+.prototype-version-trigger svg { flex-shrink: 0; width: 16px; height: 16px; }
+.prototype-version-chevron { transition: transform .15s ease; }
+.prototype-version-trigger[aria-expanded="true"] .prototype-version-chevron { transform: rotate(180deg); }
+.prototype-version-trigger:focus-visible { outline: 2px solid #333444; outline-offset: 3px; }
+
+.prototype-version-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 6px);
+  width: 212px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100dvh - 80px - env(safe-area-inset-bottom));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border: 1px solid #e5e5e7;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+.prototype-version-menu[hidden] { display: none; }
+
+.prototype-version-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.prototype-version-option:hover,
+.prototype-version-option:focus-visible { background: #eeeef0; outline: none; }
+.prototype-version-option[aria-current="page"]::after {
+  content: "";
+  flex-shrink: 0;
+  width: 6px;
+  height: 11px;
+  margin-left: 2px;
+  border: solid currentColor;
+  border-width: 0 1.5px 1.5px 0;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prototype-version-chevron { transition: none; }
+}
