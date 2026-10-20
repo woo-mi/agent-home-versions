@@ -94,7 +94,55 @@
         position: fixed !important;
         left: auto !important;
         right: 24px;
-        z-index: 91 !important;
+        padding: 0;
+        border: 0;
+        border-radius: 4px;
+        background: transparent;
+        font: inherit;
+        cursor: pointer;
+        overflow: visible !important;
+        z-index: 121 !important;
+      }
+      [data-pencil-id="mFi4p"]::before { content: ""; position: absolute; inset: -8px; }
+      [data-pencil-id="mFi4p"]:hover,
+      [data-pencil-id="mFi4p"][aria-expanded="true"] { background: #e4e6ea; }
+      [data-pencil-id="mFi4p"]:focus-visible { outline: 2px solid #7a4ab5; outline-offset: 4px; }
+
+      [data-profile-open="true"] [data-pencil-id="Qgz9s"] { visibility: hidden; }
+      #profile-panel {
+        position: fixed !important;
+        top: 36px !important;
+        left: auto !important;
+        right: 10px;
+        width: min(344px, calc(100vw - var(--sidebar-width) - 20px)) !important;
+        max-height: calc(100dvh - 48px - env(safe-area-inset-bottom));
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        z-index: 120;
+        animation: profile-panel-open 160ms ease-out;
+      }
+      #profile-panel[hidden] { display: none !important; }
+      #profile-panel:focus { outline: 1px solid #e4e6ea; }
+      #profile-panel div { min-width: 0; max-width: 100%; }
+      #profile-panel [data-pencil-name="Text"] { white-space: normal !important; }
+      #profile-panel .profile-time { flex-shrink: 0; white-space: nowrap !important; }
+      [data-pencil-id="c4ZZzx"] { width: 100% !important; }
+      [data-pencil-id="pLk34"] {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: auto !important;
+        width: 100% !important;
+      }
+      [data-pencil-id="sCyD6"] { position: static !important; flex: 1 1 0; width: auto !important; }
+      [data-pencil-id="z5w8jm"] { position: static !important; flex-shrink: 0; }
+      @keyframes profile-panel-open {
+        from { opacity: 0; transform: translateY(-4px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #profile-panel { animation: none; }
       }
 
       /* Let exported cards and copy reflow instead of shrinking the design. */
@@ -3818,8 +3866,9 @@
           </div>
           </div>
         </div>
-      <div
+      <button
         data-pencil-id="mFi4p"
+        id="profile-toggle" type="button" aria-label="Open profile panel" aria-controls="profile-panel" aria-haspopup="dialog" aria-expanded="false"
         data-pencil-name="filled=off, stroke=1.5, radius=2, join=round (14).svg"
         style="box-sizing: border-box; height: 20px; left: 1396px; overflow: hidden; position: absolute; top: 12px; width: 20px; z-index: 2"
       >
@@ -3840,7 +3889,508 @@
             vector-effect="non-scaling-stroke"
           ></path>
         </svg>
+      </button>
+<div
+    data-pencil-id="OdDul"
+    id="profile-panel" role="dialog" aria-modal="false" aria-labelledby="profile-title" tabindex="-1" hidden
+    data-pencil-name="Profile panel"
+    style="align-items: flex-start; background-color: #FFFFFF; border-radius: 20px; box-shadow: 0px 8px 30px #14181F26; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; height: fit-content; justify-content: flex-start; left: 587px; outline-offset: -0.5px; outline: 1px solid #e4e6ea; padding: 20px; position: absolute; top: 36px; width: 344px"
+  >
+    <div
+      data-pencil-id="drxpZ"
+      data-pencil-name="Head"
+      style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 14px; height: fit-content; justify-content: flex-start; width: fit-content"
+    >
+      <div
+        data-pencil-id="l6Yyz2"
+        data-pencil-name="Avatar"
+        style="align-items: center; background-color: #F2F2F4; border-radius: 28px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 56px; justify-content: center; outline-offset: -1.5px; outline: 3px solid #FFFFFF; width: 56px"
+      >
+        <div
+          data-pencil-id="bRoCh"
+          data-pencil-name="filled=off, stroke=1.5, radius=2, join=round"
+          style="box-sizing: border-box; flex-shrink: 0; height: 24px; overflow: hidden; position: relative; width: 24px"
+        >
+          <svg
+            data-pencil-id="hg0fk"
+            data-pencil-name="vector"
+            viewBox="0 0 9 4.5"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; height: 4.6px; left: 2.75px; overflow: visible; position: absolute; top: 7.4px; width: 9.25px; z-index: 0"
+          >
+            <path
+              d="M0 4.5c0-2.48528 2.01472-4.5 4.5-4.5 2.48528 0 4.5 2.01472 4.5 4.5"
+              fill="none"
+              stroke="#000000"
+              stroke-width="1.8"
+              vector-effect="non-scaling-stroke"
+            ></path>
+          </svg>
+          <svg
+            data-pencil-id="oVpcD"
+            data-pencil-name="vector"
+            viewBox="0 0 9 4.5"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; height: 4.6px; left: 12px; overflow: visible; position: absolute; top: 7.4px; width: 9.25px; z-index: 1"
+          >
+            <path
+              d="M0 4.5c0-2.48528 2.01472-4.5 4.5-4.5 2.48528 0 4.5 2.01472 4.5 4.5"
+              fill="none"
+              stroke="#000000"
+              stroke-width="1.8"
+              vector-effect="non-scaling-stroke"
+            ></path>
+          </svg>
+          <div
+            data-pencil-id="UaxgE"
+            data-pencil-name="vector"
+            style="background-color: #000000; border-radius: 50%; box-sizing: border-box; height: 2.5px; left: 6.25px; position: absolute; top: 10.75px; width: 2.5px; z-index: 2"
+          ></div>
+          <div
+            data-pencil-id="R88md8"
+            data-pencil-name="vector"
+            style="background-color: #000000; border-radius: 50%; box-sizing: border-box; height: 2.5px; left: 15.25px; position: absolute; top: 10.75px; width: 2.5px; z-index: 3"
+          ></div>
+          <svg
+            data-pencil-id="tg7uQ"
+            data-pencil-name="vector"
+            viewBox="0 0 1 3"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="box-sizing: border-box; height: 2.25px; left: 12px; overflow: visible; position: absolute; top: 12px; width: 1.8px; z-index: 4"
+          >
+            <path
+              d="M0 0l0 3"
+              fill="none"
+              stroke="#000000"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              vector-effect="non-scaling-stroke"
+            ></path>
+          </svg>
+          <div
+            data-pencil-id="FEqeQ"
+            data-pencil-name="vector"
+            style="border-radius: 50%; box-sizing: border-box; height: 18.5px; left: 2.75px; outline-offset: -0.9px; outline: 1.8px solid #000000; position: absolute; top: 2.75px; width: 18.5px; z-index: 5"
+          ></div>
+        </div>
       </div>
+      <div
+        data-pencil-id="pb5z5"
+        data-pencil-name="T"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 2px; height: fit-content; justify-content: flex-start; width: fit-content"
+      >
+        <div
+          data-pencil-id="MjHok" id="profile-title"
+          data-pencil-name="Text"
+          style="box-sizing: border-box; color: #15171b; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: 22px; text-align: left; white-space: nowrap"
+        >
+          Chief of Staff
+        </div>
+        <div
+          data-pencil-id="yjdHS"
+          data-pencil-name="Text"
+          style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 21px; text-align: left; white-space: nowrap"
+        >
+          Active 2 hours ago
+        </div>
+      </div>
+    </div>
+    <div
+      data-pencil-id="c4ZZzx"
+      data-pencil-name="Frame 155"
+      style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 304px"
+    >
+      <div
+        data-pencil-id="dHsjZ"
+        data-pencil-name="Frame 152"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; width: 100%"
+      >
+        <div
+          data-pencil-id="EH0jR"
+          data-pencil-name="Text"
+          style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left; white-space: nowrap"
+        >
+          Connections
+        </div>
+        <div
+          data-pencil-id="pLk34"
+          data-pencil-name="7 tools connected"
+          style="box-sizing: border-box; flex-shrink: 0; height: 35px; position: relative; width: 304px"
+        >
+          <div
+            data-pencil-id="sCyD6"
+            data-pencil-name="L"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; gap: 10px; height: fit-content; justify-content: flex-start; left: 0px; position: absolute; top: 0px; width: 248px; z-index: 0"
+          >
+            <div
+              data-pencil-id="MRtv7"
+              data-pencil-name="Dot"
+              style="background-color: #209855; border-radius: 50%; box-sizing: border-box; flex-shrink: 0; height: 8px; width: 8px"
+            ></div>
+            <div
+              data-pencil-id="t1geJ"
+              data-pencil-name="T"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-id="D0N0t"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #15171b; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+              >
+                7 tools connected
+              </div>
+              <div
+                data-pencil-id="tYKjE"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                Salesforce token expires in 3 days
+              </div>
+            </div>
+          </div>
+          <div
+            data-pencil-id="z5w8jm"
+            data-pencil-name="Text"
+            style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 258px; letter-spacing: 0px; line-height: 18px; position: absolute; text-align: left; top: 8.5px; white-space: nowrap; z-index: 1"
+          >
+            Manage
+          </div>
+        </div>
+      </div>
+      <div
+        data-pencil-id="AJDia"
+        data-pencil-name="Frame 153"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; width: 100%"
+      >
+        <div
+          data-pencil-id="BFwnv"
+          data-pencil-name="Text"
+          style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left; white-space: nowrap"
+        >
+          Chats
+        </div>
+        <div
+          data-pencil-id="w7qQI"
+          data-pencil-name="Checked Tamarack forecast line"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: space-between; width: 100%"
+        >
+          <div
+            data-pencil-id="SUbnu"
+            data-pencil-name="L"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
+          >
+            <div
+              data-pencil-id="QnxBt"
+              data-pencil-name="T"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-id="UylR5"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #15171b; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+              >
+                Daily brief
+              </div>
+            </div>
+          </div>
+          <div
+            data-pencil-id="cCyO8" class="profile-time"
+            data-pencil-name="Text"
+            style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; white-space: nowrap"
+          >
+            8:10 AM
+          </div>
+        </div>
+        <div
+          data-pencil-id="wPsRo"
+          data-pencil-name="Read 4 new Gong calls"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: space-between; width: 100%"
+        >
+          <div
+            data-pencil-id="XRSdx"
+            data-pencil-name="L"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
+          >
+            <div
+              data-pencil-id="yzlMu"
+              data-pencil-name="T"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-id="i4BKCV"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #15171b; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+              >
+                Weekly report
+              </div>
+            </div>
+          </div>
+          <div
+            data-pencil-id="r7hMe" class="profile-time"
+            data-pencil-name="Text"
+            style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; white-space: nowrap"
+          >
+            7:40 AM
+          </div>
+        </div>
+        <div
+          data-pencil-id="Z5mNhz"
+          data-pencil-name="Refreshed pipeline app"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: space-between; width: 100%"
+        >
+          <div
+            data-pencil-id="LlqQy"
+            data-pencil-name="L"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
+          >
+            <div
+              data-pencil-id="D6l0PN"
+              data-pencil-name="T"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-id="dAonb"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #15171b; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+              >
+                Quarterly business review
+              </div>
+            </div>
+          </div>
+          <div
+            data-pencil-id="IjtRE" class="profile-time"
+            data-pencil-name="Text"
+            style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; white-space: nowrap"
+          >
+            7:00 AM
+          </div>
+        </div>
+      </div>
+      <div
+        data-pencil-id="BVJAK"
+        data-pencil-name="Frame 153"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; width: 100%"
+      >
+        <div
+          data-pencil-id="ZdMAW"
+          data-pencil-name="Text"
+          style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left; white-space: nowrap"
+        >
+          Recent activity
+        </div>
+        <div
+          data-pencil-id="JFClP"
+          data-pencil-name="Checked Tamarack forecast line"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: space-between; width: 100%"
+        >
+          <div
+            data-pencil-id="ple8x"
+            data-pencil-name="L"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
+          >
+            <div
+              data-pencil-id="b82fM"
+              data-pencil-name="T"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-id="MZLWh"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #15171b; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+              >
+                Checked Tamarack forecast line
+              </div>
+            </div>
+          </div>
+          <div
+            data-pencil-id="aci2H" class="profile-time"
+            data-pencil-name="Text"
+            style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; white-space: nowrap"
+          >
+            8:10 AM
+          </div>
+        </div>
+        <div
+          data-pencil-id="zVSFi"
+          data-pencil-name="Read 4 new Gong calls"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: space-between; width: 100%"
+        >
+          <div
+            data-pencil-id="oiUgB"
+            data-pencil-name="L"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
+          >
+            <div
+              data-pencil-id="GgKri"
+              data-pencil-name="T"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-id="vKzDV"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #15171b; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+              >
+                Read 4 new Gong calls
+              </div>
+            </div>
+          </div>
+          <div
+            data-pencil-id="P4IYOc" class="profile-time"
+            data-pencil-name="Text"
+            style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; white-space: nowrap"
+          >
+            7:40 AM
+          </div>
+        </div>
+        <div
+          data-pencil-id="vOh4J"
+          data-pencil-name="Refreshed pipeline app"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: space-between; width: 100%"
+        >
+          <div
+            data-pencil-id="lb7oV"
+            data-pencil-name="L"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
+          >
+            <div
+              data-pencil-id="lAw5F"
+              data-pencil-name="T"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-id="lAYEb"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #15171b; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+              >
+                Refreshed pipeline app
+              </div>
+            </div>
+          </div>
+          <div
+            data-pencil-id="CRGsj" class="profile-time"
+            data-pencil-name="Text"
+            style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; white-space: nowrap"
+          >
+            7:00 AM
+          </div>
+        </div>
+      </div>
+      <div
+        data-pencil-id="xzzdz"
+        data-pencil-name="Frame 154"
+        style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; width: 100%"
+      >
+        <div
+          data-pencil-id="qGmJH"
+          data-pencil-name="Text"
+          style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 20px; text-align: left; white-space: nowrap"
+        >
+          Outputs
+        </div>
+        <div
+          data-pencil-id="LACYm"
+          data-pencil-name="Weekly Sales Pipeline Review App"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: space-between; width: 100%"
+        >
+          <div
+            data-pencil-id="OoDVm"
+            data-pencil-name="L"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
+          >
+            <div
+              data-pencil-id="ZzAg9"
+              data-pencil-name="T"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-id="o6kW2"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #15171b; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+              >
+                Weekly Sales Pipeline Review App
+              </div>
+              <div
+                data-pencil-id="RWXl4"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                Opened 9× · 4 viewers
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-id="neKWJ"
+          data-pencil-name="Weekly Sales Pipeline Update"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: space-between; width: 100%"
+        >
+          <div
+            data-pencil-id="Lp9VW"
+            data-pencil-name="L"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
+          >
+            <div
+              data-pencil-id="Sq6le"
+              data-pencil-name="T"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-id="EjNJV"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #15171b; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+              >
+                Weekly Sales Pipeline Update
+              </div>
+              <div
+                data-pencil-id="u8pEV"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                3 runs · last Fri 7:00 AM
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          data-pencil-id="lt7fk"
+          data-pencil-name="EMEA QBR outline"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: space-between; width: 100%"
+        >
+          <div
+            data-pencil-id="U8txX"
+            data-pencil-name="L"
+            style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
+          >
+            <div
+              data-pencil-id="merKQ"
+              data-pencil-name="T"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 0px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-id="VCr4z"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #15171b; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 19px; text-align: left; white-space: nowrap"
+              >
+                EMEA QBR outline
+              </div>
+              <div
+                data-pencil-id="O6MHd"
+                data-pencil-name="Text"
+                style="box-sizing: border-box; color: #63666d; font-family: Inter, system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 16px; text-align: left; white-space: nowrap"
+              >
+                Draft · waiting on you
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
       </div>
     </div>
     <script>
@@ -3849,6 +4399,9 @@
         const header = document.querySelector('[data-pencil-id="Qgz9s"]');
         const indicator = document.querySelector('[data-pencil-id="iyL0t"]');
         const newMessages = document.getElementById('new-messages');
+        const app = document.querySelector('[data-pencil-id="uEFHe"]');
+        const profileToggle = document.getElementById('profile-toggle');
+        const profilePanel = document.getElementById('profile-panel');
         let reviewingHistory = false;
 
         // Open at the latest message, including after web fonts finish sizing.
@@ -3877,6 +4430,34 @@
           reviewingHistory = true;
           conversation.focus({ preventScroll: true });
           indicator.hidden = true;
+        });
+
+        const setProfileOpen = (open, restoreFocus = true) => {
+          reviewingHistory = true;
+          app.dataset.profileOpen = String(open);
+          profilePanel.hidden = !open;
+          profileToggle.setAttribute('aria-expanded', String(open));
+          profileToggle.setAttribute('aria-label', open ? 'Close profile panel' : 'Open profile panel');
+          if (open) profilePanel.focus({ preventScroll: true });
+          else if (restoreFocus) profileToggle.focus({ preventScroll: true });
+        };
+
+        profileToggle.addEventListener('click', () => setProfileOpen(profilePanel.hidden));
+        document.addEventListener('pointerdown', event => {
+          if (!profilePanel.hidden && !profilePanel.contains(event.target) && !profileToggle.contains(event.target)) {
+            setProfileOpen(false, profilePanel.contains(document.activeElement));
+          }
+        });
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape' && !profilePanel.hidden) {
+            event.preventDefault();
+            setProfileOpen(false);
+          }
+        });
+        document.addEventListener('focusin', event => {
+          if (!profilePanel.hidden && !profilePanel.contains(event.target) && !profileToggle.contains(event.target)) {
+            setProfileOpen(false, false);
+          }
         });
 
         history.scrollRestoration = 'manual';
