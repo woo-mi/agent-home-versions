@@ -54,6 +54,9 @@
         font-weight: 400;
         overflow-wrap: anywhere;
       }
+      a { color: inherit; text-decoration: none; }
+      a:hover { text-decoration: underline; text-underline-offset: 4px; }
+      a:focus-visible { outline: 2px solid #333444; outline-offset: 4px; border-radius: 2px; }
       @media (max-width: 600px) {
         body { padding: 32px 24px; }
         h1 { font-size: 26px; }
@@ -68,7 +71,7 @@
       <section aria-labelledby="chat-agenda">
         <h2 id="chat-agenda">Chat thread</h2>
         <ul>
-          <li>one thread</li>
+          <li><a href="one-thread/">one thread</a></li>
           <li>one thread with sub chat - Slack</li>
           <li>one thread with sub chat - Inline</li>
         </ul>
