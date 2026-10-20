@@ -295,6 +295,8 @@
     </style>
     <link rel="stylesheet" href="../version-control.css?v=2" />
     <script src="../version-control.js" defer></script>
+    <link rel="stylesheet" href="navigator.css?v=1" />
+    <script src="navigator.js?v=1" defer></script>
   </head>
   <body data-prototype-version="v2" style="background-color: #FFFFFF">
     <div
@@ -4398,6 +4400,33 @@
 
       </div>
     </div>
+    <aside class="notion-tick-nav" data-open="false" aria-label="Activity navigator">
+      <button id="notion-tick-trigger" class="notion-tick-trigger" type="button" aria-label="Show recent activity" aria-expanded="false" aria-controls="notion-activity-panel">
+        <span class="notion-tick-mark" aria-hidden="true"></span>
+        <span class="notion-tick-mark" aria-hidden="true"></span>
+        <span class="notion-tick-mark" aria-hidden="true"></span>
+        <span class="notion-tick-mark" aria-hidden="true"></span>
+        <span class="notion-tick-mark" aria-hidden="true"></span>
+        <span class="notion-tick-mark" aria-hidden="true"></span>
+        <span class="notion-tick-mark" aria-hidden="true"></span>
+        <span class="notion-tick-mark" aria-hidden="true"></span>
+        <span class="notion-tick-mark" aria-hidden="true"></span>
+      </button>
+      <section id="notion-activity-panel" class="notion-activity-panel" role="region" aria-labelledby="notion-activity-heading" tabindex="-1" hidden>
+        <h2 id="notion-activity-heading">Recent activity</h2>
+        <ul class="notion-activity-list">
+          <li><span class="notion-activity-label">Checked Tamarack forecast line</span><span class="notion-activity-type">Chat</span></li>
+          <li><span class="notion-activity-label">Read 4 new Gong calls</span><span class="notion-activity-type">Chat</span></li>
+          <li><span class="notion-activity-label">Refreshed pipeline app</span><span class="notion-activity-type">App</span></li>
+          <li><span class="notion-activity-label">Daily brief</span><span class="notion-activity-type">Chat</span></li>
+          <li><span class="notion-activity-label">Weekly report</span><span class="notion-activity-type">Chat</span></li>
+          <li><span class="notion-activity-label">Quarterly business review</span><span class="notion-activity-type">Chat</span></li>
+          <li><span class="notion-activity-label">Weekly Sales Pipeline Review App</span><span class="notion-activity-type">App</span></li>
+          <li><span class="notion-activity-label">Weekly Sales Pipeline Update</span><span class="notion-activity-type">Schedule</span></li>
+          <li><span class="notion-activity-label">EMEA QBR outline</span><span class="notion-activity-type">App</span></li>
+        </ul>
+      </section>
+    </aside>
     <script>
       (() => {
         const conversation = document.querySelector('[data-pencil-id="Fr1yZ"]');

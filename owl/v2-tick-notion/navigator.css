@@ -1,0 +1,99 @@
+.notion-tick-nav {
+  position: fixed;
+  top: 163.5px;
+  right: 9px;
+  width: 44px;
+  height: 150px;
+  z-index: 118;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.notion-tick-trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  width: 44px;
+  height: 150px;
+  padding: 11px 11px 11px 17px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.notion-tick-mark {
+  flex-shrink: 0;
+  width: 16px;
+  height: 2px;
+  border-radius: 1px;
+  background: #e6e5e3;
+}
+
+.notion-tick-mark:first-child { background: #32302d; }
+.notion-tick-trigger:focus-visible { outline: 2px solid #333444; outline-offset: 2px; }
+.notion-tick-nav[data-open="true"] .notion-tick-mark { visibility: hidden; }
+
+.notion-activity-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(352px, calc(100vw - var(--sidebar-width) - 18px));
+  max-height: calc(100dvh - 227.5px - env(safe-area-inset-bottom));
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 18.5px 24px;
+  border-radius: 14px;
+  outline: 1px solid #e8e7e5;
+  outline-offset: -1px;
+  background: #fff;
+  color: #15171b;
+  box-shadow: 0 8px 24px #00000014;
+  animation: notion-panel-appear 120ms ease-out;
+}
+
+.notion-activity-panel[hidden] { display: none; }
+.notion-activity-panel:focus-visible { outline: 2px solid #333444; outline-offset: 2px; }
+.notion-activity-panel h2 {
+  margin: 0 0 8px;
+  color: #63666d;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.notion-activity-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.notion-activity-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.notion-activity-label { min-width: 0; overflow-wrap: anywhere; }
+.notion-activity-type { flex-shrink: 0; color: #63666d; font-size: 13px; line-height: 1.5; }
+.notion-activity-list li:nth-child(-n+3) .notion-activity-type { font-size: 12px; }
+
+@keyframes notion-panel-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-height: 480px) {
+  .notion-tick-nav { top: 80px; }
+  .notion-activity-panel { max-height: calc(100dvh - 144px - env(safe-area-inset-bottom)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notion-activity-panel { animation: none; }
+}
