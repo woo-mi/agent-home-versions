@@ -5,8 +5,9 @@
 
 .codex-timeline {
   position: fixed;
-  top: 100px;
-  bottom: calc(80px + env(safe-area-inset-bottom));
+  top: 50%;
+  height: min(320px, calc(100dvh - 180px - env(safe-area-inset-bottom)));
+  transform: translateY(-50%);
   left: calc(var(--sidebar-width) + var(--codex-rail-inset));
   display: flex;
   flex-direction: column;
@@ -151,7 +152,7 @@
 }
 
 @media (max-height: 480px) {
-  .codex-timeline { top: 56px; bottom: calc(64px + env(safe-area-inset-bottom)); }
+  .codex-timeline { height: min(320px, calc(100dvh - 120px - env(safe-area-inset-bottom))); }
 }
 
 @media (prefers-reduced-motion: reduce) {
