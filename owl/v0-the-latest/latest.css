@@ -115,6 +115,46 @@
   gap: 12px !important;
 }
 
+/* Keep copy, status and action in consistent columns across exported cards. */
+[data-pencil-id="BiA9g"] .conversation-status-card {
+  container: owl-status-card / inline-size;
+}
+[data-pencil-id="BiA9g"] .conversation-status-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 72px 56px;
+  align-items: center;
+  gap: 12px !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 66px;
+}
+[data-pencil-id="BiA9g"] .conversation-status-content {
+  display: contents !important;
+}
+[data-pencil-id="BiA9g"] .conversation-row-copy {
+  min-width: 0;
+  width: auto !important;
+}
+[data-pencil-id="BiA9g"] .conversation-row-copy [data-pencil-name="Copy"] > div {
+  width: 100% !important;
+}
+[data-pencil-id="BiA9g"] .conversation-row-status {
+  text-align: right !important;
+  white-space: nowrap !important;
+  overflow-wrap: normal;
+}
+[data-pencil-id="BiA9g"] .conversation-row-action,
+[data-pencil-id="BiA9g"] .conversation-row-action > div {
+  width: 56px !important;
+  flex-shrink: 0;
+  white-space: nowrap !important;
+}
+@container owl-status-card (max-width: 480px) {
+  [data-pencil-id="BiA9g"] .conversation-row-copy { grid-column: 1 / -1; }
+  [data-pencil-id="BiA9g"] .conversation-row-status { grid-column: 2; }
+  [data-pencil-id="BiA9g"] .conversation-row-action { grid-column: 3; }
+}
+
 [data-pencil-id="BiA9g"] [data-pencil-name="Weekly update header"] {
   height: auto !important;
   min-height: 49px;
