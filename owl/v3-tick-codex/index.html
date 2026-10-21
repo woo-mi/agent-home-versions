@@ -4427,8 +4427,14 @@
           const visibleHeader = indicator.hidden
             ? header.querySelector('[data-pencil-id="enbOq"]')
             : indicator;
-          conversation.style.setProperty('--conversation-top',
-            `${Math.ceil(visibleHeader.getBoundingClientRect().bottom)}px`);
+          const previousInset = parseFloat(getComputedStyle(conversation).paddingTop);
+          const nextInset = Math.ceil(visibleHeader.getBoundingClientRect().bottom);
+          if (nextInset === previousInset) return;
+          const previousScroll = conversation.scrollTop;
+          conversation.style.setProperty('--conversation-top', `${nextInset}px`);
+          if (previousScroll > 0) {
+            conversation.scrollTop = Math.max(0, previousScroll + nextInset - previousInset);
+          }
         };
         syncConversationInset();
         new ResizeObserver(syncConversationInset).observe(header);
