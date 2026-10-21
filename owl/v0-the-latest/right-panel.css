@@ -22,7 +22,7 @@
   position: absolute;
   inset: 0 auto 0 0;
   width: 1px;
-  background: #00000033;
+  background: #ededee;
   pointer-events: none;
   z-index: 1;
 }
