@@ -153,8 +153,10 @@
 }
 
 #profile-panel .right-panel-connections,
+#profile-panel .right-panel-schedules,
 #profile-panel .right-panel-artifacts { display: flex; flex-direction: column; gap: 24px; padding: 0 30px; }
 #profile-panel .right-panel-connections .right-panel-section-title,
+#profile-panel .right-panel-schedules .right-panel-section-title,
 #profile-panel .right-panel-artifacts .right-panel-section-title { margin-left: 13px; }
 #profile-panel .right-panel-card-list { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
 
@@ -205,7 +207,7 @@
 
 #profile-panel .right-panel-activity-list,
 #profile-panel .right-panel-artifact-list { margin: 0; padding: 0; list-style: none; }
-#profile-panel .right-panel-activities { display: flex; flex-direction: column; gap: 24px; padding: 0 36px; }
+#profile-panel .right-panel-history { display: flex; flex-direction: column; gap: 24px; padding: 0 36px; }
 #profile-panel .right-panel-activity-list { display: flex; flex-direction: column; gap: 8px; }
 #profile-panel .right-panel-activity-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 #profile-panel .right-panel-activity-label {

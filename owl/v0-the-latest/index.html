@@ -261,7 +261,7 @@
     <script src="../version-control.js?v=2" defer></script>
     <link rel="stylesheet" href="navigator.css?v=4" />
     <link rel="stylesheet" href="latest.css?v=8" />
-    <link rel="stylesheet" href="right-panel.css?v=6" />
+    <link rel="stylesheet" href="right-panel.css?v=7" />
     <script src="navigator.js?v=4" defer></script>
     <script src="sidebar.js?v=1" defer></script>
     <script src="right-panel.js?v=3" defer></script>
@@ -9798,136 +9798,14 @@
       <p class="right-panel-label">Add a label</p>
     </div>
     <div class="right-panel-tabs" role="tablist" aria-label="Profile sections">
-      <button id="right-panel-tab-activities" class="right-panel-tab" type="button" role="tab" aria-selected="false" aria-controls="right-panel-activities" tabindex="-1">Activities</button>
       <button id="right-panel-tab-connections" class="right-panel-tab" type="button" role="tab" aria-selected="true" aria-controls="right-panel-connections" tabindex="0">Connections</button>
+      <button id="right-panel-tab-schedules" class="right-panel-tab" type="button" role="tab" aria-selected="false" aria-controls="right-panel-schedules" tabindex="-1">Schedules</button>
       <button id="right-panel-tab-artifacts" class="right-panel-tab" type="button" role="tab" aria-selected="false" aria-controls="right-panel-artifacts" tabindex="-1">Artifacts</button>
+      <button id="right-panel-tab-history" class="right-panel-tab" type="button" role="tab" aria-selected="false" aria-controls="right-panel-history" tabindex="-1">History</button>
     </div>
   </header>
   <div class="right-panel-scroll">
-    <section id="right-panel-activities" class="right-panel-tabpanel right-panel-activities" role="tabpanel" aria-labelledby="right-panel-tab-activities" tabindex="0" hidden>
-        <section class="right-panel-activity-group" aria-labelledby="right-panel-today-title">
-          <h3 id="right-panel-today-title" class="right-panel-section-title">Today</h3>
-          <ul class="right-panel-activity-list">
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Daily brief</span>
-              <time datetime="08:10">8:10 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Weekly report</span>
-              <time datetime="07:40">7:40 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Quarterly business review</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Checked Tamarack forecast line</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Read 4 new Gong calls</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Refreshed pipeline app</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-          </ul>
-        </section>
-        <section class="right-panel-activity-group" aria-labelledby="right-panel-yesterday-title">
-          <h3 id="right-panel-yesterday-title" class="right-panel-section-title">Yesterday</h3>
-          <ul class="right-panel-activity-list">
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Daily brief</span>
-              <time datetime="08:10">8:10 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Weekly report</span>
-              <time datetime="07:40">7:40 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Quarterly business review</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-          </ul>
-        </section>
-        <section class="right-panel-activity-group" aria-labelledby="right-panel-recents-title">
-          <h3 id="right-panel-recents-title" class="right-panel-section-title">Recents</h3>
-          <ul class="right-panel-activity-list">
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Daily brief</span>
-              <time datetime="08:10">8:10 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Weekly report</span>
-              <time datetime="07:40">7:40 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Quarterly business review</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Checked Tamarack forecast line</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Read 4 new Gong calls</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Refreshed pipeline app</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Daily brief</span>
-              <time datetime="08:10">8:10 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Weekly report</span>
-              <time datetime="07:40">7:40 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Quarterly business review</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Checked Tamarack forecast line</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Read 4 new Gong calls</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Refreshed pipeline app</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-          </ul>
-        </section>
-    </section>
     <section id="right-panel-connections" class="right-panel-tabpanel right-panel-connections" role="tabpanel" aria-labelledby="right-panel-tab-connections" tabindex="0">
-      <section class="right-panel-group" aria-labelledby="right-panel-schedules-title">
-        <h3 id="right-panel-schedules-title" class="right-panel-section-title">Schedules</h3>
-        <ul class="right-panel-card-list">
-          <li class="right-panel-schedule">
-            <p class="right-panel-schedule-title">Weekly Sales Pipeline Update</p>
-            <p class="right-panel-schedule-time">Fridays at 7:00 AM PT</p>
-            <p class="right-panel-schedule-time">Slack · #sales-pipeline</p>
-            <button id="pipeline-schedule-toggle" class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Weekly Sales Pipeline Update"><span aria-hidden="true"></span></button>
-          </li>
-          <li class="right-panel-schedule">
-            <p class="right-panel-schedule-title">Weekly Workspace Health</p>
-            <p class="right-panel-schedule-time">Fridays at 4:00 PM PT</p>
-            <p class="right-panel-schedule-time">Slack · #data-platform</p>
-            <button id="workspace-schedule-toggle" class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Weekly Workspace Health"><span aria-hidden="true"></span></button>
-          </li>
-          <li class="right-panel-schedule">
-            <p class="right-panel-schedule-title">Quarterly Wisdom Review</p>
-            <p class="right-panel-schedule-time">5 business days before each quarter ends</p>
-            <button id="quarterly-schedule-toggle" class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Quarterly Wisdom Review"><span aria-hidden="true"></span></button>
-          </li>
-        </ul>
-      </section>
       <section class="right-panel-group" aria-labelledby="right-panel-tools-title">
         <h3 id="right-panel-tools-title" class="right-panel-section-title">Tools</h3>
         <ul class="right-panel-card-list">
@@ -9960,6 +9838,30 @@
             <p class="right-panel-schedule-title">Databricks</p>
             <p id="tool-databricks-status" class="right-panel-schedule-time">Approval pending · Restrict to product_events</p>
             <button class="right-panel-switch" type="button" role="switch" aria-checked="false" aria-label="Enable Databricks" aria-describedby="tool-databricks-status"><span aria-hidden="true"></span></button>
+          </li>
+        </ul>
+      </section>
+    </section>
+    <section id="right-panel-schedules" class="right-panel-tabpanel right-panel-schedules" role="tabpanel" aria-labelledby="right-panel-tab-schedules" tabindex="0" hidden>
+      <section class="right-panel-group" aria-labelledby="right-panel-schedules-title">
+        <h3 id="right-panel-schedules-title" class="right-panel-section-title">Schedules</h3>
+        <ul class="right-panel-card-list">
+          <li class="right-panel-schedule">
+            <p class="right-panel-schedule-title">Weekly Sales Pipeline Update</p>
+            <p class="right-panel-schedule-time">Fridays at 7:00 AM PT</p>
+            <p class="right-panel-schedule-time">Slack · #sales-pipeline</p>
+            <button id="pipeline-schedule-toggle" class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Weekly Sales Pipeline Update"><span aria-hidden="true"></span></button>
+          </li>
+          <li class="right-panel-schedule">
+            <p class="right-panel-schedule-title">Weekly Workspace Health</p>
+            <p class="right-panel-schedule-time">Fridays at 4:00 PM PT</p>
+            <p class="right-panel-schedule-time">Slack · #data-platform</p>
+            <button id="workspace-schedule-toggle" class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Weekly Workspace Health"><span aria-hidden="true"></span></button>
+          </li>
+          <li class="right-panel-schedule">
+            <p class="right-panel-schedule-title">Quarterly Wisdom Review</p>
+            <p class="right-panel-schedule-time">5 business days before each quarter ends</p>
+            <button id="quarterly-schedule-toggle" class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Quarterly Wisdom Review"><span aria-hidden="true"></span></button>
           </li>
         </ul>
       </section>
@@ -10115,6 +10017,107 @@
           </li>
         </ul>
       </section>
+    </section>
+    <section id="right-panel-history" class="right-panel-tabpanel right-panel-history" role="tabpanel" aria-labelledby="right-panel-tab-history" tabindex="0" hidden>
+        <section class="right-panel-activity-group" aria-labelledby="right-panel-today-title">
+          <h3 id="right-panel-today-title" class="right-panel-section-title">Today</h3>
+          <ul class="right-panel-activity-list">
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Daily brief</span>
+              <time datetime="08:10">8:10 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Weekly report</span>
+              <time datetime="07:40">7:40 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Quarterly business review</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Checked Tamarack forecast line</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Read 4 new Gong calls</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Refreshed pipeline app</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+          </ul>
+        </section>
+        <section class="right-panel-activity-group" aria-labelledby="right-panel-yesterday-title">
+          <h3 id="right-panel-yesterday-title" class="right-panel-section-title">Yesterday</h3>
+          <ul class="right-panel-activity-list">
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Daily brief</span>
+              <time datetime="08:10">8:10 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Weekly report</span>
+              <time datetime="07:40">7:40 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Quarterly business review</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+          </ul>
+        </section>
+        <section class="right-panel-activity-group" aria-labelledby="right-panel-recents-title">
+          <h3 id="right-panel-recents-title" class="right-panel-section-title">Recents</h3>
+          <ul class="right-panel-activity-list">
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Daily brief</span>
+              <time datetime="08:10">8:10 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Weekly report</span>
+              <time datetime="07:40">7:40 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Quarterly business review</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Checked Tamarack forecast line</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Read 4 new Gong calls</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Refreshed pipeline app</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Daily brief</span>
+              <time datetime="08:10">8:10 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Weekly report</span>
+              <time datetime="07:40">7:40 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Quarterly business review</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Checked Tamarack forecast line</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Read 4 new Gong calls</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+            <li class="right-panel-activity-row">
+              <span class="right-panel-activity-label">Refreshed pipeline app</span>
+              <time datetime="07:00">7:00 AM</time>
+            </li>
+          </ul>
+        </section>
     </section>
   </div>
 </aside>
