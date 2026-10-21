@@ -12,6 +12,7 @@
       rel="stylesheet"
     />
 
+    <script>document.documentElement.dataset.sidebarCollapsed = String(matchMedia("(max-width: 900px)").matches);</script>
     <style>
       *, ::before, ::after {
         box-sizing: border-box;
@@ -235,33 +236,33 @@
       [data-pencil-id="ZE6Oz"] { flex: 1 1 0 !important; overflow: hidden; }
       [data-pencil-id="vK9wT"] { text-overflow: ellipsis; overflow: hidden; }
 
-      /* Use a compact, fixed navigation rail on tablet and phone widths. */
       @media (max-width: 900px) {
         :root { --sidebar-width: 56px; --conversation-gutter: 24px; }
-        [data-pencil-id="JqqzH"] {
+      }
+      :root[data-sidebar-collapsed="true"] { --sidebar-width: 56px; }
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="JqqzH"] {
           left: 6px !important;
           width: 44px !important;
           align-items: center !important;
         }
-        [data-pencil-id="DRzTU"],
-        [data-pencil-id="AWHi8"],
-        [data-pencil-id="lqbxN"],
-        [data-pencil-id="S4egrG"] { width: 44px !important; }
-        [data-pencil-id="AWHi8"] { gap: 0 !important; }
-        [data-pencil-id="j38VW"],
-        [data-pencil-id="AWHi8"] > div:last-child,
-        [data-pencil-id="S4egrG"] > div > div:last-child,
-        [data-pencil-id="fHv3S"],
-        [data-pencil-id="RqvHk"],
-        [data-pencil-id="x5w4t"] { display: none !important; }
-        [data-pencil-id="S4egrG"] > div {
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="DRzTU"],
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="AWHi8"],
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="lqbxN"],
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="S4egrG"] { width: 44px !important; }
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="AWHi8"] { gap: 0 !important; }
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="j38VW"],
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="AWHi8"] > div:last-child,
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="S4egrG"] > div > div:last-child,
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="fHv3S"],
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="RqvHk"],
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="x5w4t"] { display: none !important; }
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="S4egrG"] > div {
           width: 44px !important;
           justify-content: center !important;
           padding: 0 !important;
         }
-        [data-pencil-id="IBJuk"],
-        [data-pencil-id="CPJkh"] { left: 8px !important; }
-      }
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="IBJuk"],
+      :root[data-sidebar-collapsed="true"] [data-pencil-id="CPJkh"] { left: 8px !important; }
 
       @media (max-width: 600px) {
         :root { --conversation-gutter: 16px; }
@@ -296,8 +297,9 @@
     <link rel="stylesheet" href="../version-control.css?v=2" />
     <script src="../version-control.js?v=2" defer></script>
     <link rel="stylesheet" href="navigator.css?v=1" />
-    <link rel="stylesheet" href="latest.css?v=1" />
+    <link rel="stylesheet" href="latest.css?v=2" />
     <script src="navigator.js?v=1" defer></script>
+    <script src="sidebar.js?v=1" defer></script>
   </head>
   <body data-prototype-version="v0" style="background-color: #FFFFFF">
     <div
@@ -308,10 +310,42 @@
       style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: row; gap: 239px; height: fit-content; justify-content: flex-start; overflow: hidden; padding: 0px 177px 20px 0px; position: relative; width: fit-content"
     >
       <div
+        id="app-sidebar"
+        role="navigation"
+        aria-label="Main navigation"
         data-pencil-id="xLoZF"
         data-pencil-name="Navigation rail"
         style="background-color: #f5f5f5d1; border-color: #e6e6e6; border-style: solid; border-width: 0px 1px 0px 0px; box-sizing: border-box; flex-shrink: 0; height: 958px; position: relative; width: 260px; z-index: 0"
       >
+        <button id="sidebar-toggle" type="button" aria-label="Collapse sidebar" aria-expanded="true" aria-controls="app-sidebar" title="Collapse sidebar">
+                  <div
+                    data-pencil-id="QYEnn"
+                    data-pencil-name="svg"
+                    style="box-sizing: border-box; flex-shrink: 0; height: 16px; overflow: hidden; position: relative; width: 16px"
+                  >
+                    <div
+                      data-pencil-id="lxg5W"
+                      style="border-radius: 2.5px; box-sizing: border-box; height: 13px; left: 1px; outline-offset: -0.5px; outline: 1px solid #666; position: absolute; top: 1.5px; width: 14px; z-index: 0"
+                    ></div>
+                    <svg
+                      data-pencil-id="LRrSB"
+                      viewBox="0 0 1 13"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 13px; left: 5.6px; overflow: visible; position: absolute; top: 1.5px; width: 1px; z-index: 1"
+                    >
+                      <path d="M0 0l0 13" fill="#000000"></path>
+                      <path
+                        d="M0 0l0 13"
+                        fill="none"
+                        stroke="#666"
+                        stroke-width="1"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div>
+                </button>
+
         <div
           data-pencil-id="IBJuk"
           data-pencil-name="button"
@@ -505,42 +539,7 @@
                   </div>
                 </div>
               </div>
-              <div
-                style="box-sizing: border-box; flex-shrink: 0; height: 24px; position: relative; width: 24px"
-              >
-                <div
-                  data-pencil-id="uqQO2"
-                  data-pencil-name="div"
-                  style="align-items: center; border-radius: 6px; box-sizing: border-box; display: flex; flex-direction: row; gap: 0px; height: 24px; justify-content: center; left: 24px; position: absolute; top: 0px; transform-origin: top left; transform: scaleX(-1); width: 24px"
-                >
-                  <div
-                    data-pencil-id="QYEnn"
-                    data-pencil-name="svg"
-                    style="box-sizing: border-box; flex-shrink: 0; height: 16px; overflow: hidden; position: relative; width: 16px"
-                  >
-                    <div
-                      data-pencil-id="lxg5W"
-                      style="border-radius: 2.5px; box-sizing: border-box; height: 13px; left: 1px; outline-offset: -0.5px; outline: 1px solid #666; position: absolute; top: 1.5px; width: 14px; z-index: 0"
-                    ></div>
-                    <svg
-                      data-pencil-id="LRrSB"
-                      viewBox="0 0 1 13"
-                      preserveAspectRatio="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      style="box-sizing: border-box; height: 13px; left: 5.6px; overflow: visible; position: absolute; top: 1.5px; width: 1px; z-index: 1"
-                    >
-                      <path d="M0 0l0 13" fill="#000000"></path>
-                      <path
-                        d="M0 0l0 13"
-                        fill="none"
-                        stroke="#666"
-                        stroke-width="1"
-                        vector-effect="non-scaling-stroke"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
+
             </div>
             <div
               data-pencil-id="S4egrG"
@@ -10264,6 +10263,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
       </button>
     </aside>
+    <button id="sidebar-backdrop" type="button" tabindex="-1" aria-label="Close sidebar" hidden></button>
     <div id="codex-timeline-status" class="codex-timeline-status" role="status" aria-live="polite"></div>
     <script>
       (() => {
@@ -10333,6 +10333,11 @@
           if (open) profilePanel.focus({ preventScroll: true });
           else if (restoreFocus) profileToggle.focus({ preventScroll: true });
         };
+
+        document.addEventListener('owl-sidebar-change', () => {
+          reviewingHistory = true;
+          if (!profilePanel.hidden) setProfileOpen(false, false);
+        });
 
         profileToggle.addEventListener('click', () => setProfileOpen(profilePanel.hidden));
         document.addEventListener('pointerdown', event => {
