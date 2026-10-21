@@ -1,0 +1,160 @@
+:root { --codex-rail-inset: 20px; --codex-rail-width: 44px; --codex-content-gutter: 80px; }
+[data-pencil-id="Fr1yZ"], [data-pencil-id="Qgz9s"], .composer-dock {
+  padding-left: var(--codex-content-gutter) !important;
+}
+
+.codex-timeline {
+  position: fixed;
+  top: 50%;
+  height: min(320px, calc(100dvh - 180px - env(safe-area-inset-bottom)));
+  transform: translateY(-50%);
+  left: calc(var(--sidebar-width) + var(--codex-rail-inset));
+  display: flex;
+  flex-direction: column;
+  width: var(--codex-rail-width);
+  padding: 8px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: none;
+  touch-action: pan-y;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20px, #000 calc(100% - 20px), transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 20px, #000 calc(100% - 20px), transparent);
+  z-index: 118;
+}
+.codex-timeline::-webkit-scrollbar { display: none; }
+
+.codex-timeline-stop {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0 0 10px;
+  width: 100%;
+  height: 10px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+
+.codex-timeline-tick {
+  width: var(--tick-width, 6px);
+  height: 2px;
+  flex-shrink: 0;
+  background: var(--tick-color, #d1d3d4);
+  opacity: var(--tick-opacity, 1);
+  pointer-events: none;
+  transition: width 140ms ease-out, background-color 140ms ease-out, opacity 140ms ease-out;
+}
+
+.codex-timeline-stop:focus { outline: none; }
+.codex-timeline-stop:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: 0 6px 0 0;
+  border: 1px solid #b7b9bc;
+  border-radius: 3px;
+}
+
+.codex-preview {
+  position: fixed;
+  left: calc(var(--sidebar-width) + var(--codex-rail-inset) + 40px);
+  top: 134px;
+  width: min(360px, calc(100vw - var(--sidebar-width) - var(--codex-rail-inset) - 52px));
+  max-height: calc(100dvh - 100px - env(safe-area-inset-bottom));
+  overflow: visible;
+  border-radius: 14px;
+  outline: 1px solid #e4e4e4;
+  outline-offset: -1px;
+  background: #fff;
+  box-shadow: 0 8px 24px #00000014;
+  font-family: Inter, system-ui, sans-serif;
+  z-index: 119;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-4px);
+  transition: opacity 140ms ease, transform 140ms ease, visibility 140ms;
+}
+
+.codex-preview[data-open="true"] { opacity: 1; visibility: visible; transform: translateX(0); }
+.codex-preview::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 12px;
+  height: 100%;
+}
+
+.codex-preview-jump {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.codex-preview-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin: 0 24px 8px 0;
+  color: #202123;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.codex-preview-excerpt {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  color: #8b8e92;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.codex-preview-bookmark {
+  position: absolute;
+  top: 10px;
+  right: 9px;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 6px;
+  color: #9c9ea1;
+  background: transparent;
+  cursor: pointer;
+}
+
+.codex-preview-bookmark:hover { background: #f3f4f4; color: #4c5053; }
+.codex-preview-bookmark[aria-pressed="true"] { color: #202123; }
+.codex-preview-bookmark[aria-pressed="true"] svg { fill: currentColor; }
+.codex-preview button:focus-visible { outline: 2px solid #333444; outline-offset: 2px; }
+.codex-timeline-status { position: fixed; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (max-width: 900px) {
+  :root { --codex-rail-inset: 12px; --codex-rail-width: 36px; --codex-content-gutter: 64px; }
+}
+
+@media (max-height: 480px) {
+  .codex-timeline { height: min(320px, calc(100dvh - 120px - env(safe-area-inset-bottom))); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .codex-timeline-tick, .codex-preview { transition: none; }
+}
