@@ -1,4 +1,7 @@
 (() => {
+  /* Reply storyboard: open the 189px preview, then grow upward with content.
+     Height settles over 220ms without overshoot; at 696px the messages scroll. */
+  const PANEL = { initialHeight: 189, maxHeight: 696, bottomGap: 7, topGap: 12 };
   const thread = document.querySelector('[data-pencil-id="BiA9g"]');
   const scroller = document.querySelector('[data-pencil-id="Fr1yZ"]');
   const header = document.querySelector('[data-pencil-id="Qgz9s"]');
@@ -7,7 +10,13 @@
   const input = document.getElementById('message-input');
   const send = document.getElementById('message-send');
   const reply = document.getElementById('section-reply');
-  const context = document.getElementById('reply-context');
+  const panel = document.getElementById('reply-panel');
+  const panelHeader = panel.querySelector('.reply-panel-header');
+  const panelScroll = document.getElementById('reply-panel-scroll');
+  const panelMessages = document.getElementById('reply-panel-messages');
+  const panelComposer = document.getElementById('reply-panel-composer');
+  const turns = document.getElementById('reply-turns');
+  const timestamp = document.getElementById('reply-timestamp');
   const source = document.getElementById('reply-source');
   const cancel = document.getElementById('reply-cancel');
   const live = document.getElementById('reply-live');
@@ -19,6 +28,49 @@
   let positionFrame;
   let pointer;
   let sentCount = 0;
+  let resizeFrame;
+  let mainDraft = '';
+  let followReplies = true;
+  const conversations = new Map();
+  reply.setAttribute('aria-controls', 'reply-panel');
+
+  function panelLimit() {
+    const viewport = window.visualViewport;
+    const height = viewport?.height || window.innerHeight;
+    const clearance = Math.min(header.getBoundingClientRect().bottom + PANEL.topGap, height * 0.3);
+    return Math.max(0, Math.min(PANEL.maxHeight, height - PANEL.bottomGap - clearance));
+  }
+
+  function resizePanel() {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => {
+      if (!selected) return;
+      const scrollStyle = getComputedStyle(panelScroll);
+      const contentHeight = panelMessages.getBoundingClientRect().height;
+      const desired = panelHeader.offsetHeight + panelComposer.offsetHeight + contentHeight +
+        parseFloat(scrollStyle.paddingTop) + parseFloat(scrollStyle.paddingBottom) + 2;
+      const limit = panelLimit();
+      panel.style.maxHeight = `${limit}px`;
+      panel.style.height = `${Math.min(limit, Math.max(PANEL.initialHeight, Math.ceil(desired)))}px`;
+    });
+  }
+
+  function sourceTimestamp(node) {
+    let label = '';
+    for (const item of thread.querySelectorAll('[data-pencil-name="Stamp"], [id^="codex-message-"]')) {
+      if (item.dataset.pencilName === 'Stamp') label = item.textContent.trim();
+      if (item === node || item.contains(node)) break;
+    }
+    return label || 'Original message';
+  }
+
+  function appendReply(text) {
+    const bubble = document.createElement('div');
+    bubble.className = 'reply-panel-turn';
+    bubble.setAttribute('aria-label', `You: ${text}`);
+    bubble.textContent = text;
+    turns.append(bubble);
+  }
 
   function sectionText(node) {
     const copy = node.querySelector('[data-pencil-name="Copy"]');
@@ -102,32 +154,65 @@
     input.style.height = '20px';
     input.style.height = `${input.value ? Math.min(120, Math.max(20, input.scrollHeight)) : 20}px`;
     send.disabled = !input.value.trim();
+    if (selected) {
+      selected.draft = input.value;
+      resizePanel();
+    }
   }
 
-  function clearContext() {
+  function closeReply(focus = true) {
+    if (!selected) return;
+    selected.draft = input.value;
     selected = undefined;
-    context.hidden = true;
+    cancelAnimationFrame(resizeFrame);
+    panel.hidden = true;
+    dock.dataset.replyOpen = 'false';
+    dock.append(composer);
     composer.dataset.replying = 'false';
+    input.value = mainDraft;
     input.placeholder = defaultPlaceholder;
     input.setAttribute('aria-label', 'Message');
-    source.textContent = '';
+    send.setAttribute('aria-label', 'Send message');
     reply.setAttribute('aria-pressed', 'false');
+    reply.setAttribute('aria-expanded', 'false');
+    hideReply();
     updateInput();
+    if (focus) input.focus({ preventScroll: true });
   }
 
   function beginReply(node) {
     document.dispatchEvent(new Event('codex-navigate'));
-    selected = { node, text: sectionText(node) };
+    if (selected?.node === node) {
+      input.focus({ preventScroll: true });
+      return;
+    }
+    if (selected) selected.draft = input.value;
+    else mainDraft = input.value;
+    if (!conversations.has(node)) conversations.set(node, {
+      node, text: sectionText(node), timestamp: sourceTimestamp(node), replies: [], draft: ''
+    });
+    selected = conversations.get(node);
     source.textContent = selected.text;
     source.title = selected.text;
     source.setAttribute('aria-label', `Go to original message: ${selected.text}`);
-    context.hidden = false;
+    timestamp.textContent = selected.timestamp;
+    turns.replaceChildren();
+    selected.replies.forEach(appendReply);
+    panel.dataset.state = selected.replies.length ? 'conversation' : 'preview';
+    panel.style.height = `${Math.min(PANEL.initialHeight, panelLimit())}px`;
+    panel.style.maxHeight = `${panelLimit()}px`;
+    panel.hidden = false;
+    dock.dataset.replyOpen = 'true';
+    panelComposer.append(composer);
     composer.dataset.replying = 'true';
-    input.placeholder = 'Reply…';
+    input.value = selected.draft;
+    input.placeholder = defaultPlaceholder;
     input.setAttribute('aria-label', 'Reply');
+    send.setAttribute('aria-label', 'Send reply');
+    reply.setAttribute('aria-expanded', 'true');
+    followReplies = true;
     input.focus({ preventScroll: true });
-    showReply(node);
-    queueHide();
+    hideReply();
     live.textContent = `Replying to: ${selected.text}`;
     updateInput();
   }
@@ -169,9 +254,8 @@
   reply.addEventListener('click', () => { if (activeTarget) beginReply(activeTarget); });
   source.addEventListener('click', () => { if (selected) jumpToSource(selected.node); });
   cancel.addEventListener('click', () => {
-    clearContext();
-    live.textContent = 'Reply canceled.';
-    input.focus({ preventScroll: true });
+    closeReply();
+    live.textContent = 'Reply conversation closed. Your draft is saved.';
   });
   input.addEventListener('input', updateInput);
   input.addEventListener('keydown', event => {
@@ -182,31 +266,33 @@
     } else if (event.key === 'Escape' && selected) {
       event.preventDefault();
       event.stopPropagation();
-      clearContext();
-      live.textContent = 'Reply canceled.';
+      closeReply();
+      live.textContent = 'Reply conversation closed. Your draft is saved.';
     }
   });
   composer.addEventListener('submit', event => {
     event.preventDefault();
     const text = input.value.trim();
     if (!text) return;
+    if (selected) {
+      selected.replies.push(text);
+      selected.draft = '';
+      appendReply(text);
+      panel.dataset.state = 'conversation';
+      input.value = '';
+      followReplies = true;
+      updateInput();
+      panelScroll.scrollTop = panelScroll.scrollHeight;
+      live.textContent = 'Reply sent.';
+      input.focus({ preventScroll: true });
+      return;
+    }
     document.dispatchEvent(new Event('codex-navigate'));
-    const quoted = selected;
     const turn = document.createElement('div');
     turn.className = 'reply-sent';
     turn.dataset.pencilId = `reply-${++sentCount}`;
     turn.dataset.pencilName = 'User turn';
     turn.dataset.replySent = 'true';
-    if (quoted) {
-      const quote = document.createElement('button');
-      quote.type = 'button';
-      quote.className = 'reply-sent-quote';
-      quote.textContent = quoted.text;
-      quote.title = quoted.text;
-      quote.setAttribute('aria-label', `Go to original message: ${quoted.text}`);
-      quote.addEventListener('click', () => jumpToSource(quoted.node));
-      turn.append(quote);
-    }
     const bubble = document.createElement('div');
     bubble.className = 'reply-sent-bubble';
     bubble.dataset.replyText = 'true';
@@ -214,10 +300,10 @@
     turn.append(bubble);
     thread.append(turn);
     input.value = '';
-    clearContext();
+    updateInput();
     hideReply();
     document.dispatchEvent(new CustomEvent('owl-message-sent', { detail: { node: turn } }));
-    live.textContent = quoted ? 'Reply sent.' : 'Message sent.';
+    live.textContent = 'Message sent.';
     input.focus({ preventScroll: true });
     requestAnimationFrame(() => { scroller.scrollTop = scroller.scrollHeight; });
   });
@@ -243,8 +329,16 @@
   document.addEventListener('pointerdown', event => {
     if (!reply.contains(event.target) && !event.target.closest('.reply-target')) hideReply();
   });
-  for (const event of ['owl-sidebar-change', 'owl-profile-change']) document.addEventListener(event, hideReply);
-  window.addEventListener('resize', positionReply);
+  document.addEventListener('owl-sidebar-change', () => { hideReply(); resizePanel(); });
+  document.addEventListener('owl-profile-change', () => { closeReply(false); hideReply(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && selected && !event.defaultPrevented) {
+      event.preventDefault();
+      closeReply();
+    }
+  });
+  window.addEventListener('resize', () => { positionReply(); resizePanel(); });
+  window.visualViewport?.addEventListener('resize', resizePanel);
   let inputWidth = 0;
   new ResizeObserver(([entry]) => {
     if (Math.abs(entry.contentRect.width - inputWidth) < 0.5) return;
@@ -252,10 +346,27 @@
     updateInput();
   }).observe(input);
   new ResizeObserver(() => {
-    const atEnd = scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight < 3;
-    scroller.style.setProperty('padding-bottom', `${Math.ceil(dock.getBoundingClientRect().height) + 16}px`, 'important');
-    if (atEnd) scroller.scrollTop = scroller.scrollHeight;
+    if (!selected) {
+      const atEnd = scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight < 3;
+      scroller.style.setProperty('padding-bottom', `${Math.ceil(dock.getBoundingClientRect().height) + 16}px`, 'important');
+      if (atEnd) scroller.scrollTop = scroller.scrollHeight;
+    }
     positionReply();
   }).observe(dock);
+  const contentObserver = new ResizeObserver(resizePanel);
+  contentObserver.observe(panelMessages);
+  contentObserver.observe(panelComposer);
+  new ResizeObserver(() => {
+    if (selected && followReplies) panelScroll.scrollTop = panelScroll.scrollHeight;
+  }).observe(panelScroll);
+  panelScroll.addEventListener('wheel', event => {
+    if (event.deltaY < 0) followReplies = false;
+  }, { passive: true });
+  panelScroll.addEventListener('keydown', event => {
+    if (['ArrowUp', 'PageUp', 'Home'].includes(event.key)) followReplies = false;
+  });
+  panelScroll.addEventListener('scroll', () => {
+    followReplies = panelScroll.scrollHeight - panelScroll.scrollTop - panelScroll.clientHeight < 3;
+  }, { passive: true });
   updateInput();
 })();
