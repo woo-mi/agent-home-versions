@@ -5,29 +5,38 @@
 
 .codex-timeline {
   position: fixed;
-  top: 134px;
+  top: 100px;
+  bottom: calc(80px + env(safe-area-inset-bottom));
   left: calc(var(--sidebar-width) + var(--codex-rail-inset));
-  display: grid;
-  grid-template-rows: repeat(var(--stop-count), minmax(0, 1fr));
+  display: flex;
+  flex-direction: column;
   width: var(--codex-rail-width);
-  height: calc(var(--stop-count) * 9px);
-  max-height: calc(100dvh - 218px - env(safe-area-inset-bottom));
+  padding: 8px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-width: none;
+  touch-action: pan-y;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20px, #000 calc(100% - 20px), transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 20px, #000 calc(100% - 20px), transparent);
   z-index: 118;
 }
+.codex-timeline::-webkit-scrollbar { display: none; }
 
 .codex-timeline-stop {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex: 0 0 10px;
   width: 100%;
-  min-height: 0;
+  height: 10px;
   padding: 0;
   margin: 0;
   border: 0;
   background: transparent;
   cursor: pointer;
-  touch-action: manipulation;
+  touch-action: pan-y;
 }
 
 .codex-timeline-tick {
@@ -44,7 +53,7 @@
 .codex-timeline-stop:focus-visible::after {
   content: "";
   position: absolute;
-  inset: -1px 6px -1px -3px;
+  inset: 0 6px 0 0;
   border: 1px solid #b7b9bc;
   border-radius: 3px;
 }
@@ -142,7 +151,7 @@
 }
 
 @media (max-height: 480px) {
-  .codex-timeline { top: 80px; max-height: calc(100dvh - 164px - env(safe-area-inset-bottom)); }
+  .codex-timeline { top: 56px; bottom: calc(64px + env(safe-area-inset-bottom)); }
 }
 
 @media (prefers-reduced-motion: reduce) {

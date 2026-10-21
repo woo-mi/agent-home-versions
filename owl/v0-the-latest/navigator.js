@@ -42,6 +42,8 @@
   let openTimer;
   let closeTimer;
   let scrollFrame;
+  let railFrame;
+  let railPointer;
   let jumpTimer;
   let jumpingUntil = 0;
   let suppressFocus = false;
@@ -54,7 +56,6 @@
 
   const cancelOpen = () => { clearTimeout(openTimer); openTimer = undefined; };
 
-  timeline.style.setProperty('--stop-count', messages.length);
   const buttons = messages.map((message, index) => {
     const button = document.createElement('button');
     button.type = 'button';
@@ -67,15 +68,15 @@
     button.innerHTML = '<span class="codex-timeline-tick" aria-hidden="true"></span>';
     nodes[index].id = `codex-message-${message.id}`;
     button.addEventListener('pointerenter', event => {
-      if (event.pointerType === 'touch' || escapeDismissedIndex === index) return;
-      escapeDismissedIndex = -1;
-      clearTimeout(closeTimer);
-      cancelOpen();
-      hovered = index;
-      paintTicks();
-      openTimer = setTimeout(() => showPreview(index), 80);
+      if (event.pointerType === 'touch') return;
+      railPointer = { x: event.clientX, y: event.clientY };
+      previewOnHover(index);
     });
-    button.addEventListener('focus', () => { if (!suppressFocus) showPreview(index); });
+    button.addEventListener('focus', () => {
+      if (suppressFocus) return;
+      ensureTickVisible(index);
+      showPreview(index);
+    });
     button.addEventListener('click', () => {
       escapeDismissedIndex = -1;
       showPreview(index);
@@ -84,6 +85,24 @@
     timeline.append(button);
     return button;
   });
+
+  function previewOnHover(index) {
+    if (escapeDismissedIndex === index) return;
+    escapeDismissedIndex = -1;
+    clearTimeout(closeTimer);
+    cancelOpen();
+    hovered = index;
+    paintTicks();
+    openTimer = setTimeout(() => showPreview(index), 80);
+  }
+
+  function ensureTickVisible(index) {
+    const tick = buttons[index].getBoundingClientRect();
+    const rail = timeline.getBoundingClientRect();
+    const inset = Math.min(20, timeline.clientHeight / 4);
+    if (tick.top < rail.top + inset) timeline.scrollTop += tick.top - rail.top - inset;
+    else if (tick.bottom > rail.bottom - inset) timeline.scrollTop += tick.bottom - rail.bottom + inset;
+  }
 
   function paintTicks() {
     buttons.forEach((button, index) => {
@@ -118,6 +137,11 @@
   function positionPreview() {
     if (previewIndex < 0) return;
     const tick = buttons[previewIndex].getBoundingClientRect();
+    const rail = timeline.getBoundingClientRect();
+    if (tick.bottom <= rail.top || tick.top >= rail.bottom) {
+      concealPreview();
+      return;
+    }
     const height = preview.offsetHeight;
     const bottomLimit = innerHeight - 64;
     const top = Math.max(12, Math.min(bottomLimit - height, tick.top + tick.height / 2 - height / 2));
@@ -181,6 +205,10 @@
     selected = index;
     buttons.forEach((button, i) => { button.tabIndex = i === index ? 0 : -1; });
     paintTicks();
+    // Follow the conversation without interrupting someone browsing the rail.
+    if (!inNavigator(document.activeElement) && !timeline.matches(':hover') && !preview.matches(':hover')) {
+      ensureTickVisible(index);
+    }
   }
 
   function clearance() { return header.getBoundingClientRect().bottom + 16; }
@@ -221,18 +249,42 @@
     if (!(event.key in directions) && event.key !== 'Home' && event.key !== 'End') return;
     event.preventDefault();
     escapeDismissedIndex = -1;
-    let next = previewIndex >= 0 && hovered >= 0 ? previewIndex : selected;
+    const focusedIndex = buttons.indexOf(document.activeElement);
+    let next = focusedIndex >= 0 ? focusedIndex : previewIndex >= 0 && hovered >= 0 ? previewIndex : selected;
     if (event.key === 'Home') next = 0;
     else if (event.key === 'End') next = messages.length - 1;
     else next = Math.max(0, Math.min(messages.length - 1, next + directions[event.key]));
     buttons.forEach((button, index) => { button.tabIndex = index === next ? 0 : -1; });
+    ensureTickVisible(next);
     buttons[next].focus({ preventScroll: true });
     showPreview(next);
   }
 
   timeline.addEventListener('keydown', keyboardNavigation);
   preview.addEventListener('keydown', keyboardNavigation);
+  timeline.addEventListener('pointermove', event => {
+    if (event.pointerType !== 'touch') railPointer = { x: event.clientX, y: event.clientY };
+  });
+  timeline.addEventListener('scroll', () => {
+    cancelAnimationFrame(railFrame);
+    railFrame = requestAnimationFrame(() => {
+      const keyboardFocus = inNavigator(document.activeElement) && document.activeElement.matches(':focus-visible');
+      if (railPointer && !keyboardFocus) {
+        const rail = timeline.getBoundingClientRect();
+        if (railPointer.x >= rail.left && railPointer.x < rail.right && railPointer.y >= rail.top && railPointer.y < rail.bottom) {
+          const index = buttons.findIndex(button => {
+            const tick = button.getBoundingClientRect();
+            return railPointer.y >= tick.top && railPointer.y < tick.bottom;
+          });
+          if (index >= 0 && index !== hovered) previewOnHover(index);
+        }
+      }
+      positionPreview();
+    });
+  }, { passive: true });
+  timeline.addEventListener('wheel', event => event.stopPropagation(), { passive: true });
   timeline.addEventListener('pointerleave', event => {
+    railPointer = undefined;
     escapeDismissedIndex = -1;
     scheduleClose(event);
   });
@@ -272,7 +324,12 @@
       hidePreview();
     }
   });
-  window.addEventListener('resize', positionPreview);
+  window.addEventListener('resize', () => {
+    const focusedIndex = buttons.indexOf(document.activeElement);
+    if (focusedIndex >= 0) ensureTickVisible(focusedIndex);
+    else if (!timeline.matches(':hover') && !preview.matches(':hover')) ensureTickVisible(selected);
+    positionPreview();
+  });
   new ResizeObserver(positionPreview).observe(preview);
   paintTicks();
   document.fonts.ready.then(syncPosition);
