@@ -261,10 +261,10 @@
     <script src="../version-control.js?v=2" defer></script>
     <link rel="stylesheet" href="navigator.css?v=4" />
     <link rel="stylesheet" href="latest.css?v=5" />
-    <link rel="stylesheet" href="right-panel.css?v=3" />
+    <link rel="stylesheet" href="right-panel.css?v=4" />
     <script src="navigator.js?v=3" defer></script>
     <script src="sidebar.js?v=1" defer></script>
-    <script src="right-panel.js?v=2" defer></script>
+    <script src="right-panel.js?v=3" defer></script>
   </head>
   <body data-prototype-version="v0" style="background-color: #FFFFFF">
     <div
@@ -9934,27 +9934,33 @@
         <ul class="right-panel-card-list">
           <li class="right-panel-schedule right-panel-tool">
             <p class="right-panel-schedule-title">Notion</p>
-            <p class="right-panel-schedule-time">Connected</p>
+            <p id="tool-notion-status" class="right-panel-schedule-time">Connected</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Notion" aria-describedby="tool-notion-status"><span aria-hidden="true"></span></button>
           </li>
           <li class="right-panel-schedule right-panel-tool">
             <p class="right-panel-schedule-title">HubSpot</p>
-            <p class="right-panel-schedule-time">Connected</p>
+            <p id="tool-hubspot-status" class="right-panel-schedule-time">Connected</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable HubSpot" aria-describedby="tool-hubspot-status"><span aria-hidden="true"></span></button>
           </li>
           <li class="right-panel-schedule right-panel-tool">
             <p class="right-panel-schedule-title">Slack</p>
-            <p class="right-panel-schedule-time">Connected · WisdomAI</p>
+            <p id="tool-slack-status" class="right-panel-schedule-time">Connected · WisdomAI</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Slack" aria-describedby="tool-slack-status"><span aria-hidden="true"></span></button>
           </li>
           <li class="right-panel-schedule right-panel-tool">
             <p class="right-panel-schedule-title">Gmail</p>
-            <p class="right-panel-schedule-time">Connecting…</p>
+            <p id="tool-gmail-status" class="right-panel-schedule-time">Connecting…</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Gmail" aria-describedby="tool-gmail-status"><span aria-hidden="true"></span></button>
           </li>
           <li class="right-panel-schedule right-panel-tool">
             <p class="right-panel-schedule-title">Snowflake</p>
-            <p class="right-panel-schedule-time">Service-account key renewal due</p>
+            <p id="tool-snowflake-status" class="right-panel-schedule-time">Service-account key renewal due</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Snowflake" aria-describedby="tool-snowflake-status"><span aria-hidden="true"></span></button>
           </li>
           <li class="right-panel-schedule right-panel-tool">
             <p class="right-panel-schedule-title">Databricks</p>
-            <p class="right-panel-schedule-time">Approval pending · Restrict to product_events</p>
+            <p id="tool-databricks-status" class="right-panel-schedule-time">Approval pending · Restrict to product_events</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="false" aria-label="Enable Databricks" aria-describedby="tool-databricks-status"><span aria-hidden="true"></span></button>
           </li>
         </ul>
       </section>

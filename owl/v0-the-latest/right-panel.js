@@ -110,8 +110,13 @@
     syncModal();
     if (!panel.hidden && compact.matches && !panel.contains(document.activeElement)) panel.focus({ preventScroll: true });
   });
-  panel.querySelectorAll('.right-panel-switch').forEach(toggle => toggle.addEventListener('click', event => {
-    const toggle = event.currentTarget;
-    toggle.setAttribute('aria-checked', String(toggle.getAttribute('aria-checked') !== 'true'));
-  }));
+  panel.querySelectorAll('.right-panel-switch').forEach(toggle => {
+    const status = toggle.closest('.right-panel-tool')?.querySelector('.right-panel-schedule-time');
+    const enabledStatus = status?.textContent;
+    toggle.addEventListener('click', () => {
+      const enabled = toggle.getAttribute('aria-checked') !== 'true';
+      toggle.setAttribute('aria-checked', String(enabled));
+      if (status) status.textContent = enabled ? enabledStatus : 'Disabled';
+    });
+  });
 })();
