@@ -9910,16 +9910,63 @@
         <h3 id="right-panel-schedules-title" class="right-panel-section-title">Schedules</h3>
         <ul class="right-panel-card-list">
           <li class="right-panel-schedule">
-            <p class="right-panel-schedule-title">Weekday morning plan</p>
-            <p class="right-panel-schedule-time">Weekdays at 7:48 AM</p>
-            <button id="morning-schedule-toggle" class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Weekday morning plan"><span aria-hidden="true"></span></button>
+            <p class="right-panel-schedule-title">Weekly Sales Pipeline Update</p>
+            <p class="right-panel-schedule-time">Fridays at 7:00 AM PT</p>
+            <p class="right-panel-schedule-time">Slack · #sales-pipeline</p>
+            <button id="pipeline-schedule-toggle" class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Weekly Sales Pipeline Update"><span aria-hidden="true"></span></button>
+          </li>
+          <li class="right-panel-schedule">
+            <p class="right-panel-schedule-title">Weekly Workspace Health</p>
+            <p class="right-panel-schedule-time">Fridays at 4:00 PM PT</p>
+            <p class="right-panel-schedule-time">Slack · #data-platform</p>
+            <button id="workspace-schedule-toggle" class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Weekly Workspace Health"><span aria-hidden="true"></span></button>
+          </li>
+          <li class="right-panel-schedule">
+            <p class="right-panel-schedule-title">Quarterly Wisdom Review</p>
+            <p class="right-panel-schedule-time">5 business days before each quarter ends</p>
+            <button id="quarterly-schedule-toggle" class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Quarterly Wisdom Review"><span aria-hidden="true"></span></button>
+          </li>
+        </ul>
+      </section>
+      <section class="right-panel-group" aria-labelledby="right-panel-tools-title">
+        <h3 id="right-panel-tools-title" class="right-panel-section-title">Tools</h3>
+        <ul class="right-panel-card-list">
+          <li class="right-panel-schedule right-panel-tool">
+            <p class="right-panel-schedule-title">Notion</p>
+            <p id="tool-notion-status" class="right-panel-schedule-time">Connected</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Notion" aria-describedby="tool-notion-status"><span aria-hidden="true"></span></button>
+          </li>
+          <li class="right-panel-schedule right-panel-tool">
+            <p class="right-panel-schedule-title">HubSpot</p>
+            <p id="tool-hubspot-status" class="right-panel-schedule-time">Connected</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable HubSpot" aria-describedby="tool-hubspot-status"><span aria-hidden="true"></span></button>
+          </li>
+          <li class="right-panel-schedule right-panel-tool">
+            <p class="right-panel-schedule-title">Slack</p>
+            <p id="tool-slack-status" class="right-panel-schedule-time">Connected · WisdomAI</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Slack" aria-describedby="tool-slack-status"><span aria-hidden="true"></span></button>
+          </li>
+          <li class="right-panel-schedule right-panel-tool">
+            <p class="right-panel-schedule-title">Gmail</p>
+            <p id="tool-gmail-status" class="right-panel-schedule-time">Connecting…</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Gmail" aria-describedby="tool-gmail-status"><span aria-hidden="true"></span></button>
+          </li>
+          <li class="right-panel-schedule right-panel-tool">
+            <p class="right-panel-schedule-title">Snowflake</p>
+            <p id="tool-snowflake-status" class="right-panel-schedule-time">Service-account key renewal due</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="true" aria-label="Enable Snowflake" aria-describedby="tool-snowflake-status"><span aria-hidden="true"></span></button>
+          </li>
+          <li class="right-panel-schedule right-panel-tool">
+            <p class="right-panel-schedule-title">Databricks</p>
+            <p id="tool-databricks-status" class="right-panel-schedule-time">Approval pending · Restrict to product_events</p>
+            <button class="right-panel-switch" type="button" role="switch" aria-checked="false" aria-label="Enable Databricks" aria-describedby="tool-databricks-status"><span aria-hidden="true"></span></button>
           </li>
         </ul>
       </section>
     </section>
     <section id="right-panel-artifacts" class="right-panel-tabpanel right-panel-artifacts" role="tabpanel" aria-labelledby="right-panel-tab-artifacts" tabindex="0" hidden>
-      <section class="right-panel-group" aria-labelledby="right-panel-today-artifacts-title">
-        <h3 id="right-panel-today-artifacts-title" class="right-panel-section-title">Today</h3>
+      <section class="right-panel-group" aria-labelledby="right-panel-apps-title">
+        <h3 id="right-panel-apps-title" class="right-panel-section-title">Apps</h3>
         <ul class="right-panel-artifact-list">
           <li class="right-panel-artifact-row">
             <span class="right-panel-artifact-icon" aria-hidden="true">
@@ -9959,6 +10006,51 @@
                 style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 6px; left: 9.72px; position: absolute; top: 7.92px; width: 5.58px; z-index: 4"
               ></div>
             </span>
+            <span class="right-panel-artifact-name">Wisdom Workspace Health</span>
+          </li>
+          <li class="right-panel-artifact-row">
+            <span class="right-panel-artifact-icon" aria-hidden="true">
+              <div
+                style="background-color: #5b6e8c; border-radius: 0px 0px 4.14px 4.14px; box-sizing: border-box; height: 8.4px; left: 0px; position: absolute; top: 15.6px; width: 18px; z-index: 0"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 3.36px; width: 12.6px; z-index: 1"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 7.92px; width: 5.4px; z-index: 2"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 11.52px; width: 5.4px; z-index: 3"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 6px; left: 9.72px; position: absolute; top: 7.92px; width: 5.58px; z-index: 4"
+              ></div>
+            </span>
+            <span class="right-panel-artifact-name">Wisdom Q4 2026 Business Review</span>
+          </li>
+        </ul>
+      </section>
+      <section class="right-panel-group" aria-labelledby="right-panel-reports-title">
+        <h3 id="right-panel-reports-title" class="right-panel-section-title">Reports</h3>
+        <ul class="right-panel-artifact-list">
+          <li class="right-panel-artifact-row">
+            <span class="right-panel-artifact-icon" aria-hidden="true">
+              <div
+                style="background-color: #5b6e8c; border-radius: 0px 0px 4.14px 4.14px; box-sizing: border-box; height: 8.4px; left: 0px; position: absolute; top: 15.6px; width: 18px; z-index: 0"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 3.36px; width: 12.6px; z-index: 1"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 7.92px; width: 5.4px; z-index: 2"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 11.52px; width: 5.4px; z-index: 3"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 6px; left: 9.72px; position: absolute; top: 7.92px; width: 5.58px; z-index: 4"
+              ></div>
+            </span>
             <span class="right-panel-artifact-name">Weekly Sales Pipeline Update</span>
           </li>
           <li class="right-panel-artifact-row">
@@ -9979,7 +10071,47 @@
                 style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 6px; left: 9.72px; position: absolute; top: 7.92px; width: 5.58px; z-index: 4"
               ></div>
             </span>
-            <span class="right-panel-artifact-name">EMEA QBR outline</span>
+            <span class="right-panel-artifact-name">Weekly update</span>
+          </li>
+          <li class="right-panel-artifact-row">
+            <span class="right-panel-artifact-icon" aria-hidden="true">
+              <div
+                style="background-color: #5b6e8c; border-radius: 0px 0px 4.14px 4.14px; box-sizing: border-box; height: 8.4px; left: 0px; position: absolute; top: 15.6px; width: 18px; z-index: 0"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 3.36px; width: 12.6px; z-index: 1"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 7.92px; width: 5.4px; z-index: 2"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 11.52px; width: 5.4px; z-index: 3"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 6px; left: 9.72px; position: absolute; top: 7.92px; width: 5.58px; z-index: 4"
+              ></div>
+            </span>
+            <span class="right-panel-artifact-name">Weekly Workspace Health</span>
+          </li>
+          <li class="right-panel-artifact-row">
+            <span class="right-panel-artifact-icon" aria-hidden="true">
+              <div
+                style="background-color: #5b6e8c; border-radius: 0px 0px 4.14px 4.14px; box-sizing: border-box; height: 8.4px; left: 0px; position: absolute; top: 15.6px; width: 18px; z-index: 0"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 3.36px; width: 12.6px; z-index: 1"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 7.92px; width: 5.4px; z-index: 2"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 2.4px; left: 2.7px; position: absolute; top: 11.52px; width: 5.4px; z-index: 3"
+              ></div>
+              <div
+                style="background-color: #D5D7D8; border-radius: 2px; box-sizing: border-box; height: 6px; left: 9.72px; position: absolute; top: 7.92px; width: 5.58px; z-index: 4"
+              ></div>
+            </span>
+            <span class="right-panel-artifact-name">SOC 2 access-review export</span>
           </li>
         </ul>
       </section>
