@@ -22,12 +22,25 @@
     return text.length ? text : [node.dataset.pencilName || 'Chief of staff'];
   }
 
-  const nodes = messageBlocks(document.querySelector('[data-pencil-id="BiA9g"]'));
-  const messages = nodes.map(node => ({
-    id: node.dataset.pencilId,
-    name: node.dataset.pencilName || 'Chief of staff',
-    text: readableText(node)
-  }));
+  function messageFromNode(node) {
+    const text = readableText(node);
+    const message = {
+      id: node.dataset.pencilId,
+      name: node.dataset.pencilName || 'Chief of staff',
+      text
+    };
+    if (node.dataset.replySent === 'true') {
+      const reply = node.querySelector('[data-reply-text]');
+      const quote = node.querySelector('.reply-sent-quote');
+      message.text = [reply?.textContent.replace(/\s+/g, ' ').trim() || text.at(-1)];
+      message.replyContext = quote?.textContent.replace(/\s+/g, ' ').trim() || '';
+    }
+    return message;
+  }
+
+  const conversationContent = document.querySelector('[data-pencil-id="BiA9g"]');
+  const nodes = messageBlocks(conversationContent);
+  const messages = nodes.map(messageFromNode);
   const timeline = document.getElementById('codex-timeline');
   const preview = document.getElementById('codex-preview');
   const title = document.getElementById('codex-preview-title');
@@ -56,7 +69,7 @@
 
   const cancelOpen = () => { clearTimeout(openTimer); openTimer = undefined; };
 
-  const buttons = messages.map((message, index) => {
+  function createTick(message, index) {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'codex-timeline-stop';
@@ -84,7 +97,34 @@
     });
     timeline.append(button);
     return button;
-  });
+  }
+
+  const buttons = messages.map(createTick);
+
+  function appendSentMessage(node) {
+    if (!node || node.parentElement !== conversationContent || node.dataset?.replySent !== 'true' ||
+      node.dataset.pencilName !== 'User turn' || !node.dataset.pencilId ||
+      nodes.includes(node) || messages.some(message => message.id === node.dataset.pencilId)) return;
+
+    hidePreview();
+    railPointer = undefined;
+    escapeDismissedIndex = -1;
+    jumpingUntil = 0;
+    clearTimeout(jumpTimer);
+    nodes.push(node);
+    const message = messageFromNode(node);
+    const index = messages.push(message) - 1;
+    buttons.push(createTick(message, index));
+    buttons.forEach((button, i) => {
+      button.setAttribute('aria-label', `Message ${i + 1} of ${messages.length}: ${messages[i].text[0]}`);
+    });
+    setSelected(index);
+    ensureTickVisible(index);
+    scroller.scrollTop = scroller.scrollHeight;
+    cancelAnimationFrame(scrollFrame);
+    scrollFrame = requestAnimationFrame(syncPosition);
+    status.textContent = `Message ${index + 1} of ${messages.length}: ${message.text[0]}`;
+  }
 
   function previewOnHover(index) {
     if (escapeDismissedIndex === index) return;
@@ -120,6 +160,7 @@
 
   function previewCopy(index) {
     const message = messages[index];
+    if ('replyContext' in message) return { title: message.text[0], excerpt: message.replyContext || message.text[0] };
     if (message.text[0]?.includes('prep me on the net new ARR thing for Marcus')) {
       return {
         title: 'Prep me on net new ARR for Marcus',
@@ -306,6 +347,7 @@
     cancelAnimationFrame(scrollFrame);
     scrollFrame = requestAnimationFrame(syncPosition);
   }, { passive: true });
+  document.addEventListener('owl-message-sent', event => appendSentMessage(event.detail?.node));
   for (const event of ['wheel', 'touchstart', 'pointerdown', 'keydown']) {
     scroller.addEventListener(event, () => {
       jumpingUntil = 0;

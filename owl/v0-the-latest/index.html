@@ -262,9 +262,11 @@
     <link rel="stylesheet" href="navigator.css?v=4" />
     <link rel="stylesheet" href="latest.css?v=7" />
     <link rel="stylesheet" href="right-panel.css?v=4" />
-    <script src="navigator.js?v=3" defer></script>
+    <script src="navigator.js?v=4" defer></script>
     <script src="sidebar.js?v=1" defer></script>
     <script src="right-panel.js?v=3" defer></script>
+    <link rel="stylesheet" href="reply.css?v=3" />
+    <script src="reply.js?v=3" defer></script>
   </head>
   <body data-prototype-version="v0" style="background-color: #FFFFFF">
     <div
@@ -9587,24 +9589,17 @@
             </div>
           </div>
           <div class="composer-dock">
-          <div
+          <form id="chat-composer" class="reply-composer" aria-label="Chat composer"
             data-pencil-id="vsRix"
             data-pencil-name="Composer"
             style="align-items: center; background-color: #FFFFFF; border-radius: 100px; box-shadow: 0px 2px 8px #14181F0F; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 230.5px; height: fit-content; justify-content: flex-start; outline-offset: -0.5px; outline: 1px solid #BFC1CF; padding: 13.5px 13.5px 13.5px 14px; width: 100%"
           >
-            <div
-              data-pencil-id="ZE6Oz"
-              data-pencil-name="Input"
-              style="box-sizing: border-box; flex-shrink: 0; height: 17px; position: relative; width: 303px"
-            >
-              <div
-                data-pencil-id="vK9wT"
-                data-pencil-name="Placeholder"
-                style="box-sizing: border-box; color: #00000061; font-family: Inter, system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; left: 4px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 0px; white-space: nowrap; z-index: 0"
-              >
-                Get quick answers and dig in with follow-ups
-              </div>
+            <div id="reply-context" class="reply-context" hidden>
+              <button id="reply-source" class="reply-context-source" type="button" aria-label="Go to original message"></button>
+              <button id="reply-cancel" type="button" aria-label="Cancel reply"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="m4.5 4.5 7 7m0-7-7 7"/></svg></button>
             </div>
+            <div class="reply-composer-row">
+            <textarea id="message-input" data-pencil-id="ZE6Oz" data-pencil-name="Input" rows="1" aria-label="Message" placeholder="Get quick answers and dig in with follow-ups"></textarea>
             <div
               data-pencil-id="Gb4hj"
               data-pencil-name="Right"
@@ -9668,7 +9663,7 @@
                   fill="#14181FB3"
                 ></path>
               </svg>
-              <div
+              <button id="message-send" type="submit" aria-label="Send message" disabled
                 data-pencil-id="W4EXag"
                 data-pencil-name="Send"
                 style="align-items: center; background-color: #ECEEF4; border-radius: 13px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 26px; justify-content: center; width: 26px"
@@ -9688,9 +9683,10 @@
                     fill="#A6A9B8"
                   ></path>
                 </svg>
-              </div>
+              </button>
             </div>
-          </div>
+            </div>
+          </form>
           </div>
         </div>
       <button
@@ -10119,6 +10115,8 @@
     </section>
   </div>
 </aside>
+<button id="section-reply" type="button" aria-label="Reply to section" aria-controls="chat-composer" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 10-5 5 5 5M20 6v4a5 5 0 0 1-5 5H4"/></svg></button>
+<div id="reply-live" class="reply-live" role="status" aria-live="polite"></div>
 <nav id="codex-timeline" class="codex-timeline" aria-label="Conversation timeline"></nav>
     <aside id="codex-preview" class="codex-preview" aria-label="Message preview" aria-hidden="true" data-open="false" inert>
       <button id="codex-preview-jump" class="codex-preview-jump" type="button">
