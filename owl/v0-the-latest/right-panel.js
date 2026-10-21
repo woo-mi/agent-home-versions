@@ -110,8 +110,8 @@
     syncModal();
     if (!panel.hidden && compact.matches && !panel.contains(document.activeElement)) panel.focus({ preventScroll: true });
   });
-  document.getElementById('weekday-schedule-toggle').addEventListener('click', event => {
+  panel.querySelectorAll('.right-panel-switch').forEach(toggle => toggle.addEventListener('click', event => {
     const toggle = event.currentTarget;
     toggle.setAttribute('aria-checked', String(toggle.getAttribute('aria-checked') !== 'true'));
-  });
+  }));
 })();

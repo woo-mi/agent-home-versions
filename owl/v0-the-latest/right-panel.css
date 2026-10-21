@@ -143,9 +143,11 @@
 }
 
 #profile-panel .right-panel-connections,
-#profile-panel .right-panel-artifacts { padding: 0 30px; }
-#profile-panel .right-panel-connections > .right-panel-section-title,
-#profile-panel .right-panel-artifacts > .right-panel-section-title { margin-left: 13px; }
+#profile-panel .right-panel-artifacts { display: flex; flex-direction: column; gap: 24px; padding: 0 30px; }
+#profile-panel .right-panel-connections .right-panel-section-title,
+#profile-panel .right-panel-artifacts .right-panel-section-title { margin-left: 13px; }
+#profile-panel .right-panel-card-list { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+#profile-panel .right-panel-schedule.right-panel-tool { padding-right: 14px; }
 
 #profile-panel .right-panel-schedule {
   position: relative;
