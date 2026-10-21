@@ -1,0 +1,95 @@
+[data-pencil-id="BiA9g"] div {
+  box-sizing: border-box !important;
+}
+
+[data-pencil-id="BiA9g"] [style*="font-family"] {
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+}
+
+[data-pencil-id="BiA9g"] [data-pencil-name="Left"],
+[data-pencil-id="BiA9g"] [data-pencil-name="Copy"],
+[data-pencil-id="BiA9g"] [data-pencil-name="Frame 185"],
+[data-pencil-id="BiA9g"] [data-pencil-name="Frame 168"] {
+  flex: 1 1 0 !important;
+  width: auto !important;
+}
+
+[data-pencil-id="BiA9g"] [data-pencil-name="Frame 168"] {
+  gap: 12px !important;
+}
+
+[data-pencil-id="BiA9g"] [data-pencil-name="Weekly update header"] {
+  height: auto !important;
+  min-height: 49px;
+}
+
+[data-pencil-id="LmG4N"] {
+  position: relative;
+}
+
+[data-pencil-id="wksMi"] { width: 92% !important; }
+[data-pencil-id="G2EBN"] { width: 88% !important; }
+[data-pencil-id="m9xktr"] { width: 85% !important; }
+[data-pencil-id="HAP9O"] { width: 79% !important; }
+
+[data-pencil-id="BiA9g"] [data-pencil-name="KPI row"],
+[data-pencil-id="AKrJi"] {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+[data-pencil-id="AKrJi"] {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+[data-pencil-id="BiA9g"] [data-pencil-name="KPI row"] > div,
+[data-pencil-id="AKrJi"] > div {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 96px;
+}
+
+[data-pencil-id="BiA9g"] [data-pencil-name="Thumbnails"] > div {
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 600px) {
+  [data-pencil-id="BiA9g"] [data-pencil-name^="Team —"] {
+    flex-wrap: wrap;
+    height: auto !important;
+  }
+
+  [data-pencil-id="BiA9g"] [data-pencil-name^="Bar "] {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 28px 34px;
+    gap: 8px !important;
+  }
+
+  [data-pencil-id="BiA9g"] [data-pencil-name^="Bar "] > :first-child {
+    grid-column: 1 / -1;
+    width: auto !important;
+  }
+
+  [data-pencil-id="BiA9g"] [data-pencil-name^="Row "] > [data-pencil-name="Frame 168"] {
+    flex-basis: 100% !important;
+  }
+
+  [data-pencil-id="BiA9g"] [data-pencil-name="KPI row"],
+  [data-pencil-id="AKrJi"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  [data-pencil-id="BiA9g"] [data-pencil-name="Weekly schedule"],
+  [data-pencil-id="BiA9g"] [data-pencil-name="Slack delivery settings"],
+  [data-pencil-id="BiA9g"] [data-pencil-name="Confirm weekly update"] {
+    flex-wrap: wrap;
+  }
+
+  [data-pencil-id="BiA9g"] [data-pencil-name="Weekly schedule"] > div,
+  [data-pencil-id="BiA9g"] [data-pencil-name="Slack delivery settings"] > div {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+  }
+}

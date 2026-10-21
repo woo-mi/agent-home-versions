@@ -1,5 +1,6 @@
 (() => {
   const versions = [
+    { id: 'v0', label: 'v0 - the latest', path: 'v0-the-latest' },
     { id: 'v1', label: 'v1', path: 'one-thread' },
     { id: 'v2', label: 'v2 - tick notion', path: 'v2-tick-notion' },
     { id: 'v3', label: 'v3 - tick codex', path: 'v3-tick-codex' }
