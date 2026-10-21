@@ -74,6 +74,33 @@
   }));
   close.addEventListener('click', () => setOpen(false));
   backdrop.addEventListener('click', () => setOpen(false));
+  const history = document.getElementById('right-panel-history');
+  history.addEventListener('click', event => {
+    const entry = event.target.closest('[data-history-message]');
+    if (!entry) return;
+    setOpen(false, false);
+    requestAnimationFrame(() => {
+      // Let the composer resize after closing before starting the conversation jump.
+      requestAnimationFrame(() => {
+        document.dispatchEvent(new CustomEvent('owl-history-navigate', {
+          detail: { messageId: entry.dataset.historyMessage }
+        }));
+      });
+    });
+  });
+  document.addEventListener('owl-message-sent', event => {
+    const node = event.detail?.node;
+    if (!node?.id || history.querySelector(`[data-history-message="${node.id}"]`)) return;
+    const row = document.createElement('li');
+    row.className = 'right-panel-activity-row';
+    const entry = document.createElement('button');
+    entry.type = 'button';
+    entry.className = 'right-panel-history-link right-panel-activity-label';
+    entry.dataset.historyMessage = node.id;
+    entry.textContent = node.querySelector('[data-reply-text]')?.textContent.trim() || 'New message';
+    row.append(entry);
+    history.querySelector('.right-panel-activity-list').prepend(row);
+  });
   document.addEventListener('owl-sidebar-change', () => {
     if (!panel.hidden) setOpen(false, false);
   });

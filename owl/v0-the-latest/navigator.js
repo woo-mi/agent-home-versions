@@ -348,6 +348,15 @@
     scrollFrame = requestAnimationFrame(syncPosition);
   }, { passive: true });
   document.addEventListener('owl-message-sent', event => appendSentMessage(event.detail?.node));
+  document.addEventListener('owl-history-navigate', event => {
+    const index = nodes.findIndex(node => node.id === event.detail?.messageId);
+    if (index < 0) return;
+    hidePreview();
+    jumpTo(index);
+    const node = nodes[index];
+    if (!node.hasAttribute('tabindex')) node.tabIndex = -1;
+    node.focus({ preventScroll: true });
+  });
   for (const event of ['wheel', 'touchstart', 'pointerdown', 'keydown']) {
     scroller.addEventListener(event, () => {
       jumpingUntil = 0;

@@ -261,10 +261,10 @@
     <script src="../version-control.js?v=2" defer></script>
     <link rel="stylesheet" href="navigator.css?v=4" />
     <link rel="stylesheet" href="latest.css?v=8" />
-    <link rel="stylesheet" href="right-panel.css?v=7" />
-    <script src="navigator.js?v=4" defer></script>
+    <link rel="stylesheet" href="right-panel.css?v=8" />
+    <script src="navigator.js?v=5" defer></script>
     <script src="sidebar.js?v=1" defer></script>
-    <script src="right-panel.js?v=3" defer></script>
+    <script src="right-panel.js?v=4" defer></script>
     <link rel="stylesheet" href="reply.css?v=3" />
     <script src="reply.js?v=3" defer></script>
   </head>
@@ -10019,105 +10019,122 @@
       </section>
     </section>
     <section id="right-panel-history" class="right-panel-tabpanel right-panel-history" role="tabpanel" aria-labelledby="right-panel-tab-history" tabindex="0" hidden>
-        <section class="right-panel-activity-group" aria-labelledby="right-panel-today-title">
-          <h3 id="right-panel-today-title" class="right-panel-section-title">Today</h3>
-          <ul class="right-panel-activity-list">
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Daily brief</span>
-              <time datetime="08:10">8:10 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Weekly report</span>
-              <time datetime="07:40">7:40 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Quarterly business review</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Checked Tamarack forecast line</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Read 4 new Gong calls</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Refreshed pipeline app</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-          </ul>
-        </section>
-        <section class="right-panel-activity-group" aria-labelledby="right-panel-yesterday-title">
-          <h3 id="right-panel-yesterday-title" class="right-panel-section-title">Yesterday</h3>
-          <ul class="right-panel-activity-list">
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Daily brief</span>
-              <time datetime="08:10">8:10 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Weekly report</span>
-              <time datetime="07:40">7:40 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Quarterly business review</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-          </ul>
-        </section>
-        <section class="right-panel-activity-group" aria-labelledby="right-panel-recents-title">
-          <h3 id="right-panel-recents-title" class="right-panel-section-title">Recents</h3>
-          <ul class="right-panel-activity-list">
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Daily brief</span>
-              <time datetime="08:10">8:10 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Weekly report</span>
-              <time datetime="07:40">7:40 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Quarterly business review</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Checked Tamarack forecast line</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Read 4 new Gong calls</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Refreshed pipeline app</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Daily brief</span>
-              <time datetime="08:10">8:10 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Weekly report</span>
-              <time datetime="07:40">7:40 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Quarterly business review</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Checked Tamarack forecast line</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Read 4 new Gong calls</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-            <li class="right-panel-activity-row">
-              <span class="right-panel-activity-label">Refreshed pipeline app</span>
-              <time datetime="07:00">7:00 AM</time>
-            </li>
-          </ul>
-        </section>
+      <section class="right-panel-activity-group" aria-labelledby="right-panel-history-title">
+        <h3 id="right-panel-history-title" class="right-panel-section-title">Recent</h3>
+        <ul class="right-panel-activity-list">
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-PBEsO">First Q1 priority check-in</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-u3DNex">Quarterly review agent activated</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-HFiYk">App published to executive staff</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-fHTOA">Quarterly Wisdom Review schedule</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-LmG4N">Q4 Business Review app</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-T0hAM3">Looker comparison added</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-IbJuw">App publication and quarterly automation request</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-CByIt">Dashboard retirement recommendation</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-PAkT5">Usage migration versus cost savings</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-jExvF">December active users</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-dqHRL">Looker ROI comparison request</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-rq9Ui">Unsupported hours-saved claim</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-A1QF9t">Presentation review points</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-EwDmg">Marketing and People Ops expansion</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-CM5f4">Average domain health</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-Wrad0">Monthly active users</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-uaDKX">Unsupported claim warning</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-b6q44P">Q4 draft</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-yJ718">Q4 executive presentation request</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-XKWeP">Slack message</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-MtnUU">Contact Sam</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-B5guie">Dashboard ownership</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-n4qzc2">Pipeline Pulse owner outreach</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-rJmpi">Wisdom Workspace Health app</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-UUaum">Sensitive data exclusions</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-CUg4t">Agent activated and app created</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-cRCAc">Workflow activation and leadership app request</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-EUohf">Weekly Workspace Health</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-KEjFa">First-post preview</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-HfrKN">Weekly health workflow request</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-k9rvSn">Dashboard credit usage</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-WPVLi">Churn feedback</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-sn8pj">Negative-feedback themes</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-QiS7w">Domain health</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-AQe4N">Support documentation issue</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-fCrle">Sales and Finance recovery</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-QJuym">Weekly active users</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-DSYum">Adoption, trust, and costs</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-pxc7w">Weekly Wisdom summary</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-aoRib">Slack message</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-H0YbbO">People Ops access risk</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-b7HIoB">Restrict access to product events</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-R4FNS6">Lena’s connection request</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-mVJmD">Databricks approval review</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-V6l47">Databricks connection</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-Z0Vv23">SOC 2 access-review export</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-BQLzQ">Workspace updates and mentions</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-qb24w">Finance security approval</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-D5C3s">SOC 2 evidence deadline</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-SL1Ix">Catch-up summary</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-w3i8U">Sources reviewed</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-AzMXc">Welcome back</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-xBkis">Catch-up request</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-ia77J">Finance-based Net New ARR metric</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-KjFlV">Consistent ARR reporting</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-RkdPB">Governed Net New ARR proposal</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-UdAxb">Sales domain ARR</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-spvIV">Explanation of conflicting ARR answers</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-ZTPzF">Access requests processed</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-k8X9m7">Access approval and ARR preparation</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-s1Ioi">Deal Economics view proposal</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-DoSsb">AE deal-margin access</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-SxnfN">FP&amp;A requests</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-qY9md">Finance access requests</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-k6WXSr">Dana notified</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-F3cYN">Slack message</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-feiFJ">Remaining churn ambiguity</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-VJDlL">Sales accuracy results</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-STkBu">Sales accuracy recovered</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-EOx3u">Sales evaluation rerun</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-bK6yS">Queries and metrics updated</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-wwHmp">Fix approval</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-NpIVY">Finance changes assigned to Dana</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-g0eM44">Proposed Sales fix</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-Mdbm1">Affected reviewed queries</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-iptzU">Column rename impact</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-JpIbB">Investigate the Sales issue</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-Sojeh">Conflicting ARR answers</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-q0EYJs">Stale Support SLA document</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-frfJD">Sales accuracy decline</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-F1HkFp">Today’s priorities</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-G4vyF2">Morning greeting</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-zE0Zw">Today’s meetings</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-KBrFL">Weekly update</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-vxTW2">Weekly update request</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-AKrJi">Revenue and performance metrics</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-N7QHT">User confirmation</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-e0fRs">View metric progress</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-b4neD2">Refreshed Pipeline Review App</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-uOwbF">Orbis Retail Group closed won</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-mSY8l">Changes since Friday</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-UVjGy">Upcoming Sales Pipeline Review</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-L08eQ">Pipeline update report</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-iVPOE">Schedule confirmation</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-cImr6">Pipeline update schedule</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-GXBhf">Delivery preferences</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-OVd6H">Weekly Sales Pipeline Update</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-cCp8f">Weekly pipeline update proposal</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-PNg16">App created</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-nc29F">HubSpot connection</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-XtnDf">Connect your CRM</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-N6BSI">Weekly Sales Pipeline Review App</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-O3rHpg">Sales Pipeline Review app proposal</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-xz1FO">Suggested tasks</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-vhr43">Notion connected</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-euajp">Initial research</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-wEnZa">Notion connection</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-M5hDgD">Connect your context</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-qCzk1">How context improves assistance</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-A2SDm">Connect tools for your daily brief</button></li>
+          <li class="right-panel-activity-row"><button class="right-panel-history-link right-panel-activity-label" type="button" data-history-message="codex-message-dU4C6">Welcome from Owl</button></li>
+        </ul>
+      </section>
     </section>
   </div>
 </aside>
