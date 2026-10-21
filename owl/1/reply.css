@@ -87,7 +87,7 @@
 }
 #reply-turns:empty { display: none; }
 
-#reply-panel-composer { flex: 0 0 auto; padding: 0 16px 16px; }
+#reply-panel-composer { flex: 0 0 auto; padding: 0 15px 16px; }
 #reply-panel #chat-composer {
   max-width: none !important;
   min-height: 56px;
@@ -120,27 +120,29 @@
 
 #chat-composer [data-pencil-id="Gb4hj"] {
   flex: 0 0 auto;
-  height: 26px !important;
+  height: auto !important;
+  min-height: 26px;
   margin-left: auto;
 }
+#chat-composer [data-pencil-id="xMriS"] { line-height: 17px; }
 
 #message-input {
   display: block;
   flex: 1 1 160px !important;
   width: 100%;
   min-width: 0;
-  height: 20px;
-  min-height: 20px;
+  height: 17px;
+  min-height: 17px;
   max-height: 120px;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 4px;
   border: 0;
   outline: none;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
   color: #24242a;
-  font: 400 14px / 20px Inter, system-ui, sans-serif;
+  font: 400 14px / 17px Inter, system-ui, sans-serif;
   letter-spacing: 0;
   resize: none;
   overflow-x: hidden;

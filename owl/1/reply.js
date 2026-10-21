@@ -151,8 +151,8 @@
   }
 
   function updateInput() {
-    input.style.height = '20px';
-    input.style.height = `${input.value ? Math.min(120, Math.max(20, input.scrollHeight)) : 20}px`;
+    input.style.height = '17px';
+    input.style.height = `${input.value ? Math.min(120, Math.max(17, input.scrollHeight)) : 17}px`;
     send.disabled = !input.value.trim();
     if (selected) {
       selected.draft = input.value;
