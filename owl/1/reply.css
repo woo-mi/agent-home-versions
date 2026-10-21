@@ -23,6 +23,7 @@
   padding: 0 max(16px, calc(var(--conversation-gutter) - 16px)) calc(7px + env(safe-area-inset-bottom));
   overflow: visible;
   background: none;
+  z-index: 151;
 }
 
 #reply-panel {
