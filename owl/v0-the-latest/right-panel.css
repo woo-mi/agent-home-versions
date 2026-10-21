@@ -57,10 +57,20 @@
 
 #profile-panel .right-panel-avatar {
   position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #F2F2F4;
+  overflow: hidden;
+}
+#profile-panel .right-panel-avatar-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 64px;
   height: 64px;
-  margin: 0 auto;
-  overflow: hidden;
+  transform: translate(-50%, -50%) scale(0.67);
 }
 
 #profile-panel .right-panel-identity {
