@@ -32,10 +32,10 @@
       const rows = [...node.querySelectorAll('[data-pencil-name^="Row "]')];
       if (rows.length) return rows;
     }
-    if (name === 'KPI row' || node.dataset.pencilId === 'AKrJi') return [...node.children];
+    if (name === 'KPI row' || node.dataset.pencilId === 'w6dBNz') return [...node.children];
     const bars = [...node.querySelectorAll('[data-pencil-name^="Bar "]')];
     if (bars.length) return bars;
-    if (node.dataset.pencilId === 'Sojeh') return [node.querySelector('[data-pencil-name="dot bubble"]')];
+    if (node.dataset.pencilId === 'HYbJD') return [node.querySelector('[data-pencil-name="dot bubble"]')];
     return [node];
   }).filter(Boolean);
 

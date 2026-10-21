@@ -157,23 +157,23 @@
   min-height: 49px;
 }
 
-[data-pencil-id="wksMi"] { width: 92% !important; }
-[data-pencil-id="G2EBN"] { width: 88% !important; }
-[data-pencil-id="m9xktr"] { width: 85% !important; }
-[data-pencil-id="HAP9O"] { width: 79% !important; }
+[data-pencil-id="aax7P"] { width: 92% !important; }
+[data-pencil-id="luMSS"] { width: 88% !important; }
+[data-pencil-id="aSD8f"] { width: 85% !important; }
+[data-pencil-id="UjvGe"] { width: 79% !important; }
 
 [data-pencil-id="BiA9g"] [data-pencil-name="KPI row"],
-[data-pencil-id="AKrJi"] {
+[data-pencil-id="w6dBNz"] {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-[data-pencil-id="AKrJi"] {
+[data-pencil-id="w6dBNz"] {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 [data-pencil-id="BiA9g"] [data-pencil-name="KPI row"] > div,
-[data-pencil-id="AKrJi"] > div {
+[data-pencil-id="w6dBNz"] > div {
   width: 100% !important;
   height: auto !important;
   min-height: 96px;
@@ -206,7 +206,7 @@
   }
 
   [data-pencil-id="BiA9g"] [data-pencil-name="KPI row"],
-  [data-pencil-id="AKrJi"] {
+  [data-pencil-id="w6dBNz"] {
     grid-template-columns: minmax(0, 1fr);
   }
 

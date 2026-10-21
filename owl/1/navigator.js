@@ -5,7 +5,7 @@
     return [...container.children].flatMap(node => {
       if (['Stamp', 'NEW divider'].includes(node.dataset.pencilName)) return [];
       // Flatten conversation groups and anonymous export wrappers, not message cards.
-      if (node.dataset.pencilName === 'Frame 141' || node.dataset.pencilId === 'NykT2' ||
+      if (node.dataset.pencilName === 'Frame 141' || node.dataset.pencilId === 'GwThz' ||
         (!node.dataset.pencilId && node.children.length === 1)) {
         return messageBlocks(node);
       }
