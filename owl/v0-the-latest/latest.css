@@ -11,14 +11,15 @@
 [data-pencil-id="Qgz9s"]::before {
   content: "";
   position: absolute;
-  inset: -14px 0 0;
+  inset: -14px 0 auto;
+  height: 88px;
   z-index: -1;
   pointer-events: none;
-  background: rgb(255 255 255 / 64%);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000d 30%, #0006 65%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000d 30%, #0006 65%, transparent 100%);
+  background: rgb(255 255 255 / 32%);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000a 25%, #0003 65%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000a 25%, #0003 65%, transparent 100%);
 }
 .prototype-versions { right: calc(16px + var(--right-panel-width)); }
 :root[data-right-panel-open="true"] #profile-toggle { visibility: hidden; }
