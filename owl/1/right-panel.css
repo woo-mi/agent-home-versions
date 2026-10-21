@@ -68,9 +68,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 64px;
-  height: 64px;
-  transform: translate(-50%, -50%) scale(0.67);
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
 }
 
 #profile-panel .right-panel-identity {
