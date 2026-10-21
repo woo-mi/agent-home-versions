@@ -99,7 +99,7 @@
     entry.dataset.historyMessage = node.id;
     entry.textContent = node.querySelector('[data-reply-text]')?.textContent.trim() || 'New message';
     row.append(entry);
-    history.querySelector('.right-panel-activity-list').prepend(row);
+    history.querySelector('[data-history-group="today"] .right-panel-activity-list').prepend(row);
   });
   document.addEventListener('owl-sidebar-change', () => {
     if (!panel.hidden) setOpen(false, false);

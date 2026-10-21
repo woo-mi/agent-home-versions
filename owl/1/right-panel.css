@@ -194,7 +194,7 @@
   background: #a9adb4;
   cursor: pointer;
 }
-#profile-panel .right-panel-switch[aria-checked="true"] { background: #5b6e8c; }
+#profile-panel .right-panel-switch[aria-checked="true"] { background: #000000; }
 #profile-panel .right-panel-switch > span {
   position: absolute;
   top: 2px;
