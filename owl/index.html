@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light">
-    <meta name="description" content="Owl chat thread and navigator prototype agenda.">
+    <meta name="description" content="Owl prototyping overview.">
     <title>Owl</title>
     <style>
       * { box-sizing: border-box; }
@@ -31,58 +31,26 @@
         letter-spacing: -0.4px;
       }
       h2 {
-        margin: 0 0 12px;
+        margin: 0;
         color: #686868;
         font-size: 18px;
         line-height: 1.4;
         font-weight: 500;
       }
-      section + section { margin-top: 28px; }
-      ul {
-        display: grid;
-        gap: 16px;
-        margin: 0;
-        padding: 20px 24px;
-        list-style: none;
-        border: 1px solid #e7e7e7;
-        border-radius: 14px;
-      }
-      li {
-        color: #515151;
-        font-size: 18px;
-        line-height: 1.5;
-        font-weight: 400;
-        overflow-wrap: anywhere;
-      }
-      a { color: inherit; text-decoration: none; }
-      a:hover { text-decoration: underline; text-underline-offset: 4px; }
-      a:focus-visible { outline: 2px solid #333444; outline-offset: 4px; border-radius: 2px; }
+      h2 + h2 { margin-top: 24px; }
       @media (max-width: 600px) {
         body { padding: 32px 24px; }
         h1 { font-size: 26px; }
-        ul { padding: 20px; }
-        li { font-size: 16px; }
+        h2 { font-size: 16px; }
       }
     </style>
   </head>
   <body>
     <main>
       <h1>Owl</h1>
-      <section aria-labelledby="chat-agenda">
-        <h2 id="chat-agenda">Chat thread</h2>
-        <ul>
-          <li><a href="one-thread/">one thread</a></li>
-          <li>one thread with sub chat - Slack</li>
-          <li>one thread with sub chat - Inline</li>
-        </ul>
-      </section>
-      <section aria-labelledby="navigator-agenda">
-        <h2 id="navigator-agenda">Navigator</h2>
-        <ul>
-          <li>categorized by timeline</li>
-          <li>categorized by features</li>
-        </ul>
-      </section>
+      <h2>Prototyping 1</h2>
+      <h2>Prototyping 2</h2>
+      <h2>The latest Prototyping</h2>
     </main>
   </body>
 </html>
