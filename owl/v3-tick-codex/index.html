@@ -64,7 +64,7 @@
         width: calc(100% - var(--sidebar-width)) !important;
         height: 100dvh !important;
         margin-left: var(--sidebar-width);
-        padding: 174px var(--conversation-gutter) calc(104px + env(safe-area-inset-bottom)) !important;
+        padding: var(--conversation-top, 159px) var(--conversation-gutter) calc(104px + env(safe-area-inset-bottom)) !important;
         overflow-x: hidden;
         overflow-y: auto;
         overscroll-behavior: contain;
@@ -4421,6 +4421,17 @@
         const profileToggle = document.getElementById('profile-toggle');
         const profilePanel = document.getElementById('profile-panel');
         let reviewingHistory = false;
+
+        // Reserve only the visible floating header, even after the pill closes.
+        const syncConversationInset = () => {
+          const visibleHeader = indicator.hidden
+            ? header.querySelector('[data-pencil-id="enbOq"]')
+            : indicator;
+          conversation.style.setProperty('--conversation-top',
+            `${Math.ceil(visibleHeader.getBoundingClientRect().bottom)}px`);
+        };
+        syncConversationInset();
+        new ResizeObserver(syncConversationInset).observe(header);
         document.addEventListener('codex-navigate', () => { reviewingHistory = true; });
 
         // Open at the latest message, including after web fonts finish sizing.
@@ -4437,6 +4448,7 @@
           reviewingHistory = true;
           newMessages.focus({ preventScroll: true });
           indicator.hidden = true;
+          syncConversationInset();
           const targetTop = newMessages.getBoundingClientRect().top + conversation.scrollTop;
           const clearance = header.getBoundingClientRect().bottom + 16;
           conversation.scrollTo({
@@ -4449,6 +4461,7 @@
           reviewingHistory = true;
           conversation.focus({ preventScroll: true });
           indicator.hidden = true;
+          syncConversationInset();
         });
 
         const setProfileOpen = (open, restoreFocus = true) => {
