@@ -6,6 +6,20 @@
   width: calc(100% - var(--sidebar-width) - var(--right-panel-width)) !important;
 }
 [data-pencil-id="Qgz9s"], .composer-dock { right: var(--right-panel-width); }
+[data-pencil-id="Qgz9s"] { overflow: visible; }
+/* Soften messages under the floating header without covering its controls. */
+[data-pencil-id="Qgz9s"]::before {
+  content: "";
+  position: absolute;
+  inset: -14px 0 0;
+  z-index: -1;
+  pointer-events: none;
+  background: rgb(255 255 255 / 64%);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000d 30%, #0006 65%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000d 30%, #0006 65%, transparent 100%);
+}
 .prototype-versions { right: calc(16px + var(--right-panel-width)); }
 :root[data-right-panel-open="true"] #profile-toggle { visibility: hidden; }
 #profile-identity-toggle {
