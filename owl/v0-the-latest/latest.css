@@ -95,6 +95,13 @@
   box-sizing: border-box !important;
 }
 
+/* Give separate messages more breathing room throughout the conversation. */
+[data-pencil-id="BiA9g"],
+[data-pencil-id="BiA9g"] [data-pencil-name="Frame 141"],
+[data-pencil-id="BiA9g"] [data-pencil-name="Thread"] {
+  gap: 16px !important;
+}
+
 [data-pencil-id="BiA9g"] [style*="font-family"] {
   white-space: normal !important;
   overflow-wrap: anywhere;
