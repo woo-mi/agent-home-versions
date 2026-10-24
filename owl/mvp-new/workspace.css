@@ -1,0 +1,68 @@
+/* Workspace opens beside the chat; smaller screens use the same panel as a dialog. */
+:root{--workspace-width:467px;--ws-motion-duration:260ms;--ws-motion-ease:cubic-bezier(.22,1,.36,1)}
+.agent-profile{pointer-events:auto;cursor:pointer;border:0;background:transparent;color:inherit;border-radius:12px}
+.agent-profile:focus-visible{outline:2px solid #0085ff;outline-offset:5px}
+.main{transition:margin-left 220ms ease,margin-right var(--ws-motion-duration) var(--ws-motion-ease)}
+.workspace-open .main{margin-right:var(--workspace-width)}
+.workspace-open .conversation,.workspace-open .composer-dock{width:min(var(--chat-width),calc(100% - 48px))}
+.workspace-panel{position:fixed;inset:0 0 0 auto;width:var(--workspace-width);max-width:100vw;height:100dvh;display:flex;flex-direction:column;z-index:160;background:#f9f9f9;color:#000;transform:translateX(100%);transition:transform var(--ws-motion-duration) var(--ws-motion-ease);border:0;box-shadow:inset 1px 0 #efefef;isolation:isolate;font-family:Inter,system-ui,sans-serif}
+.workspace-panel.is-open{transform:translateX(0)}
+.workspace-panel:focus{outline:none}
+.workspace-header{position:relative;flex:none;padding:37px 33px 0}
+.workspace-close{position:absolute;right:18px;top:18px;width:36px;height:36px;padding:7px;display:grid;place-items:center;border:0;border-radius:50%;background:#fff;color:#303030}
+.workspace-close svg{width:22px;height:22px}
+.workspace-close:hover{background:#eee}
+.workspace-avatar{width:84px;height:84px;border-radius:50%;background:#fff;margin:0 auto;display:grid;place-items:center;isolation:isolate}
+.workspace-title{font-family:Inter,system-ui,sans-serif;font-size:29.50075px;font-weight:700;letter-spacing:-.3511994px;line-height:34px;text-align:center;color:#202020;margin:8px 0 24px}
+.workspace-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));height:38px;align-items:center}
+.workspace-tab{padding:10px 12px;height:38px;font-size:13px;font-weight:500;letter-spacing:-.3511994px;line-height:16px;color:#777;border-radius:100px;border:0;background:transparent;white-space:nowrap}
+.workspace-tab[aria-selected=true]{background:#e5e5e5;color:#000;font-weight:600}
+.workspace-tab:hover{color:#000}
+.workspace-tab:focus-visible,.workspace-panel button:focus-visible{outline:2px solid #0085ff;outline-offset:3px}
+.workspace-scroll{position:relative;flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:23px 33px 84px;scrollbar-width:thin;scrollbar-color:#d8d8dd transparent}
+.workspace-tabpanel{min-width:0;outline:none}
+.workspace-backdrop{position:fixed;inset:0;z-index:155;background:#14181f26;border:0;padding:0;border-radius:0}
+.workspace-panel .ws-tools-heading{margin:0 0 8px;font-size:13px;font-weight:400;line-height:16px;letter-spacing:-.3511994px;color:#00000080}
+.ws-tools{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.ws-tool{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 14px;min-height:62px;background:#fff;border-radius:12px}
+.ws-tool-copy{min-width:0;flex:1}
+.ws-tool-name{margin:0 0 4px;font-size:13px;font-weight:400;letter-spacing:-.3511994px;line-height:16px;color:#000}
+.ws-tool-status{margin:0;font-size:12px;line-height:16px;color:#777;overflow-wrap:anywhere}
+.ws-switch{position:relative;flex:none;width:36px;height:20px;border:0;padding:0;border-radius:20px;background:#aaacb5;transition:background-color 150ms ease}
+.ws-switch[aria-checked=true]{background:#000}
+.ws-switch::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform 150ms ease}
+.ws-switch[aria-checked=true]::after{transform:translateX(16px)}
+.workspace-open .prototype-versions{z-index:170}
+.ws-menu{position:absolute;z-index:180;min-width:168px;background:#fff;border:1px solid #e5e5e7;box-shadow:0 8px 24px #14181f1f;border-radius:10px;padding:5px}
+.ws-menu button{display:block;width:100%;padding:8px 10px;border-radius:5px;text-align:left;font-size:13px;line-height:18px}
+.ws-menu button:hover,.ws-menu button:focus-visible{background:#f0f0f2;outline:none}
+.ws-detail-back{display:flex;align-items:center;gap:6px;padding:0;margin:0 0 24px;font-size:13px;line-height:20px;color:#777}
+.ws-detail-back svg{width:16px;height:16px}
+.ws-detail h3{font-size:18px;line-height:24px;font-weight:600;color:#202020;margin:0 0 12px}
+.ws-detail p{font-size:13px;line-height:20px;margin:0 0 16px;color:#777}
+.ws-detail .ws-detail-label{font-size:12px;line-height:16px;margin-bottom:6px;color:#777}
+.ws-detail .ws-detail-value{color:#000}
+.ws-detail-primary{display:block;padding:9px 14px;border-radius:20px;background:#333444;color:#fff;font-size:13px;line-height:18px;margin-top:24px}
+.ws-task-directory{display:flex;flex-direction:column;gap:8px}
+.ws-task-directory button{display:flex;justify-content:space-between;gap:16px;width:100%;padding:12px;border-radius:10px;background:#fff;font-size:13px;text-align:left}
+.ws-task-directory small{color:#777;font-size:11px;white-space:nowrap}
+.workspace-status{position:absolute;bottom:20px;left:32px;right:32px;pointer-events:none}
+.workspace-status:not(:empty){padding:10px 12px;border:1px solid #e5e5e7;border-radius:10px;background:#fff;box-shadow:0 4px 12px #14181f0a;font-size:12px;line-height:18px;z-index:3}
+@media(max-width:1100px){
+ .workspace-open .main{margin-right:0}
+ .workspace-open .conversation,.workspace-open .composer-dock{width:calc(100% - 48px)}
+ .workspace-panel{box-shadow:-12px 0 40px #14181f12}
+ .workspace-open .prototype-versions{visibility:hidden;pointer-events:none}
+}
+@media(max-width:760px){
+ .workspace-open .conversation{width:calc(100% - 32px)}
+ .workspace-open .composer-dock{width:calc(100% - 24px)}
+}
+@media(max-width:480px){
+ .workspace-panel{width:100vw;border-left:0}
+ .workspace-header{padding-left:24px;padding-right:24px}
+ .workspace-scroll{padding-left:24px;padding-right:24px}
+ .workspace-tab{padding-left:6px;padding-right:6px;font-size:12px}
+ .workspace-status{left:24px;right:24px}
+}
+@media(prefers-reduced-motion:reduce){.workspace-panel,.main,.ws-switch,.ws-switch::after{transition:none!important}}

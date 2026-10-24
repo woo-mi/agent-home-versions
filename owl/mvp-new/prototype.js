@@ -491,6 +491,7 @@
       if (!ui['thinking-menu']?.contains(event.target) && !ui['thinking-button']?.contains(event.target)) closeMenu();
     });
     document.addEventListener('keydown', (event) => {
+      if (window.MVPWorkspace?.isOpen()) return;
       if (event.key === 'Escape') {
         if (document.querySelector('.prototype-version-trigger')?.getAttribute('aria-expanded') === 'true') return;
         if (ui['thinking-menu'] && !ui['thinking-menu'].hidden) {
@@ -512,6 +513,7 @@
         }
       }
     });
+    window.addEventListener('mvp-workspace-open', () => { closeMenu(); setSidebarOpen(false); });
     mobile.addEventListener('change', syncSidebar);
     document.querySelectorAll('.message-source').forEach(registerSource);
     renderAttachments();

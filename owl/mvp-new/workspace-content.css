@@ -1,0 +1,27 @@
+.workspace-panel .ws-tabcontent{display:flex;flex-direction:column;gap:32px;min-width:0;width:100%;font-family:Inter,Arial,sans-serif;font-size:13px;font-weight:400;line-height:16px;letter-spacing:-.3511994px;color:#000}
+.workspace-panel .ws-tabcontent .ws-content-section{display:flex;flex-direction:column;align-items:flex-start;gap:8px;width:100%;min-width:0;margin:0;padding:0}
+.workspace-panel .ws-tabcontent .ws-content-label,.workspace-panel .ws-tabcontent p{margin:0;font:inherit;line-height:16px;letter-spacing:inherit}
+.workspace-panel .ws-tabcontent .ws-content-label{color:rgba(0,0,0,.502);font-weight:400}
+.workspace-panel .ws-tabcontent p{width:100%;min-width:0}
+.workspace-panel .ws-tabcontent button{font-family:inherit;box-sizing:border-box;-webkit-tap-highlight-color:transparent;cursor:pointer}
+.workspace-panel .ws-tabcontent .ws-content-text-button{display:block;flex:none;margin:0;padding:0;border:0;border-radius:3px;background:transparent;color:#000;font-size:13px;font-weight:400;line-height:16px;letter-spacing:inherit;text-align:left;text-decoration:none}
+.workspace-panel .ws-tabcontent .ws-content-text-button:hover{color:#0085ff}
+.workspace-panel .ws-tabcontent button:focus-visible{outline:2px solid #0085ff;outline-offset:3px}
+.workspace-panel .ws-tabcontent .ws-content-see-all{display:block;align-self:flex-start;margin:0;padding:0;border:0;border-radius:3px;background:transparent;color:#0085ff;font-size:14px;font-weight:400;line-height:20px;letter-spacing:0;text-align:left}
+.workspace-panel .ws-tabcontent .ws-content-see-all:hover{text-decoration:underline;text-underline-offset:3px}
+.workspace-panel .ws-schedules-content{gap:40px}
+.workspace-panel .ws-task-row{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;height:22px;min-height:22px}
+.workspace-panel .ws-tabcontent .ws-task-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.workspace-panel .ws-task-actions{display:flex;align-items:center;justify-content:space-between;flex:0 0 73px;width:73px;height:22px;gap:10px;color:#333444}
+.workspace-panel .ws-task-actions-review{flex-basis:81px;width:81px;gap:16px}
+.workspace-panel .ws-task-status{display:block;width:49px;font-size:10px;font-weight:500;line-height:14px;letter-spacing:0;color:#333444;white-space:nowrap}
+.workspace-panel .ws-tabcontent .ws-task-review{display:block;flex:0 0 51px;width:51px;height:22px;margin:0;padding:4px 8px;border:0;border-radius:24px;background:#333444;color:#fff;font-size:10px;font-weight:500;line-height:14px;letter-spacing:0}
+.workspace-panel .ws-tabcontent .ws-task-review:hover{background:#4b4c5c}
+.workspace-panel .ws-tabcontent .ws-task-more{position:relative;display:flex;align-items:center;justify-content:center;flex:0 0 14px;width:14px;height:22px;margin:0;padding:0;border:0;border-radius:4px;background:transparent;color:#333444}
+.workspace-panel .ws-task-more::before{content:"";position:absolute;inset:-1px -5px;border-radius:5px;z-index:0}
+.workspace-panel .ws-task-more:hover::before{background:#e5e5e5}
+.workspace-panel .ws-task-more svg{position:relative;display:block;flex:none;width:14px;height:14px}
+.workspace-panel .ws-memory-details{display:flex;flex-direction:column;gap:8px;width:100%;min-width:0;margin:0;padding:0;list-style:none}
+.workspace-panel .ws-memory-details li{display:flex;align-items:flex-start;gap:10px;min-width:0;margin:0;padding:0}
+.workspace-panel .ws-memory-bullet{display:block;flex:0 0 4px;width:4px}
+.workspace-panel .ws-memory-details li>span:last-child{display:block;flex:1;min-width:0}
