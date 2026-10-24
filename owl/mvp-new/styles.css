@@ -8,58 +8,52 @@
 .message-meta{display:flex;gap:8px;font-size:11px;line-height:16px;opacity:.65;margin-bottom:3px}.message-copy{white-space:pre-wrap}.message-author{font-weight:600}.message-attachments{padding-left:18px;font-size:12px;margin:6px 0 0}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
 
-/* Shared navigation appearance and compact rail from the original Owl prototype. */
-.sidebar{padding:8px 6px 108px 4px;overflow:hidden;color:#333444;-webkit-font-smoothing:antialiased;transition:width 220ms ease}
+/* Navigation matches the supplied expanded and compact references. */
+.sidebar{padding:2px 6px 108px;overflow:hidden;color:#333444;-webkit-font-smoothing:antialiased;transition:width 220ms ease}
 .brand{height:40px;padding:0;position:relative;flex-shrink:0}
-.brand-logo{flex-shrink:0;width:126px;height:40px}
-.brand .icon-button{position:fixed;top:12px;left:220px;margin:0;width:32px;height:32px;padding:0;display:grid;place-items:center;color:#666;z-index:35}
-.brand .icon-button .native-icon{display:block;width:16px;height:16px;transform:scaleX(-1)}
+.brand-logo{display:block;flex-shrink:0;width:126px;height:40px;overflow:hidden}
+.brand .icon-button{position:fixed;top:6px;left:219px;margin:0;width:32px;height:32px;padding:0;display:grid;place-items:center;color:#626268;z-index:35}
+.brand .icon-button .native-icon{display:block;width:20px;height:20px;transform:none}
 .brand .icon-button:hover{background:#e4e6ea}
 .sidebar nav{margin-top:11px;gap:0;flex-shrink:0}
 .nav-item{height:36px;border-radius:8px;gap:12px;padding:8px;width:248px;color:#333444;flex-shrink:0}
+.sidebar .nav-item.is-active{background:transparent}
+.sidebar .nav-item:hover{background:#ebeced}
 .nav-icon{display:block;position:relative;width:20px;height:20px;flex-shrink:0}
 .nav-icon>*{left:0!important;top:0!important;position:relative!important}
 .nav-icon>[data-pencil-id="wWkko"]{transform-origin:center!important}
 .nav-label{overflow:hidden;white-space:nowrap;text-align:left}
 .sidebar .recent{margin-top:32px;overflow:auto;scrollbar-width:thin;scrollbar-color:#d9d9dd transparent;flex:1}
-.recent-heading{display:flex;align-items:center;justify-content:space-between;height:20px;padding:0 4px 0 6px!important;font-size:13px!important;font-weight:500!important;line-height:20px;margin:0 0 6px!important;color:#63666d!important}
+.recent-heading{display:flex;align-items:center;justify-content:space-between;height:20px;padding:0 4px!important;font-size:13px!important;font-weight:500!important;line-height:20px;margin:0 0 6px!important;color:#63666d!important}
 #recent-search-button{display:grid;place-items:center;padding:0;width:24px;height:24px}
 .recent-list{max-height:none!important;overflow:visible}
-.recent-item{color:#0d0d0d;height:32px;padding:6px;width:248px;text-overflow:clip}
-.recent-filter{margin:4px 6px 8px;width:calc(100% - 12px);padding:7px 9px;font-size:12px;border:1px solid #bfc1cf;border-radius:7px;background:#fff;color:#333444}
+.recent-item{color:#0d0d0d;height:32px;padding:6px 4px;width:248px;text-overflow:clip}
+.recent-filter{margin:4px 4px 8px;width:calc(100% - 8px);padding:7px 9px;font-size:12px;border:1px solid #bfc1cf;border-radius:7px;background:#fff;color:#333444}
 .sidebar-footer{left:4px;right:6px;bottom:16px;gap:4px;background:transparent!important}
 .sidebar-footer .nav-item{padding:0;gap:2px;color:#1e1f25}
 .footer-icon{display:block;position:relative;width:40px;height:36px;flex-shrink:0}
 .sidebar-toggle{display:none!important}
 .sidebar.is-collapsed{transform:none}
-body.sidebar-collapsed{--sidebar-width:56px}
-body.sidebar-collapsed .main{margin-left:56px}
-body.sidebar-collapsed .brand-logo,body.sidebar-collapsed .nav-label,body.sidebar-collapsed .recent{display:none}
-body.sidebar-collapsed .brand .icon-button{left:12px}
-body.sidebar-collapsed .brand .native-icon{transform:none}
-body.sidebar-collapsed .sidebar{padding-left:6px}
-body.sidebar-collapsed .sidebar-footer{left:6px}
-body.sidebar-collapsed .nav-item{width:44px;justify-content:center;padding:8px 0;gap:0}
-body.sidebar-collapsed .sidebar-footer .nav-item{padding:0}
-body.sidebar-collapsed .toast{left:calc(50% + 28px)}
+body.sidebar-collapsed{--sidebar-width:48px}
+body.sidebar-collapsed .main{margin-left:48px}
+body.sidebar-collapsed .toast{left:calc(50% + 24px)}
+.sidebar.is-compact{padding:8px 4px 108px}
+.sidebar.is-compact .brand{height:76px;align-items:flex-start}
+.sidebar.is-compact .brand-logo{width:40px}
+.sidebar.is-compact .brand .icon-button{left:8px;top:61px}
+.sidebar.is-compact .nav-label{display:none}
+.sidebar.is-compact .nav-item{width:40px;justify-content:center;padding:8px 0;gap:0}
+.sidebar.is-compact .sidebar-footer .nav-item{padding:0}
+.sidebar.is-compact .recent{display:block;flex:none;margin:6px 6px 0;width:28px;overflow:visible;border-top:1px solid #e6e6e6}
+.sidebar.is-compact .recent-heading{width:40px;height:32px;margin:12px 0 0 -6px!important;padding:0!important;justify-content:center}
+.sidebar.is-compact .recent-heading>span,.sidebar.is-compact .recent-list,.sidebar.is-compact .recent-filter{display:none}
+.sidebar.is-compact #recent-search-button{width:32px;height:32px}
 @media(max-width:900px){
- body{--sidebar-width:56px}.main{margin-left:56px!important}
- .sidebar{width:56px;transform:none;background:#f7f7f7;z-index:40;padding-left:6px}
- .sidebar-footer{left:6px}
- .brand-logo,.sidebar .nav-label,.sidebar .recent{display:none}
- .brand .icon-button{left:12px}.brand .native-icon{transform:none!important}
- .sidebar .nav-item{width:44px;justify-content:center;padding:8px 0;gap:0}
- .sidebar .sidebar-footer .nav-item{padding:0}
- .sidebar.is-open{width:min(260px,calc(100vw - 48px));box-shadow:8px 0 24px #00000014;padding-left:4px}
- .sidebar.is-open .sidebar-footer{left:4px}
- .sidebar.is-open .brand-logo,.sidebar.is-open .nav-label{display:block}
- .sidebar.is-open .recent{display:block}
- .sidebar.is-open .brand .icon-button{left:220px}
- .sidebar.is-open .brand .native-icon{transform:scaleX(-1)!important}
- .sidebar.is-open .nav-item{width:248px;justify-content:flex-start;padding:8px;gap:12px}
- .sidebar.is-open .sidebar-footer .nav-item{padding:0;gap:2px}
+ body{--sidebar-width:48px}.main{margin-left:48px!important}
+ .sidebar{width:48px;transform:none;z-index:40}
+ .sidebar.is-open{width:min(260px,calc(100vw - 48px));box-shadow:8px 0 24px #00000014}
  .sidebar-backdrop{z-index:35}
- .toast{left:calc(50% + 28px)}
+ .toast{left:calc(50% + 24px)}
 }
 
 .recent-label{display:block;width:231px;max-width:100%;height:20px;overflow:hidden;white-space:normal;line-height:20px;color:#15171b}

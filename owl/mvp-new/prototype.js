@@ -173,6 +173,7 @@
 
     function syncSidebarButton() {
       const expanded = mobile.matches ? sidebarOpen : !document.body.classList.contains('sidebar-collapsed');
+      ui.sidebar?.classList.toggle('is-compact', !expanded);
       const button = ui['sidebar-close'];
       button?.setAttribute('aria-expanded', String(expanded));
       button?.setAttribute('aria-controls', 'sidebar');
@@ -358,8 +359,8 @@
         event.preventDefault();
         const name = item.dataset.nav || item.textContent.trim();
         const normalized = name.toLowerCase().replace(/[^a-z]/g, '');
-        if (normalized === 'newchat' || normalized === 'newconversation') resetConversation();
-        else if (normalized === 'owl') {
+        if (normalized === 'new' || normalized === 'newchat' || normalized === 'newconversation') resetConversation();
+        else if (normalized === 'owls' || normalized === 'owl') {
           setSidebarOpen(false);
           scrollToBottom(ui['chat-scroll']);
           ui['message-input']?.focus();
@@ -391,7 +392,12 @@
       recentSearch.setAttribute('aria-controls', 'recent-filter');
       recentSearch.setAttribute('aria-expanded', 'false');
       recentSearch.addEventListener('click', () => {
-        filter.hidden = !filter.hidden;
+        const compact = ui.sidebar.classList.contains('is-compact');
+        if (compact) {
+          if (mobile.matches) setSidebarOpen(true);
+          else setDesktopCollapsed(false);
+        }
+        filter.hidden = compact ? false : !filter.hidden;
         recentSearch.setAttribute('aria-expanded', String(!filter.hidden));
         if (!filter.hidden) filter.focus();
         else {
