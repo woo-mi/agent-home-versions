@@ -7,8 +7,8 @@
 @media(prefers-reduced-motion:reduce){.unfurl-card{transition:none}}
 
 /* Focused conversation from the Pen “Clicked replies” screen. */
-.replies-close{position:absolute;z-index:15;top:32px;right:28px;width:64px;height:64px;border-radius:50%;padding:0;display:grid;place-items:center;background:#f1f1f166;color:#000}
-.replies-close svg{width:29.767px;height:29.767px}
+.replies-close{position:absolute;z-index:15;top:24px;right:24px;width:36px;height:36px;border-radius:50%;padding:0;display:grid;place-items:center;background:#f1f1f166;color:#000}
+.replies-close svg{width:22px;height:22px}
 .replies-close:hover{background:#e9e9eb}
 .replies-open .chat-scroll{background:linear-gradient(to bottom,#fff 128px,#f1f1f166 128px)}
 .replies-open .agent-header{height:128px}
@@ -19,4 +19,4 @@
 .replies-open .unfurl-show-more{color:#0085ff;margin-top:-6px}
 .replies-request-copy{gap:0}
 .replies-open .unfurl-thread-detail{scroll-margin-top:144px}
-@media(max-width:760px){.replies-close{top:22px;right:14px;width:44px;height:44px}.replies-close svg{width:24px;height:24px}}
+@media(max-width:760px){.replies-close{right:14px}}
