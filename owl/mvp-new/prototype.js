@@ -8,7 +8,7 @@
       'chat-scroll', 'messages', 'message-form', 'message-input', 'message-send',
       'attach-button', 'attachment-input', 'attachments', 'thinking-button',
       'thinking-menu', 'mic-button', 'sidebar-toggle', 'sidebar-backdrop',
-      'sidebar', 'sidebar-close', 'chief-button', 'chief-popover', 'toast',
+      'sidebar', 'sidebar-close', 'toast',
     ].map((id) => [id, byId(id)]));
     const sources = new Map();
     const timers = new Set();
@@ -171,11 +171,6 @@
       ui['thinking-button']?.setAttribute('aria-expanded', 'false');
     }
 
-    function closeChief() {
-      if (ui['chief-popover']) ui['chief-popover'].hidden = true;
-      ui['chief-button']?.setAttribute('aria-expanded', 'false');
-    }
-
     function syncSidebarButton() {
       const expanded = mobile.matches ? sidebarOpen : !document.body.classList.contains('sidebar-collapsed');
       const button = ui['sidebar-close'];
@@ -227,7 +222,6 @@
       const definition = window.MVPViews?.[view];
       if (view !== 'text-only' && !definition) return;
       closeMenu();
-      closeChief();
       timers.forEach(timer => clearTimeout(timer));
       timers.clear();
       viewStates.set(currentView, {
@@ -294,7 +288,6 @@
     ui['thinking-button']?.setAttribute('aria-controls', 'thinking-menu');
     ui['thinking-button']?.addEventListener('click', () => {
       if (!ui['thinking-menu']) return;
-      closeChief();
       const open = ui['thinking-menu'].hidden;
       ui['thinking-menu'].hidden = !open;
       ui['thinking-button'].setAttribute('aria-expanded', String(open));
@@ -420,18 +413,8 @@
       });
     }
 
-    ui['chief-button']?.setAttribute('aria-expanded', 'false');
-    ui['chief-button']?.setAttribute('aria-controls', 'chief-popover');
-    ui['chief-button']?.addEventListener('click', () => {
-      if (!ui['chief-popover']) return;
-      closeMenu();
-      const open = ui['chief-popover'].hidden;
-      ui['chief-popover'].hidden = !open;
-      ui['chief-button'].setAttribute('aria-expanded', String(open));
-    });
     document.addEventListener('click', (event) => {
       if (!ui['thinking-menu']?.contains(event.target) && !ui['thinking-button']?.contains(event.target)) closeMenu();
-      if (!ui['chief-popover']?.contains(event.target) && !ui['chief-button']?.contains(event.target)) closeChief();
     });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
@@ -439,9 +422,6 @@
         if (ui['thinking-menu'] && !ui['thinking-menu'].hidden) {
           closeMenu();
           ui['thinking-button']?.focus();
-        } else if (ui['chief-popover'] && !ui['chief-popover'].hidden) {
-          closeChief();
-          ui['chief-button']?.focus();
         } else if (sidebarOpen) setSidebarOpen(false, true);
       }
       if (event.key === 'Tab' && mobile.matches && sidebarOpen && ui.sidebar) {
