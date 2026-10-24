@@ -3,11 +3,656 @@
 <body><a class="skip-link" href="#message-input">Skip to message</a>
 <button id="sidebar-backdrop" class="sidebar-backdrop" aria-label="Close navigation" hidden></button>
 <aside id="sidebar" class="sidebar" aria-label="Main navigation">
- <div class="brand"><img src="assets/wisdom-logo.svg" alt="" width="24" height="24"><span>WisdomAI</span><button id="sidebar-close" class="icon-button" aria-label="Collapse navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg></button></div>
- <nav><button class="nav-item " data-nav="New Chat" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>New Chat</span></button><button class="nav-item is-active" data-nav="Owl" aria-current=page><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="11" r="2.5"/><circle cx="15.5" cy="11" r="2.5"/><path d="m10 15 2 2 2-2M6 5 4 3M18 5l2-2"/></svg><span>Owl</span></button><button class="nav-item " data-nav="Apps" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Apps</span></button><button class="nav-item " data-nav="Agents" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 16H3L12 3Z"/><path d="m8 12 4 7 4-7"/></svg><span>Agents</span></button><button class="nav-item " data-nav="Domains" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></svg><span>Domains</span></button><button class="nav-item " data-nav="Connections" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 8 6 8M7 3v5M3 7h5M17 16v5M16 17h5"/><path d="m4 10 6-6 4 4-6 6-4-4ZM10 16l6-6 4 4-6 6-4-4Z"/></svg><span>Connections</span></button><button class="nav-item " data-nav="Chat Logs" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5v18h14V3h-3M9 3h6v4H9zM8 12h8M8 16h6"/></svg><span>Chat Logs</span></button><button class="nav-item " data-nav="More" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg><span>More</span></button><button class="nav-item " data-nav="Settings" ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 3-1 3-3 1 1 3-2 2 2 2-1 3 3 1 1 3h6l1-3 3-1-1-3 2-2-2-2 1-3-3-1-1-3H9Z"/><circle cx="12" cy="12" r="3"/></svg><span>Settings</span></button></nav><section class="recent"><h2>Recent</h2><div class="recent-list"><button class="recent-item" data-recent="Ideal daily active users" title="Ideal daily active users">Ideal daily active users</button><button class="recent-item" data-recent="Generate bar chart of quarterly EV sales" title="Generate bar chart of quarterly EV sales">Generate bar chart of quarterly EV sales</button><button class="recent-item" data-recent="Release Blockers by Release Version" title="Release Blockers by Release Version">Release Blockers by Release Version</button><button class="recent-item" data-recent="New Deal Closed email" title="New Deal Closed email">New Deal Closed email</button><button class="recent-item" data-recent="Pipeline coverage by segment" title="Pipeline coverage by segment">Pipeline coverage by segment</button><button class="recent-item" data-recent="Churn risk scoring for enterprise accounts" title="Churn risk scoring for enterprise accounts">Churn risk scoring for enterprise accounts</button><button class="recent-item" data-recent="Lead source attribution explorer" title="Lead source attribution explorer">Lead source attribution explorer</button><button class="recent-item" data-recent="Weekly revenue digest" title="Weekly revenue digest">Weekly revenue digest</button><button class="recent-item" data-recent="Contacts with job title 'Manager'" title="Contacts with job title 'Manager'">Contacts with job title 'Manager'</button><button class="recent-item" data-recent="EV adoption by state, 2024" title="EV adoption by state, 2024">EV adoption by state, 2024</button><button class="recent-item" data-recent="Support ticket deflection rate" title="Support ticket deflection rate">Support ticket deflection rate</button></div></section>
- <div class="sidebar-footer"><button class="nav-item" data-nav="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span>Notifications</span><span class="notification-count">1</span></button><button class="nav-item" data-nav="Profile"><span class="profile-initial">M</span><span>Woomi Jeong</span></button></div>
+ <div class="brand"><div class="brand-logo" role="img" aria-label="WisdomAI"><div
+                data-pencil-id="lqbxN"
+                data-pencil-name="Frame 29"
+                style="box-sizing: border-box; flex-shrink: 0; height: 40px; position: relative; width: 125.986px"
+              >
+                <div
+                  data-pencil-id="j38VW"
+                  data-pencil-name="Frame 28"
+                  style="box-sizing: border-box; height: 14.149px; left: 40.341px; position: absolute; top: 12.917px; width: 85.645px; z-index: 0"
+                >
+                  <svg
+                    data-pencil-id="mB0Vp"
+                    viewBox="0.0000010728836059570312 -4.76837158203125e-7 63.30117690563202 13.919520854949951"
+                    preserveAspectRatio="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="box-sizing: border-box; height: 13.92px; left: 22.343px; overflow: visible; position: absolute; top: 0.23px; width: 63.301px; z-index: 0"
+                  >
+                    <path
+                      d="M61.31368 13.63959l0-13.63959 1.9875 0 0 13.63959-1.9875 0z m-13.28369 0l4.4539-13.63959 2.86628 0 4.45289 13.63959-2.0645 0-4.09497-12.44089 0.51187 0-4.05199 12.44089-2.07348 0z m2.31243-3.07623l0-1.85254 7.14921 0 0 1.85254-7.14921 0z m-5.82654 3.07623l0-6.37341c0.00899-0.73981-0.17896-1.31767-0.56387-1.72556-0.3839-0.4169-0.87878-0.62884-1.50062-0.62885-0.36697-0.00529-0.7289 0.08572-1.04973 0.26394-0.30692 0.16996-0.56287 0.43389-0.75981 0.7728-0.18796 0.33992-0.28193 0.77381-0.28093 1.29168l-0.96376-0.48388c-0.009-0.72282 0.13697-1.35166 0.45988-1.89553 0.32292-0.54386 0.75881-0.96076 1.31468-1.25768 0.55486-0.30592 1.16871-0.45089 1.85054-0.44989 1.10872 0 1.9705 0.33192 2.57635 0.99375 0.60585 0.66284 0.91277 1.54661 0.91277 2.64334l0 6.84929-1.9955 0z m-12.31093 0l0-10.22344 1.76556 0 0 2.95726 0.23094 0 0 7.27418-1.9965 0 0-0.008z m6.15946 0l0-6.33142c0.009-0.74781-0.17896-1.32567-0.56286-1.75056q-0.56287-0.63784-1.51063-0.63684c-0.94776 0.001-1.13472 0.21295-1.51761 0.64584-0.3829 0.43289-0.57185 0.99475-0.57186 1.68258l-0.94676-0.60385c0-0.67183 0.16196-1.26668 0.48588-1.79255 0.32391-0.52587 0.75881-0.93477 1.31368-1.24069 0.55485-0.30592 1.1777-0.45089 1.87652-0.45089 0.69882 0 1.34766 0.15296 1.86054 0.46788 0.51187 0.30592 0.90478 0.73082 1.1687 1.27468q0.4099 0.82979 0.40889 1.91152l0 6.8243-2.00449 0z m-12.71182 0.27993c-1.02375 0-1.91952-0.22994-2.67034-0.68783-0.75284-0.4543-1.35966-1.1149-1.74856-1.90352-0.4099-0.8158-0.60585-1.75056-0.60585-2.8133 0-1.06273 0.20496-2.0055 0.63185-2.81229 0.39258-0.78689 1.00253-1.44472 1.75756-1.89553 0.75081-0.45089 1.63759-0.67983 2.64433-0.67983 1.00674 0 1.91952 0.22994 2.67034 0.68883 0.75881 0.45889 1.33966 1.09673 1.74856 1.90352 0.4089 0.8068 0.61384 1.74256 0.61484 2.7953 0.001 1.05274-0.21294 2.0055-0.63184 2.8213-0.39164 0.78673-0.99783 1.44664-1.74856 1.90352q-1.12572 0.67783-2.66233 0.67983m0-1.86053c0.98076 0 1.71456-0.33192 2.19245-0.98576 0.48588-0.66283 0.73382-1.51262 0.73382-2.55836 0-1.04574-0.24694-1.92052-0.74182-2.55736-0.48588-0.64584-1.2197-0.96876-2.18444-0.96876-0.66584 0-1.2117 0.15296-1.6466 0.44989-0.4349 0.29693-0.75082 0.71382-0.95476 1.24069-0.21294 0.52687-0.31593 1.13072-0.31593 1.82754q0 1.6066 0.74182 2.57436c0.74181 0.96776 1.2197 0.96876 2.17546 0.96876l0 0.009z m-11.38016 1.86053q-1.43265 0-2.48238-0.71382c-0.70113-0.48402-1.25613-1.15105-1.6046-1.92852-0.3749-0.82479-0.56286-1.74256-0.56285-2.76231 0-1.01974 0.18796-1.94651 0.57185-2.75331q0.57385-1.22169 1.6206-1.92052 1.05174-0.71382 2.50037-0.71382c1.44864 0 1.78256 0.23794 2.43939 0.71382 0.66583 0.46788 1.16871 1.10472 1.50163 1.92052q0.51187 1.22369 0.51187 2.75331c0 1.52962-0.17095 1.93752-0.51187 2.75331-0.34092 0.8158-0.84479 1.46163-1.50963 1.93752q-0.99975 0.71382-2.47437 0.71382m0.27293-1.78455c0.65683 0 1.1857-0.15296 1.5956-0.46689 0.4099-0.30592 0.71683-0.73982 0.90378-1.27468 0.18796-0.54387 0.28192-1.16471 0.28192-1.87853 0-0.71382-0.10197-1.33467-0.29893-1.87753q-0.28193-0.8178-0.89577-1.26668c-0.4009-0.30592-0.91277-0.45089-1.52662-0.44989-0.65684 0-1.20271 0.16196-1.6296 0.48388-0.42689 0.32192-0.74181 0.75681-0.94676 1.30067q-0.30692 0.8138-0.30792 1.81855c-0.001 1.00475 0.10197 1.29168 0.30792 1.83554q0.31792 0.8168 0.92977 1.29967c0.41789 0.32292 0.94676 0.48488 1.57761 0.48488l0.009 0 0-0.00899z m2.7893 1.50462l0-7.35916-0.22994 0 0-6.28043 1.9965 0 0 13.63959-1.76656 0z m-12.83879 0.27193c-1.24569 0-2.26944-0.27193-3.05424-0.82479-0.78481-0.55286-1.27068-1.32567-1.44164-2.31942l2.03849-0.31493c0.12796 0.52687 0.41789 0.95176 0.87878 1.25769 0.46089 0.30592 1.04074 0.45089 1.72357 0.45089q0.93377 0 1.45864-0.38291c0.35791-0.25494 0.52887-0.60385 0.52887-1.04474 0-0.25493-0.05999-0.46788-0.18796-0.62884-0.11897-0.16196-0.3749-0.32292-0.76781-0.46788-0.39291-0.14496-0.98975-0.32292-1.79954-0.54387-0.87878-0.22994-1.57861-0.46788-2.09848-0.73081q-0.76781-0.3959-1.10073-0.91777c-0.21295-0.35691-0.32392-0.7818-0.32392-1.27469 0-0.62084 0.16196-1.15571 0.49388-1.62259q0.49688-0.68883 1.39065-1.07073 0.90678-0.3829 2.10748-0.38291c1.2007 0 1.48463 0.11897 2.09847 0.36591 0.61385 0.24694 1.10873 0.59485 1.49363 1.05374 0.38391 0.45089 0.60585 0.97775 0.68183 1.5806l-2.0385 0.36491c-0.06798-0.49288-0.29892-0.88378-0.69082-1.16371-0.39191-0.27993-0.90477-0.44189-1.52762-0.46788-0.60585-0.02599-1.09173 0.07698-1.46763 0.30592q-0.56286 0.33192-0.56286 0.91777c0 0.22994 0.06798 0.4169 0.21395 0.57786 0.14596 0.16096 0.42689 0.30592 0.83578 0.45089 0.4089 0.14496 1.02374 0.32292 1.82555 0.51787q1.29068 0.33192 2.05649 0.73981c0.50288 0.26393 0.86979 0.58685 1.08273 0.95976 0.22195 0.36591 0.33292 0.8078 0.33291 1.33467 0 1.01175-0.36691 1.80155-1.10872 2.3794-0.73382 0.57785-1.74857 0.85878-3.05424 0.85779l-0.01699 0.04299z"
+                      fill="#333444"
+                    ></path>
+                  </svg>
+                  <div
+                    data-pencil-id="mJ9b3"
+                    style="background-color: #333444; border-radius: 50%; box-sizing: border-box; height: 2.193px; left: 18.516px; position: absolute; top: 0px; width: 2.193px; z-index: 1"
+                  ></div>
+                  <svg
+                    data-pencil-id="Hzcs0"
+                    viewBox="9.5367431640625e-7 0 20.62783908843994 13.6395902633667"
+                    preserveAspectRatio="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="box-sizing: border-box; height: 13.64px; left: 0px; overflow: visible; position: absolute; top: 0.23px; width: 20.628px; z-index: 2"
+                  >
+                    <path
+                      d="M18.64034 13.63959l0-10.22344 1.9875 0 0 10.22344-1.9875 0z m-14.66533 0l-3.97501-13.63959 2.08148 0 2.88328 10.30842 2.88427-10.29942 2.08948 0 2.88328 10.29942 2.88428-10.30842 2.08947 0-3.984 13.63959-1.9785 0-2.93527-10.19745-2.93427 10.19745-1.98849 0z"
+                      fill="#333444"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  data-pencil-id="zij10"
+                  data-pencil-name="img"
+                  style="box-sizing: border-box; height: 40px; left: 0px; overflow: hidden; position: absolute; top: 0px; width: 40px; z-index: 1"
+                >
+                  <div
+                    data-pencil-id="QHlr1"
+                    data-pencil-name="Icon artwork"
+                    style="box-sizing: border-box; height: 25.512px; left: 8.163px; position: absolute; top: 7.23px; width: 23.43px; z-index: 0"
+                  >
+                    <div
+                      data-pencil-id="ahaRJ"
+                      data-pencil-name="Icon artwork"
+                      style="box-sizing: border-box; height: 25.512px; left: 0px; position: absolute; top: 0px; width: 23.43px; z-index: 0"
+                    >
+                      <svg
+                        data-pencil-id="dL9OR"
+                        data-pencil-name="Icon vector"
+                        viewBox="-0.0000035762786865234375 5.960464477539062e-7 23.430448293685913 14.761725783348083"
+                        preserveAspectRatio="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="box-sizing: border-box; height: 14.762px; left: 0px; overflow: visible; position: absolute; top: 5.374px; width: 23.43px; z-index: 0"
+                      >
+                        <path
+                          d="M23.29141 12.88672c-0.119-0.255-1.205-2.465 0-4.938 0.085-0.179 0.127-0.374 0.136-0.57q0-0.304-0.128-0.569c-0.119-0.247-1.214-2.457 0-4.93 0.365-0.748-0.051-1.76-1.018-1.87-1.129-0.128-1.723 1.037-1.324 1.861 0.356 0.74 1.078 2.72 0 4.93-0.085 0.162-0.119 0.34-0.127 0.519 0 0.179 0.017 0.366 0.084 0.527 0.314 0.816 1.078 3.46 0.255 3.93499-0.832 0.485-2.826-1.683-3.225-2.18399-0.11-0.136-0.255-0.255-0.407-0.34-0.152-0.085-0.323-0.136-0.51-0.14501-0.806-0.06-2.86-0.425-4.218-2.465-0.12061-0.17888-0.28385-0.32494-0.475-0.42499-0.187-0.102-0.399-0.153-0.62-0.153-0.221 0-0.424 0.051-0.619 0.153-0.18927 0.10314-0.35217 0.24858-0.476 0.425-1.349 2.023-3.403 2.397-4.218 2.465-0.178 0.017-0.356 0.06-0.509 0.145-0.153 0.085-0.297 0.204-0.407 0.34-0.492 0.621-2.385 2.652-3.226 2.184-0.857-0.493 0.008-3.29 0.255-3.935 0.059-0.162 0.093-0.349 0.085-0.527 0-0.179-0.051-0.357-0.127-0.519-1.069-2.21-0.348-4.191 0-4.93 0.399-0.825-0.204-1.989-1.324-1.861-0.959 0.111-1.383 1.131-1.019 1.87 1.205 2.482 0.11 4.684 0 4.93-0.085 0.179-0.127 0.374-0.127 0.569 0 0.195 0.042 0.391 0.136 0.57 1.205 2.474 0.11 4.684 0 4.938-0.13327 0.28422-0.16333 0.60601-0.085 0.91 0.085 0.298 0.272 0.561 0.534 0.739 0.58496 0.38703 1.37098 0.24464 1.783-0.323 0.789-1.097 2.249-2.406 4.184-2.49 0.187 0 0.382-0.06 0.552-0.145q0.255-0.143 0.433-0.374c2.47-3.256 5.729-3.426 8.317 0 0.119 0.153 0.263 0.281 0.433 0.374 0.17 0.093 0.365 0.136 0.552 0.145 1.935 0.085 3.403 1.394 4.184 2.49 0.39 0.536 1.171 0.748 1.782 0.323 0.54335-0.35828 0.73604-1.06438 0.45-1.649l0.034 0z"
+                          fill="#000000"
+                        ></path>
+                      </svg>
+                      <svg
+                        data-pencil-id="nxpTw"
+                        data-pencil-name="Icon vector"
+                        viewBox="0.0000034570693969726562 -0.000001039355993270874 17.23699986934662 25.512309160083532"
+                        preserveAspectRatio="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="box-sizing: border-box; height: 25.512px; left: 3.117px; overflow: visible; position: absolute; top: 0px; width: 17.237px; z-index: 1"
+                      >
+                        <path
+                          d="M0.161 11.72518c0 0 0.042 0 0.059-0.017l2.496-1.454c0.051-0.034 0.119-0.043 0.178-0.034 0.068 0 0.127 0.026 0.187 0.051l0.017 0c0.05152 0.03245 0.09496 0.07622 0.127 0.128 0.03278 0.05658 0.04743 0.12184 0.042 0.187l0 2.924c0 0 0.017 0.06 0.034 0.085 0.02321 0.02433 0.05537 0.0381 0.089 0.0381 0.03363 0 0.06579-0.01377 0.089-0.0381 0.025-0.026 0.034-0.051 0.034-0.094l0-2.924c0-0.051 0.017-0.119 0.043-0.161 0.03423-0.05001 0.07726-0.09338 0.127-0.128l0.026-0.017c0.12131-0.05537 0.26069-0.05537 0.382 0l2.478 1.445c0 0 0.051 0.017 0.085 0.017 0.034 0 0.051-0.026 0.076-0.042l0.017 0 0-0.026c0 0 0-0.009 0.009-0.017l0-0.051c0 0 0-0.043-0.017-0.059 0-0.009-0.017-0.017-0.026-0.026l-2.495-1.453c-0.051-0.034-0.11-0.085-0.136-0.136-0.026-0.051-0.042-0.119-0.042-0.196l0-0.017c0-0.068 0.017-0.128 0.051-0.195 0.034-0.067 0.093-0.111 0.135-0.136l3.684-2.142q0.087-0.05 0.187-0.034c0.06501 0.00303 0.12853 0.02045 0.186 0.051l0.017 0c0.05001 0.03423 0.09338 0.07726 0.128 0.127 0.03278 0.05658 0.04743 0.12184 0.042 0.187l0 2.95c0 0 0.017 0.06 0.034 0.085 0.02118 0.0244 0.05284 0.03706 0.085 0.034l0.051 0c0 0 0.025-0.017 0.034-0.026 0.025-0.026 0.025-0.051 0.025-0.059l0-2.967c0-0.068 0.017-0.128 0.043-0.195 0.0373-0.05547 0.0865-0.10193 0.144-0.136 0.05556-0.03592 0.12089-0.05374 0.187-0.051 0.068 0 0.127 0.017 0.195 0.042l3.683 2.142c0 0 0.093 0.077 0.128 0.136 0.02754 0.05826 0.03893 0.12284 0.033 0.187l0 0.017c0.0029 0.06141-0.00839 0.12266-0.033 0.179-0.03134 0.0548-0.0752 0.1014-0.128 0.136l-2.504 1.462-0.025 0.025-0.025 0.043 0 0.051c0 0 0 0.051 0.025 0.068 0.017 0.026 0.042 0.034 0.068 0.042l0.017 0c0 0 0.051 0 0.085-0.008l2.495-1.462c0 0 0.102-0.043 0.161-0.043 0.059 0 0.11 0.017 0.162 0.043l0.025 0.017c0.05371 0.0361 0.0999 0.08229 0.136 0.136 0.02841 0.06104 0.04277 0.12768 0.042 0.195l0 2.916c0 0 0.017 0.06 0.034 0.085 0.025 0.026 0.051 0.034 0.094 0.034l0.05 0c0 0 0.025-0.017 0.034-0.034 0.025-0.026 0.025-0.051 0.026-0.06l0-2.966c0-0.068 0.017-0.119 0.042-0.187 0.03106-0.05698 0.08305-0.09966 0.145-0.119q0.076-0.051 0.178-0.051c0.102 0 0.127 0.017 0.178 0.034l2.495 1.453c0 0 0.025 0.009 0.051 0.009l0.051 0c0 0 0.025-0.017 0.034-0.026 0.025-0.026 0.025-0.051 0.026-0.051l0-0.068c0 0-0.034-0.06-0.051-0.068l-2.47-1.445c-0.05572-0.0336-0.1024-0.08028-0.136-0.136-0.02407-0.04768-0.03836-0.09971-0.042-0.153l0.068 0 0-0.068c0-0.068 0.017-0.128 0.042-0.195 0.0336-0.05572 0.08028-0.1024 0.136-0.136l2.478-1.454c0 0 0.034-0.034 0.042-0.051l0-0.093c0 0-0.008-0.026-0.025-0.034-0.034-0.026-0.051-0.026-0.059-0.026l-0.034 0c0 0-0.042 0-0.06 0.017l-2.495 1.454q-0.076 0.05-0.178 0.034c-0.068 0-0.127-0.026-0.187-0.051-0.0548-0.03134-0.1014-0.0752-0.136-0.128-0.03219-0.05352-0.04687-0.11574-0.042-0.178l0-4.344c0-0.051 0.017-0.119 0.042-0.161 0.02975-0.05092 0.07038-0.09463 0.119-0.128l0.026-0.017c0.12042-0.05784 0.26059-0.05784 0.381 0l2.487 1.454c0 0 0.025 0.017 0.051 0.017l0.034 0c0 0 0.042-0.009 0.06-0.034 0.017-0.017 0.025-0.034 0.025-0.043 0.00819-0.02774 0.00819-0.05726 0-0.085 0-0.026-0.025-0.051-0.042-0.068l-2.513-1.471c-0.05141-0.03216-0.09484-0.07559-0.127-0.127-0.025-0.034-0.034-0.094-0.034-0.162 0-0.077 0-0.153-0.025-0.229-0.03524-0.11364-0.10346-0.21423-0.196-0.289-0.08935-0.08245-0.20164-0.1358-0.322-0.153-0.14731-0.02561-0.29887 0.0047-0.425 0.085-0.05325 0.03364-0.11501 0.05134-0.178 0.051-0.068 0-0.119-0.017-0.178-0.034l-3.7-2.159c-0.05189-0.03232-0.09567-0.07611-0.128-0.128-0.025-0.034-0.034-0.094-0.034-0.161 0.0139-0.19888-0.06425-0.39314-0.212-0.527-0.07136-0.06671-0.15892-0.1136-0.254-0.136-0.19662-0.04862-0.40467-0.0084-0.569 0.11-0.083 0.06066-0.14769 0.14301-0.187 0.238-0.04501 0.08967-0.0683 0.18867-0.068 0.289-0.002 0.06993-0.01621 0.13897-0.042 0.204-0.0336 0.05572-0.08028 0.1024-0.136 0.136l-3.683 2.151c-0.05361 0.03255-0.11719 0.04463-0.179 0.034-0.06251-0.00284-0.12347-0.02031-0.178-0.051-0.136-0.085-0.297-0.111-0.458-0.085-0.11308 0.02491-0.21822 0.07748-0.306 0.153-0.08214 0.08027-0.14327 0.17952-0.178 0.289-0.017 0.06-0.025 0.136-0.025 0.212 0 0.076-0.008 0.128-0.034 0.162-0.02987 0.05055-0.07049 0.09391-0.119 0.127l-2.512 1.463c0 0-0.051 0.043-0.051 0.085l0 0.076c0 0 0.017 0.026 0.025 0.034l0 0.017 0.085 0c0 0 0.025 0.009 0.051-0.008l2.512-1.463c0 0 0.102-0.043 0.161-0.042 0.059 0.001 0.11 0.017 0.162 0.042l0.025 0.017c0.051 0.034 0.11 0.085 0.136 0.137 0.02841 0.06104 0.04277 0.12768 0.042 0.195l0 4.318c-0.00141 0.06557-0.01893 0.12979-0.051 0.187-0.025 0.051-0.068 0.085-0.135 0.119q-0.076 0.051-0.179 0.051c-0.103 0-0.127-0.017-0.186-0.034l-2.496-1.453c0 0-0.025-0.009-0.051-0.009l-0.05 0c0 0-0.025 0.017-0.034 0.026-0.008 0.009-0.034 0.026-0.034 0.059l0 0.068c0 0 0.034 0.06 0.051 0.068l2.469 1.445c0.05371 0.0361 0.0999 0.08229 0.136 0.136 0.02743 0.06176 0.04206 0.12843 0.043 0.196l0 0.017c0 0.068-0.017 0.128-0.051 0.195-0.034 0.067-0.093 0.111-0.136 0.136l-2.478 1.445c0 0-0.051 0.043-0.051 0.077l0 0.076c0 0 0.017 0.026 0.025 0.034 0.025 0.026 0.051 0.026 0.06 0.026l0.076 0z m13.512-7.2l0 4.335c-0.00212 0.06453-0.01673 0.12803-0.043 0.187-0.03082 0.05678-0.08243 0.09943-0.144 0.119-0.051 0.034-0.102 0.051-0.178 0.051-0.076 0-0.119-0.017-0.179-0.034l-3.683-2.15c-0.05572-0.0336-0.1024-0.08028-0.136-0.136-0.02856-0.06134-0.04292-0.12834-0.042-0.196l0-0.017c0-0.068 0.017-0.128 0.042-0.195 0.0336-0.05572 0.08028-0.1024 0.136-0.136l3.658-2.134c0.12069-0.05816 0.26131-0.05816 0.382 0l0.025 0.017c0.0501 0.03452 0.09347 0.0779 0.128 0.128 0.02752 0.0492 0.04198 0.10463 0.042 0.161l-0.008 0z m-0.518-0.876c-0.00094 0.06757-0.01557 0.13424-0.043 0.196-0.03332 0.0556-0.07965 0.10227-0.135 0.136l-3.684 2.151c-0.05364 0.0315-0.11652 0.04351-0.178 0.034-0.06298 0.00034-0.12475-0.01736-0.178-0.051l-0.068-0.043c0 0-0.059-0.043-0.077-0.068-0.03278-0.05658-0.04743-0.12184-0.042-0.187l0-4.344c0-0.051 0.017-0.119 0.042-0.161 0.03232-0.05189 0.07611-0.09567 0.128-0.128l0.025-0.017c0.06041-0.03024 0.1275-0.04469 0.195-0.042 0.068 0 0.127 0.017 0.187 0.042l3.658 2.134c0.05572 0.0336 0.1024 0.08028 0.136 0.136 0.02841 0.06104 0.04277 0.12768 0.042 0.195l0 0.017-0.008 0z m-4.685 2.219c-0.00141 0.05112-0.01587 0.10104-0.042 0.145-0.03106 0.05698-0.08305 0.09966-0.145 0.119q-0.076 0.051-0.178 0.051c-0.102 0-0.127-0.017-0.178-0.034l-3.684-2.151c-0.05572-0.0336-0.1024-0.08028-0.136-0.136-0.02856-0.06135-0.04291-0.12834-0.042-0.196l0-0.017c0-0.068 0.017-0.128 0.042-0.195 0.0313-0.05748 0.07852-0.1047 0.136-0.136l3.658-2.134c0.06071-0.03041 0.12816-0.04486 0.196-0.042 0.068 0 0.127 0.017 0.195 0.042 0.051 0.034 0.11 0.085 0.136 0.136 0.026 0.051 0.042 0.119 0.042 0.196l0 4.352z m-0.535 0.799l0 0.06 0.017 0c0.00242 0.05311-0.00931 0.10591-0.034 0.153-0.03105 0.05469-0.07456 0.10128-0.127 0.136l-3.684 2.142c-0.12073 0.05642-0.26026 0.05642-0.381 0l-0.026-0.017c-0.04974-0.03462-0.09277-0.07799-0.127-0.128-0.02747-0.04927-0.04224-0.1046-0.043-0.161l0-4.318c0-0.068 0.017-0.128 0.051-0.196 0.034-0.068 0.093-0.111 0.136-0.136 0.05556-0.03592 0.12089-0.05374 0.187-0.051 0.068 0 0.127 0.017 0.187 0.042l3.675 2.151c0.05416 0.03264 0.09814 0.07974 0.127 0.136 0.0265 0.05576 0.0382 0.1174 0.034 0.179l0.008 0.008z m9.243 13.218l-0.06-0.034 0 0.017c0 0-0.025-0.017-0.042-0.026l-0.017 0c0 0-0.051 0-0.085 0.009l-2.495 1.453c0 0-0.102 0.043-0.161 0.043-0.059 0-0.11-0.017-0.17-0.051l-0.042-0.026c-0.05002-0.03423-0.09339-0.07726-0.128-0.127-0.02769-0.04949-0.04215-0.10529-0.042-0.162l0-2.941c0 0-0.017-0.06-0.034-0.076-0.02321-0.02433-0.05537-0.0381-0.089-0.0381-0.03363 0-0.06579 0.01377-0.089 0.0381-0.025 0.026-0.034 0.051-0.034 0.093l0 2.916c-0.00108 0.06723-0.0157 0.13355-0.043 0.195-0.03056 0.05605-0.0782 0.10089-0.136 0.128q-0.076 0.051-0.178 0.051c-0.102 0-0.119-0.017-0.178-0.034l-3.684-2.151c-0.051-0.034-0.11-0.085-0.135-0.136-0.025-0.051-0.042-0.119-0.043-0.187l0-0.017c0-0.068 0.017-0.128 0.043-0.195 0.03581-0.05361 0.08165-0.09979 0.135-0.136l2.47-1.437 0.034-0.034 0.026-0.042 0-0.051c0 0 0-0.043-0.026-0.068-0.008-0.017-0.034-0.034-0.085-0.034-0.017 0-0.051 0-0.085 0.017l-2.486 1.445c-0.05361 0.03256-0.11719 0.04463-0.179 0.034-0.068 0-0.119-0.026-0.186-0.051-0.0548-0.03134-0.1014-0.0752-0.136-0.128-0.03254-0.0567-0.0475-0.12178-0.043-0.187l0-2.941c0 0-0.017-0.06-0.033-0.085-0.0361-0.03744-0.09173-0.04836-0.13932-0.02736-0.04758 0.021-0.07701 0.06946-0.07368 0.12136l0 2.932c-0.00181 0.06446-0.01607 0.12796-0.042 0.187-0.03082 0.05678-0.08243 0.09943-0.144 0.119q-0.076 0.051-0.179 0.051c-0.103 0-0.127-0.017-0.178-0.034l-2.487-1.453c0 0-0.051-0.026-0.084-0.009-0.017 0-0.034 0.017-0.051 0.026l-0.034 0 0 0.034c0 0 0 0.009-0.009 0.017l0 0.051c0 0 0 0.043 0.017 0.059 0 0.009 0.017 0.017 0.026 0.026l2.478 1.445c0.05371 0.03611 0.0999 0.08229 0.136 0.136 0.02841 0.06104 0.04276 0.12768 0.042 0.195l0 0.017c0.0001 0.06863-0.01747 0.13612-0.051 0.196-0.0313 0.05748-0.07852 0.1047-0.136 0.136l-3.683 2.15c-0.051 0.034-0.119 0.043-0.178 0.034-0.068 0-0.119-0.026-0.187-0.051-0.05469-0.03105-0.10128-0.07456-0.136-0.127-0.03239-0.0538-0.04708-0.11641-0.042-0.179l0-2.941c0 0-0.017-0.06-0.034-0.085-0.02205-0.02315-0.05307-0.03556-0.085-0.034l-0.051 0c0 0-0.025 0.017-0.034 0.026-0.01619 0.01533-0.02525 0.03671-0.025 0.059l0 2.975c-0.00141 0.06557-0.01893 0.12979-0.051 0.187-0.025 0.051-0.068 0.085-0.136 0.119q-0.076 0.051-0.178 0.051c-0.102 0-0.119-0.017-0.187-0.034l-2.495-1.453c0 0-0.051-0.026-0.085-0.017-0.034 0-0.051 0.026-0.077 0.042l-0.017 0 0 0.026c0 0 0 0.009-0.008 0.017l0 0.051c0 0 0 0.043 0.025 0.059 0 0.009 0.017 0.017 0.026 0.026l2.495 1.462c0.05141 0.03216 0.09484 0.07559 0.127 0.127 0.025 0.034 0.034 0.094 0.034 0.162 0 0.077 0 0.153 0.026 0.221 0.025 0.102 0.076 0.17 0.144 0.255 0.076 0.077 0.161 0.128 0.246 0.161 0.085 0.033 0.178 0.051 0.28 0.034 0.09781-0.00371 0.19239-0.03604 0.272-0.093 0.05721-0.03207 0.12143-0.04959 0.187-0.051 0.068 0 0.119 0.017 0.178 0.034l3.7 2.159c0.05083 0.03689 0.09425 0.08303 0.128 0.136 0.025 0.043 0.042 0.102 0.042 0.161 0 0.059 0 0.145 0.026 0.213 0.0415 0.15364 0.13793 0.28671 0.271 0.374 0.10605 0.06909 0.23046 0.10463 0.357 0.102l0.084 0c0.15593-0.02125 0.29827-0.10008 0.399-0.221 0.10441-0.11633 0.15931-0.26881 0.153-0.425 0-0.077 0.017-0.136 0.043-0.204 0.03332-0.0556 0.07965-0.10227 0.135-0.136l3.684-2.151q0.087-0.05 0.187-0.034c0.068 0 0.127 0.026 0.178 0.051 0.13623 0.07799 0.29471 0.10792 0.45 0.085 0.11591-0.02365 0.22394-0.07629 0.314-0.153 0.08214-0.08027 0.14327-0.17952 0.178-0.289 0.01777-0.06923 0.02617-0.14053 0.025-0.212 0-0.06 0.017-0.119 0.034-0.162 0.03328-0.04789 0.07337-0.09067 0.119-0.127l2.495-1.462 0.026-0.026 0.025-0.042 0-0.051c0 0 0-0.06-0.03401-0.068l-0.02499 0z m-8.632 4.122c0 0-0.017 0.085-0.042 0.128-0.03092 0.05238-0.07462 0.09608-0.127 0.127l-0.026 0.017c-0.06085 0.02909-0.12756 0.0438-0.195 0.043-0.06723-0.00108-0.13355-0.0157-0.195-0.043l-3.684-2.142c-0.05416-0.03264-0.09814-0.07974-0.127-0.136-0.02619-0.0587-0.03786-0.12284-0.034-0.187l0-0.017c0-0.068 0-0.077 0.034-0.144 0.025-0.06 0.127-0.119 0.187-0.153l3.683-2.142c0.06084-0.02909 0.12756-0.0438 0.195-0.043 0.068 0 0.076-0.009 0.145 0.017 0.051 0.034 0.11 0.085 0.135 0.136 0.025 0.051 0.042 0.119 0.043 0.196l0 4.343 0.008 0z m4.609-2.099c-0.00076 0.0564-0.01554 0.11173-0.043 0.161-0.03581 0.05361-0.08165 0.0998-0.135 0.136l-3.616 2.125c-0.05365 0.0315-0.11652 0.04351-0.178 0.034-0.06557-0.00141-0.12979-0.01893-0.187-0.051-0.05469-0.03105-0.10128-0.07456-0.136-0.127-0.03164-0.05702-0.04622-0.12193-0.042-0.187l0-4.318c0-0.068 0.017-0.128 0.042-0.196 0.03502-0.05771 0.08517-0.10474 0.145-0.136 0.059-0.043 0.068-0.026 0.118-0.025 0.068 0 0.127 0.017 0.187 0.042l3.658 2.134c0.051 0.026 0.11 0.085 0.136 0.136 0.026 0.051 0.042 0.119 0.042 0.195l0 0.068 0.009 0 0 0.009z"
+                          fill="#000000"
+                        ></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div></div><button id="sidebar-close" class="icon-button" aria-label="Collapse navigation"><span class="native-icon" aria-hidden="true"><div
+                    data-pencil-id="QYEnn"
+                    data-pencil-name="svg"
+                    style="box-sizing: border-box; flex-shrink: 0; height: 16px; overflow: hidden; position: relative; width: 16px"
+                  >
+                    <div
+                      data-pencil-id="lxg5W"
+                      style="border-radius: 2.5px; box-sizing: border-box; height: 13px; left: 1px; outline-offset: -0.5px; outline: 1px solid #666; position: absolute; top: 1.5px; width: 14px; z-index: 0"
+                    ></div>
+                    <svg
+                      data-pencil-id="LRrSB"
+                      viewBox="0 0 1 13"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 13px; left: 5.6px; overflow: visible; position: absolute; top: 1.5px; width: 1px; z-index: 1"
+                    >
+                      <path d="M0 0l0 13" fill="#000000"></path>
+                      <path
+                        d="M0 0l0 13"
+                        fill="none"
+                        stroke="#666"
+                        stroke-width="1"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div></span></button></div>
+ <nav><button class="nav-item " data-nav="New Chat"  aria-label="New Chat" title="New Chat"><span class="nav-icon" aria-hidden="true"><div
+                    data-pencil-id="Jbbo5"
+                    data-pencil-name="filled=off, stroke=1.5, radius=2, join=round"
+                    style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+                  >
+                    <svg
+                      data-pencil-id="CqqA5"
+                      data-pencil-name="vector"
+                      viewBox="0 0 16 16"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 13.75px; left: 3.125px; overflow: visible; position: absolute; top: 3.125px; width: 13.75px; z-index: 0"
+                    >
+                      <path
+                        d="M8 0l0 8 0 8m0-8l-8 0m16 0l-8 0"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div></span><span class="nav-label">New Chat</span></button><button class="nav-item is-active" data-nav="Owl" aria-current=page aria-label="Owl" title="Owl"><span class="nav-icon" aria-hidden="true"><div
+                    data-pencil-id="smFer"
+                    data-pencil-name="filled=off, stroke=1.5, radius=2, join=round"
+                    style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+                  >
+                    <svg
+                      data-pencil-id="CvgUt"
+                      data-pencil-name="vector"
+                      viewBox="0 0 9 4.5"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 3.833px; left: 2.292px; overflow: visible; position: absolute; top: 6.167px; width: 7.708px; z-index: 0"
+                    >
+                      <path
+                        d="M0 4.5c0-2.48528 2.01472-4.5 4.5-4.5 2.48528 0 4.5 2.01472 4.5 4.5"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <svg
+                      data-pencil-id="cqhWh"
+                      data-pencil-name="vector"
+                      viewBox="0 0 9 4.5"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 3.833px; left: 10px; overflow: visible; position: absolute; top: 6.167px; width: 7.708px; z-index: 1"
+                    >
+                      <path
+                        d="M0 4.5c0-2.48528 2.01472-4.5 4.5-4.5 2.48528 0 4.5 2.01472 4.5 4.5"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <div
+                      data-pencil-id="FTAZ2"
+                      data-pencil-name="vector"
+                      style="background-color: #626268; border-radius: 50%; box-sizing: border-box; height: 2.083px; left: 5.208px; position: absolute; top: 8.958px; width: 2.083px; z-index: 2"
+                    ></div>
+                    <div
+                      data-pencil-id="xU0ts"
+                      data-pencil-name="vector"
+                      style="background-color: #626268; border-radius: 50%; box-sizing: border-box; height: 2.083px; left: 12.708px; position: absolute; top: 8.958px; width: 2.083px; z-index: 3"
+                    ></div>
+                    <svg
+                      data-pencil-id="R8T3N9"
+                      data-pencil-name="vector"
+                      viewBox="0 0 1 3"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 1.875px; left: 10px; overflow: visible; position: absolute; top: 10px; width: 1.5px; z-index: 4"
+                    >
+                      <path
+                        d="M0 0l0 3"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <div
+                      data-pencil-id="M0OMd"
+                      data-pencil-name="vector"
+                      style="border-radius: 50%; box-sizing: border-box; height: 15.417px; left: 2.292px; outline-offset: -0.75px; outline: 1.5px solid #626268; position: absolute; top: 2.292px; width: 15.417px; z-index: 5"
+                    ></div>
+                  </div></span><span class="nav-label">Owl</span></button><button class="nav-item " data-nav="Apps"  aria-label="Apps" title="Apps"><span class="nav-icon" aria-hidden="true"><div
+                    data-pencil-id="lpC8I"
+                    data-pencil-name="filled=off, stroke=1.5, radius=2, join=round"
+                    style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+                  >
+                    <svg
+                      data-pencil-id="vIbUO"
+                      data-pencil-name="vector"
+                      viewBox="-0.0000011473894119262695 -1.9371509552001953e-7 16.500001147389412 16.500000193715096"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 13.75px; left: 3.125px; overflow: visible; position: absolute; top: 3.125px; width: 13.75px; z-index: 0"
+                    >
+                      <path
+                        d="M16.5 13.3l0-10.1c0-1.1201 0-1.68016-0.21799-2.10798-0.19175-0.37632-0.49771-0.68229-0.87403-0.87403-0.42782-0.21799-0.98788-0.21799-2.10798-0.21799l-10.1 0c-1.1201 0-1.68016 0-2.10798 0.21799-0.37632 0.19175-0.68229 0.49771-0.87403 0.87403-0.21799 0.42782-0.21799 0.98788-0.21799 2.10798l0 10.1c0 1.12011 0 1.68016 0.21799 2.10798 0.19175 0.37632 0.49771 0.68229 0.87403 0.87403 0.42782 0.21799 0.98788 0.21799 2.10798 0.21799l10.1 0c1.1201 0 1.68016 0 2.10798-0.21799 0.37633-0.19175 0.68229-0.49771 0.87403-0.87403 0.21799-0.42782 0.21799-0.98788 0.21799-2.10798z"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.25"
+                        stroke-linecap="square"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <svg
+                      data-pencil-id="TGRyZ"
+                      data-pencil-name="vector"
+                      viewBox="0 0 8.25 1"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 1.5px; left: 10px; overflow: visible; position: absolute; top: 11.875px; width: 6px; z-index: 1"
+                    >
+                      <path
+                        d="M0 0l8.25 0"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="square"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <svg
+                      data-pencil-id="U8XKq"
+                      data-pencil-name="vector"
+                      viewBox="0 0 8.25 1"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 1.5px; left: 4.125px; overflow: visible; position: absolute; top: 8.125px; width: 5px; z-index: 2"
+                    >
+                      <path
+                        d="M8.25 0l-8.25 0"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="square"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <svg
+                      data-pencil-id="jA1v4"
+                      data-pencil-name="vector"
+                      viewBox="0 0 1 16.5"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 12px; left: 10px; overflow: visible; position: absolute; top: 4.125px; width: 1.5px; z-index: 3"
+                    >
+                      <path
+                        d="M0 0l0 16.5"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="square"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div></span><span class="nav-label">Apps</span></button><button class="nav-item " data-nav="Agents"  aria-label="Agents" title="Agents"><span class="nav-icon" aria-hidden="true"><div
+                    data-pencil-id="UhYng"
+                    data-pencil-name="svg"
+                    style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+                  >
+                    <div
+                      data-pencil-id="Wx7vN"
+                      data-pencil-name="Imported element"
+                      style="border-radius: 50%; box-sizing: border-box; height: 15.42px; left: 2px; outline-offset: -0.75px; outline: 1.5px solid #626268; position: absolute; top: 2px; width: 15.42px; z-index: 0"
+                    ></div>
+                    <svg
+                      data-pencil-id="CqEX8"
+                      data-pencil-name="Icon vector"
+                      viewBox="0 0 5 4"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 3.333px; left: 9.917px; overflow: visible; position: absolute; top: 7.333px; width: 4.167px; z-index: 1"
+                    >
+                      <path
+                        d="M0 0l0 4m5-4l0 4"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div></span><span class="nav-label">Agents</span></button><button class="nav-item " data-nav="Domains"  aria-label="Domains" title="Domains"><span class="nav-icon" aria-hidden="true"><div
+                    data-pencil-id="ZlCfd"
+                    data-pencil-name="filled=off, stroke=1.5, radius=2, join=round"
+                    style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+                  >
+                    <svg
+                      data-pencil-id="Pp6xc"
+                      data-pencil-name="vector"
+                      viewBox="4.76837158203125e-7 -9.5367431640625e-7 16.09999990463257 15.99474048614502"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 13.329px; left: 3.458px; overflow: visible; position: absolute; top: 4.379px; width: 13.417px; z-index: 0"
+                    >
+                      <path
+                        d="M15.95512 9.28711c0.09511-0.5014 0.14488-1.01884 0.14488-1.54792 0-2.07477-0.76536-3.97077-2.02916-5.42108m-6.22639 13.67663c0.52905 0 1.04648-0.04976 1.54785-0.14486m-4.42813-15.84988c-2.34167 0.87185-4.18083 2.77607-4.96417 5.15934m2.68108 9.0218c1.41391 1.13474 3.20936 1.8136 5.16337 1.8136"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <div
+                      data-pencil-id="dfX2B"
+                      data-pencil-name="vector"
+                      style="border-radius: 50%; box-sizing: border-box; height: 4.583px; left: 7.708px; outline-offset: -0.75px; outline: 1.5px solid #626268; position: absolute; top: 2.083px; width: 4.583px; z-index: 1"
+                    ></div>
+                    <svg
+                      data-pencil-id="wul29"
+                      data-pencil-name="vector"
+                      viewBox="-8.940696716308594e-8 -1.1920928955078125e-7 4.00066003203392 4.000660061836243"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 4.583px; left: 1.934px; overflow: visible; position: absolute; top: 12.083px; width: 4.583px; z-index: 2"
+                    >
+                      <path
+                        d="M1.00033 0.26828c0.95659-0.55228 2.17977-0.22453 2.73205 0.73205 0.55228 0.95659 0.22453 2.17977-0.73205 2.73205-0.95659 0.55228-2.17977 0.22453-2.73205-0.73205-0.55228-0.95659-0.22453-2.17977 0.73205-2.73205z"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <svg
+                      data-pencil-id="dGRlS"
+                      data-pencil-name="vector"
+                      viewBox="-0.00000667572021484375 -0.00000667572021484375 4.000673294067383 4.000673294067383"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 4.583px; left: 13.477px; overflow: visible; position: absolute; top: 12.083px; width: 4.583px; z-index: 3"
+                    >
+                      <path
+                        d="M1.00033 3.73238c-0.95659-0.55228-1.28434-1.77547-0.73205-2.73205 0.55228-0.95659 1.77547-1.28434 2.73205-0.73205 0.95659 0.55228 1.28434 1.77547 0.73205 2.73205-0.55228 0.95659-1.77547 1.28434-2.73205 0.73205z"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div></span><span class="nav-label">Domains</span></button><button class="nav-item " data-nav="Connections"  aria-label="Connections" title="Connections"><span class="nav-icon" aria-hidden="true"><div
+                    data-pencil-id="wWkko"
+                    data-pencil-name="filled=off, stroke=1.5, radius=2, join=round"
+                    style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 28px; transform-origin: top left; transform: rotate(-180deg) scaleX(-1); width: 20px; z-index: 0"
+                  >
+                    <svg
+                      data-pencil-id="bIezN"
+                      data-pencil-name="vector"
+                      viewBox="-1.7881393432617188e-7 0 3.5857900977134705 8"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 6.667px; left: 3.054px; overflow: visible; position: absolute; top: 9.375px; transform-origin: top left; transform: rotate(-180deg) scaleX(-1); width: 2.988px; z-index: 0"
+                    >
+                      <path
+                        d="M3.58579 8l-3.2929-3.29289m0-1.41422l3.2929-3.29289m-3.2929 3.29289c-0.39052 0.39052-0.39052 1.02369 0 1.41422"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <svg
+                      data-pencil-id="ZIkBv"
+                      data-pencil-name="vector"
+                      viewBox="0 0 3.585787773132324 8"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 6.667px; left: 13.958px; overflow: visible; position: absolute; top: 17.292px; transform-origin: top left; transform: rotate(-180deg) scaleX(-1); width: 2.988px; z-index: 1"
+                    >
+                      <path
+                        d="M3.29289 4.70711l-3.29289 3.29289m0-8l3.29289 3.29289c0.39053 0.39052 0.39053 1.02369 0 1.41422"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <svg
+                      data-pencil-id="PbR3T"
+                      data-pencil-name="vector"
+                      viewBox="0 0 15.25 1"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 1.5px; left: 4.167px; overflow: visible; position: absolute; top: 6.042px; transform-origin: top left; transform: rotate(-180deg) scaleX(-1); width: 12.708px; z-index: 2"
+                    >
+                      <path
+                        d="M0 0l15.25 0"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <svg
+                      data-pencil-id="a58uvx"
+                      data-pencil-name="vector"
+                      viewBox="0 0 15.5 1"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 1.5px; left: 3.125px; overflow: visible; position: absolute; top: 13.958px; transform-origin: top left; transform: rotate(-180deg) scaleX(-1); width: 12.917px; z-index: 3"
+                    >
+                      <path
+                        d="M0 0l15.5 0"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div></span><span class="nav-label">Connections</span></button><button class="nav-item " data-nav="Chat Logs"  aria-label="Chat Logs" title="Chat Logs"><span class="nav-icon" aria-hidden="true"><div
+                    data-pencil-id="QkvWc"
+                    data-pencil-name="filled=off, stroke=1.5, radius=2, join=round"
+                    style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+                  >
+                    <svg
+                      data-pencil-id="s5HkC"
+                      data-pencil-name="vector"
+                      viewBox="0 0 18.5 14.5"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 12.083px; left: 2.292px; overflow: visible; position: absolute; top: 3.958px; width: 15.417px; z-index: 0"
+                    >
+                      <path
+                        d="M10.45 0l-10.45 0m18.5 0l-3.5 0m-9.5 7.25l-5.5 0m18.5 0l-8.5 0m-2.5 7.25l-7.5 0m18.5 0l-6.5 0"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div></span><span class="nav-label">Chat Logs</span></button><button class="nav-item " data-nav="More"  aria-label="More" title="More"><span class="nav-icon" aria-hidden="true"><div
+                    data-pencil-id="LEbuD"
+                    data-pencil-name="filled=off, stroke=1.5, radius=2, join=round"
+                    style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+                  >
+                    <svg
+                      data-pencil-id="K0Vdg"
+                      data-pencil-name="vector"
+                      viewBox="0 0 18.5 2"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 1.667px; left: 2.292px; overflow: visible; position: absolute; top: 9.167px; width: 15.417px; z-index: 0"
+                    >
+                      <path
+                        d="M9.25 2c0.55228 0 1-0.44772 1-1 0-0.55228-0.44772-1-1-1-0.55229 0-1 0.44772-1 1 0 0.55228 0.44771 1 1 1z m8.25 0c0.55228 0 1-0.44772 1-1 0-0.55228-0.44772-1-1-1-0.55228 0-1 0.44772-1 1 0 0.55228 0.44772 1 1 1z m-16.5 0c0.55228 0 1-0.44772 1-1 0-0.55228-0.44772-1-1-1-0.55228 0-1 0.44772-1 1 0 0.55228 0.44772 1 1 1z"
+                        fill="#626268"
+                      ></path>
+                      <path
+                        d="M9.25 2c0.55228 0 1-0.44772 1-1 0-0.55228-0.44772-1-1-1-0.55229 0-1 0.44772-1 1 0 0.55228 0.44771 1 1 1z m8.25 0c0.55228 0 1-0.44772 1-1 0-0.55228-0.44772-1-1-1-0.55228 0-1 0.44772-1 1 0 0.55228 0.44772 1 1 1z m-16.5 0c0.55228 0 1-0.44772 1-1 0-0.55228-0.44772-1-1-1-0.55228 0-1 0.44772-1 1 0 0.55228 0.44772 1 1 1z"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div></span><span class="nav-label">More</span></button><button class="nav-item " data-nav="Settings"  aria-label="Settings" title="Settings"><span class="nav-icon" aria-hidden="true"><div
+                    data-pencil-id="o6ILLn"
+                    data-pencil-name="filled=off, stroke=1.5, radius=2, join=round"
+                    style="box-sizing: border-box; height: 20px; left: 8px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 0"
+                  >
+                    <svg
+                      data-pencil-id="D3GGAe"
+                      data-pencil-name="vector"
+                      viewBox="-5.960464477539063e-8 4.172325134277344e-7 18.499998152256012 18.499997675418854"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 15.417px; left: 2.292px; overflow: visible; position: absolute; top: 2.292px; width: 15.417px; z-index: 0"
+                    >
+                      <path
+                        d="M5.128 2.46415l-0.70326-0.16229c-0.59471-0.13724-1.21816 0.04157-1.64974 0.47314-0.43157 0.43157-0.61038 1.05503-0.47314 1.64974l0.16229 0.70326c0.18706 0.81061-0.14719 1.65236-0.83938 2.11382l-0.85512 0.57008c-0.48083 0.32056-0.76965 0.86021-0.76965 1.4381 0 0.57789 0.28881 1.11754 0.76965 1.4381l0.85512 0.57008c0.69219 0.46146 1.02644 1.30322 0.83938 2.11382l-0.16229 0.70327c-0.13724 0.59471 0.04157 1.21816 0.47314 1.64973 0.43157 0.43157 1.05503 0.61038 1.64974 0.47314l0.70326-0.1623c0.8106-0.18706 1.65236 0.14719 2.11382 0.83939l0.57008 0.85512c0.32056 0.48083 0.86021 0.76965 1.4381 0.76965 0.57789 0 1.11754-0.28881 1.4381-0.76965l0.57008-0.85512c0.46146-0.69219 1.30322-1.02644 2.11382-0.83939l0.70327 0.1623c0.59471 0.13724 1.21816-0.04156 1.64973-0.47314 0.43157-0.43157 0.61038-1.05503 0.47314-1.64973l-0.1623-0.70327c-0.18706-0.8106 0.14719-1.65236 0.83939-2.11382l0.85512-0.57008c0.48083-0.32056 0.76965-0.86021 0.76965-1.4381 0-0.57789-0.28881-1.11754-0.76965-1.4381l-0.85512-0.57008c-0.69219-0.46146-1.02644-1.30321-0.83939-2.11382l0.1623-0.70327c0.13724-0.59471-0.04156-1.21816-0.47314-1.64973-0.43157-0.43157-1.05503-0.61038-1.64974-0.47314l-0.70326 0.16229c-0.8106 0.18706-1.65236-0.14719-2.11382-0.83938l-0.57008-0.85512c-0.32056-0.48083-0.86021-0.76965-1.4381-0.76965-0.57789 0-1.11754 0.28881-1.4381 0.76965l-0.57008 0.85512c-0.46146 0.69219-1.30322 1.02644-2.11382 0.83938z"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                    <svg
+                      data-pencil-id="w7s8HI"
+                      data-pencil-name="vector"
+                      viewBox="0 0 5.5 5.5"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 4.583px; left: 7.708px; overflow: visible; position: absolute; top: 7.708px; width: 4.583px; z-index: 1"
+                    >
+                      <path
+                        d="M5.5 2.75c0 1.51878-1.23122 2.75-2.75 2.75-1.51878 0-2.75-1.23122-2.75-2.75 0-1.51878 1.23122-2.75 2.75-2.75 1.51878 0 2.75 1.23122 2.75 2.75z"
+                        fill="none"
+                        stroke="#626268"
+                        stroke-width="1.5"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div></span><span class="nav-label">Settings</span></button></nav><section class="recent"><h2 class="recent-heading"><span>Recent</span><button id="recent-search-button" class="recent-search-button" type="button" aria-label="Search recent chats" title="Search recent chats"><span class="native-icon" aria-hidden="true"><div
+                data-pencil-id="t2axId"
+                data-pencil-name="filled=off, stroke=1.5, radius=2, join=round"
+                style="box-sizing: border-box; flex-shrink: 0; height: 20px; overflow: hidden; position: relative; width: 20px"
+              >
+                <svg
+                  data-pencil-id="SMonL"
+                  data-pencil-name="vector"
+                  viewBox="0 0 16.499990463256836 16.499990463256836"
+                  preserveAspectRatio="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="box-sizing: border-box; height: 13.75px; left: 3.125px; overflow: visible; position: absolute; top: 3.125px; width: 13.75px; z-index: 0"
+                >
+                  <path
+                    d="M7.25 14.5c-4.00406 0-7.25-3.24593-7.25-7.25 0-4.00406 3.24594-7.25 7.25-7.25 4.00407 0 7.25 3.24594 7.25 7.25m-2.12348 5.12652l4.12347 4.12347m-4.12347-4.12347c1.31199-1.31199 2.12348-3.12449 2.12348-5.12652m-7.25 7.25c2.00203 0 3.81453-0.81148 5.12652-2.12348"
+                    fill="none"
+                    stroke="#626268"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    vector-effect="non-scaling-stroke"
+                  ></path>
+                </svg>
+              </div></span></button></h2><div class="recent-list"><button class="recent-item" data-recent="Ideal daily active users" title="Ideal daily active users"><span class="recent-label">Ideal daily active users</span></button><button class="recent-item" data-recent="Generate bar chart of quarterly EV sales" title="Generate bar chart of quarterly EV sales"><span class="recent-label">Generate bar chart of quarterly EV sales</span></button><button class="recent-item" data-recent="Release Blockers by Release Version" title="Release Blockers by Release Version"><span class="recent-label">Release Blockers by Release Version</span></button><button class="recent-item" data-recent="New Deal Closed email" title="New Deal Closed email"><span class="recent-label">New Deal Closed email</span></button><button class="recent-item" data-recent="Pipeline coverage by segment" title="Pipeline coverage by segment"><span class="recent-label">Pipeline coverage by segment</span></button><button class="recent-item" data-recent="Churn risk scoring for enterprise accounts" title="Churn risk scoring for enterprise accounts"><span class="recent-label">Churn risk scoring for enterprise accounts</span></button><button class="recent-item" data-recent="Lead source attribution explorer" title="Lead source attribution explorer"><span class="recent-label">Lead source attribution explorer</span></button><button class="recent-item" data-recent="Weekly revenue digest" title="Weekly revenue digest"><span class="recent-label">Weekly revenue digest</span></button><button class="recent-item" data-recent="Contacts with job title 'Manager'" title="Contacts with job title 'Manager'"><span class="recent-label">Contacts with job title 'Manager'</span></button><button class="recent-item" data-recent="EV adoption by state, 2024" title="EV adoption by state, 2024"><span class="recent-label">EV adoption by state, 2024</span></button><button class="recent-item" data-recent="Support ticket deflection rate" title="Support ticket deflection rate"><span class="recent-label">Support ticket deflection rate</span></button></div></section>
+ <div class="sidebar-footer"><button class="nav-item" data-nav="Notifications" aria-label="Notifications, 1 unread" title="Notifications"><span class="footer-icon" aria-hidden="true"><div
+            data-pencil-id="l711QN"
+            data-pencil-name="Icon"
+            style="align-items: center; background-color: #f04438; border-radius: 50px; outline: 1px solid #ffffff; outline-offset: -1px; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: 12px; justify-content: center; left: 23px; position: absolute; top: 3px; width: 12px; z-index: 0"
+          >
+            <div
+              data-pencil-id="enAu4"
+              data-pencil-name="Imported element"
+              style="box-sizing: border-box; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 7px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 11px; text-align: center; white-space: nowrap"
+            >
+              1
+            </div>
+          </div><div
+            data-pencil-id="t3tPj"
+            data-pencil-name="filled=off, stroke=1.5, radius=2, join=round"
+            style="box-sizing: border-box; height: 20px; left: 10px; overflow: hidden; position: absolute; top: 8px; width: 20px; z-index: 1"
+          >
+            <svg
+              data-pencil-id="Z9DGkr"
+              data-pencil-name="vector"
+              viewBox="-0.0000019073486328125 0 16.474294662475586 14.5"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="box-sizing: border-box; height: 12.083px; left: 3.136px; overflow: visible; position: absolute; top: 2.292px; width: 13.729px; z-index: 0"
+            >
+              <path
+                d="M0.70966 6.65225c0.47082-3.79933 3.6991-6.65225 7.52749-6.65225 3.82839 0 7.05666 2.85291 7.52748 6.65224l0.69419 5.60179c0.14784 1.19302-0.78267 2.24597-1.98482 2.24597l-12.47371 0c-1.20214 0-2.13266-1.05294-1.98482-2.24596l0.69419-5.60179z"
+                fill="none"
+                stroke="#626268"
+                stroke-width="1.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                vector-effect="non-scaling-stroke"
+              ></path>
+            </svg>
+            <svg
+              data-pencil-id="RnQod"
+              data-pencil-name="vector"
+              viewBox="0 0 8 4"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="box-sizing: border-box; height: 3.333px; left: 6.667px; overflow: visible; position: absolute; top: 14.375px; width: 6.667px; z-index: 1"
+            >
+              <path
+                d="M8 0c0 2.20914-1.79086 4-4 4-2.20914 0-4-1.79086-4-4"
+                fill="none"
+                stroke="#626268"
+                stroke-width="1.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                vector-effect="non-scaling-stroke"
+              ></path>
+            </svg>
+          </div></span><span class="nav-label">Notifications</span></button><button class="nav-item" data-nav="Profile" aria-label="Woomi Jeong" title="Woomi Jeong"><span class="footer-icon" aria-hidden="true"><div
+            data-pencil-id="ZyCdD"
+            data-pencil-name="M"
+            style="align-items: center; background-color: #fbe6f5; border-radius: 50px; outline: 1px solid #e7b8de; outline-offset: -1px; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: 24px; justify-content: center; left: 8px; position: absolute; top: 6px; width: 24px; z-index: 0"
+          >
+            <div
+              data-pencil-id="d2rFA"
+              data-pencil-name="Imported element"
+              style="box-sizing: border-box; color: #9e168e; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 13px; text-align: left; white-space: nowrap"
+            >
+              M
+            </div>
+          </div></span><span class="nav-label">Woomi Jeong</span></button></div>
 </aside>
-<button id="sidebar-toggle" class="icon-button sidebar-toggle" aria-label="Open navigation" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg></button>
+<button id="sidebar-toggle" class="icon-button sidebar-toggle" aria-label="Open navigation" aria-expanded="true"><span class="native-icon" aria-hidden="true"><div
+                    data-pencil-id="QYEnn"
+                    data-pencil-name="svg"
+                    style="box-sizing: border-box; flex-shrink: 0; height: 16px; overflow: hidden; position: relative; width: 16px"
+                  >
+                    <div
+                      data-pencil-id="lxg5W"
+                      style="border-radius: 2.5px; box-sizing: border-box; height: 13px; left: 1px; outline-offset: -0.5px; outline: 1px solid #666; position: absolute; top: 1.5px; width: 14px; z-index: 0"
+                    ></div>
+                    <svg
+                      data-pencil-id="LRrSB"
+                      viewBox="0 0 1 13"
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="box-sizing: border-box; height: 13px; left: 5.6px; overflow: visible; position: absolute; top: 1.5px; width: 1px; z-index: 1"
+                    >
+                      <path d="M0 0l0 13" fill="#000000"></path>
+                      <path
+                        d="M0 0l0 13"
+                        fill="none"
+                        stroke="#666"
+                        stroke-width="1"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </div></span></button>
 <main id="main" class="main" aria-label="Owl conversation">
  <header class="agent-header"><button id="chief-button" class="agent-profile" aria-expanded="false" aria-controls="chief-popover">
         <div

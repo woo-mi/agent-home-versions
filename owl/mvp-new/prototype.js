@@ -15,7 +15,7 @@
     const sources = new Map();
     const threads = new Map();
     const timers = new Set();
-    const mobile = window.matchMedia('(max-width: 760px)');
+    const mobile = window.matchMedia('(max-width: 900px)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let activeSource = null;
     let attachmentNames = [];
@@ -299,16 +299,24 @@
       ui['chief-button']?.setAttribute('aria-expanded', 'false');
     }
 
+    function syncSidebarButton() {
+      const expanded = mobile.matches ? sidebarOpen : !document.body.classList.contains('sidebar-collapsed');
+      const button = ui['sidebar-close'];
+      button?.setAttribute('aria-expanded', String(expanded));
+      button?.setAttribute('aria-controls', 'sidebar');
+      button?.setAttribute('aria-label', expanded ? 'Collapse sidebar' : 'Expand sidebar');
+      if (button) button.title = expanded ? 'Collapse sidebar' : 'Expand sidebar';
+    }
+
     function setSidebarOpen(open, focus = false) {
-      sidebarOpen = open;
-      document.body.classList.toggle('sidebar-open', open);
-      ui.sidebar?.classList.toggle('is-open', open);
-      if (ui['sidebar-backdrop']) ui['sidebar-backdrop'].hidden = !open;
-      ui['sidebar-toggle']?.setAttribute('aria-expanded', String(mobile.matches ? open : !document.body.classList.contains('sidebar-collapsed')));
-      if (ui.sidebar && mobile.matches) {
-        ui.sidebar.setAttribute('aria-hidden', String(!open));
-        ui.sidebar.inert = !open;
-        if (open) {
+      sidebarOpen = mobile.matches && open;
+      document.body.classList.toggle('sidebar-open', sidebarOpen);
+      ui.sidebar?.classList.toggle('is-open', sidebarOpen);
+      if (ui['sidebar-backdrop']) ui['sidebar-backdrop'].hidden = !sidebarOpen;
+      if (ui.sidebar) {
+        ui.sidebar.inert = false;
+        ui.sidebar.removeAttribute('aria-hidden');
+        if (sidebarOpen) {
           ui.sidebar.setAttribute('role', 'dialog');
           ui.sidebar.setAttribute('aria-modal', 'true');
         } else {
@@ -316,26 +324,23 @@
           ui.sidebar.removeAttribute('role');
         }
       }
-      if (focus) (open ? ui['sidebar-close'] || ui.sidebar?.querySelector('button, a') : ui['sidebar-toggle'])?.focus();
+      document.querySelector('.main').inert = sidebarOpen;
+      syncSidebarButton();
+      if (focus) ui['sidebar-close']?.focus();
     }
 
     function setDesktopCollapsed(collapsed) {
       document.body.classList.toggle('sidebar-collapsed', collapsed);
       ui.sidebar?.classList.toggle('is-collapsed', collapsed);
-      ui['sidebar-toggle']?.setAttribute('aria-expanded', String(!collapsed));
-      if (ui.sidebar) {
-        ui.sidebar.inert = collapsed;
-        ui.sidebar.setAttribute('aria-hidden', String(collapsed));
-      }
+      ui.sidebar.inert = false;
+      ui.sidebar.removeAttribute('aria-hidden');
+      syncSidebarButton();
     }
 
     function syncSidebar() {
       setSidebarOpen(false);
-      if (!mobile.matches && ui.sidebar) {
-        ui.sidebar.removeAttribute('aria-modal');
-        ui.sidebar.removeAttribute('role');
-        setDesktopCollapsed(document.body.classList.contains('sidebar-collapsed'));
-      }
+      if (mobile.matches) setDesktopCollapsed(false);
+      syncSidebarButton();
       sizeReplyPanel();
     }
 
@@ -453,11 +458,8 @@
       }
     });
     ui['sidebar-close']?.addEventListener('click', () => {
-      if (mobile.matches) setSidebarOpen(false, true);
-      else {
-        setDesktopCollapsed(true);
-        ui['sidebar-toggle']?.focus();
-      }
+      if (mobile.matches) setSidebarOpen(!sidebarOpen, true);
+      else setDesktopCollapsed(!document.body.classList.contains('sidebar-collapsed'));
     });
     ui['sidebar-backdrop']?.addEventListener('click', () => setSidebarOpen(false, true));
     ui.sidebar?.querySelectorAll('[data-nav]').forEach((item) => {
@@ -484,6 +486,41 @@
         ui['message-input']?.focus();
       });
     });
+
+    const recentSearch = byId('recent-search-button');
+    if (recentSearch) {
+      const filter = document.createElement('input');
+      filter.type = 'search';
+      filter.className = 'recent-filter';
+      filter.id = 'recent-filter';
+      filter.placeholder = 'Search recent chats';
+      filter.setAttribute('aria-label', 'Search recent chats');
+      filter.hidden = true;
+      recentSearch.closest('h2').after(filter);
+      recentSearch.setAttribute('aria-controls', 'recent-filter');
+      recentSearch.setAttribute('aria-expanded', 'false');
+      recentSearch.addEventListener('click', () => {
+        filter.hidden = !filter.hidden;
+        recentSearch.setAttribute('aria-expanded', String(!filter.hidden));
+        if (!filter.hidden) filter.focus();
+        else {
+          filter.value = '';
+          filter.dispatchEvent(new Event('input'));
+        }
+      });
+      filter.addEventListener('input', () => {
+        ui.sidebar.querySelectorAll('[data-recent]').forEach(item => {
+          item.hidden = !item.textContent.toLowerCase().includes(filter.value.toLowerCase());
+        });
+      });
+      filter.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          event.stopPropagation();
+          recentSearch.click();
+          recentSearch.focus();
+        }
+      });
+    }
 
     ui['chief-button']?.setAttribute('aria-expanded', 'false');
     ui['chief-button']?.setAttribute('aria-controls', 'chief-popover');
