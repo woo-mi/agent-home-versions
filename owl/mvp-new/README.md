@@ -15,3 +15,9 @@ Replies grow gradually up to 696px (or the available viewport height).
 This is an interaction prototype. Responses use the supplied sample report;
 no live AI, account, analytics, file upload, or microphone service is connected.
 Files remain local. Existing prototypes are unchanged.
+
+The bottom-right version menu switches between Text only, Furling v1, Furling v2,
+and Text + Furling. Each view has a shareable URL using the view query parameter.
+Additional source frames: Furling 1 (j5h7z), Furling 2 (tffsf), and
+Text + Furling (TTZhU). Per-view drafts and scroll positions are preserved.
+Native thumbnail artwork and reactions are exported from the corresponding Pen frames.

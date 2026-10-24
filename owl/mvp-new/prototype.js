@@ -25,6 +25,8 @@
     let listening = false;
     let sidebarOpen = false;
     let lastReplyTrigger = null;
+    let currentView = 'text-only';
+    const viewStates = new Map();
 
     function announce(message) {
       if (!ui.toast) return;
@@ -73,11 +75,11 @@
     }
 
     function registerSource(node) {
-      if (node.dataset.interactionReady) return;
-      node.dataset.interactionReady = 'true';
       const id = node.dataset.sourceId || `report-${++sourceSequence}`;
       node.dataset.sourceId = id;
       sources.set(id, { text: sourceText(node), node });
+      if (node.dataset.interactionReady) return;
+      node.dataset.interactionReady = 'true';
       let button = node.querySelector('.reply-trigger');
       if (!button) {
         const original = document.querySelector('.reply-trigger');
@@ -201,7 +203,8 @@
       const thread = threadFor(activeSource);
       const contentGrowth = thread.messages.reduce((size, message) => size + 50 + Math.min(110, Math.ceil(message.text.length / 55) * 18), 0);
       const desired = 189 + contentGrowth + Math.max(0, (ui['reply-input']?.offsetHeight || 24) - 24);
-      const viewportLimit = Math.max(96, window.innerHeight - (mobile.matches ? 140 : 112));
+      const bottom = Number.parseFloat(getComputedStyle(ui['reply-panel']).bottom) || 0;
+      const viewportLimit = Math.max(96, window.innerHeight - bottom - 16);
       const height = Math.min(desired, 696, viewportLimit);
       ui['reply-panel'].style.setProperty('--reply-panel-height', `${height}px`);
       ui['reply-panel'].style.height = `${height}px`;
@@ -326,6 +329,8 @@
         }
       }
       document.querySelector('.main').inert = sidebarOpen;
+      const versions = document.querySelector('.prototype-versions');
+      if (versions) versions.inert = sidebarOpen;
       syncSidebarButton();
       if (focus) ui['sidebar-close']?.focus();
     }
@@ -343,6 +348,37 @@
       if (mobile.matches) setDesktopCollapsed(false);
       syncSidebarButton();
       sizeReplyPanel();
+    }
+
+    function renderView(view, label) {
+      if (view === currentView) return;
+      const definition = window.MVPViews?.[view];
+      if (view !== 'text-only' && !definition) return;
+      closeReply(false);
+      closeMenu();
+      closeChief();
+      timers.forEach(timer => clearTimeout(timer));
+      timers.clear();
+      viewStates.set(currentView, {
+        nodes: [...ui.messages.childNodes],
+        scrollTop: ui['chat-scroll'].scrollTop,
+        draft: ui['message-input'].value,
+        attachments: [...attachmentNames]
+      });
+      const previous = viewStates.get(view);
+      if (previous) ui.messages.replaceChildren(...previous.nodes);
+      else ui.messages.innerHTML = definition.html;
+      currentView = view;
+      ui.messages.dataset.view = view;
+      sources.clear();
+      ui.messages.querySelectorAll('.reply-target').forEach(registerSource);
+      ui['message-input'].value = previous?.draft || '';
+      attachmentNames = previous?.attachments || [];
+      renderAttachments();
+      autosize(ui['message-input']);
+      updateSendButtons();
+      ui['chat-scroll'].scrollTop = previous?.scrollTop || 0;
+      document.title = `MVP NEW · ${label || definition?.label || 'Text only'}`;
     }
 
     function resetConversation() {
@@ -538,6 +574,7 @@
     });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
+        if (document.querySelector('.prototype-version-trigger')?.getAttribute('aria-expanded') === 'true') return;
         if (ui['thinking-menu'] && !ui['thinking-menu'].hidden) {
           closeMenu();
           ui['thinking-button']?.focus();
@@ -569,6 +606,9 @@
     autosize(ui['message-input']);
     updateSendButtons();
     syncSidebar();
+    window.addEventListener('mvp-view-change', event => renderView(event.detail.view, event.detail.label));
+    const initialView = window.MVPVersions?.getCurrent();
+    if (initialView) renderView(initialView.view, initialView.label);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
