@@ -15,7 +15,7 @@
 .replies-open .conversation{padding-top:128px}
 .replies-open .conversation>.new-divider,.replies-open .conversation>.date-stamp{display:none}
 .replies-open .messages{margin-top:0;gap:24px}
-.replies-date-stamp{height:29px;padding:10px 0 4px;color:#8e8e8e;font-size:11px;line-height:15px;text-align:center}
+.replies-date-stamp{height:31px;padding:10px 0 4px;color:#8e8e8e;font-size:12px;line-height:17px;text-align:center}
 .replies-open .unfurl-show-more{color:#0085ff;margin-top:-6px}
 .replies-request-copy{gap:0}
 .replies-open .unfurl-thread-detail{scroll-margin-top:144px}
