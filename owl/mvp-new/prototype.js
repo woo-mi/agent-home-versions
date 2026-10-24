@@ -11,7 +11,7 @@
       'sidebar', 'sidebar-close', 'toast',
     ].map((id) => [id, byId(id)]));
     const sources = new Map();
-    const timers = new Set();
+    const timers = new Map();
     const mobile = window.matchMedia('(max-width: 900px)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let attachmentNames = [];
@@ -22,6 +22,52 @@
     let sidebarOpen = false;
     let currentView = 'text-only';
     const viewStates = new Map();
+    const closeRepliesButton = document.createElement('button');
+    closeRepliesButton.type = 'button';
+    closeRepliesButton.className = 'replies-close';
+    closeRepliesButton.hidden = true;
+    closeRepliesButton.setAttribute('aria-label', 'Close replies and return to conversation');
+    closeRepliesButton.innerHTML = '<svg viewBox="0 0 29.767 29.767" fill="none" aria-hidden="true"><path d="M23.876 23.876 5.891 5.891m0 17.985L23.876 5.891" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+    document.querySelector('.main').append(closeRepliesButton);
+    let replyOpener;
+    const replyEntryToken = `replies-${Date.now()}-${Math.random()}`;
+
+    function replyURL() {
+      const url = new URL(location.href);
+      url.searchParams.set('view', 'text-furling');
+      url.searchParams.set('thread', 'revenue');
+      url.hash = '';
+      return url;
+    }
+
+    function syncReplyLinks() {
+      ui.messages.querySelectorAll('.unfurl-reply-count, .unfurl-quoted-question').forEach(link => {
+        link.href = replyURL().href;
+        link.setAttribute('aria-label', link.classList.contains('unfurl-reply-count') ? 'View 2 replies' : 'Open revenue conversation and replies');
+      });
+    }
+
+    function closeReplies({ replace = false } = {}) {
+      if (currentView !== 'clicked-replies') return;
+      if (!replace && history.state?.mvpRepliesEntry === replyEntryToken) {
+        history.back();
+        return;
+      }
+      const url = new URL(location.href);
+      url.searchParams.delete('thread');
+      url.hash = '';
+      history.replaceState(null, '', url);
+      renderView('text-furling', 'Text + Furling');
+    }
+    closeRepliesButton.addEventListener('click', () => closeReplies());
+    ui.messages.addEventListener('click', event => {
+      const link = event.target.closest('.unfurl-reply-count, .unfurl-quoted-question');
+      if (!link || currentView !== 'text-furling' || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      replyOpener = link;
+      history.pushState({ mvpRepliesEntry: replyEntryToken }, '', replyURL());
+      renderView('text-furling', 'Text + Furling');
+    });
 
     function announce(message) {
       if (!ui.toast) return;
@@ -54,10 +100,14 @@
 
     function scrollToBottom(container) {
       if (!container) return;
-      requestAnimationFrame(() => container.scrollTo({
-        top: container.scrollHeight,
-        behavior: reducedMotion.matches ? 'auto' : 'smooth'
-      }));
+      const requestedFromView = currentView;
+      requestAnimationFrame(() => {
+        if (currentView !== requestedFromView) return;
+        container.scrollTo({
+          top: container.scrollHeight,
+          behavior: reducedMotion.matches ? 'auto' : 'smooth'
+        });
+      });
     }
 
     function sourceText(node) {
@@ -155,15 +205,20 @@
       scrollToBottom(ui['chat-scroll']);
       ui['message-input'].focus();
       const response = value ? responseFor(value) : 'The filenames are attached to this conversation. This local preview does not read or upload file contents.';
+      const sentFromView = currentView;
       const timer = window.setTimeout(() => {
         timers.delete(timer);
         const message = makeMessage('assistant', response);
         message.classList.add('message-source');
-        ui.messages.append(message);
-        registerSource(message);
-        scrollToBottom(ui['chat-scroll']);
+        if (currentView === sentFromView) {
+          ui.messages.append(message);
+          registerSource(message);
+          scrollToBottom(ui['chat-scroll']);
+        } else {
+          viewStates.get(sentFromView)?.nodes.push(message);
+        }
       }, reducedMotion.matches ? 0 : 320);
-      timers.add(timer);
+      timers.set(timer, sentFromView);
     }
 
     function closeMenu() {
@@ -219,23 +274,29 @@
     }
 
     function renderView(view, label) {
-      if (view === currentView) return;
-      const definition = window.MVPViews?.[view];
+      const nextView = view === 'text-furling' && new URL(location.href).searchParams.get('thread') === 'revenue'
+        ? 'clicked-replies' : view;
+      if (nextView === currentView) return;
+      const leavingReplies = currentView === 'clicked-replies';
+      const definition = window.MVPViews?.[nextView];
       if (view !== 'text-only' && !definition) return;
       closeMenu();
-      timers.forEach(timer => clearTimeout(timer));
-      timers.clear();
       viewStates.set(currentView, {
         nodes: [...ui.messages.childNodes],
         scrollTop: ui['chat-scroll'].scrollTop,
         draft: ui['message-input'].value,
         attachments: [...attachmentNames]
       });
-      const previous = viewStates.get(view);
+      const previous = viewStates.get(nextView);
       if (previous) ui.messages.replaceChildren(...previous.nodes);
       else ui.messages.innerHTML = definition.html;
-      currentView = view;
-      ui.messages.dataset.view = view;
+      currentView = nextView;
+      ui.messages.dataset.view = nextView;
+      const repliesOpen = nextView === 'clicked-replies';
+      document.body.classList.toggle('replies-open', repliesOpen);
+      closeRepliesButton.hidden = !repliesOpen;
+      ui['message-input'].setAttribute('aria-label', repliesOpen ? 'Message in revenue replies' : 'Message');
+      syncReplyLinks();
       sources.clear();
       ui.messages.querySelectorAll('.message-source').forEach(registerSource);
       ui['message-input'].value = previous?.draft || '';
@@ -244,12 +305,19 @@
       autosize(ui['message-input']);
       updateSendButtons();
       ui['chat-scroll'].scrollTop = previous?.scrollTop || 0;
-      document.title = `MVP NEW · ${label || definition?.label || 'Text only'}`;
+      document.title = `MVP NEW · ${repliesOpen ? 'Clicked replies' : label || definition?.label || 'Text only'}`;
+      if (repliesOpen) closeRepliesButton.focus({ preventScroll: true });
+      else if (leavingReplies && view === 'text-furling') {
+        (replyOpener?.isConnected ? replyOpener : ui.messages.querySelector('.unfurl-reply-count'))?.focus({ preventScroll: true });
+      }
     }
 
     function resetConversation() {
-      timers.forEach((timer) => clearTimeout(timer));
-      timers.clear();
+      timers.forEach((origin, timer) => {
+        if (origin !== currentView) return;
+        clearTimeout(timer);
+        timers.delete(timer);
+      });
       ui.messages?.querySelectorAll('[data-demo-message]').forEach((message) => {
         sources.delete(message.dataset.sourceId);
         message.remove();
@@ -429,6 +497,7 @@
           closeMenu();
           ui['thinking-button']?.focus();
         } else if (sidebarOpen) setSidebarOpen(false, true);
+        else if (currentView === 'clicked-replies') closeReplies();
       }
       if (event.key === 'Tab' && mobile.matches && sidebarOpen && ui.sidebar) {
         const focusable = [...ui.sidebar.querySelectorAll('button:not([disabled]), a[href], input, [tabindex="0"]')].filter((node) => node.getClientRects().length);
@@ -450,6 +519,12 @@
     updateSendButtons();
     syncSidebar();
     window.addEventListener('mvp-view-change', event => renderView(event.detail.view, event.detail.label));
+    window.addEventListener('popstate', () => {
+      const requested = new URL(location.href).searchParams.get('view');
+      const options = window.MVPVersions?.views || [];
+      const view = options.find(option => option.view === requested) || options[0];
+      if (view) renderView(view.view, view.label);
+    });
     const initialView = window.MVPVersions?.getCurrent();
     if (initialView) renderView(initialView.view, initialView.label);
   }

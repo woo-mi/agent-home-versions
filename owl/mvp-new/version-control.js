@@ -45,6 +45,8 @@
     options.forEach(option => {
       const url = new URL(location.href);
       url.searchParams.set('view', option.dataset.view);
+      url.searchParams.delete('thread');
+      url.hash = '';
       option.href = `${url.pathname}${url.search}${url.hash}`;
       if (option.dataset.view === current.view) option.setAttribute('aria-current', 'page');
       else option.removeAttribute('aria-current');
@@ -71,13 +73,16 @@
     current = next;
     const url = new URL(location.href);
     url.searchParams.set('view', current.view);
+    const leavingReplies = url.searchParams.has('thread');
+    url.searchParams.delete('thread');
+    url.hash = '';
     const path = `${url.pathname}${url.search}${url.hash}`;
     if (path !== `${location.pathname}${location.search}${location.hash}`) {
       history[replace ? 'replaceState' : 'pushState'](null, '', path);
     }
     updateControl();
     setOpen(false);
-    if (dispatch && changed) notify();
+    if (dispatch && (changed || leavingReplies)) notify();
     return true;
   }
 
