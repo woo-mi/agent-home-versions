@@ -32,7 +32,7 @@
     <button type="button" class="ws-content-text-button ws-task-title" data-ws-action="task-detail" data-id="${task.id}">${escape(task.title)}</button>
     <div class="ws-task-actions${task.status === 'Review' ? ' ws-task-actions-review' : ''}">
       ${task.status === 'Review' ? `<button type="button" class="ws-task-review" data-ws-action="task-review" data-id="${task.id}">Review</button>` : `<span class="ws-task-status" data-task-status="${task.id}">${task.status}</span>`}
-      <button type="button" class="ws-task-more" data-ws-action="task-menu" data-id="${task.id}" aria-label="Options for ${escape(task.title)}" aria-haspopup="menu" aria-expanded="false">${moreIcon}</button>
+      <span class="ws-task-more" aria-hidden="true">${moreIcon}</span>
     </div>
   </div>`;
 
@@ -67,7 +67,7 @@
       <section class="ws-content-section" aria-labelledby="ws-memory-summary"><h3 class="ws-content-label" id="ws-memory-summary">Summary</h3><p>${escape(memory.summary)}</p></section>
       <section class="ws-content-section" aria-labelledby="ws-memory-details"><h3 class="ws-content-label" id="ws-memory-details">Details</h3>
         <ul class="ws-memory-details">${memory.details.map(detail => `<li><span aria-hidden="true" class="ws-memory-bullet">·</span><span>${escape(detail)}</span></li>`).join('')}</ul>
-        <button type="button" class="ws-content-see-all" data-ws-action="memory-all">See all</button>
+        <span class="ws-content-see-all">See all</span>
       </section>
     </div>`
   };

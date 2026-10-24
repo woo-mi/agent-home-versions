@@ -32,9 +32,7 @@
     let stage = PANEL.closed;
     let activeTab = 'connections';
     let closeTimer;
-    let statusTimer;
     let anchorAnimation = 0;
-    let menuOpener;
     let detailOpener;
     const inertBefore = new Map();
     const tabScroll = new Map();
@@ -58,28 +56,16 @@
       <div class="workspace-avatar" aria-hidden="true">${OWL}</div>
       <h2 class="workspace-title">Chief of staff</h2>
       <div class="workspace-tabs" role="tablist" aria-label="Workspace sections">${TABS.map(([id,label]) => `<button type="button" class="workspace-tab" id="workspace-tab-${id}" role="tab" aria-controls="workspace-${id}" aria-selected="${id===activeTab}" tabindex="${id===activeTab?0:-1}" data-tab="${id}">${label}</button>`).join('')}</div>
-    </header><div class="workspace-scroll">${TABS.map(([id]) => `<section class="workspace-tabpanel" id="workspace-${id}" role="tabpanel" aria-labelledby="workspace-tab-${id}" tabindex="0" ${id===activeTab?'':'hidden'}>${id==='connections' ? `<h3 class="ws-tools-heading">Tools</h3><ul class="ws-tools">${TOOLS.map(tool => `<li class="ws-tool"><div class="ws-tool-copy"><p class="ws-tool-name">${tool.name}</p><p class="ws-tool-status" id="ws-tool-${tool.id}-status">${esc(tool.status)}</p></div><button type="button" class="ws-switch" role="switch" aria-checked="${tool.enabled}" aria-label="${tool.name}" aria-describedby="ws-tool-${tool.id}-status" data-tool="${tool.id}"></button></li>`).join('')}</ul>` : window.MVPWorkspaceContent[id]}</section>`).join('')}<section class="ws-detail" hidden></section></div><div class="workspace-status" role="status" aria-live="polite"></div>`;
-    const menu = document.createElement('div');
-    menu.className = 'ws-menu';
-    menu.id = 'workspace-task-menu';
-    menu.setAttribute('role', 'menu');
-    menu.hidden = true;
+    </header><div class="workspace-scroll">${TABS.map(([id]) => `<section class="workspace-tabpanel" id="workspace-${id}" role="tabpanel" aria-labelledby="workspace-tab-${id}" tabindex="0" ${id===activeTab?'':'hidden'}>${id==='connections' ? `<h3 class="ws-tools-heading">Tools</h3><ul class="ws-tools">${TOOLS.map(tool => `<li class="ws-tool"><div class="ws-tool-copy"><p class="ws-tool-name">${tool.name}</p><p class="ws-tool-status" id="ws-tool-${tool.id}-status">${esc(tool.status)}</p></div><button type="button" class="ws-switch" role="switch" aria-checked="${tool.enabled}" aria-label="${tool.name}" aria-describedby="ws-tool-${tool.id}-status" data-tool="${tool.id}"></button></li>`).join('')}</ul>` : window.MVPWorkspaceContent[id]}</section>`).join('')}<section class="ws-detail" hidden></section></div>`;
     document.body.append(backdrop, panel);
-    panel.append(menu);
     const closeButton = panel.querySelector('.workspace-close');
     const scroll = panel.querySelector('.workspace-scroll');
     const tabs = [...panel.querySelectorAll('[role=tab]')];
     const detail = panel.querySelector('.ws-detail');
-    const status = panel.querySelector('.workspace-status');
     trigger.setAttribute('aria-controls', panel.id);
     trigger.setAttribute('aria-expanded', 'false');
     trigger.setAttribute('aria-label', 'Open Chief of staff workspace');
 
-    function announce(text) {
-      clearTimeout(statusTimer);
-      status.textContent = text;
-      statusTimer = setTimeout(() => { status.textContent = ''; }, 2600);
-    }
     function rememberAnchor() {
       if (overlay.matches) return null;
       const viewportTop = chat.getBoundingClientRect().top + 128;
@@ -118,13 +104,12 @@
           inertBefore.delete(element);
         }
       });
-      if (modal && !panel.contains(document.activeElement) && !menu.contains(document.activeElement)) closeButton.focus({ preventScroll: true });
+      if (modal && !panel.contains(document.activeElement)) closeButton.focus({ preventScroll: true });
     }
     function setOpen(open, { restoreFocus = true } = {}) {
       if (open === (stage === PANEL.open)) return;
       const anchor = rememberAnchor();
       clearTimeout(closeTimer);
-      closeMenu(false);
       if (open) {
         window.dispatchEvent(new Event('mvp-workspace-open'));
         stage = PANEL.open;
@@ -156,15 +141,8 @@
       }
       preserveAnchor(anchor);
     }
-    function closeMenu(restoreFocus = true) {
-      if (menu.hidden) return;
-      menu.hidden = true;
-      menuOpener?.setAttribute('aria-expanded', 'false');
-      if (restoreFocus) menuOpener?.focus({ preventScroll: true });
-    }
     function setTab(id, focus = false) {
       if (!TABS.some(([key]) => key===id)) return;
-      closeMenu(false);
       tabScroll.set(activeTab, scroll.scrollTop);
       detail.hidden = true;
       activeTab = id;
@@ -187,7 +165,6 @@
       focusTarget?.focus({ preventScroll: true });
     }
     function showDetail(title, html, opener) {
-      closeMenu(false);
       if (detail.hidden) tabScroll.set(activeTab, scroll.scrollTop);
       detailOpener = opener;
       panel.querySelector(`#workspace-${activeTab}`).hidden = true;
@@ -201,21 +178,6 @@
       if (!task) return;
       showDetail(task.title, `<p class="ws-detail-label">Status</p><p class="ws-detail-value">${esc(taskStates.get(id))}</p><button type="button" class="ws-detail-primary" data-ws-action="ask" data-prompt="${esc(`Show me the latest update for ${task.title}.`)}">Ask about this task</button>`, opener);
     }
-    function showTaskMenu(id, opener) {
-      if (!menu.hidden && menuOpener===opener) { closeMenu(); return; }
-      closeMenu(false);
-      const paused = taskStates.get(id)==='Paused';
-      menuOpener = opener;
-      opener.setAttribute('aria-expanded','true');
-      opener.setAttribute('aria-controls',menu.id);
-      menu.innerHTML = `<button type="button" role="menuitem" data-menu-action="details" data-id="${id}">View task</button><button type="button" role="menuitem" data-menu-action="toggle" data-id="${id}">${paused?'Resume':'Pause'} task</button>`;
-      menu.hidden = false;
-      const box=opener.getBoundingClientRect();
-      menu.style.left=`${Math.max(12,Math.min(panel.clientWidth-menu.offsetWidth-16,box.right-panel.getBoundingClientRect().left-menu.offsetWidth))}px`;
-      menu.style.top=`${Math.min(innerHeight-menu.offsetHeight-16,box.bottom+6)}px`;
-      menu.querySelector('button').focus();
-    }
-
     trigger.addEventListener('click',()=>setOpen(stage!==PANEL.open));
     closeButton.addEventListener('click',()=>setOpen(false));
     backdrop.addEventListener('click',()=>setOpen(false));
@@ -251,15 +213,10 @@
       const action=button.dataset.wsAction,id=button.dataset.id;
       if(action==='detail-back')backToTab();
       if(action==='task-detail'||action==='task-review')openTask(id,button);
-      if(action==='task-menu')showTaskMenu(id,button);
       if(action==='tasks-all')showDetail('All tasks',`<div class="ws-task-directory">${window.MVPWorkspaceData.tasks.map(task=>`<button type="button" data-ws-action="task-detail" data-id="${task.id}"><span>${esc(task.title)}</span><small>${esc(taskStates.get(task.id))}</small></button>`).join('')}</div>`,button);
       if(action==='artifact-detail'){
         const artifact=window.MVPWorkspaceData.artifacts.find(a=>a.id===id);
         if(artifact)showDetail(artifact.title,`<p class="ws-detail-label">${esc(artifact.category)}</p><button type="button" class="ws-detail-primary" data-ws-action="ask" data-prompt="${esc(`Open ${artifact.title} and show me the latest details.`)}">Ask about ${artifact.category==='Chats'?'this chat':artifact.category==='Agents'?'this agent':'this app'}</button>`,button);
-      }
-      if(action==='memory-all'){
-        const memory=window.MVPWorkspaceData.memory;
-        showDetail('Memory',`<p class="ws-detail-label">Last updated</p><p class="ws-detail-value">${memory.updated}</p><p class="ws-detail-label">Summary</p><p class="ws-detail-value">${esc(memory.summary)}</p><p class="ws-detail-label">Details</p>${memory.details.map(text=>`<p class="ws-detail-value">${esc(text)}</p>`).join('')}`,button);
       }
       if(action==='ask'){
         setOpen(false,{restoreFocus:false});
@@ -269,25 +226,6 @@
         input.focus({preventScroll:true});
       }
     });
-    menu.addEventListener('click',event=>{
-      const button=event.target.closest('[data-menu-action]');
-      if(!button)return;
-      const id=button.dataset.id;
-      if(button.dataset.menuAction==='details'){const opener=menuOpener;closeMenu(false);openTask(id,opener);}
-      else{
-        const original=window.MVPWorkspaceData.tasks.find(t=>t.id===id);
-        const paused=taskStates.get(id)!=='Paused';
-        taskStates.set(id,paused?'Paused':original.status);
-        const row=panel.querySelector(`[data-task-id="${id}"]`);
-        const statusNode=row.querySelector('[data-task-status]');
-        if(statusNode)statusNode.textContent=taskStates.get(id);
-        const review=row.querySelector('.ws-task-review');
-        if(review)review.textContent=paused?'Paused':'Review';
-        closeMenu();announce(`${original.title}: ${paused?'paused':'resumed'}`);
-      }
-    });
-    document.addEventListener('pointerdown',event=>{if(!menu.hidden&&!menu.contains(event.target)&&!menuOpener?.contains(event.target))closeMenu(false);});
-    scroll.addEventListener('scroll',()=>closeMenu(false),{passive:true});
     document.addEventListener('keydown',event=>{
       if(stage!==PANEL.open)return;
       if(event.key==='Escape'){
@@ -300,23 +238,18 @@
           thinkingButton.focus({ preventScroll: true });
           return;
         }
-        if(!menu.hidden)closeMenu();
-        else if(!detail.hidden)backToTab();
+        if(!detail.hidden)backToTab();
         else setOpen(false);
       }
-      if(!menu.hidden&&menu.contains(document.activeElement)&&['ArrowDown','ArrowUp','Home','End'].includes(event.key)){
-        event.preventDefault();const items=[...menu.querySelectorAll('button')],i=items.indexOf(document.activeElement);
-        const next=event.key==='Home'?0:event.key==='End'?items.length-1:(i+(event.key==='ArrowDown'?1:-1)+items.length)%items.length;items[next].focus();
-      }
       if(event.key==='Tab'&&overlay.matches){
-        const container=menu.hidden?panel:menu;
+        const container=panel;
         const nodes=[...container.querySelectorAll('button:not([disabled]),a[href],input,textarea,select,[tabindex="0"]')].filter(n=>n.getClientRects().length&&!n.closest('[hidden]'));
         const first=nodes[0],last=nodes[nodes.length-1];
         if(event.shiftKey&&(document.activeElement===first||!container.contains(document.activeElement))){event.preventDefault();last?.focus();}
         else if(!event.shiftKey&&(document.activeElement===last||!container.contains(document.activeElement))){event.preventDefault();first?.focus();}
       }
     },true);
-    window.addEventListener('resize',()=>requestAnimationFrame(()=>{closeMenu(false);syncModal();}));
+    window.addEventListener('resize',()=>requestAnimationFrame(()=>{syncModal();}));
     window.addEventListener('mvp-view-change',()=>setOpen(false,{restoreFocus:false}));
     window.addEventListener('popstate',()=>setOpen(false,{restoreFocus:false}));
     window.MVPWorkspace=Object.freeze({open:()=>setOpen(true),close:()=>setOpen(false),isOpen:()=>stage===PANEL.open,setTab});

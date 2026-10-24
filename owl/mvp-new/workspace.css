@@ -33,9 +33,6 @@
 .ws-switch::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform 150ms ease}
 .ws-switch[aria-checked=true]::after{transform:translateX(16px)}
 .workspace-open .prototype-versions{z-index:170}
-.ws-menu{position:absolute;z-index:180;min-width:168px;background:#fff;border:1px solid #e5e5e7;box-shadow:0 8px 24px #14181f1f;border-radius:10px;padding:5px}
-.ws-menu button{display:block;width:100%;padding:8px 10px;border-radius:5px;text-align:left;font-size:13px;line-height:18px}
-.ws-menu button:hover,.ws-menu button:focus-visible{background:#f0f0f2;outline:none}
 .ws-detail-back{display:flex;align-items:center;gap:6px;padding:0;margin:0 0 24px;font-size:13px;line-height:20px;color:#777}
 .ws-detail-back svg{width:16px;height:16px}
 .ws-detail h3{font-size:18px;line-height:24px;font-weight:600;color:#202020;margin:0 0 12px}
@@ -46,8 +43,6 @@
 .ws-task-directory{display:flex;flex-direction:column;gap:8px}
 .ws-task-directory button{display:flex;justify-content:space-between;gap:16px;width:100%;padding:12px;border-radius:10px;background:#fff;font-size:13px;text-align:left}
 .ws-task-directory small{color:#777;font-size:11px;white-space:nowrap}
-.workspace-status{position:absolute;bottom:20px;left:32px;right:32px;pointer-events:none}
-.workspace-status:not(:empty){padding:10px 12px;border:1px solid #e5e5e7;border-radius:10px;background:#fff;box-shadow:0 4px 12px #14181f0a;font-size:12px;line-height:18px;z-index:3}
 @media(max-width:1100px){
  .workspace-open .main{margin-right:0}
  .workspace-open .conversation,.workspace-open .composer-dock{width:calc(100% - 48px)}
@@ -63,6 +58,5 @@
  .workspace-header{padding-left:24px;padding-right:24px}
  .workspace-scroll{padding-left:24px;padding-right:24px}
  .workspace-tab{padding-left:6px;padding-right:6px;font-size:12px}
- .workspace-status{left:24px;right:24px}
 }
 @media(prefers-reduced-motion:reduce){.workspace-panel,.main,.ws-switch,.ws-switch::after{transition:none!important}}
