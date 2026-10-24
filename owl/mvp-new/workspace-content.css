@@ -25,3 +25,7 @@
 .workspace-panel .ws-memory-details li{display:flex;align-items:flex-start;gap:10px;min-width:0;margin:0;padding:0}
 .workspace-panel .ws-memory-bullet{display:block;flex:0 0 4px;width:4px}
 .workspace-panel .ws-memory-details li>span:last-child{display:block;flex:1;min-width:0}
+
+.workspace-panel .ws-routines{width:100%}
+.workspace-panel .ws-tabcontent .ws-routine-title{margin:0 0 4px;font-size:13px;font-weight:400;line-height:16px;letter-spacing:-.3511994px;color:#000}
+.workspace-panel .ws-tabcontent .ws-routine-schedule,.workspace-panel .ws-tabcontent .ws-routine-channel{margin:0;font-size:12px;font-weight:400;line-height:16px;letter-spacing:0;color:#777;overflow-wrap:anywhere}

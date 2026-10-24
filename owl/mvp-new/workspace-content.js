@@ -10,6 +10,11 @@
     { id: 'forecast-brief', title: 'Forecast brief', status: 'Done' },
     { id: 'discount-review', title: 'Discount review', status: 'Done' }
   ];
+  const routines = [
+    { id: 'sales-pipeline', title: 'Weekly Sales Pipeline Update', schedule: 'Fridays at 7:00 AM PT', channel: 'Slack · #sales-pipeline', enabled: true },
+    { id: 'workspace-health', title: 'Weekly Workspace Health', schedule: 'Fridays at 4:00 PM PT', channel: 'Slack · #data-platform', enabled: true },
+    { id: 'quarterly-review', title: 'Quarterly Wisdom Review', schedule: '5 business days before each quarter ends', enabled: true }
+  ];
   const artifactGroups = [
     { title: 'Apps', items: [{ id: 'deal-risk-app', title: 'Deal risk app' }, { id: 'coverage-model', title: 'Coverage model' }] },
     { title: 'Agents', items: [{ id: 'churn-watch', title: 'Churn watch' }, { id: 'weekly-forecast', title: 'Weekly forecast' }] },
@@ -33,6 +38,7 @@
 
   window.MVPWorkspaceData = {
     tasks,
+    routines,
     artifactGroups,
     artifacts: artifactGroups.flatMap(group => group.items.map(item => ({ ...item, category: group.title }))),
     memory
@@ -44,7 +50,13 @@
         ${tasks.map(taskRow).join('')}
         <button type="button" class="ws-content-see-all" data-ws-action="tasks-all">See all</button>
       </section>
-      <section class="ws-content-section" aria-labelledby="ws-routine-heading"><h3 class="ws-content-label" id="ws-routine-heading">Routine</h3></section>
+      <section class="ws-content-section" aria-labelledby="ws-routine-heading">
+        <h3 class="ws-content-label" id="ws-routine-heading">Routines</h3>
+        <ul class="ws-tools ws-routines">${routines.map(routine => `<li class="ws-tool ws-routine">
+          <div class="ws-tool-copy"><p class="ws-routine-title">${escape(routine.title)}</p><div id="ws-routine-${routine.id}-details"><p class="ws-routine-schedule">${escape(routine.schedule)}</p>${routine.channel ? `<p class="ws-routine-channel">${escape(routine.channel)}</p>` : ''}</div></div>
+          <button type="button" class="ws-switch" role="switch" aria-checked="${routine.enabled}" aria-label="${escape(routine.title)}" aria-describedby="ws-routine-${routine.id}-details" data-routine="${routine.id}"></button>
+        </li>`).join('')}</ul>
+      </section>
     </div>`,
     artifacts: `<div class="ws-tabcontent ws-artifacts-content">${artifactGroups.map(group => `<section class="ws-content-section" aria-labelledby="ws-artifacts-${group.title.toLowerCase()}">
       <h3 class="ws-content-label" id="ws-artifacts-${group.title.toLowerCase()}">${group.title}</h3>

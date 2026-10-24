@@ -239,6 +239,13 @@
         panel.querySelector(`#ws-tool-${tool.id}-status`).textContent=tool.enabled?tool.status:'Disabled';
         return;
       }
+      const routineToggle = event.target.closest('[data-routine]');
+      if (routineToggle) {
+        const routine = window.MVPWorkspaceData.routines.find(item => item.id === routineToggle.dataset.routine);
+        routine.enabled = !routine.enabled;
+        routineToggle.setAttribute('aria-checked', String(routine.enabled));
+        return;
+      }
       const button=event.target.closest('[data-ws-action]');
       if(!button)return;
       const action=button.dataset.wsAction,id=button.dataset.id;
