@@ -11,7 +11,7 @@
 .replies-close svg{width:29.767px;height:29.767px}
 .replies-close:hover{background:#e9e9eb}
 .replies-open .chat-scroll{background:linear-gradient(to bottom,#fff 128px,#f1f1f166 128px)}
-.replies-open .agent-header{height:128px;background:#fff}
+.replies-open .agent-header{height:128px}
 .replies-open .conversation{padding-top:128px}
 .replies-open .conversation>.new-divider,.replies-open .conversation>.date-stamp{display:none}
 .replies-open .messages{margin-top:0;gap:24px}
