@@ -20,8 +20,7 @@
 .sidebar .nav-item.is-active{background:transparent}
 .sidebar .nav-item:hover{background:#ebeced}
 .nav-icon{display:block;position:relative;width:20px;height:20px;flex-shrink:0}
-.nav-icon>*{left:0!important;top:0!important;position:relative!important}
-.nav-icon>[data-pencil-id="wWkko"]{transform-origin:center!important}
+.nav-icon>svg{display:block;width:20px;height:20px}
 .nav-label{overflow:hidden;white-space:nowrap;text-align:left}
 .sidebar .recent{margin-top:32px;overflow:auto;scrollbar-width:thin;scrollbar-color:#d9d9dd transparent;flex:1}
 .recent-heading{display:flex;align-items:center;justify-content:space-between;height:20px;padding:0 4px!important;font-size:13px!important;font-weight:500!important;line-height:20px;margin:0 0 6px!important;color:#63666d!important}
