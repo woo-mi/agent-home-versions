@@ -83,17 +83,9 @@
 @media (max-width: 1400px) {
   body.has-mvp-versions .composer-dock { bottom: calc(68px + env(safe-area-inset-bottom)); }
   body.has-mvp-versions .conversation { padding-bottom: 180px; }
-  body.has-mvp-versions .reply-panel {
-    bottom: calc(145px + env(safe-area-inset-bottom));
-    max-height: min(696px, calc(100dvh - 161px - env(safe-area-inset-bottom))) !important;
-  }
 }
 
 @media (max-width: 760px) {
-  body.has-mvp-versions .reply-panel {
-    bottom: calc(174px + env(safe-area-inset-bottom));
-    max-height: min(696px, calc(100dvh - 190px - env(safe-area-inset-bottom))) !important;
-  }
   body.has-mvp-versions .conversation { padding-bottom: 220px; }
 }
 

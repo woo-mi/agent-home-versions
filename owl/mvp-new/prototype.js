@@ -9,22 +9,17 @@
       'attach-button', 'attachment-input', 'attachments', 'thinking-button',
       'thinking-menu', 'mic-button', 'sidebar-toggle', 'sidebar-backdrop',
       'sidebar', 'sidebar-close', 'chief-button', 'chief-popover', 'toast',
-      'reply-panel', 'reply-heading', 'reply-close', 'reply-context',
-      'reply-messages', 'reply-form', 'reply-input', 'reply-send'
     ].map((id) => [id, byId(id)]));
     const sources = new Map();
-    const threads = new Map();
     const timers = new Set();
     const mobile = window.matchMedia('(max-width: 900px)');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let activeSource = null;
     let attachmentNames = [];
     let sourceSequence = 0;
     let toastTimer;
     let mode = 'Thinking';
     let listening = false;
     let sidebarOpen = false;
-    let lastReplyTrigger = null;
     let currentView = 'text-only';
     const viewStates = new Map();
 
@@ -42,7 +37,7 @@
 
     function autosize(input) {
       if (!input) return;
-      const minimum = input === ui['message-input'] ? 17 : 24;
+      const minimum = 17;
       input.style.height = `${minimum}px`;
       const cssMaximum = Number.parseFloat(window.getComputedStyle(input).maxHeight);
       const maximum = Math.min(140, Number.isFinite(cssMaximum) ? cssMaximum : 140);
@@ -55,7 +50,6 @@
       if (ui['message-send']) {
         ui['message-send'].disabled = !ui['message-input']?.value.trim() && !attachmentNames.length;
       }
-      if (ui['reply-send']) ui['reply-send'].disabled = !ui['reply-input']?.value.trim();
     }
 
     function scrollToBottom(container) {
@@ -78,25 +72,6 @@
       const id = node.dataset.sourceId || `report-${++sourceSequence}`;
       node.dataset.sourceId = id;
       sources.set(id, { text: sourceText(node), node });
-      if (node.dataset.interactionReady) return;
-      node.dataset.interactionReady = 'true';
-      let button = node.querySelector('.reply-trigger');
-      if (!button) {
-        const original = document.querySelector('.reply-trigger');
-        button = original ? original.cloneNode(true) : document.createElement('button');
-        button.type = 'button';
-        button.className = 'reply-trigger';
-        if (!original) button.textContent = '↩';
-        node.append(button);
-      }
-      button.type = 'button';
-      button.setAttribute('aria-label', 'Reply to this finding');
-      button.setAttribute('aria-controls', 'reply-panel');
-      button.setAttribute('aria-expanded', 'false');
-      button.addEventListener('click', (event) => {
-        event.preventDefault();
-        openReply(id, button);
-      });
     }
 
     function makeMessage(role, value, files = []) {
@@ -131,9 +106,7 @@
       return article;
     }
 
-    function responseFor(question, sourceId) {
-      const source = sourceId ? sources.get(sourceId) : null;
-      if (source) return `From the displayed report: ${source.text}`;
+    function responseFor(question) {
       const report = [...sources.values()].filter((entry) => !entry.node.dataset.demoMessage);
       const words = question.toLowerCase().match(/[a-z0-9]+/g) || [];
       const usefulWords = words.filter((word) => word.length > 3 || /sql|api|seo|mql/.test(word));
@@ -142,7 +115,7 @@
         score: usefulWords.reduce((score, word) => score + (entry.text.toLowerCase().includes(word) ? 1 : 0), 0)
       })).sort((a, b) => b.score - a.score)[0];
       if (match?.score) return `From the displayed report: ${match.text}`;
-      return 'I can help you review the findings shown above. Ask about a metric in the report, or select Reply beside a finding to discuss it in context. This preview uses the displayed report only.';
+      return 'I can help you review the findings shown above. Ask about a metric in the report to explore it further. This preview uses the displayed report only.';
     }
 
     function renderAttachments() {
@@ -185,111 +158,11 @@
       const timer = window.setTimeout(() => {
         timers.delete(timer);
         const message = makeMessage('assistant', response);
-        message.classList.add('reply-target');
+        message.classList.add('message-source');
         ui.messages.append(message);
         registerSource(message);
         scrollToBottom(ui['chat-scroll']);
       }, reducedMotion.matches ? 0 : 320);
-      timers.add(timer);
-    }
-
-    function threadFor(id) {
-      if (!threads.has(id)) threads.set(id, { draft: '', messages: [] });
-      return threads.get(id);
-    }
-
-    function sizeReplyPanel() {
-      if (!ui['reply-panel'] || !activeSource) return;
-      const thread = threadFor(activeSource);
-      const contentGrowth = thread.messages.reduce((size, message) => size + 50 + Math.min(110, Math.ceil(message.text.length / 55) * 18), 0);
-      const desired = 189 + contentGrowth + Math.max(0, (ui['reply-input']?.offsetHeight || 24) - 24);
-      const bottom = Number.parseFloat(getComputedStyle(ui['reply-panel']).bottom) || 0;
-      const viewportLimit = Math.max(96, window.innerHeight - bottom - 16);
-      const height = Math.min(desired, 696, viewportLimit);
-      ui['reply-panel'].style.setProperty('--reply-panel-height', `${height}px`);
-      ui['reply-panel'].style.height = `${height}px`;
-      ui['reply-panel'].style.maxHeight = `${Math.min(696, viewportLimit)}px`;
-      ui['reply-panel'].classList.toggle('has-messages', thread.messages.length > 0);
-    }
-
-    function renderReplyThread() {
-      if (!activeSource || !ui['reply-messages']) return;
-      ui['reply-messages'].replaceChildren();
-      threadFor(activeSource).messages.forEach((entry) => {
-        const message = makeMessage(entry.role, entry.text);
-        message.classList.add('reply-message');
-        ui['reply-messages'].append(message);
-      });
-      sizeReplyPanel();
-      scrollToBottom(ui['reply-messages']);
-    }
-
-    function saveReplyDraft() {
-      if (activeSource && ui['reply-input']) threadFor(activeSource).draft = ui['reply-input'].value;
-    }
-
-    function openReply(id, button) {
-      if (!ui['reply-panel'] || !sources.has(id)) return;
-      saveReplyDraft();
-      activeSource = id;
-      lastReplyTrigger = button;
-      document.querySelectorAll('.reply-trigger').forEach((trigger) => {
-        const selected = trigger === button;
-        trigger.classList.toggle('is-active', selected);
-        trigger.setAttribute('aria-expanded', String(selected));
-      });
-      document.querySelectorAll('.reply-target').forEach((target) => target.classList.toggle('is-selected', target.dataset.sourceId === id));
-      ui['reply-panel'].hidden = false;
-      ui['reply-panel'].setAttribute('role', 'dialog');
-      ui['reply-panel'].setAttribute('aria-modal', 'false');
-      ui['reply-panel'].setAttribute('aria-labelledby', 'reply-heading');
-      ui['reply-panel'].dataset.sourceId = id;
-      if (ui['reply-heading']) ui['reply-heading'].textContent = 'Reply to Owl';
-      if (ui['reply-context']) ui['reply-context'].textContent = sources.get(id).text;
-      if (ui['reply-input']) ui['reply-input'].value = threadFor(id).draft;
-      autosize(ui['reply-input']);
-      renderReplyThread();
-      updateSendButtons();
-      requestAnimationFrame(() => {
-        ui['reply-panel'].classList.add('is-open');
-        ui['reply-input']?.focus({ preventScroll: true });
-      });
-    }
-
-    function closeReply(restoreFocus = true) {
-      saveReplyDraft();
-      if (ui['reply-panel']) {
-        ui['reply-panel'].classList.remove('is-open');
-        ui['reply-panel'].hidden = true;
-      }
-      document.querySelectorAll('.reply-trigger').forEach((button) => {
-        button.classList.remove('is-active');
-        button.setAttribute('aria-expanded', 'false');
-      });
-      document.querySelectorAll('.reply-target.is-selected').forEach((target) => target.classList.remove('is-selected'));
-      activeSource = null;
-      if (restoreFocus && lastReplyTrigger?.isConnected) lastReplyTrigger.focus({ preventScroll: true });
-    }
-
-    function sendReply(event) {
-      event?.preventDefault();
-      const value = ui['reply-input']?.value.trim();
-      if (!activeSource || !value) return;
-      const id = activeSource;
-      const thread = threadFor(id);
-      thread.messages.push({ role: 'user', text: value });
-      thread.draft = '';
-      ui['reply-input'].value = '';
-      autosize(ui['reply-input']);
-      renderReplyThread();
-      updateSendButtons();
-      ui['reply-input'].focus();
-      const response = responseFor(value, id);
-      const timer = window.setTimeout(() => {
-        timers.delete(timer);
-        thread.messages.push({ role: 'assistant', text: response });
-        if (activeSource === id) renderReplyThread();
-      }, reducedMotion.matches ? 0 : 380);
       timers.add(timer);
     }
 
@@ -347,14 +220,12 @@
       setSidebarOpen(false);
       if (mobile.matches) setDesktopCollapsed(false);
       syncSidebarButton();
-      sizeReplyPanel();
     }
 
     function renderView(view, label) {
       if (view === currentView) return;
       const definition = window.MVPViews?.[view];
       if (view !== 'text-only' && !definition) return;
-      closeReply(false);
       closeMenu();
       closeChief();
       timers.forEach(timer => clearTimeout(timer));
@@ -371,7 +242,7 @@
       currentView = view;
       ui.messages.dataset.view = view;
       sources.clear();
-      ui.messages.querySelectorAll('.reply-target').forEach(registerSource);
+      ui.messages.querySelectorAll('.message-source').forEach(registerSource);
       ui['message-input'].value = previous?.draft || '';
       attachmentNames = previous?.attachments || [];
       renderAttachments();
@@ -384,8 +255,6 @@
     function resetConversation() {
       timers.forEach((timer) => clearTimeout(timer));
       timers.clear();
-      closeReply(false);
-      threads.clear();
       ui.messages?.querySelectorAll('[data-demo-message]').forEach((message) => {
         sources.delete(message.dataset.sourceId);
         message.remove();
@@ -401,22 +270,15 @@
     }
 
     ui['message-form']?.addEventListener('submit', sendMain);
-    ui['reply-form']?.addEventListener('submit', sendReply);
-    [[ui['message-input'], sendMain], [ui['reply-input'], sendReply]].forEach(([input, submit]) => {
-      input?.addEventListener('input', () => {
-        autosize(input);
-        if (input === ui['reply-input']) {
-          saveReplyDraft();
-          sizeReplyPanel();
-        }
-        updateSendButtons();
-      });
-      input?.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) {
-          event.preventDefault();
-          submit();
-        }
-      });
+    ui['message-input']?.addEventListener('input', () => {
+      autosize(ui['message-input']);
+      updateSendButtons();
+    });
+    ui['message-input']?.addEventListener('keydown', event => {
+      if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) {
+        event.preventDefault();
+        sendMain();
+      }
     });
 
     ui['attach-button']?.addEventListener('click', () => ui['attachment-input']?.click());
@@ -486,7 +348,6 @@
       announce(listening ? 'Listening preview — no audio is being recorded.' : 'Microphone preview stopped.');
     });
 
-    ui['reply-close']?.addEventListener('click', () => closeReply());
     ui['sidebar-toggle']?.setAttribute('aria-controls', 'sidebar');
     ui['sidebar-toggle']?.addEventListener('click', () => {
       if (mobile.matches) setSidebarOpen(!sidebarOpen, true);
@@ -582,7 +443,6 @@
           closeChief();
           ui['chief-button']?.focus();
         } else if (sidebarOpen) setSidebarOpen(false, true);
-        else if (activeSource) closeReply();
       }
       if (event.key === 'Tab' && mobile.matches && sidebarOpen && ui.sidebar) {
         const focusable = [...ui.sidebar.querySelectorAll('button:not([disabled]), a[href], input, [tabindex="0"]')].filter((node) => node.getClientRects().length);
@@ -597,11 +457,8 @@
         }
       }
     });
-    window.addEventListener('resize', sizeReplyPanel);
     mobile.addEventListener('change', syncSidebar);
-    document.querySelectorAll('.reply-target').forEach(registerSource);
-    ui['reply-messages']?.setAttribute('aria-live', 'polite');
-    ui['reply-messages']?.setAttribute('aria-relevant', 'additions');
+    document.querySelectorAll('.message-source').forEach(registerSource);
     renderAttachments();
     autosize(ui['message-input']);
     updateSendButtons();

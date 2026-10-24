@@ -9,8 +9,8 @@ Static HTML/CSS/JavaScript; no build step. Serve this directory over HTTP.
 
 The screen preserves the source report, Inter typography, tabular numeral glyphs,
 selected bold metrics, sidebar, avatar, and composer. Includes local composer,
-attachment selection, mode selection, contextual replies, and responsive navigation.
-Replies grow gradually up to 696px (or the available viewport height).
+attachment selection, mode selection, and responsive navigation.
+Message hover reply controls and the floating reply panel are removed.
 
 This is an interaction prototype. Responses use the supplied sample report;
 no live AI, account, analytics, file upload, or microphone service is connected.
