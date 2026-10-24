@@ -40,10 +40,11 @@
 
     function autosize(input) {
       if (!input) return;
-      input.style.height = 'auto';
+      const minimum = input === ui['message-input'] ? 17 : 24;
+      input.style.height = `${minimum}px`;
       const cssMaximum = Number.parseFloat(window.getComputedStyle(input).maxHeight);
       const maximum = Math.min(140, Number.isFinite(cssMaximum) ? cssMaximum : 140);
-      const height = Math.min(Math.max(input.scrollHeight, 24), maximum);
+      const height = Math.min((input.value ? Math.max(input.scrollHeight, minimum) : minimum), maximum);
       input.style.height = `${height}px`;
       input.style.overflowY = input.scrollHeight > maximum ? 'auto' : 'hidden';
     }
