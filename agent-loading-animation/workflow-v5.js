@@ -7,7 +7,7 @@
  * 1700ms   assembly resolves; a luminous dot makes a 7400ms full orbit
  *          a quiet 1200ms rest follows before the next circuit
  *          a luminous signal visits Trigger → Data → Analysis → Report → Email
- *          icons rest as black outlines inside white cards
+ *          icons rest as black outlines inside white circular cards
  *          touching the signal reveals the filled icon and matching color border
  *          the enlarged card gives a subtle lift, scale, and restrained halo
  * ───────────────────────────────────────────────────────── */
@@ -43,9 +43,9 @@
     cardAngles: [180, 240, 300, 360, 450], // clockwise: left → top → right → bottom
   };
   const CARDS = {
-    width: 64, height: 64, radius: 13,
+    width: 64, height: 64, radius: 32,
     iconSize: 24, iconY: -6, idleIcon: '#000000',
-    labelY: 22, labelSize: 11.5,
+    labelY: 19, labelSize: 11.5,
     initialScale: .70, pulseLift: 2.1, pulseScale: .018, contactDepth: 24,
     shadowOffset: 5, shadowBlur: 7, shadowOpacity: .070,
     nearShadowOffset: 2, nearShadowBlur: 2.5, nearShadowOpacity: .045,
@@ -125,7 +125,7 @@
   };
   const escape = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 
-  // Signed distance to the actual rounded rectangle, in scene coordinates.
+  // Signed distance to the rendered card, including its circular corner radius.
   // A visible signal touches the card when this distance <= its solid radius.
   function roundedCardDistance(point, x, y, scale) {
     const radius = CARDS.radius;
@@ -157,7 +157,7 @@
     }).join('');
 
     svg.innerHTML = `<title id="${prefix}-title">An agent workflow in orbit</title>
-      <desc id="${prefix}-description">Five white cards with black outline icons and labels sit on a soft purple closed oval around the gradient WisdomAI logo. A glowing purple signal visits Trigger, Data, Analysis, Report, and Email before returning. Only while the signal touches a card, its icon becomes filled and colored and the card border matches. It returns to a black outline after contact.</desc>
+      <desc id="${prefix}-description">Five white circles with black outline icons and labels sit on a soft purple closed oval around the gradient WisdomAI logo. A glowing purple signal visits Trigger, Data, Analysis, Report, and Email before returning. Only while the signal touches a circle, its icon becomes filled and colored and the circle border matches. It returns to a black outline after contact.</desc>
       <defs>
         <filter id="${prefix}-shadow" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur stdDeviation="${CARDS.shadowBlur}"/></filter>
         <filter id="${prefix}-near-shadow" x="-25%" y="-25%" width="150%" height="160%"><feGaussianBlur stdDeviation="${CARDS.nearShadowBlur}"/></filter>
