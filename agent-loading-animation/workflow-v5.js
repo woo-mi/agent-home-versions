@@ -35,7 +35,7 @@
     enterScale: .72,
     springFrequency: 7,
     floatAmplitude: 1.6,
-    shadowColor: '#8F91B6',
+    shadowColor: 'var(--workflow-shadow, #8F91B6)',
     font: 'Inter, system-ui, sans-serif',
   };
   const ORBIT = {
@@ -44,13 +44,13 @@
   };
   const CARDS = {
     width: 64, height: 64, radius: 32,
-    iconSize: 24, iconY: -6, idleIcon: '#000000',
+    iconSize: 24, iconY: -6, idleIcon: 'var(--workflow-icon, #000000)',
     labelY: 19, labelSize: 11.5,
     initialScale: .70, pulseLift: 2.1, pulseScale: .018, contactDepth: 24,
     shadowOffset: 5, shadowBlur: 7, shadowOpacity: .070,
     nearShadowOffset: 2, nearShadowBlur: 2.5, nearShadowOpacity: .045,
-    border: '#E2E4EE', borderWidth: 1, activeBorderWidth: 1.3,
-    label: '#747988', activeLabel: '#555464',
+    border: 'var(--workflow-border, #E2E4EE)', borderWidth: 1, activeBorderWidth: 1.3,
+    label: 'var(--workflow-label, #747988)', activeLabel: 'var(--workflow-active-label, #555464)',
     haloRadius: 43, haloOpacity: .095, haloBlur: 9,
     positions: ORBIT.cardAngles.map(angle => ({
       x: SCENE.center.x + ORBIT.radiusX * Math.cos(angle * Math.PI / 180),
@@ -59,10 +59,10 @@
   };
   const FLOW = {
     path: `M${SCENE.center.x - ORBIT.radiusX} ${SCENE.center.y} A${ORBIT.radiusX} ${ORBIT.radiusY} 0 1 1 ${SCENE.center.x + ORBIT.radiusX} ${SCENE.center.y} A${ORBIT.radiusX} ${ORBIT.radiusY} 0 1 1 ${SCENE.center.x - ORBIT.radiusX} ${SCENE.center.y} Z`,
-    stroke: '#DDDCEB', width: 1.25,
-    signalColor: '#8B80DB', signalRadius: 3.2,
-    glowColor: '#B8ABEF', glowRadius: 12, glowBlur: 3.8, glowOpacity: .60,
-    wakeColor: '#C7BDEA',
+    stroke: 'var(--workflow-track, #DDDCEB)', width: 1.25,
+    signalColor: 'var(--workflow-signal, #8B80DB)', signalRadius: 3.2,
+    glowColor: 'var(--workflow-glow, #B8ABEF)', glowRadius: 12, glowBlur: 3.8, glowOpacity: .60,
+    wakeColor: 'var(--workflow-wake, #C7BDEA)',
     highlightRadius: 1.1, wakeWidth: 2.2, wakeLength: .060, wakeOpacity: .64,
   };
   const NUCLEUS = {
@@ -72,7 +72,7 @@
   };
   const AURORA = {
     width: 196, height: 112, blur: 29,
-    violet: '#D5C9F1', cyan: '#C9EAF0', rose: '#F1D9E7',
+    violet: 'var(--workflow-aurora-violet, #D5C9F1)', cyan: 'var(--workflow-aurora-cyan, #C9EAF0)', rose: 'var(--workflow-aurora-rose, #F1D9E7)',
     baseOpacity: .25, breatheOpacity: .07,
     horizontalDrift: 5, verticalDrift: 3,
   };
@@ -150,14 +150,14 @@
         <circle data-v5-halo="${index}" r="${CARDS.haloRadius}" fill="${escape(item.color)}" opacity="0" filter="url(#${prefix}-soft)"/>
         <rect x="${-half}" y="${-half + CARDS.shadowOffset}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="${SCENE.shadowColor}" opacity="${CARDS.shadowOpacity}" filter="url(#${prefix}-shadow)"/>
         <rect x="${-half}" y="${-half + CARDS.nearShadowOffset}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="${SCENE.shadowColor}" opacity="${CARDS.nearShadowOpacity}" filter="url(#${prefix}-near-shadow)"/>
-        <rect data-v5-border="${index}" x="${-half}" y="${-half}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="#FFFFFF" stroke="${CARDS.border}" stroke-width="${CARDS.borderWidth}"/>
+        <rect data-v5-border="${index}" x="${-half}" y="${-half}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="var(--workflow-card-fill, #FFFFFF)" stroke="${CARDS.border}" stroke-width="${CARDS.borderWidth}"/>
         <svg data-v5-icon="${index}" x="${-CARDS.iconSize / 2}" y="${CARDS.iconY - CARDS.iconSize / 2}" width="${CARDS.iconSize}" height="${CARDS.iconSize}" viewBox="${escape(icon.viewBox || '0 0 24 24')}" color="${CARDS.idleIcon}" fill="currentColor" stroke="none" aria-hidden="true"><use data-v5-outline="${index}" href="${escape(icon.outlineHref)}"/><use data-v5-filled="${index}" href="${escape(icon.href)}" opacity="0"/></svg>
         <text data-v5-label="${index}" x="0" y="${CARDS.labelY}" text-anchor="middle" fill="${CARDS.label}" font-family="${SCENE.font}" font-size="${CARDS.labelSize}" font-weight="500">${escape(item.name)}</text>
       </g>`;
     }).join('');
 
     svg.innerHTML = `<title id="${prefix}-title">An agent workflow in orbit</title>
-      <desc id="${prefix}-description">Five white circles with black outline icons and labels sit on a soft purple closed oval around the gradient WisdomAI logo. A glowing purple signal visits Trigger, Data, Analysis, Report, and Email before returning. Only while the signal touches a circle, its icon becomes filled and colored and the circle border matches. It returns to a black outline after contact.</desc>
+      <desc id="${prefix}-description">Five circles with outline icons and labels sit on a soft purple closed oval around the gradient WisdomAI logo. A glowing purple signal visits Trigger, Data, Analysis, Report, and Email before returning. Only while the signal touches a circle, its icon becomes filled and colored and the circle border matches. It returns to an outline after contact.</desc>
       <defs>
         <filter id="${prefix}-shadow" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur stdDeviation="${CARDS.shadowBlur}"/></filter>
         <filter id="${prefix}-near-shadow" x="-25%" y="-25%" width="150%" height="160%"><feGaussianBlur stdDeviation="${CARDS.nearShadowBlur}"/></filter>

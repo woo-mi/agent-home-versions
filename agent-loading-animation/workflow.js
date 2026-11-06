@@ -146,6 +146,11 @@
       </figcaption>
     </figure>
     <div class="version-picker">
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" hidden>
+        <svg class="theme-sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.3"/><path d="M10 1.5v2m0 13v2M1.5 10h2m13 0h2M4 4l1.4 1.4m9.2 9.2L16 16M4 16l1.4-1.4m9.2-9.2L16 4"/></svg>
+        <svg class="theme-moon" viewBox="0 0 20 20" aria-hidden="true" hidden><path d="M17 12.4A7.4 7.4 0 0 1 7.6 3a7.4 7.4 0 1 0 9.4 9.4Z"/></svg>
+        <span class="theme-current">Light</span>
+      </button>
       <div class="version-menu" role="menu" aria-label="Prototype version" hidden>
         <button type="button" role="menuitemradio" data-version="v1" aria-checked="true" tabindex="-1"><span class="version-number">V1</span><span>Isometric</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
         <button type="button" role="menuitemradio" data-version="v2" aria-checked="false" tabindex="-1"><span class="version-number">V2</span><span>Front-facing</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
@@ -175,6 +180,15 @@
     const versionTrigger = picker.querySelector('.version-trigger');
     const versionMenu = picker.querySelector('.version-menu');
     const versionLabel = picker.querySelector('.version-current');
+    const themeToggle = picker.querySelector('.theme-toggle');
+    const themeLabel = picker.querySelector('.theme-current');
+    const themeSun = picker.querySelector('.theme-sun');
+    const themeMoon = picker.querySelector('.theme-moon');
+    const themeStorageKey = 'agent-loading-appearance';
+    const requestedTheme = new URL(location.href).searchParams.get('theme');
+    let preferredTheme = 'light';
+    try { if (localStorage.getItem(themeStorageKey) === 'dark') preferredTheme = 'dark'; } catch {}
+    if (requestedTheme === 'dark' || requestedTheme === 'light') preferredTheme = requestedTheme;
     let playback = 'stopped';
     let stage = STAGE.waiting;
     let frame = null;
@@ -292,6 +306,20 @@
       frame = null;
     }
 
+    function updateTheme() {
+      const supported = version === 'v4' || version === 'v5';
+      const dark = supported && preferredTheme === 'dark';
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      document.querySelector('meta[name="theme-color"]').content = dark ? '#14161D' : '#fafcfc';
+      themeToggle.hidden = !supported;
+      themeToggle.setAttribute('aria-pressed', String(dark));
+      themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      themeToggle.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+      themeLabel.textContent = dark ? 'Dark' : 'Light';
+      themeSun.toggleAttribute('hidden', dark);
+      themeMoon.toggleAttribute('hidden', !dark);
+    }
+
     function updateControls() {
       illustration.dataset.playback = playback;
       illustration.dataset.version = version;
@@ -300,6 +328,7 @@
       illustration.style.setProperty('--build-cycle-duration', `${TIMING.loopDuration / speed}ms`);
       versionLabel.textContent = version.toUpperCase();
       versionTrigger.setAttribute('aria-label', `Switch version, ${version.toUpperCase()}`);
+      updateTheme();
       Object.entries(panels).forEach(([key, panel]) => { panel.element.toggleAttribute('hidden', key !== version); });
       versionButtons.forEach((button) => {
         const selected = button.dataset.version === version;
@@ -395,6 +424,16 @@
       picker.classList.toggle('is-open', open);
       if (open && focusOption) versionButtons.find(button => button.dataset.version === version).focus();
     }
+    themeToggle.addEventListener('click', () => {
+      preferredTheme = preferredTheme === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem(themeStorageKey, preferredTheme); } catch {}
+      updateTheme();
+      const url = new URL(location.href);
+      url.searchParams.set('theme', preferredTheme);
+      history.replaceState(null, '', url);
+      setMenu(false);
+      announcement.textContent = `${preferredTheme === 'dark' ? 'Dark' : 'Light'} mode`;
+    });
     versionTrigger.addEventListener('click', () => setMenu(versionMenu.hidden, true));
     versionTrigger.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
@@ -428,7 +467,7 @@
         setMenu(false);
         versionTrigger.focus();
       }
-      if (event.key === 'Tab') { setMenu(false); versionTrigger.focus(); }
+      if (event.key === 'Tab' && !versionMenu.hidden) { setMenu(false); versionTrigger.focus(); }
     });
     reducedMotion.addEventListener('change', () => {
       syncElapsed();

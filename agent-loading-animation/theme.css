@@ -1,0 +1,176 @@
+/* The theme control belongs beside the compact version indicator. */
+.version-picker { display: flex; align-items: center; gap: 8px; }
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 11px;
+  border: 1px solid #e3e5ed;
+  border-radius: 16px;
+  background: #fff;
+  color: #5d616d;
+  box-shadow: 0 8px 24px #252a3e0a;
+  font: 500 12px/18px Inter, system-ui, sans-serif;
+  cursor: pointer;
+}
+.theme-toggle:hover { background: #f3f4f7; color: #30343d; }
+.theme-toggle:focus-visible { outline: 2px solid #9d95e6; outline-offset: 3px; }
+.theme-toggle svg {
+  display: block;
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Dark mode is enabled only for the supported workflow versions. */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  color: #eceef5;
+  background: #14161d;
+  --muted: #a4a9b9;
+  --line: #303541;
+  --workflow-card-fill: #222631;
+  --workflow-icon: #e8ebf2;
+  --workflow-border: #404656;
+  --workflow-active-border: #8e85cb;
+  --workflow-label: #afb5c5;
+  --workflow-active-label: #e2e5f0;
+  --workflow-track: #404354;
+  --workflow-shadow: #000;
+  --workflow-signal: #b0a0fa;
+  --workflow-glow: #9884eb;
+  --workflow-wake: #9385d0;
+  --workflow-aurora-violet: #5b497b;
+  --workflow-aurora-cyan: #2c5668;
+  --workflow-aurora-rose: #604257;
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] .app-shell,
+html[data-theme="dark"] .main-shell,
+html[data-theme="dark"] .workspace,
+html[data-theme="dark"] .agent-workspace { background: #14161d; color: #eceef5; }
+html[data-theme="dark"] :focus-visible { outline-color: #a69bff; }
+html[data-theme="dark"] .toolbar,
+html[data-theme="dark"] .conversation-panel {
+  border-color: #303541;
+  background: #191c24;
+  color: #eceef5;
+}
+html[data-theme="dark"] .toolbar h1 { color: #eceef5; }
+html[data-theme="dark"] .icon-button { color: #a4a9b9; }
+html[data-theme="dark"] .icon-button:hover { background: #2a303c; color: #eceef5; }
+html[data-theme="dark"] .panel-toggle { background: #252a35; color: #c3c8d5; }
+html[data-theme="dark"] .cancel-button { border-color: #454c5d; background: #20242e; color: #e2e5ee; }
+html[data-theme="dark"] .cancel-button:hover { background: #2a303c; }
+html[data-theme="dark"] .create-button { background: #a69bff; color: #191525; }
+html[data-theme="dark"] .create-button:hover { background: #b5abff; }
+html[data-theme="dark"] .more-options { color: #949bad; }
+html[data-theme="dark"] .skip-link { background: #252a35; color: #eceef5; }
+
+/* Recolor only the monochrome source artwork, preserving badge and avatar colors. */
+html[data-theme="dark"] #sidebar {
+  border-color: #303541;
+  background: #171a21;
+  color: #eceef5;
+}
+html[data-theme="dark"] #sidebar .nav-item,
+html[data-theme="dark"] #sidebar .sidebar-footer .nav-item { color: #dfe3ee; }
+html[data-theme="dark"] #sidebar .nav-item.is-active { background: transparent; }
+html[data-theme="dark"] #sidebar .nav-item:hover,
+html[data-theme="dark"] #sidebar .recent-item:hover { background: #272d38; }
+html[data-theme="dark"] #sidebar .nav-item svg,
+html[data-theme="dark"] #sidebar .icon-button,
+html[data-theme="dark"] #sidebar .brand .icon-button { color: #a4a9b9; }
+html[data-theme="dark"] #sidebar .icon-button:hover,
+html[data-theme="dark"] #sidebar .brand .icon-button:hover { background: #2a303c; color: #eceef5; }
+html[data-theme="dark"] #sidebar [stroke="#626268"] { stroke: #a4a9b9; }
+html[data-theme="dark"] #sidebar [fill="#626268"],
+html[data-theme="dark"] #sidebar [fill="rgb(98, 98, 104)"] { fill: #a4a9b9; }
+html[data-theme="dark"] #sidebar .brand-logo [fill="#333444"],
+html[data-theme="dark"] #sidebar .brand-logo [fill="#000000"] { fill: #e8ebf2; }
+html[data-theme="dark"] #sidebar .brand-logo [style*="background-color: #333444"] { background-color: #e8ebf2 !important; }
+html[data-theme="dark"] #sidebar .recent-heading { color: #a4a9b9; }
+html[data-theme="dark"] #sidebar .recent-item,
+html[data-theme="dark"] #sidebar .recent-label { color: #d8ddea; }
+html[data-theme="dark"] #sidebar .recent { scrollbar-color: #434b5c transparent; }
+html[data-theme="dark"] #sidebar.is-compact .recent { border-color: #303541; }
+html[data-theme="dark"] #sidebar .recent-filter { border-color: #404858; background: #222731; color: #eceef5; }
+html[data-theme="dark"] #sidebar .recent-filter::placeholder { color: #929aac; opacity: 1; }
+html[data-theme="dark"] #sidebar button:focus-visible,
+html[data-theme="dark"] #sidebar input:focus-visible { outline-color: #a69bff; }
+html[data-theme="dark"] #sidebar-backdrop { background: #0008; }
+
+html[data-theme="dark"] .empty-state { background: #191c24; color: #eceef5; }
+html[data-theme="dark"] .empty-state .conversation-outline { color: #8991a5; }
+html[data-theme="dark"] .empty-state p { color: #a4a9b9; }
+html[data-theme="dark"] .user-message,
+html[data-theme="dark"] .has-workflow .user-message { background: #272c38; color: #e8ebf3; }
+html[data-theme="dark"] .build-response { color: #a4a9b9; }
+html[data-theme="dark"] .build-response > p { color: #dfe3ee; }
+html[data-theme="dark"] .build-step { color: #7c8395; }
+html[data-theme="dark"] .step-indicator::before { background: #414857; }
+html[data-theme="dark"] .build-step.is-current { color: #d1cbef; }
+html[data-theme="dark"] .build-step.is-current .step-indicator::before {
+  border-color: #393548;
+  border-top-color: #a69bff;
+  background: transparent;
+}
+html[data-theme="dark"] .build-step.is-complete { color: #a4a9b9; }
+html[data-theme="dark"] .build-step.is-complete .step-indicator::before { border-color: #8e85cb; background: none; }
+html[data-theme="dark"] .preview-animation-button { color: #a69bff; }
+html[data-theme="dark"] .preview-animation-button:hover { background: #2a263b; }
+html[data-theme="dark"] .composer {
+  border-color: #303541;
+  background: #20242e;
+  box-shadow: 0 4px 16px #0002;
+}
+html[data-theme="dark"] .composer:focus-within { border-color: #716797; }
+html[data-theme="dark"] .composer textarea { color: #eceef5; caret-color: #b5abff; }
+html[data-theme="dark"] .composer textarea::placeholder { color: #a4a9b9; opacity: 1; }
+html[data-theme="dark"] .attachment-button,
+html[data-theme="dark"] .thinking-control,
+html[data-theme="dark"] .voice-button { color: #a4a9b9; }
+html[data-theme="dark"] .thinking-control select option { background: #20242e; color: #eceef5; }
+html[data-theme="dark"] .send-button { background: #b5abff; color: #191525; }
+html[data-theme="dark"] .send-button:not(:disabled):hover { background: #c5bdff; }
+html[data-theme="dark"] .send-button:disabled { background: #2a303c; color: #657081; }
+html[data-theme="dark"] .toast { background: #303644; color: #eceef5; box-shadow: 0 6px 24px #0005; }
+html[data-theme="dark"] .has-workflow .mobile-view-tabs { border-color: #303541; background: #191c24; }
+html[data-theme="dark"] .mobile-view-tabs button { color: #949bae; }
+html[data-theme="dark"] .mobile-view-tabs button[aria-pressed="true"] { color: #a69bff; }
+html[data-theme="dark"] .mobile-view-tabs button[aria-pressed="true"]::after { background: #a69bff; }
+
+html[data-theme="dark"] .agent-build-animation { color: #eceef5; }
+html[data-theme="dark"] [data-v4-nucleus] image,
+html[data-theme="dark"] [data-v5-nucleus] image { filter: brightness(1.8); }
+html[data-theme="dark"] .agent-build-animation .build-title {
+  background-image: linear-gradient(105deg, #e4e8f3 20%, #e4e8f3 37%, #a69bff 48%, #d7cfff 52%, #e4e8f3 64%, #e4e8f3 80%);
+  color: transparent;
+}
+html[data-theme="dark"] .agent-build-animation .build-subtitle { color: #a4a9b9; }
+html[data-theme="dark"] .agent-build-animation .build-control { color: #929bad; }
+html[data-theme="dark"] .agent-build-animation .build-control:hover { background: #252a35; color: #dfe3ee; }
+html[data-theme="dark"] .agent-build-animation .build-control-divider { background: #363d4c; }
+
+html[data-theme="dark"] .theme-toggle { border-color: #3b4251; background: #262b36; color: #d9dde8; box-shadow: 0 8px 24px #0003; }
+html[data-theme="dark"] .theme-toggle:hover { background: #323947; color: #fff; }
+html[data-theme="dark"] .version-trigger { border-color: #ffffff14; background: #353b49; color: #eceef5; box-shadow: 0 12px 38px #0004; }
+html[data-theme="dark"] .version-trigger:hover { background: #424a5b; }
+html[data-theme="dark"] .version-menu { border-color: #363d4b; background: #20242e; color: #d7dce8; box-shadow: 0 8px 28px #0006; }
+html[data-theme="dark"] .version-menu button:hover { background: transparent; color: #fff; }
+html[data-theme="dark"] .version-menu button:focus-visible { outline-color: #9da5b7; }
+html[data-theme="dark"] .version-number { color: #a4a9b9; }
+html[data-theme="dark"] .version-check { stroke: #eceef5; }
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="dark"] .agent-build-animation .build-title { background: none; color: #eceef5; }
+  html[data-theme="dark"] .build-step.is-current .step-indicator::before { border-color: #a69bff; }
+}

@@ -33,17 +33,17 @@
     enterScale: .72,
     springFrequency: 7,
     floatAmplitude: 1.6,
-    shadowColor: '#8F91B6',
+    shadowColor: 'var(--workflow-shadow, #8F91B6)',
     font: 'Inter, system-ui, sans-serif',
   };
   const CARDS = {
     width: 64, height: 64, radius: 32,
-    iconSize: 24, idleIcon: '#000000',
+    iconSize: 24, idleIcon: 'var(--workflow-icon, #000000)',
     labelY: 50, labelSize: 11.5,
     initialScale: .70, pulseLift: 2.3, contactDepth: 18,
     shadowOffset: 5, shadowBlur: 7,
-    border: '#E2E4EE', activeBorder: '#BBB8EC',
-    label: '#747988', activeLabel: '#555464',
+    border: 'var(--workflow-border, #E2E4EE)', activeBorder: 'var(--workflow-active-border, #BBB8EC)',
+    label: 'var(--workflow-label, #747988)', activeLabel: 'var(--workflow-active-label, #555464)',
     haloRadius: 43, haloOpacity: .12, haloBlur: 9,
     positions: [
       { x: 140, y: 170 },
@@ -55,9 +55,9 @@
   };
   const FLOW = {
     path: 'M140 170 C140 119 176 77 225 77 C273 52 327 52 375 77 C424 77 460 119 460 170 C460 221 365 258 300 258',
-    stroke: '#DDDCEB', width: 1.25,
-    signalColor: '#8B80DB', signalRadius: 2.7,
-    glowColor: '#B8ABEF', glowRadius: 9, glowBlur: 3,
+    stroke: 'var(--workflow-track, #DDDCEB)', width: 1.25,
+    signalColor: 'var(--workflow-signal, #8B80DB)', signalRadius: 2.7,
+    glowColor: 'var(--workflow-glow, #B8ABEF)', glowRadius: 9, glowBlur: 3,
     wakeLength: .055, wakeOpacity: .56,
   };
   const NUCLEUS = {
@@ -67,7 +67,7 @@
   };
   const AURORA = {
     width: 146, height: 80, blur: 23,
-    violet: '#D5C9F1', cyan: '#C9EAF0', rose: '#F1D9E7',
+    violet: 'var(--workflow-aurora-violet, #D5C9F1)', cyan: 'var(--workflow-aurora-cyan, #C9EAF0)', rose: 'var(--workflow-aurora-rose, #F1D9E7)',
     baseOpacity: .25, breatheOpacity: .07,
     horizontalDrift: 5, verticalDrift: 3,
   };
@@ -144,20 +144,20 @@
       return `<g data-v4-card="${index}">
         <circle data-v4-halo="${index}" r="${CARDS.haloRadius}" fill="${escape(item.color)}" opacity="0" filter="url(#${prefix}-soft)"/>
         <rect x="${-half}" y="${-half + CARDS.shadowOffset}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="${SCENE.shadowColor}" opacity=".085" filter="url(#${prefix}-shadow)"/>
-        <rect data-v4-border="${index}" x="${-half}" y="${-half}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="#FFFFFF" stroke="${CARDS.border}" stroke-width="1"/>
+        <rect data-v4-border="${index}" x="${-half}" y="${-half}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="var(--workflow-card-fill, #FFFFFF)" stroke="${CARDS.border}" stroke-width="1"/>
         <svg data-v4-icon="${index}" x="${-CARDS.iconSize / 2}" y="${-CARDS.iconSize / 2}" width="${CARDS.iconSize}" height="${CARDS.iconSize}" viewBox="${escape(icon.viewBox || '0 0 24 24')}" color="${CARDS.idleIcon}" fill="currentColor" stroke="none" aria-hidden="true"><use data-v4-outline="${index}" href="${escape(icon.href)}"/><use data-v4-filled="${index}" href="${escape(icon.filledHref)}" opacity="0"/></svg>
         <text data-v4-label="${index}" x="0" y="${CARDS.labelY}" text-anchor="middle" fill="${CARDS.label}" font-family="${SCENE.font}" font-size="${CARDS.labelSize}" font-weight="500">${escape(item.name)}</text>
       </g>`;
     }).join('');
 
     svg.innerHTML = `<title id="${prefix}-title">An agent workflow taking shape</title>
-      <desc id="${prefix}-description">Five circular icon cards form a constellation around the gradient WisdomAI logo. A soft signal follows Trigger, Data, Analysis, Report, and Email in order. Each black outline icon switches to a filled icon in its step color while the signal touches its circle, then returns to a black outline.</desc>
+      <desc id="${prefix}-description">Five circular icon cards form a constellation around the gradient WisdomAI logo. A soft signal follows Trigger, Data, Analysis, Report, and Email in order. Each outline icon switches to a filled icon in its step color while the signal touches its circle, then returns to an outline.</desc>
       <defs>
         <filter id="${prefix}-shadow" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur stdDeviation="${CARDS.shadowBlur}"/></filter>
         <filter id="${prefix}-soft" x="-75%" y="-75%" width="250%" height="250%"><feGaussianBlur stdDeviation="${CARDS.haloBlur}"/></filter>
         <filter id="${prefix}-aurora" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="${AURORA.blur}"/></filter>
         <filter id="${prefix}-signal" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="${FLOW.glowBlur}"/></filter>
-        <linearGradient id="${prefix}-wake" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#C7BDEA"/><stop offset="1" stop-color="${FLOW.signalColor}"/></linearGradient>
+        <linearGradient id="${prefix}-wake" x1="0" y1="0" x2="1" y2="1"><stop stop-color="var(--workflow-wake, #C7BDEA)"/><stop offset="1" stop-color="${FLOW.signalColor}"/></linearGradient>
       </defs>
       <g data-v4-aurora filter="url(#${prefix}-aurora)">
         <ellipse cx="276" cy="160" rx="${AURORA.width / 2}" ry="${AURORA.height / 2}" fill="${AURORA.violet}"/>
