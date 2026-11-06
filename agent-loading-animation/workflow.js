@@ -145,20 +145,13 @@
         <p class="build-subtitle">Connecting your data, analysis, and actions.</p>
       </figcaption>
     </figure>
-    <div class="prototype-controls" role="group" aria-label="Animation controls">
-      <div class="prototype-versions" role="tablist" aria-label="Animation version">
-        <button type="button" role="tab" data-version="v1" aria-selected="true" tabindex="0"><span>V1</span><span class="version-name">Isometric</span></button>
-        <button type="button" role="tab" data-version="v2" aria-selected="false" tabindex="-1"><span>V2</span><span class="version-name">Front-facing</span></button>
-        <button type="button" role="tab" data-version="v3" aria-selected="false" tabindex="-1"><span>V3</span><span class="version-name">Constellation</span></button>
+    <div class="version-picker">
+      <div class="version-menu" role="menu" aria-label="Prototype version" hidden>
+        <button type="button" role="menuitemradio" data-version="v1" aria-checked="true" tabindex="-1"><span class="version-number">V1</span><span>Isometric</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
+        <button type="button" role="menuitemradio" data-version="v2" aria-checked="false" tabindex="-1"><span class="version-number">V2</span><span>Front-facing</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
+        <button type="button" role="menuitemradio" data-version="v3" aria-checked="false" tabindex="-1"><span class="version-number">V3</span><span>Constellation</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
       </div>
-      <div class="prototype-transport">
-        <button class="transport-button build-pause" type="button" aria-label="Pause animation" title="Pause animation"><svg viewBox="0 0 16 16" aria-hidden="true"><path data-build-pause-icon d="M5.5 3.5v9m5-9v9"/></svg></button>
-        <button class="transport-button build-replay" type="button" aria-label="Replay animation" title="Replay animation"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6a5 5 0 1 1 .6 5.3M3 2.5V6h3.5"/></svg></button>
-        <span class="transport-divider" aria-hidden="true"></span>
-        <input class="prototype-timeline" type="range" min="0" max="9100" step="50" value="0" aria-label="Animation timeline">
-        <output class="prototype-time" aria-hidden="true">0:00</output>
-        <label class="prototype-speed"><span class="visually-hidden">Playback speed</span><select aria-label="Playback speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>
-      </div>
+      <button class="version-trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Switch version, V1"><span class="version-current">V1</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 6 4.5 4.5L12.5 6"/></svg></button>
       <span class="visually-hidden prototype-announcement" aria-live="polite"></span>
     </div>`;
     container.append(illustration);
@@ -172,8 +165,10 @@
     const signal = illustration.querySelector('.build-signal');
     const barRects = [...illustration.querySelectorAll('[data-build-bar] > rect:first-child')];
     const caption = illustration.querySelector('.build-caption');
-    const pauseButton = illustration.querySelector('.build-pause');
-    const pauseIcon = illustration.querySelector('[data-build-pause-icon]');
+    const picker = illustration.querySelector('.version-picker');
+    const versionTrigger = picker.querySelector('.version-trigger');
+    const versionMenu = picker.querySelector('.version-menu');
+    const versionLabel = picker.querySelector('.version-current');
     let playback = 'stopped';
     let stage = STAGE.waiting;
     let frame = null;
@@ -185,18 +180,17 @@
     let version = 'v1';
     const versions = ['v1', 'v2', 'v3'];
     const totalDuration = TIMING.loopStart + TIMING.loopDuration;
-    const timeline = illustration.querySelector('.prototype-timeline');
-    const timeOutput = illustration.querySelector('.prototype-time');
-    const speedSelect = illustration.querySelector('.prototype-speed select');
-    const versionButtons = [...illustration.querySelectorAll('[data-version]')];
-    const announcement = illustration.querySelector('.prototype-announcement');
+    const versionButtons = [...picker.querySelectorAll('[data-version]')];
+    const announcement = picker.querySelector('.prototype-announcement');
     const figurePanel = illustration.querySelector('.build-figure');
     figurePanel.id = `${id}-panel`;
-    figurePanel.setAttribute('role', 'tabpanel');
+    versionMenu.id = `${id}-versions`;
+    versionTrigger.setAttribute('aria-controls', versionMenu.id);
     versionButtons.forEach((button) => {
-      button.id = `${id}-${button.dataset.version}-tab`;
+      button.id = `${id}-${button.dataset.version}-option`;
       button.setAttribute('aria-controls', figurePanel.id);
     });
+    document.body.append(picker);
     const panels = { v1: { element: illustration.querySelector('.build-illustration'), render: renderV1 } };
     ['v2', 'v3'].forEach((key) => {
       const panel = window.AgentWorkflowVariants[key].create({ id: `${id}-${key}`, items: TILES.items });
@@ -259,19 +253,11 @@
       }
     }
 
-    function displayTime() {
-      return elapsed <= totalDuration ? elapsed : TIMING.loopStart + (elapsed - TIMING.loopStart) % TIMING.loopDuration;
-    }
-
     function render(time, staticFrame = false) {
       setStage(staticFrame || time >= TIMING.loopStart ? STAGE.flowing : time >= TIMING.frontEnter ? STAGE.front : time >= TIMING.connectorsEnter ? STAGE.connections : time >= TIMING.tilesEnter ? STAGE.tiles : STAGE.board);
       panels[version].render(time, staticFrame);
       caption.style.opacity = staticFrame ? 1 : smooth(progress(time, TIMING.captionEnter, TIMING.captionFade));
-      const playhead = displayTime();
-      timeline.value = String(playhead);
-      timeline.style.setProperty('--playhead', `${playhead / totalDuration * 100}%`);
-      timeline.setAttribute('aria-valuetext', `${(playhead / 1000).toFixed(1)} seconds`);
-      timeOutput.textContent = `0:${Math.floor(playhead / 1000).toString().padStart(2, '0')}`;
+
     }
 
     function notifyTime(force = false) {
@@ -301,24 +287,18 @@
     }
 
     function updateControls() {
-      const paused = playback === 'paused';
-      const label = paused ? 'Resume animation' : 'Pause animation';
-      pauseButton.setAttribute('aria-label', label);
-      pauseButton.title = label;
-      pauseIcon.setAttribute('d', paused ? 'm5 3 7 5-7 5z' : 'M5.5 3.5v9m5-9v9');
-      pauseButton.disabled = reducedMotion.matches;
-      timeline.disabled = reducedMotion.matches;
       illustration.dataset.playback = playback;
       illustration.dataset.version = version;
       illustration.dataset.speed = speed;
       illustration.dataset.reducedMotion = String(reducedMotion.matches);
       illustration.style.setProperty('--build-cycle-duration', `${TIMING.loopDuration / speed}ms`);
+      versionLabel.textContent = version.toUpperCase();
+      versionTrigger.setAttribute('aria-label', `Switch version, ${version.toUpperCase()}`);
       Object.entries(panels).forEach(([key, panel]) => { panel.element.toggleAttribute('hidden', key !== version); });
       versionButtons.forEach((button) => {
         const selected = button.dataset.version === version;
-        button.setAttribute('aria-selected', String(selected));
-        button.tabIndex = selected ? 0 : -1;
-        if (selected) figurePanel.setAttribute('aria-labelledby', button.id);
+        button.setAttribute('aria-checked', String(selected));
+        if (selected) figurePanel.setAttribute('aria-label', `${button.children[0].textContent} ${button.children[1].textContent} animation`);
       });
     }
 
@@ -385,7 +365,6 @@
         if (![.5, 1, 1.5, 2].includes(nextSpeed)) return api;
         syncElapsed();
         speed = nextSpeed;
-        speedSelect.value = String(speed);
         updateControls();
         render(elapsed, reducedMotion.matches);
         broadcast(playback === 'paused');
@@ -404,23 +383,46 @@
       get state() { return playback; },
     };
 
-    pauseButton.addEventListener('click', () => playback === 'paused' ? api.resume() : api.pause());
-    illustration.querySelector('.build-replay').addEventListener('click', api.replay);
-    speedSelect.addEventListener('change', () => api.setSpeed(Number(speedSelect.value)));
-    timeline.addEventListener('input', () => api.seek(timeline.value));
+    function setMenu(open, focusOption = false) {
+      versionMenu.hidden = !open;
+      versionTrigger.setAttribute('aria-expanded', String(open));
+      picker.classList.toggle('is-open', open);
+      if (open && focusOption) versionButtons.find(button => button.dataset.version === version).focus();
+    }
+    versionTrigger.addEventListener('click', () => setMenu(versionMenu.hidden, true));
+    versionTrigger.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        setMenu(true, true);
+      }
+    });
     versionButtons.forEach((button, index) => {
-      button.addEventListener('click', () => api.selectVersion(button.dataset.version));
+      button.addEventListener('click', () => {
+        api.selectVersion(button.dataset.version);
+        setMenu(false);
+        versionTrigger.focus();
+      });
       button.addEventListener('keydown', (event) => {
         let next;
-        if (event.key === 'ArrowRight') next = (index + 1) % versions.length;
-        if (event.key === 'ArrowLeft') next = (index + versions.length - 1) % versions.length;
+        if (event.key === 'ArrowDown') next = (index + 1) % versions.length;
+        if (event.key === 'ArrowUp') next = (index + versions.length - 1) % versions.length;
         if (event.key === 'Home') next = 0;
         if (event.key === 'End') next = versions.length - 1;
         if (next === undefined) return;
         event.preventDefault();
-        api.selectVersion(versions[next]);
         versionButtons[next].focus();
       });
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (!picker.contains(event.target)) setMenu(false);
+    });
+    picker.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setMenu(false);
+        versionTrigger.focus();
+      }
+      if (event.key === 'Tab') { setMenu(false); versionTrigger.focus(); }
     });
     reducedMotion.addEventListener('change', () => {
       syncElapsed();

@@ -198,3 +198,7 @@ a { color: inherit; text-decoration: none; }
 }
 .agent-workspace { overflow-y: auto; overflow-x: hidden; }
 .build-step.is-current .step-indicator::before { animation-duration: var(--build-spinner-duration, 1300ms); }
+@media (max-width: 900px) {
+  .composer { bottom: 68px; }
+  .message-history { height: calc(100% - 178px); }
+}
