@@ -3,7 +3,7 @@
  *
  *    0ms   a small agent nucleus appears in a quiet aurora
  *  180ms   five upright cards assemble from the center (150ms stagger)
- *  600ms   a soft purple closed oval draws around the purple WisdomAI logo
+ *  600ms   a soft purple closed oval draws around the gradient WisdomAI logo
  * 1700ms   assembly resolves; a luminous dot makes a 7400ms full orbit
  *          a quiet 1200ms rest follows before the next circuit
  *          a luminous signal visits Trigger → Data → Analysis → Report → Email
@@ -67,8 +67,8 @@
   };
   const NUCLEUS = {
     enterScale: .62, breathScale: .025,
-    icon: '#595BFF', logoSize: 60,
-    logo: 'assets/wai-logo-symbol-knockout.png',
+    logoSize: 60,
+    logo: 'assets/wai-logo-symbol-gradient.png',
   };
   const AURORA = {
     width: 196, height: 112, blur: 29,
@@ -157,7 +157,7 @@
     }).join('');
 
     svg.innerHTML = `<title id="${prefix}-title">An agent workflow in orbit</title>
-      <desc id="${prefix}-description">Five white cards with black outline icons and labels sit on a soft purple closed oval around the purple WisdomAI logo. A glowing purple signal visits Trigger, Data, Analysis, Report, and Email before returning. Only while the signal touches a card, its icon becomes filled and colored and the card border matches. It returns to a black outline after contact.</desc>
+      <desc id="${prefix}-description">Five white cards with black outline icons and labels sit on a soft purple closed oval around the gradient WisdomAI logo. A glowing purple signal visits Trigger, Data, Analysis, Report, and Email before returning. Only while the signal touches a card, its icon becomes filled and colored and the card border matches. It returns to a black outline after contact.</desc>
       <defs>
         <filter id="${prefix}-shadow" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur stdDeviation="${CARDS.shadowBlur}"/></filter>
         <filter id="${prefix}-near-shadow" x="-25%" y="-25%" width="150%" height="160%"><feGaussianBlur stdDeviation="${CARDS.nearShadowBlur}"/></filter>
@@ -165,9 +165,6 @@
         <filter id="${prefix}-aurora" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="${AURORA.blur}"/></filter>
         <filter id="${prefix}-signal" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="${FLOW.glowBlur}"/></filter>
         <linearGradient id="${prefix}-wake" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${FLOW.wakeColor}"/><stop offset="1" stop-color="${FLOW.signalColor}"/></linearGradient>
-        <mask id="${prefix}-logo" maskUnits="userSpaceOnUse" x="${-NUCLEUS.logoSize / 2}" y="${-NUCLEUS.logoSize / 2}" width="${NUCLEUS.logoSize}" height="${NUCLEUS.logoSize}" style="mask-type:alpha">
-          <image href="${NUCLEUS.logo}" x="${-NUCLEUS.logoSize / 2}" y="${-NUCLEUS.logoSize / 2}" width="${NUCLEUS.logoSize}" height="${NUCLEUS.logoSize}"/>
-        </mask>
       </defs>
       <g data-v5-aurora filter="url(#${prefix}-aurora)">
         <ellipse cx="${SCENE.center.x - 24}" cy="${SCENE.center.y - 6}" rx="${AURORA.width / 2}" ry="${AURORA.height / 2}" fill="${AURORA.violet}"/>
@@ -178,7 +175,7 @@
         <path data-v5-path d="${FLOW.path}" pathLength="1" fill="none" stroke="${FLOW.stroke}" stroke-width="${FLOW.width}" stroke-linecap="round"/>
         <path data-v5-wake d="${FLOW.path}" pathLength="1" fill="none" stroke="url(#${prefix}-wake)" stroke-width="${FLOW.wakeWidth}" stroke-linecap="round" opacity="0"/>
         <g data-v5-nucleus transform="translate(${SCENE.center.x} ${SCENE.center.y})">
-          <rect x="${-NUCLEUS.logoSize / 2}" y="${-NUCLEUS.logoSize / 2}" width="${NUCLEUS.logoSize}" height="${NUCLEUS.logoSize}" fill="${NUCLEUS.icon}" mask="url(#${prefix}-logo)"/>
+          <image href="${NUCLEUS.logo}" x="${-NUCLEUS.logoSize / 2}" y="${-NUCLEUS.logoSize / 2}" width="${NUCLEUS.logoSize}" height="${NUCLEUS.logoSize}" preserveAspectRatio="xMidYMid meet"/>
         </g>
         <g data-v5-signal opacity="0"><circle r="${FLOW.glowRadius}" fill="${FLOW.glowColor}" opacity="${FLOW.glowOpacity}" filter="url(#${prefix}-signal)"/><circle r="${FLOW.signalRadius}" fill="${FLOW.signalColor}"/><circle r="${FLOW.highlightRadius}" fill="#FFFFFF" opacity=".95"/></g>
         ${cardMarkup}
