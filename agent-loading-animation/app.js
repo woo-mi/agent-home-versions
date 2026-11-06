@@ -1,6 +1,15 @@
 (() => {
   'use strict';
 
+  /* ANIMATION STORYBOARD — conversation and workflow begin together.
+   *    0ms  request appears; understand the request
+   * 1100ms  connect the data
+   * 2600ms  assemble the workflow
+   * 4600ms  connect the actions; illustration continues its quiet loop
+   */
+  const TIMING = { understand: 0, connectData: 1100, designWorkflow: 2600, connectActions: 4600 };
+  const BUILD_STEPS = ['Understanding your request', 'Connecting your data', 'Designing your workflow', 'Connecting the actions'];
+  const DEMO_REQUEST = 'Create a weekly bug report. Analyze resolved issues, summarize the trends, and email me the results.';
   const byId = (id) => document.getElementById(id);
   const shell = byId('app-shell');
   const input = byId('message-input');
@@ -14,7 +23,12 @@
   const backdrop = byId('sidebar-backdrop');
   const mobile = window.matchMedia('(max-width: 700px)');
   const status = byId('status-message');
+  const animation = window.AgentBuildAnimation.mount(byId('agent-workspace'));
   let statusTimeout;
+  let buildTimers = [];
+  let currentRequest = DEMO_REQUEST;
+  let progressStartedAt = 0;
+  let progressElapsed = 0;
 
   function announce(message) {
     window.clearTimeout(statusTimeout);
@@ -37,19 +51,91 @@
     closeNavigation.setAttribute('aria-expanded', String(open));
   }
 
-  function syncSend() {
-    send.disabled = input.value.trim().length === 0;
+  function setMobileView(view) {
+    shell.classList.toggle('mobile-view-workflow', view === 'workflow');
+    shell.classList.toggle('mobile-view-conversation', view === 'conversation');
+    byId('view-workflow').setAttribute('aria-pressed', String(view === 'workflow'));
+    byId('view-conversation').setAttribute('aria-pressed', String(view === 'conversation'));
   }
 
-  function resetConversation() {
+  function syncSend() { send.disabled = input.value.trim().length === 0; }
+  function clearBuildTimers() { buildTimers.forEach(clearTimeout); buildTimers = []; }
+
+  function renderProgress(stage) {
+    history.querySelectorAll('.build-step').forEach((step, index) => {
+      step.classList.toggle('is-complete', index < stage);
+      step.classList.toggle('is-current', index === stage);
+      if (index === stage) step.setAttribute('aria-current', 'step');
+      else step.removeAttribute('aria-current');
+    });
+  }
+
+  function scheduleProgress(elapsed = 0) {
+    clearBuildTimers();
+    progressStartedAt = performance.now() - elapsed;
+    Object.values(TIMING).forEach((delay, stage) => {
+      if (delay <= elapsed) renderProgress(stage);
+      else buildTimers.push(setTimeout(() => renderProgress(stage), delay - elapsed));
+    });
+  }
+
+  function startBuild(request = currentRequest) {
+    const moveComposerFocus = document.activeElement === input && window.matchMedia('(max-width: 900px)').matches;
+    clearBuildTimers();
+    currentRequest = request;
+    const bubble = document.createElement('p');
+    bubble.className = 'user-message';
+    bubble.textContent = request;
+    const response = document.createElement('div');
+    response.className = 'build-response';
+    const introduction = document.createElement('p');
+    introduction.textContent = 'I’m putting together the data, analysis, and actions for your agent.';
+    const progress = document.createElement('ol');
+    progress.className = 'build-progress';
+    progress.setAttribute('aria-label', 'Agent building progress');
+    BUILD_STEPS.forEach((label) => {
+      const row = document.createElement('li');
+      row.className = 'build-step';
+      const indicator = document.createElement('span');
+      indicator.className = 'step-indicator';
+      indicator.setAttribute('aria-hidden', 'true');
+      row.append(indicator, document.createTextNode(label));
+      progress.append(row);
+    });
+    response.append(introduction, progress);
+    history.replaceChildren(bubble, response);
+    history.hidden = false;
+    empty.hidden = true;
     input.value = '';
-    history.replaceChildren();
-    history.hidden = true;
-    empty.hidden = false;
+    status.hidden = true;
+    syncSend();
+    shell.classList.add('has-workflow');
     shell.classList.remove('conversation-hidden');
     panelToggle.setAttribute('aria-expanded', 'true');
     panelToggle.setAttribute('aria-label', 'Hide conversation panel');
     panelToggle.title = 'Hide conversation panel';
+    setMobileView('workflow');
+    if (mobile.matches) setNavigation(false);
+    progressElapsed = 0;
+    shell.classList.remove('animation-paused');
+    scheduleProgress();
+    animation.start();
+    if (moveComposerFocus) byId('view-workflow').focus();
+  }
+
+  function resetConversation() {
+    clearBuildTimers();
+    shell.classList.remove('has-workflow', 'animation-paused');
+    animation.stop();
+    input.value = '';
+    history.replaceChildren();
+    history.hidden = true;
+    empty.hidden = false;
+    shell.classList.remove('has-workflow', 'conversation-hidden');
+    panelToggle.setAttribute('aria-expanded', 'true');
+    panelToggle.setAttribute('aria-label', 'Hide conversation panel');
+    panelToggle.title = 'Hide conversation panel';
+    setMobileView('conversation');
     status.hidden = true;
     syncSend();
     if (mobile.matches) setNavigation(false);
@@ -63,23 +149,11 @@
       if (!send.disabled) form.requestSubmit();
     }
   });
-
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const message = input.value.trim();
-    if (!message) return;
-    const bubble = document.createElement('p');
-    bubble.className = 'user-message';
-    bubble.textContent = message;
-    history.append(bubble);
-    history.hidden = false;
-    empty.hidden = true;
-    input.value = '';
-    syncSend();
-    history.scrollTop = history.scrollHeight;
-    input.focus();
+    if (message) startBuild(message);
   });
-
   openNavigation.addEventListener('click', () => setNavigation(true));
   closeNavigation.addEventListener('click', () => { setNavigation(false); openNavigation.focus(); });
   backdrop.addEventListener('click', () => { setNavigation(false); openNavigation.focus(); });
@@ -90,12 +164,12 @@
     panelToggle.setAttribute('aria-label', label);
     panelToggle.title = label;
   });
-
+  byId('view-conversation').addEventListener('click', () => setMobileView('conversation'));
+  byId('view-workflow').addEventListener('click', () => setMobileView('workflow'));
   byId('cancel-button').addEventListener('click', resetConversation);
   byId('nav-new-chat').addEventListener('click', resetConversation);
-  byId('create-button').addEventListener('click', () => {
-    announce('Agent creation is not connected in this prototype.');
-  });
+  byId('create-button').addEventListener('click', () => startBuild(input.value.trim() || currentRequest));
+  byId('preview-animation').addEventListener('click', () => startBuild(DEMO_REQUEST));
   document.querySelectorAll('[data-preview]').forEach((button) => {
     button.addEventListener('click', () => announce(`${button.dataset.preview} is not connected in this prototype.`));
   });
@@ -113,6 +187,19 @@
     }
   });
   mobile.addEventListener('change', () => setNavigation(!mobile.matches));
+  document.addEventListener('agent-build-motion', (event) => {
+    const paused = Boolean(event.detail?.paused);
+    const wasPaused = shell.classList.contains('animation-paused');
+    shell.classList.toggle('animation-paused', paused);
+    if (!shell.classList.contains('has-workflow')) return;
+    if (event.detail?.restart) progressElapsed = 0;
+    if (paused) {
+      progressElapsed = performance.now() - progressStartedAt;
+      clearBuildTimers();
+    } else if (wasPaused || event.detail?.restart) scheduleProgress(progressElapsed);
+  });
+  window.addEventListener('pagehide', clearBuildTimers);
   setNavigation(!mobile.matches);
   syncSend();
+  startBuild(DEMO_REQUEST);
 })();

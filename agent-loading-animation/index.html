@@ -7,8 +7,10 @@
   <title>Agent loading animation</title>
   <link rel="icon" href="assets/g0q7K.png" type="image/png">
   <link rel="preload" href="assets/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=workflow-v1">
+  <link rel="stylesheet" href="workflow.css?v=workflow-v1">
+  <script src="workflow.js?v=workflow-v1" defer></script>
+  <script src="app.js?v=workflow-v1" defer></script>
 </head>
 <body>
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><symbol id="i-conversation-outline" viewBox="0 0 56 56">
@@ -162,12 +164,17 @@
           <button class="icon-button more-options" type="button" aria-label="More options" data-preview="More options"><svg class="icon " aria-hidden="true"><use href="#i-more-options"></use></svg></button>
         </div>
       </header>
+      <nav class="mobile-view-tabs" aria-label="Agent builder view">
+        <button id="view-conversation" type="button" aria-pressed="false">Conversation</button>
+        <button id="view-workflow" type="button" aria-pressed="true">Workflow</button>
+      </nav>
       <div class="workspace" id="workspace">
         <section class="conversation-panel" id="conversation-panel" aria-label="Agent conversation">
           <section class="empty-state" id="empty-state" aria-labelledby="empty-state-heading">
             <svg class="icon conversation-outline" aria-hidden="true"><use href="#i-conversation-outline"></use></svg>
             <h2 id="empty-state-heading">Start a conversation</h2>
             <p>Describe the agent you want to build. WisdomAI generates and refines<br class="desktop-break"> it from here.</p>
+            <button class="preview-animation-button" id="preview-animation" type="button">Preview agent animation <span aria-hidden="true">↗</span></button>
           </section>
           <div class="message-history" id="message-history" role="log" aria-live="polite" aria-label="Conversation messages" hidden></div>
           <form class="composer" id="message-form">

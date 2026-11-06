@@ -160,3 +160,40 @@ a { color: inherit; text-decoration: none; }
 @media (max-height: 580px) {
   .empty-state { top: 24%; }
 }
+
+/* Conversation feedback shares the quiet color and motion of the workflow. */
+.mobile-view-tabs { display: none; }
+.preview-animation-button { margin-top: 18px; padding: 8px 12px; border-radius: 8px; color: #595bff; font-size: 12px; font-weight: 500; }
+.preview-animation-button:hover { background: #efefff; }
+.build-response { padding: 12px 4px 0; font-size: 14px; line-height: 1.65; color: #5d6065; }
+.build-response > p { margin: 0 0 22px; color: #34363a; }
+.build-progress { display: grid; gap: 19px; padding: 0; margin: 0; list-style: none; }
+.build-step { display: flex; gap: 11px; align-items: center; color: #92969e; font-size: 13px; transition: color 350ms ease; }
+.step-indicator { display: grid; place-items: center; width: 17px; height: 17px; flex: 0 0 17px; }
+.step-indicator::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #d9dce2; }
+.build-step.is-current { color: #55546f; }
+.build-step.is-current .step-indicator::before { width: 12px; height: 12px; border: 1.5px solid #deddf7; border-top-color: #8580df; background: transparent; animation: build-step-spin 1.3s linear infinite; }
+.build-step.is-complete { color: #71757d; }
+.build-step.is-complete .step-indicator::before { width: 7px; height: 4px; background: none; border-bottom: 1.5px solid #a4a1c4; border-left: 1.5px solid #a4a1c4; border-radius: 0; transform: rotate(-45deg) translateY(-1px); }
+.has-workflow .message-history { padding-top: 28px; }
+.has-workflow .user-message { padding: 14px 16px; border-radius: 14px; background: #f3f4f5; color: #35373b; }
+@keyframes build-step-spin { to { transform: rotate(360deg); } }
+@media (max-width: 900px) {
+  .has-workflow .mobile-view-tabs { display: flex; flex: 0 0 43px; align-items: stretch; justify-content: center; gap: 28px; border-bottom: 1px solid #ebedf2; background: white; }
+  .mobile-view-tabs button { position: relative; padding: 0 4px; font-size: 12px; color: #797d85; }
+  .mobile-view-tabs button[aria-pressed='true'] { color: #595bff; }
+  .mobile-view-tabs button[aria-pressed='true']::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; border-radius: 2px; background: #817cea; }
+  .has-workflow.mobile-view-workflow .conversation-panel { display: none; }
+  .has-workflow.mobile-view-workflow .agent-workspace { display: flex; }
+  .has-workflow.mobile-view-conversation .agent-workspace { display: none; }
+  .has-workflow.mobile-view-conversation .conversation-panel { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .build-step { transition: none; }
+  .build-step.is-current .step-indicator::before { animation: none; border-color: #8580df; }
+}
+.animation-paused .build-step.is-current .step-indicator::before { animation-play-state: paused; }
+@media (max-width: 900px) {
+  .toolbar-actions .panel-toggle { display: none; }
+}
+.agent-workspace { overflow-y: auto; overflow-x: hidden; }
