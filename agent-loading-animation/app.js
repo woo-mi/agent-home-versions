@@ -20,8 +20,9 @@
   const panelToggle = byId('panel-toggle');
   const openNavigation = byId('open-navigation');
   const closeNavigation = byId('close-navigation');
+  const sidebar = byId('sidebar');
   const backdrop = byId('sidebar-backdrop');
-  const mobile = window.matchMedia('(max-width: 700px)');
+  const mobile = window.matchMedia('(max-width: 900px)');
   const status = byId('status-message');
   const animation = window.AgentBuildAnimation.mount(byId('agent-workspace'));
   let statusTimeout;
@@ -47,6 +48,9 @@
     }
     openNavigation.setAttribute('aria-expanded', String(open));
     closeNavigation.setAttribute('aria-expanded', String(open));
+    sidebar.classList.toggle('is-compact', !open);
+    closeNavigation.setAttribute('aria-label', open ? 'Collapse sidebar' : 'Expand sidebar');
+    closeNavigation.title = open ? 'Collapse sidebar' : 'Expand sidebar';
   }
 
   function setMobileView(view) {
@@ -151,8 +155,8 @@
     if (message) startBuild(message);
   });
   openNavigation.addEventListener('click', () => setNavigation(true));
-  closeNavigation.addEventListener('click', () => { setNavigation(false); openNavigation.focus(); });
-  backdrop.addEventListener('click', () => { setNavigation(false); openNavigation.focus(); });
+  closeNavigation.addEventListener('click', () => setNavigation(sidebar.classList.contains('is-compact')));
+  backdrop.addEventListener('click', () => { setNavigation(false); closeNavigation.focus(); });
   panelToggle.addEventListener('click', () => {
     const hidden = shell.classList.toggle('conversation-hidden');
     const label = hidden ? 'Show conversation panel' : 'Hide conversation panel';
@@ -169,12 +173,66 @@
   document.querySelectorAll('[data-preview]').forEach((button) => {
     button.addEventListener('click', () => announce(`${button.dataset.preview} is not connected in this prototype.`));
   });
+  sidebar.querySelectorAll('[data-nav]').forEach((button) => {
+    if (button.id === 'nav-new-chat') return;
+    button.addEventListener('click', () => announce(`${button.dataset.nav} is outside this preview.`));
+  });
+  sidebar.querySelectorAll('[data-recent]').forEach((button) => {
+    button.addEventListener('click', () => {
+      input.value = button.dataset.recent || button.textContent.trim();
+      syncSend();
+      shell.classList.remove('conversation-hidden');
+      panelToggle.setAttribute('aria-expanded', 'true');
+      panelToggle.setAttribute('aria-label', 'Hide conversation panel');
+      panelToggle.title = 'Hide conversation panel';
+      setMobileView('conversation');
+      setNavigation(false);
+      input.focus();
+    });
+  });
+  const recentSearch = byId('recent-search-button');
+  const recentFilter = document.createElement('input');
+  recentFilter.type = 'search';
+  recentFilter.id = 'recent-filter';
+  recentFilter.className = 'recent-filter';
+  recentFilter.placeholder = 'Search recent chats';
+  recentFilter.setAttribute('aria-label', 'Search recent chats');
+  recentFilter.hidden = true;
+  recentSearch.closest('h2').after(recentFilter);
+  recentSearch.setAttribute('aria-controls', recentFilter.id);
+  recentSearch.setAttribute('aria-expanded', 'false');
+  const filterRecent = () => sidebar.querySelectorAll('[data-recent]').forEach((button) => {
+    button.hidden = !button.textContent.toLowerCase().includes(recentFilter.value.toLowerCase());
+  });
+  const closeRecentSearch = () => {
+    recentFilter.hidden = true;
+    recentFilter.value = '';
+    recentSearch.setAttribute('aria-expanded', 'false');
+    filterRecent();
+  };
+  recentSearch.addEventListener('click', () => {
+    const compact = sidebar.classList.contains('is-compact');
+    if (compact) setNavigation(true);
+    if (compact || recentFilter.hidden) {
+      recentFilter.hidden = false;
+      recentSearch.setAttribute('aria-expanded', 'true');
+      recentFilter.focus();
+    } else closeRecentSearch();
+  });
+  recentFilter.addEventListener('input', filterRecent);
+  recentFilter.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.stopPropagation();
+      closeRecentSearch();
+      recentSearch.focus();
+    }
+  });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       status.hidden = true;
       if (shell.classList.contains('mobile-navigation-open')) {
         setNavigation(false);
-        openNavigation.focus();
+        closeNavigation.focus();
       }
     }
     if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.key.toLowerCase() === 'o') {
