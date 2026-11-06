@@ -44,8 +44,8 @@
   };
   const CARDS = {
     width: 64, height: 64, radius: 13,
-    iconSize: 24, iconY: -9, idleIcon: '#000000',
-    labelY: 23, labelSize: 11.5,
+    iconSize: 24, iconY: -6, idleIcon: '#000000',
+    labelY: 22, labelSize: 11.5,
     initialScale: .70, pulseLift: 2.1, pulseScale: .018, contactDepth: 24,
     shadowOffset: 5, shadowBlur: 7, shadowOpacity: .070,
     nearShadowOffset: 2, nearShadowBlur: 2.5, nearShadowOpacity: .045,
