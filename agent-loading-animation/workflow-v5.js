@@ -82,27 +82,27 @@
   // Node IDs, hashes, and source details live in assets/v5-filled-icons/manifest.json.
   const ICONS = Object.freeze({
   "Trigger": {
-    "href": "assets/v5-filled-icons/sprite.svg#trigger",
+    "href": "assets/v5-filled-icons/sprite.svg?v=database-v2#trigger",
     "viewBox": "0 0 24 24",
     "nodeId": "6523:55361"
   },
   "Data": {
-    "href": "assets/v5-filled-icons/sprite.svg#data",
+    "href": "assets/v5-filled-icons/sprite.svg?v=database-v2#data",
     "viewBox": "0 0 24 24",
-    "nodeId": "5592:54675"
+    "nodeId": "5595:55270"
   },
   "Analysis": {
-    "href": "assets/v5-filled-icons/sprite.svg#analysis",
+    "href": "assets/v5-filled-icons/sprite.svg?v=database-v2#analysis",
     "viewBox": "0 0 24 24",
     "nodeId": "5645:54431"
   },
   "Report": {
-    "href": "assets/v5-filled-icons/sprite.svg#report",
+    "href": "assets/v5-filled-icons/sprite.svg?v=database-v2#report",
     "viewBox": "0 0 24 24",
     "nodeId": "5640:60215"
   },
   "Email": {
-    "href": "assets/v5-filled-icons/sprite.svg#email",
+    "href": "assets/v5-filled-icons/sprite.svg?v=database-v2#email",
     "viewBox": "0 0 24 24",
     "nodeId": "5658:58225"
   }

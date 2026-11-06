@@ -55,31 +55,26 @@
       "label": "Data",
       "file": "data.svg",
       "viewBox": "0 0 24 24",
-      "nodeId": "5592:54675",
-      "familyNodeId": "5592:54570",
-      "componentName": "server-1, storage, data, coins, money, database",
+      "nodeId": "5595:55270",
+      "familyNodeId": "5595:55135",
+      "componentName": "server-2, storage, data, coins, money, database",
       "variantName": "filled=on, stroke=1.5, radius=2, join=round",
-      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5592-54675",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5595-55270",
       "nativeSize": {
         "width": 24,
         "height": 24
       },
       "vectorNodeIds": [
-        "5595:55116"
+        "5595:55661"
       ],
       "fillGeometryBlobs": [
         {
-          "id": 5617,
-          "sha256": "a6837bc1f7053d61db36e7f648f7303e8b0b791bf3c6e70644a815d84a09c5d6",
-          "commands": 30
-        },
-        {
-          "id": 5618,
-          "sha256": "819ade3e02121953006cd1290d4bf1140206ffffeeedcf4d88626ee494d2c892",
-          "commands": 14
+          "id": 5637,
+          "sha256": "1cd19eef66e7756761193fcc65924cf7512ee4b06382272243e5c789c67a1523",
+          "commands": 58
         }
       ],
-      "svgSha256": "0e49132e2cdfee74f8014eba34d9071bb11bc6224e434c64840728c919d3f24a",
+      "svgSha256": "b13e6b876ab37f285a7076ea8e6b3fdfc4dd26a9a8d62c7a9696eb1e4d7239ca",
       "symbolId": "data",
       "spriteHref": "sprite.svg#data"
     },
@@ -177,7 +172,7 @@
   ],
   "sprite": {
     "file": "sprite.svg",
-    "sha256": "e72ff273701db87605b1650a8c7f91f878a629f2fd4c159ba39a216f041454f1",
+    "sha256": "9e2b4bb8aa68eff2e8c4a58176e210bd1b4722ab0cc7735cfdae6a2f04ded4f8",
     "method": "Original SVG groups copied into symbols without changing geometry. Symbols preserve currentColor, stroke=none, winding rules, and 24px bounds."
   }
 }
