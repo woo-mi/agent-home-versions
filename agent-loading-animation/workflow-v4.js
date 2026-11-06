@@ -62,7 +62,7 @@
   };
   const NUCLEUS = {
     enterScale: .62, breathScale: .025,
-    logoSize: 48,
+    logoSize: 42, offsetY: -10,
     logo: 'assets/wai-logo-symbol-gradient.png',
   };
   const AURORA = {
@@ -167,7 +167,7 @@
       <g data-v4-scene>
         <path data-v4-path d="${FLOW.path}" pathLength="1" fill="none" stroke="${FLOW.stroke}" stroke-width="${FLOW.width}" stroke-linecap="round"/>
         <path data-v4-wake d="${FLOW.path}" pathLength="1" fill="none" stroke="url(#${prefix}-wake)" stroke-width="2" stroke-linecap="round" opacity="0"/>
-        <g data-v4-nucleus transform="translate(${SCENE.center.x} ${SCENE.center.y})">
+        <g data-v4-nucleus transform="translate(${SCENE.center.x} ${SCENE.center.y + NUCLEUS.offsetY})">
           <image href="${NUCLEUS.logo}" x="${-NUCLEUS.logoSize / 2}" y="${-NUCLEUS.logoSize / 2}" width="${NUCLEUS.logoSize}" height="${NUCLEUS.logoSize}" preserveAspectRatio="xMidYMid meet"/>
         </g>
         <g data-v4-signal opacity="0"><circle r="${FLOW.glowRadius}" fill="${FLOW.glowColor}" opacity=".60" filter="url(#${prefix}-signal)"/><circle r="${FLOW.signalRadius}" fill="${FLOW.signalColor}"/><circle r=".9" fill="#FFFFFF" opacity=".95"/></g>
@@ -200,7 +200,7 @@
       const coreScale = mix(NUCLEUS.enterScale, 1, coreEnter) + wave * NUCLEUS.breathScale;
       svg.dataset.stage = String(stage);
       scene.setAttribute('transform', `translate(0 ${wave * SCENE.floatAmplitude})`);
-      nucleus.setAttribute('transform', `translate(${SCENE.center.x} ${SCENE.center.y}) scale(${coreScale})`);
+      nucleus.setAttribute('transform', `translate(${SCENE.center.x} ${SCENE.center.y + NUCLEUS.offsetY}) scale(${coreScale})`);
       nucleus.setAttribute('opacity', coreEnter);
       aurora.setAttribute('opacity', coreEnter * (AURORA.baseOpacity + wave * AURORA.breatheOpacity));
       aurora.setAttribute('transform', `translate(${wave * AURORA.horizontalDrift} ${wave * AURORA.verticalDrift})`);
