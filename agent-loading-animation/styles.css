@@ -33,45 +33,15 @@ a { color: inherit; text-decoration: none; }
 .skip-link:focus { transform: none; }
 
 .app-shell { display: grid; grid-template-columns: var(--sidebar-width) minmax(0, 1fr); height: 100vh; height: 100dvh; min-height: 360px; overflow: hidden; }
-.sidebar { display: flex; flex-direction: column; min-height: 0; min-width: 0; background: #fafcfc; border-right: 1px solid var(--line); }
-.brand-row { height: 64px; flex: 0 0 64px; display: flex; align-items: center; padding: 4px 16px 0; gap: 8px; }
-.brand { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
-.brand img { display: block; }
-.brand span { font-size: 19px; line-height: 24px; font-weight: 600; color: #222426; }
-.navigation-toggle { width: 20px; height: 28px; margin-left: auto; color: #5d6167; }
-.navigation-toggle .icon { width: 14px; height: 14px; }
-.sidebar-scroll { min-height: 0; overflow-y: auto; overflow-x: hidden; flex: 1; scrollbar-width: thin; padding-top: 1px; }
-.primary-nav { display: grid; gap: 4px; padding: 0 8px; }
-.nav-item { display: flex; align-items: center; width: 100%; height: 34px; padding: 0 10px; gap: 12px; border-radius: 9px; text-align: left; color: #585c62; font-size: 14px; line-height: 17px; white-space: nowrap; }
-.nav-item > .icon { color: #5d6167; }
-.nav-item .owl-icon { width: 18px; height: 18px; margin-left: -1px; margin-right: -1px; }
-.nav-item[aria-current="page"] { background: #eef0f0; color: #222426; }
-.nav-item[aria-current="page"] .icon { color: #222426; }
-.nav-item:hover, .chat-links button:hover, .footer-item:hover { background: #eef0f0; }
-.nav-item kbd { margin-left: auto; padding: 3px 6px; border-radius: 7px; background: #eef0f0; font-family: inherit; font-size: 12px; line-height: 14px; letter-spacing: -.2px; }
-.pinned-chats { margin-top: 30.5px; }
-.sidebar section h2 { margin: 0; font-size: 12px; line-height: 15px; font-weight: 400; color: #585c62; }
-.pinned-chats h2 { padding-left: 16px; }
-.chat-links { display: grid; }
-.pinned-chats .chat-links { margin-top: 7.5px; }
-.chat-links button { width: 100%; min-width: 0; height: 29px; padding: 0 16px; text-align: left; color: #585c62; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; font-size: 14px; line-height: 17px; }
-.recent-chats { margin-top: 24.5px; }
-.recent-heading-row { display: flex; align-items: center; height: 18px; padding: 0 14px 0 16px; gap: 16px; }
-.recent-heading-row h2 { flex: 1; }
-.recent-heading-row .icon-button { width: 16px; height: 18px; color: #5d6167; }
-.recent-heading-row .icon { width: 12px; height: 12px; }
-.recent-chats .chat-links { margin-top: 6px; }
-.sidebar-footer { flex: 0 0 120px; margin-bottom: 10px; padding: 0 8px; }
-.footer-item { display: flex; align-items: center; width: 100%; height: 40px; gap: 12px; padding: 0 10px; color: #585c62; font-size: 14px; line-height: 17px; text-align: left; border-radius: 8px; white-space: nowrap; }
-.notification-icon { position: relative; width: 16px; height: 16px; }
-.notification-icon .icon { color: #5d6167; }
-.notification-count { position: absolute; top: -10px; left: 10px; width: 16px; height: 16px; display: grid; place-items: center; background: #e00; border-radius: 50%; color: white; font-size: 10px; font-weight: 500; }
-.workspace-avatar { width: 18px; height: 18px; margin-left: -1px; margin-right: -1px; display: grid; place-items: center; background: #eaeeee; color: #222426; border-radius: 4.5px; font-size: 12px; font-weight: 500; }
-.workspace-menu { font-weight: 500; color: #222426; }
-.trailing-icon { width: 12px; height: 12px; color: #5d6167; margin-left: auto; }
-.profile-menu { padding-left: 6.5px; gap: 6.5px; font-weight: 500; }
-.profile-avatar { width: 27px; height: 27px; border: 1px solid #942fff; border-radius: 50%; display: grid; place-items: center; background: white; flex-shrink: 0; }
-.profile-avatar span { display: grid; place-items: center; width: 23px; height: 23px; border-radius: 50%; background: #b7ed55; border: 1px solid #6759ff; color: #222426; font-size: 11px; font-weight: 500; }
+/* Frame 2's original screen capture supplies the navigation visuals. */
+.sidebar { display: flex; flex-direction: column; min-height: 0; min-width: 0; background: #fafcfc; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; }
+.sidebar::-webkit-scrollbar { display: none; }
+.sidebar-capture { position: relative; width: 224px; flex: 0 0 auto; }
+.sidebar-capture-image { display: block; width: 100%; height: auto; user-select: none; }
+.sidebar-hotspot { position: absolute; background: transparent; border-radius: 8px; }
+.sidebar-hotspot:focus-visible { outline-offset: -2px; }
+.sidebar-collapse-hotspot { top: 26px; left: 184px; width: 28px; height: 26px; }
+.sidebar-new-chat-hotspot { top: 72px; left: 8px; width: 208px; height: 28px; }
 
 .main-shell { min-width: 0; min-height: 0; display: flex; flex-direction: column; }
 .toolbar { display: flex; align-items: center; flex: 0 0 57px; height: 57px; min-width: 0; border-bottom: 1px solid var(--line); padding: 0 20px 0 26px; background: white; }

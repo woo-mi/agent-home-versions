@@ -7,7 +7,7 @@
   <title>Agent loading animation</title>
   <link rel="icon" href="assets/g0q7K.png" type="image/png">
   <link rel="preload" href="assets/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=version-pill-v1">
+  <link rel="stylesheet" href="styles.css?v=frame2-capture-v1">
   <link rel="stylesheet" href="workflow.css?v=v5-orbit-v1">
   <script src="workflow-v2.js?v=version-pill-v1" defer></script>
   <script src="workflow-v3.js?v=v3-center-v2" defer></script>
@@ -127,34 +127,10 @@
   <button class="sidebar-backdrop" id="sidebar-backdrop" type="button" aria-label="Close navigation" hidden></button>
   <div class="app-shell" id="app-shell">
     <aside class="sidebar" id="sidebar" aria-label="Application navigation">
-      <div class="brand-row">
-        <a class="brand" href="./" aria-label="WisdomAI home"><img src="assets/g0q7K.png" width="24" height="24" alt=""><span>WisdomAI</span></a>
-        <button class="icon-button navigation-toggle" id="close-navigation" type="button" aria-label="Collapse navigation" aria-controls="sidebar" aria-expanded="true"><svg class="icon " aria-hidden="true"><use href="#i-collapse-navigation"></use></svg></button>
-      </div>
-      <div class="sidebar-scroll">
-        <nav class="primary-nav" aria-label="Main"><button class="nav-item" id="nav-new-chat" type="button"><svg class="icon " aria-hidden="true"><use href="#i-new-chat-icon"></use></svg><span>New chat</span><kbd>⌘ ⇧ O</kbd></button>
-<button class="nav-item" id="nav-search" type="button" data-preview="Search"><svg class="icon " aria-hidden="true"><use href="#i-search-icon"></use></svg><span>Search</span><kbd>⌘ K</kbd></button>
-<button class="nav-item" id="nav-owls" type="button" data-preview="Owls"><img class="icon owl-icon" src="assets/Ywkwn.png" alt=""><span>Owls</span></button>
-<button class="nav-item" id="nav-apps" type="button" data-preview="Apps"><svg class="icon " aria-hidden="true"><use href="#i-apps-icon"></use></svg><span>Apps</span></button>
-<button class="nav-item" id="nav-agents" type="button" aria-current="page" data-preview="Agents"><svg class="icon " aria-hidden="true"><use href="#i-agents-icon"></use></svg><span>Agents</span></button>
-<button class="nav-item" id="nav-domains" type="button" data-preview="Domains"><svg class="icon " aria-hidden="true"><use href="#i-domains-icon"></use></svg><span>Domains</span></button>
-<button class="nav-item" id="nav-connections" type="button" data-preview="Connections"><svg class="icon " aria-hidden="true"><use href="#i-connections-icon"></use></svg><span>Connections</span></button>
-<button class="nav-item" id="nav-chat-log" type="button" data-preview="Chat Log"><svg class="icon " aria-hidden="true"><use href="#i-chat-log-icon"></use></svg><span>Chat Log</span></button>
-<button class="nav-item" id="nav-more" type="button" data-preview="More"><svg class="icon " aria-hidden="true"><use href="#i-more-icon"></use></svg><span>More</span></button>
-</nav>
-        <section class="pinned-chats" aria-labelledby="pinned-heading">
-          <h2 id="pinned-heading">Pinned</h2>
-          <div class="chat-links"><button type="button" data-preview="Pinned chat">Generate bar chart of top ...</button><button type="button" data-preview="Pinned chat">Ideal daily active users for ...</button></div>
-        </section>
-        <section class="recent-chats" aria-labelledby="recent-heading">
-          <div class="recent-heading-row"><h2 id="recent-heading">Recent chats</h2><button class="icon-button" type="button" aria-label="Filter recent chats" data-preview="Recent chat filters"><svg class="icon " aria-hidden="true"><use href="#i-filter-recent-chats"></use></svg></button><button class="icon-button" type="button" aria-label="Recent chats history" data-preview="Recent chats history"><svg class="icon " aria-hidden="true"><use href="#i-recent-chats-history"></use></svg></button></div>
-          <div class="chat-links"><button type="button" data-preview="Recent chat" title="Woo-Mi&#x27;s Taxonomist">Woo-Mi&#x27;s Taxonomist</button><button type="button" data-preview="Recent chat" title="KPI Watcher">KPI Watcher</button><button type="button" data-preview="Recent chat" title="Woo-Mi&#x27;s Data Optizist">Woo-Mi&#x27;s Data Optizist</button><button type="button" data-preview="Recent chat" title="Contact coverage by job tit...">Contact coverage by job tit...</button><button type="button" data-preview="Recent chat" title="Interactive sales pipeline tr...">Interactive sales pipeline tr...</button><button type="button" data-preview="Recent chat" title="Ayush&#x27;s Data Algorithmist">Ayush&#x27;s Data Algorithmist</button><button type="button" data-preview="Recent chat" title="Dataset exploration ideas f...">Dataset exploration ideas f...</button><button type="button" data-preview="Recent chat" title="Clone of Assignee with mo...">Clone of Assignee with mo...</button><button type="button" data-preview="Recent chat" title="Count of contacts with ma...">Count of contacts with ma...</button></div>
-        </section>
-      </div>
-      <div class="sidebar-footer">
-        <button class="footer-item" type="button" data-preview="Notifications"><span class="notification-icon"><svg class="icon " aria-hidden="true"><use href="#i-notifications-icon"></use></svg><span class="notification-count">3</span></span><span>Notifications</span></button>
-        <button class="footer-item workspace-menu" type="button" data-preview="Workspace switcher"><span class="workspace-avatar">W</span><span>WisdomAI</span><svg class="icon trailing-icon" aria-hidden="true"><use href="#i-switch-workspace"></use></svg></button>
-        <button class="footer-item profile-menu" type="button" data-preview="Profile menu"><span class="profile-avatar"><span>WJ</span></span><span>Woo-Mi Jeong</span><svg class="icon trailing-icon" aria-hidden="true"><use href="#i-user-menu"></use></svg></button>
+      <div class="sidebar-capture">
+        <img class="sidebar-capture-image" src="assets/frame-2-sidebar.png" width="448" height="1928" alt="WisdomAI navigation from Frame 2, with Agents selected, pinned and recent chats, notifications, and the Woo-Mi Jeong profile." draggable="false">
+        <button class="sidebar-hotspot sidebar-collapse-hotspot" id="close-navigation" type="button" aria-label="Collapse navigation" aria-controls="sidebar" aria-expanded="true"></button>
+        <button class="sidebar-hotspot sidebar-new-chat-hotspot" id="nav-new-chat" type="button" aria-label="New chat"></button>
       </div>
     </aside>
     <main class="main-shell" id="main-content">
