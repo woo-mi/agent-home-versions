@@ -45,8 +45,7 @@
   const CARDS = {
     width: 64, height: 64, radius: 13,
     iconSize: 24, iconY: -9, idleIcon: '#000000',
-    // The 600px desktop figure renders these labels at the subtitle's 14px size.
-    labelY: 23, labelSize: 14,
+    labelY: 23, labelSize: 11.5,
     initialScale: .70, pulseLift: 2.1, pulseScale: .018, contactDepth: 24,
     shadowOffset: 5, shadowBlur: 7, shadowOpacity: .070,
     nearShadowOffset: 2, nearShadowBlur: 2.5, nearShadowOpacity: .045,
