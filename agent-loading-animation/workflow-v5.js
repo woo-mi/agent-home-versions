@@ -67,7 +67,7 @@
   };
   const NUCLEUS = {
     enterScale: .62, breathScale: .025,
-    icon: '#595BFF', logoSize: 52,
+    icon: '#595BFF', logoSize: 60,
     logo: 'assets/wai-logo-symbol-knockout.png',
   };
   const AURORA = {
