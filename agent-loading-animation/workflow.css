@@ -13,7 +13,6 @@
 
 .agent-build-animation[hidden] { display: none !important; }
 .agent-build-animation .build-figure { width: min(100%, 600px); margin: 0; text-align: center; }
-.agent-build-animation[data-version="v5"] .build-figure { width: min(100%, 680px); }
 .agent-build-animation[data-version="v5"] .build-caption { margin-top: 10px; }
 .agent-build-animation[data-version="v6"] .build-figure { width: min(100%, 640px); }
 .agent-build-animation[data-version="v6"] .build-caption { margin-top: 8px; }

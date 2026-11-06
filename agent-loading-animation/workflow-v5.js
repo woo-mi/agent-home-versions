@@ -43,16 +43,16 @@
     cardAngles: [180, 240, 300, 360, 450], // clockwise: left → top → right → bottom
   };
   const CARDS = {
-    width: 76, height: 76, radius: 19,
-    iconSize: 32, iconY: -10, idleIcon: '#000000',
-    // Match the 14px subtitle at the 680px desktop figure width.
-    labelY: 25, labelSize: 14 * 600 / 680,
+    width: 64, height: 64, radius: 13,
+    iconSize: 24, iconY: -9, idleIcon: '#000000',
+    // The 600px desktop figure renders these labels at the subtitle's 14px size.
+    labelY: 23, labelSize: 14,
     initialScale: .70, pulseLift: 2.1, pulseScale: .018, contactDepth: 24,
-    shadowOffset: 9, shadowBlur: 8, shadowOpacity: .070,
+    shadowOffset: 5, shadowBlur: 7, shadowOpacity: .070,
     nearShadowOffset: 2, nearShadowBlur: 2.5, nearShadowOpacity: .045,
     border: '#E2E4EE', borderWidth: 1, activeBorderWidth: 1.3,
     label: '#747988', activeLabel: '#555464',
-    haloRadius: 49, haloOpacity: .095, haloBlur: 10,
+    haloRadius: 43, haloOpacity: .095, haloBlur: 9,
     positions: ORBIT.cardAngles.map(angle => ({
       x: SCENE.center.x + ORBIT.radiusX * Math.cos(angle * Math.PI / 180),
       y: SCENE.center.y + ORBIT.radiusY * Math.sin(angle * Math.PI / 180),
