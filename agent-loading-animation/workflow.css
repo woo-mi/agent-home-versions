@@ -13,6 +13,8 @@
 
 .agent-build-animation[hidden] { display: none !important; }
 .agent-build-animation .build-figure { width: min(100%, 600px); margin: 0; text-align: center; }
+.agent-build-animation[data-version="v5"] .build-figure { width: min(100%, 680px); }
+.agent-build-animation[data-version="v5"] .build-caption { margin-top: 10px; }
 .agent-build-animation .build-illustration { display: block; width: 100%; height: auto; overflow: visible; }
 .agent-build-animation .build-plane,
 .agent-build-animation .build-front-float,
