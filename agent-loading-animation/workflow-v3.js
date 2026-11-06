@@ -38,7 +38,7 @@
   };
   const CARDS = {
     width: 64, height: 64, radius: 13,
-    iconSize: 24, badgeSize: 37, badgeRadius: 10,
+    iconSize: 24,
     labelY: 50, labelSize: 11.5,
     initialScale: .70, pulseLift: 2.3,
     shadowOffset: 5, shadowBlur: 7,
@@ -98,12 +98,10 @@
 
     const cardMarkup = steps.map((item, index) => {
       const half = CARDS.width / 2;
-      const badgeHalf = CARDS.badgeSize / 2;
       return `<g data-v3-card="${index}">
         <circle data-v3-halo="${index}" r="${CARDS.haloRadius}" fill="${escape(item.color)}" opacity="0" filter="url(#${prefix}-soft)"/>
         <rect x="${-half}" y="${-half + CARDS.shadowOffset}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="${SCENE.shadowColor}" opacity=".085" filter="url(#${prefix}-shadow)"/>
         <rect data-v3-border="${index}" x="${-half}" y="${-half}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="#FFFFFF" stroke="${CARDS.border}" stroke-width="1"/>
-        <rect x="${-badgeHalf}" y="${-badgeHalf}" width="${CARDS.badgeSize}" height="${CARDS.badgeSize}" rx="${CARDS.badgeRadius}" fill="${escape(item.color)}" opacity=".10"/>
         <svg x="${-CARDS.iconSize / 2}" y="${-CARDS.iconSize / 2}" width="${CARDS.iconSize}" height="${CARDS.iconSize}" viewBox="0 0 24 24" fill="none" stroke="${escape(item.color)}" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${item.icon}</svg>
         <text data-v3-label="${index}" x="0" y="${CARDS.labelY}" text-anchor="middle" fill="${CARDS.label}" font-family="${SCENE.font}" font-size="${CARDS.labelSize}" font-weight="500">${escape(item.name)}</text>
       </g>`;
