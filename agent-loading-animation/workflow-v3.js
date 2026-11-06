@@ -44,7 +44,7 @@
     shadowOffset: 5, shadowBlur: 7,
     border: '#E2E4EE', activeBorder: '#BBB8EC',
     label: '#747988', activeLabel: '#555464',
-    haloRadius: 43, haloOpacity: .12,
+    haloRadius: 43, haloOpacity: .12, haloBlur: 9,
     positions: [
       { x: 140, y: 170, arrival: 0 },
       { x: 225, y: 77, arrival: .245 },
@@ -61,11 +61,8 @@
     wakeLength: .055, wakeOpacity: .56,
   };
   const NUCLEUS = {
-    size: 43, radius: 14, ringRadius: 31,
     enterScale: .62, breathScale: .025,
-    border: '#E6E1F5', icon: '#9C90D7',
-    haloRadius: 42, haloBlur: 9, haloOpacity: .11,
-    ring: '#E7E2F4', ringBreath: 2,
+    icon: '#9C90D7',
   };
   const AURORA = {
     width: 146, height: 80, blur: 23,
@@ -111,7 +108,7 @@
       <desc id="${prefix}-description">Five upright cards form a constellation around an agent. A soft signal follows Trigger, Data, Analysis, Report, and Email in order.</desc>
       <defs>
         <filter id="${prefix}-shadow" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur stdDeviation="${CARDS.shadowBlur}"/></filter>
-        <filter id="${prefix}-soft" x="-75%" y="-75%" width="250%" height="250%"><feGaussianBlur stdDeviation="${NUCLEUS.haloBlur}"/></filter>
+        <filter id="${prefix}-soft" x="-75%" y="-75%" width="250%" height="250%"><feGaussianBlur stdDeviation="${CARDS.haloBlur}"/></filter>
         <filter id="${prefix}-aurora" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="${AURORA.blur}"/></filter>
         <filter id="${prefix}-signal" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="${FLOW.glowBlur}"/></filter>
         <linearGradient id="${prefix}-wake" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#C7BDEA"/><stop offset="1" stop-color="${FLOW.signalColor}"/></linearGradient>
@@ -125,9 +122,6 @@
         <path data-v3-path d="${FLOW.path}" pathLength="1" fill="none" stroke="${FLOW.stroke}" stroke-width="${FLOW.width}" stroke-linecap="round"/>
         <path data-v3-wake d="${FLOW.path}" pathLength="1" fill="none" stroke="url(#${prefix}-wake)" stroke-width="2" stroke-linecap="round" opacity="0"/>
         <g data-v3-nucleus transform="translate(${SCENE.center.x} ${SCENE.center.y})">
-          <circle data-v3-nucleus-halo r="${NUCLEUS.haloRadius}" fill="#C8B9ED" opacity="${NUCLEUS.haloOpacity}" filter="url(#${prefix}-soft)"/>
-          <circle data-v3-ring r="${NUCLEUS.ringRadius}" fill="none" stroke="${NUCLEUS.ring}" stroke-width=".8"/>
-          <rect x="${-NUCLEUS.size / 2}" y="${-NUCLEUS.size / 2}" width="${NUCLEUS.size}" height="${NUCLEUS.size}" rx="${NUCLEUS.radius}" fill="#FFFFFF" stroke="${NUCLEUS.border}"/>
           <path d="M0-10C1-3 3-1 10 0 3 1 1 3 0 10-1 3-3 1-10 0-3-1-1-3 0-10Z" fill="${NUCLEUS.icon}"/>
           <circle cx="12" cy="-12" r="2" fill="#BDAFE7"/>
         </g>
@@ -140,8 +134,6 @@
     const scene = find('[data-v3-scene]');
     const aurora = find('[data-v3-aurora]');
     const nucleus = find('[data-v3-nucleus]');
-    const nucleusHalo = find('[data-v3-nucleus-halo]');
-    const ring = find('[data-v3-ring]');
     const path = find('[data-v3-path]');
     const wake = find('[data-v3-wake]');
     const signal = find('[data-v3-signal]');
@@ -162,8 +154,6 @@
       scene.setAttribute('transform', `translate(0 ${wave * SCENE.floatAmplitude})`);
       nucleus.setAttribute('transform', `translate(${SCENE.center.x} ${SCENE.center.y}) scale(${coreScale})`);
       nucleus.setAttribute('opacity', coreEnter);
-      ring.setAttribute('r', NUCLEUS.ringRadius + wave * NUCLEUS.ringBreath);
-      nucleusHalo.setAttribute('opacity', NUCLEUS.haloOpacity * (1 + wave * .22));
       aurora.setAttribute('opacity', coreEnter * (AURORA.baseOpacity + wave * AURORA.breatheOpacity));
       aurora.setAttribute('transform', `translate(${wave * AURORA.horizontalDrift} ${wave * AURORA.verticalDrift})`);
 
