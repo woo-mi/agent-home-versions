@@ -45,7 +45,8 @@
   const CARDS = {
     width: 76, height: 76, radius: 19,
     iconSize: 32, iconY: -10,
-    labelY: 25, labelSize: 13,
+    // Match the 14px subtitle at the 680px desktop figure width.
+    labelY: 25, labelSize: 14 * 600 / 680,
     initialScale: .70, pulseLift: 2.1, pulseScale: .018, contactDepth: 24,
     shadowOffset: 9, shadowBlur: 8, shadowOpacity: .070,
     nearShadowOffset: 2, nearShadowBlur: 2.5, nearShadowOpacity: .045,
