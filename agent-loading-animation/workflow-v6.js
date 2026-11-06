@@ -3,10 +3,10 @@
  *
  *    0ms   the small, bare agent sparkle settles at the center
  *  100ms   five concentric broken rings draw in (120ms stagger)
- *  260ms   upright library icons appear inside their generous ring gaps
+ *  260ms   white icon cards and their labels settle into the ring gaps
  * 1700ms   one luminous dot begins the outer-to-inner sequence
  *          2000ms around each arc → 600ms gently through its icon gap
- *          icon + ring share the step color only during geometric contact
+ *          icon + card border + ring share the step color on card contact
  *          a 480ms fade carries the signal to the next ring
  *          after all five rings, an 800ms quiet rest precedes the next loop
  * ───────────────────────────────────────────────────────── */
@@ -19,8 +19,8 @@
     ringsEnter:       100, // first ring starts drawing
     ringStagger:      120, // interval between ring entrances
     ringDraw:         950, // each near-complete arc draws in
-    iconsEnter:       260, // icons begin appearing in their gaps
-    iconSettle:       620, // icon opacity and small settling motion
+    iconsEnter:       260, // labeled cards begin appearing in their gaps
+    iconSettle:       620, // card opacity and small settling motion
     loopStart:       1700, // the settled composition starts flowing
     orbitTravel:     2000, // visible arc travel on each ring
     gapTravel:        600, // slower crossing through the icon gap
@@ -30,31 +30,33 @@
   };
   const STAGE = { entering: 0, rings: 1, icons: 2, flowing: 3 };
   const SCENE = {
-    width: 600, height: 520,
-    center: { x: 300, y: 240 },
+    width: 600, height: 600,
+    center: { x: 300, y: 280 },
     font: 'Inter, system-ui, sans-serif',
     centerColor: '#A39BCB', centerScale: .72,
+    shadowColor: '#8F91B6',
   };
   const RINGS = {
-    radii: [200, 162, 124, 86, 48],
-    gapAngles: [-40, -145, 55, 150, -60],
+    radii: [236, 192, 148, 104, 60],
+    gapAngles: [-40, -145, 55, 150, -20],
     stroke: '#DADDE5', width: 1.35, activeWidth: 1.65,
-    gapClearance: 6.5,
+    gapClearance: 4,
   };
-  const NODE = {
-    size: 28, color: '#000000',
+  const CARDS = {
+    width: 64, height: 64, radius: 13,
+    iconSize: 24, color: '#000000',
+    fill: '#FFFFFF', border: '#E2E4EE', borderWidth: 1,
+    labelY: 50, labelSize: 11.5, labelColor: '#747988',
+    shadowOffset: 5, shadowBlur: 7, shadowOpacity: .085,
     enterScale: .90,
+    maskPadding: 4,
+    labelMaskWidth: 68, labelMaskTop: 36, labelMaskHeight: 20,
   };
   const SIGNAL = {
     radius: 2.9, color: '#9388D1',
     glowRadius: 8.5, glowBlur: 2.7, glowOpacity: .32,
     highlightRadius: .9,
     wakeLength: .055, wakeWidth: 2, wakeOpacity: .40,
-  };
-  const CAPTION = {
-    x: 300, y: 484, fontSize: 13,
-    idleColor: '#9296A2', activeColor: '#666975',
-    staticLabel: 'Agent workflow',
   };
 
   // Authentic central icon system v1.35 vectors, unchanged native geometry.
@@ -80,7 +82,10 @@
   });
   const geometry = RINGS.radii.map((radius, index) => {
     const gapAngle = RINGS.gapAngles[index] * Math.PI / 180;
-    const gapHalfAngle = Math.asin((NODE.size / Math.SQRT2 + RINGS.gapClearance) / radius);
+    // A conservative bounding circle clears every corner of the upright card.
+    // The label is separately removed from every ring by the shared mask.
+    const cardHalfDiagonal = Math.hypot(CARDS.width, CARDS.height) / 2;
+    const gapHalfAngle = Math.asin((cardHalfDiagonal + RINGS.gapClearance) / radius);
     const startAngle = gapAngle + gapHalfAngle;
     const endAngle = gapAngle + TAU - gapHalfAngle;
     const start = pointAt(radius, startAngle);
@@ -92,12 +97,12 @@
     };
   });
 
-  // Solid dot against the upright icon's square bounds; glow is excluded.
-  function touchesIcon(point, icon, scale) {
-    const half = NODE.size * scale / 2;
-    const dx = Math.max(Math.abs(point.x - icon.x) - half, 0);
-    const dy = Math.max(Math.abs(point.y - icon.y) - half, 0);
-    return Math.hypot(dx, dy) <= SIGNAL.radius;
+  // Signed distance to the final rendered rounded card, excluding the shadow,
+  // label, and signal glow. Entrance scale is included in the same geometry.
+  function roundedCardDistance(point, card, scale) {
+    const dx = Math.abs(point.x - card.x) / scale - (CARDS.width / 2 - CARDS.radius);
+    const dy = Math.abs(point.y - card.y) / scale - (CARDS.height / 2 - CARDS.radius);
+    return (Math.hypot(Math.max(dx, 0), Math.max(dy, 0)) + Math.min(Math.max(dx, dy), 0) - CARDS.radius) * scale;
   }
 
   function create({ id, items }) {
@@ -114,30 +119,44 @@
 
     const ringMarkup = steps.map((_, index) => `<path data-v6-ring="${index}" d="${geometry[index].path}" pathLength="1" fill="none" stroke="${RINGS.stroke}" stroke-width="${RINGS.width}" stroke-linecap="round"/>`).join('');
     const wakeMarkup = steps.map((_, index) => `<path data-v6-wake="${index}" d="${geometry[index].path}" pathLength="1" fill="none" stroke="${SIGNAL.color}" stroke-width="${SIGNAL.wakeWidth}" stroke-linecap="round" opacity="0"/>`).join('');
+    // Mask all ring lanes, not only each card's own ring. This also keeps the
+    // next inner/outer circle from crossing a label or a rounded card corner.
+    const maskMarkup = steps.map((_, index) => {
+      const point = geometry[index].icon;
+      const pad = CARDS.maskPadding;
+      return `<g transform="translate(${point.x} ${point.y})"><rect x="${-CARDS.width / 2 - pad}" y="${-CARDS.height / 2 - pad}" width="${CARDS.width + pad * 2}" height="${CARDS.height + pad * 2}" rx="${CARDS.radius + pad}" fill="#000000"/><rect x="${-CARDS.labelMaskWidth / 2}" y="${CARDS.labelMaskTop}" width="${CARDS.labelMaskWidth}" height="${CARDS.labelMaskHeight}" rx="4" fill="#000000"/></g>`;
+    }).join('');
     const iconMarkup = steps.map((item, index) => {
       const icon = ICONS[item.name];
       const point = geometry[index].icon;
-      return `<g data-v6-node="${index}" transform="translate(${point.x} ${point.y})"><svg data-v6-icon="${index}" x="${-NODE.size / 2}" y="${-NODE.size / 2}" width="${NODE.size}" height="${NODE.size}" viewBox="${escape(icon.viewBox)}" color="${NODE.color}" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="${escape(icon.href)}"/></svg></g>`;
+      return `<g data-v6-node="${index}" transform="translate(${point.x} ${point.y})">
+        <rect x="${-CARDS.width / 2}" y="${-CARDS.height / 2 + CARDS.shadowOffset}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="${SCENE.shadowColor}" opacity="${CARDS.shadowOpacity}" filter="url(#${prefix}-card-shadow)"/>
+        <rect data-v6-border="${index}" x="${-CARDS.width / 2}" y="${-CARDS.height / 2}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="${CARDS.fill}" stroke="${CARDS.border}" stroke-width="${CARDS.borderWidth}"/>
+        <svg data-v6-icon="${index}" x="${-CARDS.iconSize / 2}" y="${-CARDS.iconSize / 2}" width="${CARDS.iconSize}" height="${CARDS.iconSize}" viewBox="${escape(icon.viewBox)}" color="${CARDS.color}" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="${escape(icon.href)}"/></svg>
+        <text data-v6-label="${index}" x="0" y="${CARDS.labelY}" text-anchor="middle" fill="${CARDS.labelColor}" font-family="${SCENE.font}" font-size="${CARDS.labelSize}" font-weight="500">${escape(item.name)}</text>
+      </g>`;
     }).join('');
 
     svg.innerHTML = `<title id="${prefix}-title">A workflow through concentric rings</title>
-      <desc id="${prefix}-description">Five nested circles each have a genuine gap containing an upright icon. One signal visits Trigger, Data, Analysis, Report, and Email, coloring each icon and its ring only while touching the icon.</desc>
-      <defs><filter id="${prefix}-signal-glow" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="${SIGNAL.glowBlur}"/></filter></defs>
-      ${ringMarkup}
-      ${wakeMarkup}
+      <desc id="${prefix}-description">Five nested circles contain labeled white icon cards in their gaps. One signal visits Trigger, Data, Analysis, Report, and Email, coloring each icon, card border, and ring only while touching its rounded card.</desc>
+      <defs>
+        <filter id="${prefix}-signal-glow" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="${SIGNAL.glowBlur}"/></filter>
+        <filter id="${prefix}-card-shadow" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur stdDeviation="${CARDS.shadowBlur}"/></filter>
+        <mask id="${prefix}-ring-clearance" maskUnits="userSpaceOnUse" x="0" y="0" width="${SCENE.width}" height="${SCENE.height}" style="mask-type:luminance"><rect width="${SCENE.width}" height="${SCENE.height}" fill="#FFFFFF"/>${maskMarkup}</mask>
+      </defs>
+      <g mask="url(#${prefix}-ring-clearance)">${ringMarkup}${wakeMarkup}</g>
       <g data-v6-center transform="translate(${SCENE.center.x} ${SCENE.center.y})"><path d="M0-8C.8-2.4 2.4-.8 8 0 2.4.8.8 2.4 0 8-.8 2.4-2.4.8-8 0-2.4-.8-.8-2.4 0-8Z" fill="${SCENE.centerColor}"/></g>
       <g data-v6-signal opacity="0" color="${SIGNAL.color}"><circle r="${SIGNAL.glowRadius}" fill="currentColor" opacity="${SIGNAL.glowOpacity}" filter="url(#${prefix}-signal-glow)"/><circle r="${SIGNAL.radius}" fill="currentColor"/><circle r="${SIGNAL.highlightRadius}" fill="#FFFFFF" opacity=".95"/></g>
-      ${iconMarkup}
-      <text data-v6-caption x="${CAPTION.x}" y="${CAPTION.y}" text-anchor="middle" font-family="${SCENE.font}" font-size="${CAPTION.fontSize}" font-weight="500" fill="${CAPTION.idleColor}">${CAPTION.staticLabel}</text>`;
+      ${iconMarkup}`;
 
     const all = selector => [...svg.querySelectorAll(selector)];
     const rings = all('[data-v6-ring]');
     const wakes = all('[data-v6-wake]');
     const nodes = all('[data-v6-node]');
     const icons = all('[data-v6-icon]');
+    const borders = all('[data-v6-border]');
     const center = svg.querySelector('[data-v6-center]');
     const signal = svg.querySelector('[data-v6-signal]');
-    const caption = svg.querySelector('[data-v6-caption]');
 
     function render(time, staticFrame = false) {
       const numericTime = Number(time);
@@ -150,7 +169,6 @@
       const local = phase - index * ringDuration;
       let point = null;
       let visibility = 0;
-      let activeIndex = index;
       let wakeFraction = null;
 
       if (flowing && !resting && steps.length) {
@@ -170,7 +188,6 @@
             point = ring.start;
             visibility = 1 - smooth(transfer * 3);
           } else if (nextIndex < steps.length && transfer >= 2 / 3) {
-            activeIndex = nextIndex;
             point = geometry[nextIndex].start;
             visibility = smooth((transfer - 2 / 3) * 3);
           }
@@ -187,10 +204,11 @@
         const ring = geometry[ringIndex];
         const drawn = staticFrame ? 1 : smooth(progress(elapsed, TIMING.ringsEnter + ringIndex * TIMING.ringStagger, TIMING.ringDraw));
         const appeared = staticFrame ? 1 : smooth(progress(elapsed, TIMING.iconsEnter + ringIndex * TIMING.ringStagger, TIMING.iconSettle));
-        const scale = mix(NODE.enterScale, 1, appeared);
-        const touching = point !== null && visibility > 0 && touchesIcon(point, ring.icon, scale);
+        const scale = mix(CARDS.enterScale, 1, appeared);
+        const touching = point !== null && visibility > 0 && roundedCardDistance(point, ring.icon, scale) <= SIGNAL.radius;
         if (touching) contactIndex = ringIndex;
-        icons[ringIndex].setAttribute('color', touching ? item.color : NODE.color);
+        icons[ringIndex].setAttribute('color', touching ? item.color : CARDS.color);
+        borders[ringIndex].setAttribute('stroke', touching ? item.color : CARDS.border);
         nodes[ringIndex].setAttribute('transform', `translate(${ring.icon.x} ${ring.icon.y}) scale(${scale})`);
         nodes[ringIndex].setAttribute('opacity', appeared);
         nodes[ringIndex].dataset.contact = String(touching);
@@ -211,10 +229,6 @@
       signal.setAttribute('opacity', visibility);
       signal.setAttribute('color', contactIndex >= 0 ? steps[contactIndex].color : SIGNAL.color);
       if (point !== null) signal.setAttribute('transform', `translate(${point.x} ${point.y})`);
-      const showStep = flowing && !resting && steps[activeIndex];
-      caption.textContent = showStep ? steps[activeIndex].name : CAPTION.staticLabel;
-      caption.setAttribute('fill', contactIndex >= 0 ? steps[contactIndex].color : CAPTION.idleColor);
-      caption.setAttribute('opacity', staticFrame ? 1 : centerEnter);
     }
 
     render(0);
