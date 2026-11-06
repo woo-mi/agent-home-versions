@@ -3,7 +3,7 @@
  *
  *    0ms   a small agent nucleus appears in a quiet aurora
  *  180ms   five upright cards assemble from the center (150ms stagger)
- *  600ms   a dark-gray closed oval draws around the purple WisdomAI logo
+ *  600ms   a soft purple closed oval draws around the purple WisdomAI logo
  * 1700ms   assembly resolves; a luminous dot makes a 7400ms full orbit
  *          a quiet 1200ms rest follows before the next circuit
  *          a luminous signal visits Trigger → Data → Analysis → Report → Email
@@ -60,10 +60,10 @@
   };
   const FLOW = {
     path: `M${SCENE.center.x - ORBIT.radiusX} ${SCENE.center.y} A${ORBIT.radiusX} ${ORBIT.radiusY} 0 1 1 ${SCENE.center.x + ORBIT.radiusX} ${SCENE.center.y} A${ORBIT.radiusX} ${ORBIT.radiusY} 0 1 1 ${SCENE.center.x - ORBIT.radiusX} ${SCENE.center.y} Z`,
-    stroke: '#737780', width: 1.25,
-    signalColor: '#484C54', signalRadius: 3.2,
-    glowColor: '#737780', glowRadius: 12, glowBlur: 3.8, glowOpacity: .25,
-    wakeColor: '#969AA1',
+    stroke: '#DDDCEB', width: 1.25,
+    signalColor: '#8B80DB', signalRadius: 3.2,
+    glowColor: '#B8ABEF', glowRadius: 12, glowBlur: 3.8, glowOpacity: .60,
+    wakeColor: '#C7BDEA',
     highlightRadius: 1.1, wakeWidth: 2.2, wakeLength: .060, wakeOpacity: .64,
   };
   const NUCLEUS = {
@@ -158,7 +158,7 @@
     }).join('');
 
     svg.innerHTML = `<title id="${prefix}-title">An agent workflow in orbit</title>
-      <desc id="${prefix}-description">Five white cards with black outline icons and labels sit on a dark-gray closed oval around the purple WisdomAI logo. A gray signal visits Trigger, Data, Analysis, Report, and Email before returning. Only while the signal touches a card, its icon becomes filled and colored and the card border matches. It returns to a black outline after contact.</desc>
+      <desc id="${prefix}-description">Five white cards with black outline icons and labels sit on a soft purple closed oval around the purple WisdomAI logo. A glowing purple signal visits Trigger, Data, Analysis, Report, and Email before returning. Only while the signal touches a card, its icon becomes filled and colored and the card border matches. It returns to a black outline after contact.</desc>
       <defs>
         <filter id="${prefix}-shadow" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur stdDeviation="${CARDS.shadowBlur}"/></filter>
         <filter id="${prefix}-near-shadow" x="-25%" y="-25%" width="150%" height="160%"><feGaussianBlur stdDeviation="${CARDS.nearShadowBlur}"/></filter>
