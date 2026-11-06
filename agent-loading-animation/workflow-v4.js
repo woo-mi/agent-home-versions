@@ -1,13 +1,13 @@
 /* ─────────────────────────────────────────────────────────
  * ANIMATION STORYBOARD — V4 / CONTACT CONSTELLATION
  *
- *    0ms   a small agent nucleus appears in a quiet aurora
+ *    0ms   the gradient WisdomAI logo appears in a quiet aurora
  *  180ms   five upright cards assemble from the center (150ms stagger)
  *  600ms   one continuous workflow connection draws around the nucleus
  * 1700ms   assembly resolves into a calm 7400ms breathing loop
  *          a luminous signal visits Trigger → Data → Analysis → Report → Email
  *          icons stay black until the visible dot touches their rounded card
- *          contact adds color; the icon returns to black as the dot leaves
+ *          contact reveals the filled colored icon; it returns to a black outline as the dot leaves
  * ───────────────────────────────────────────────────────── */
 (() => {
   'use strict';
@@ -62,7 +62,8 @@
   };
   const NUCLEUS = {
     enterScale: .62, breathScale: .025,
-    icon: '#9C90D7',
+    logoSize: 60,
+    logo: 'assets/wai-logo-symbol-gradient.png',
   };
   const AURORA = {
     width: 146, height: 80, blur: 23,
@@ -71,31 +72,36 @@
     horizontalDrift: 5, verticalDrift: 3,
   };
 
-  // Original 24px outline vectors from central icon system v1.35.
-  // Node IDs, hashes, and source details live in assets/v4-icons/manifest.json.
+  // Original 24px outline and filled vectors from central icon system v1.35.
+  // Provenance lives in assets/v4-icons and assets/v5-filled-icons.
   const ICONS = Object.freeze({
   "Trigger": {
     "href": "assets/v4-icons/sprite.svg#trigger",
+    "filledHref": "assets/v5-filled-icons/sprite.svg?v=database-v2#trigger",
     "viewBox": "0 0 24 24",
     "nodeId": "6523:55358"
   },
   "Data": {
     "href": "assets/v4-icons/sprite.svg#data",
+    "filledHref": "assets/v5-filled-icons/sprite.svg?v=database-v2#data",
     "viewBox": "0 0 24 24",
     "nodeId": "5592:54671"
   },
   "Analysis": {
     "href": "assets/v4-icons/sprite.svg#analysis",
+    "filledHref": "assets/v5-filled-icons/sprite.svg?v=database-v2#analysis",
     "viewBox": "0 0 24 24",
     "nodeId": "5645:54428"
   },
   "Report": {
     "href": "assets/v4-icons/sprite.svg#report",
+    "filledHref": "assets/v5-filled-icons/sprite.svg?v=database-v2#report",
     "viewBox": "0 0 24 24",
     "nodeId": "5640:60213"
   },
   "Email": {
     "href": "assets/v4-icons/sprite.svg#email",
+    "filledHref": "assets/v5-filled-icons/sprite.svg?v=database-v2#email",
     "viewBox": "0 0 24 24",
     "nodeId": "5658:58223"
   }
@@ -139,13 +145,13 @@
         <circle data-v4-halo="${index}" r="${CARDS.haloRadius}" fill="${escape(item.color)}" opacity="0" filter="url(#${prefix}-soft)"/>
         <rect x="${-half}" y="${-half + CARDS.shadowOffset}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="${SCENE.shadowColor}" opacity=".085" filter="url(#${prefix}-shadow)"/>
         <rect data-v4-border="${index}" x="${-half}" y="${-half}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="#FFFFFF" stroke="${CARDS.border}" stroke-width="1"/>
-        <svg data-v4-icon="${index}" x="${-CARDS.iconSize / 2}" y="${-CARDS.iconSize / 2}" width="${CARDS.iconSize}" height="${CARDS.iconSize}" viewBox="${escape(icon.viewBox || '0 0 24 24')}" color="${CARDS.idleIcon}" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="${escape(icon.href)}"/></svg>
+        <svg data-v4-icon="${index}" x="${-CARDS.iconSize / 2}" y="${-CARDS.iconSize / 2}" width="${CARDS.iconSize}" height="${CARDS.iconSize}" viewBox="${escape(icon.viewBox || '0 0 24 24')}" color="${CARDS.idleIcon}" fill="currentColor" stroke="none" aria-hidden="true"><use data-v4-outline="${index}" href="${escape(icon.href)}"/><use data-v4-filled="${index}" href="${escape(icon.filledHref)}" opacity="0"/></svg>
         <text data-v4-label="${index}" x="0" y="${CARDS.labelY}" text-anchor="middle" fill="${CARDS.label}" font-family="${SCENE.font}" font-size="${CARDS.labelSize}" font-weight="500">${escape(item.name)}</text>
       </g>`;
     }).join('');
 
     svg.innerHTML = `<title id="${prefix}-title">An agent workflow taking shape</title>
-      <desc id="${prefix}-description">Five upright cards form a constellation around an agent. A soft signal follows Trigger, Data, Analysis, Report, and Email in order. Each black icon briefly takes on its step color while the signal touches its card.</desc>
+      <desc id="${prefix}-description">Five upright cards form a constellation around the gradient WisdomAI logo. A soft signal follows Trigger, Data, Analysis, Report, and Email in order. Each black outline icon switches to a filled icon in its step color while the signal touches its card, then returns to a black outline.</desc>
       <defs>
         <filter id="${prefix}-shadow" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur stdDeviation="${CARDS.shadowBlur}"/></filter>
         <filter id="${prefix}-soft" x="-75%" y="-75%" width="250%" height="250%"><feGaussianBlur stdDeviation="${CARDS.haloBlur}"/></filter>
@@ -162,8 +168,7 @@
         <path data-v4-path d="${FLOW.path}" pathLength="1" fill="none" stroke="${FLOW.stroke}" stroke-width="${FLOW.width}" stroke-linecap="round"/>
         <path data-v4-wake d="${FLOW.path}" pathLength="1" fill="none" stroke="url(#${prefix}-wake)" stroke-width="2" stroke-linecap="round" opacity="0"/>
         <g data-v4-nucleus transform="translate(${SCENE.center.x} ${SCENE.center.y})">
-          <path d="M0-10C1-3 3-1 10 0 3 1 1 3 0 10-1 3-3 1-10 0-3-1-1-3 0-10Z" fill="${NUCLEUS.icon}"/>
-          <circle cx="12" cy="-12" r="2" fill="#BDAFE7"/>
+          <image href="${NUCLEUS.logo}" x="${-NUCLEUS.logoSize / 2}" y="${-NUCLEUS.logoSize / 2}" width="${NUCLEUS.logoSize}" height="${NUCLEUS.logoSize}" preserveAspectRatio="xMidYMid meet"/>
         </g>
         <g data-v4-signal opacity="0"><circle r="${FLOW.glowRadius}" fill="${FLOW.glowColor}" opacity=".60" filter="url(#${prefix}-signal)"/><circle r="${FLOW.signalRadius}" fill="${FLOW.signalColor}"/><circle r=".9" fill="#FFFFFF" opacity=".95"/></g>
         ${cardMarkup}
@@ -182,6 +187,8 @@
     const borders = all('[data-v4-border]');
     const labels = all('[data-v4-label]');
     const icons = all('[data-v4-icon]');
+    const outlineIcons = all('[data-v4-outline]');
+    const filledIcons = all('[data-v4-filled]');
     let pathLength = null;
 
     function render(time, staticFrame = false) {
@@ -219,6 +226,8 @@
         const y = restingY - pulse * CARDS.pulseLift;
         const touching = visiblePoint && roundedCardDistance(point, x, y, scale) <= FLOW.signalRadius;
         icons[index].setAttribute('color', touching ? steps[index].color : CARDS.idleIcon);
+        outlineIcons[index].setAttribute('opacity', touching ? '0' : '1');
+        filledIcons[index].setAttribute('opacity', touching ? '1' : '0');
         card.dataset.contact = String(touching);
         card.setAttribute('transform', `translate(${x} ${y}) scale(${scale})`);
         card.setAttribute('opacity', smooth(enter));
