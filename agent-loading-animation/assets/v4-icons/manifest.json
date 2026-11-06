@@ -1,0 +1,187 @@
+{
+  "source": {
+    "fileName": "central+icon+system+v1.35.fig",
+    "figmaFileKey": "DHvlntO88oQJCoiawCCr3d",
+    "fileKeyEvidence": "Matches the exact SHA-256 recorded for this file key in chat-revisit/assets/suggestion-icons/manifest.json",
+    "pageNodeId": "7:118",
+    "pageName": "\u2756  Icons",
+    "exportedAt": "2026-08-06T06:12:59.209Z",
+    "sha256": "499a69a8967e76f6fcd7e05d2abe5d3584afa871f6454a57f88c13fea2d721c5",
+    "format": "fig-kiwi version 106"
+  },
+  "variant": {
+    "filled": "off",
+    "stroke": 1.5,
+    "radius": 2,
+    "join": "round"
+  },
+  "method": "Original local .fig native strokeGeometry command decoding, preserving float32 coordinates, winding rules, transforms, and child draw order.",
+  "geometryNotes": [
+    "SVG paths are the original expanded stroke outlines stored by Figma, not traced or reconstructed centerlines.",
+    "All M/L/Q/C/Z commands retain the source float32 values without decimal rounding or simplification.",
+    "Original black stroke paint is replaced with currentColor; stroke=none prevents an inherited wrapper stroke from thickening the native outline.",
+    "Root component position on the source canvas is omitted; child transforms and the original 24 by 24 component bounds are preserved."
+  ],
+  "assets": [
+    {
+      "label": "Trigger",
+      "file": "trigger.svg",
+      "viewBox": "0 0 24 24",
+      "nodeId": "6523:55358",
+      "familyNodeId": "6523:55309",
+      "componentName": "zap, lightning, flash, thunder",
+      "variantName": "filled=off, stroke=1.5, radius=2, join=round",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=6523-55358",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "6523:55360"
+      ],
+      "strokeGeometryBlobs": [
+        {
+          "id": 16217,
+          "sha256": "2c7cd477d4c77a5036e1e8cdf4e67b5b379d14ecadbfec8a42836fe5d4a2b50a",
+          "commands": 89
+        }
+      ],
+      "svgSha256": "084b1dd8a36eb92c9a5cff43c9e7f2f4c9074e60d869af74b7acdff689a5136f"
+    },
+    {
+      "label": "Data",
+      "file": "data.svg",
+      "viewBox": "0 0 24 24",
+      "nodeId": "5592:54671",
+      "familyNodeId": "5592:54570",
+      "componentName": "server-1, storage, data, coins, money, database",
+      "variantName": "filled=off, stroke=1.5, radius=2, join=round",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5592-54671",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "5595:55115"
+      ],
+      "strokeGeometryBlobs": [
+        {
+          "id": 5620,
+          "sha256": "538b19b0600cd8829becbab2cb42adb1e088d6a02e59cf886e80a1c494b06133",
+          "commands": 102
+        }
+      ],
+      "svgSha256": "7c969330372ed0f0c9b838c5b46dcb0bdb3a967567d6a79fc5a4e9eb615cfd23"
+    },
+    {
+      "label": "Analysis",
+      "file": "analysis.svg",
+      "viewBox": "0 0 24 24",
+      "nodeId": "5645:54428",
+      "familyNodeId": "5645:54379",
+      "componentName": "sparkle, star, ai",
+      "variantName": "filled=off, stroke=1.5, radius=2, join=round",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5645-54428",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "5645:54430"
+      ],
+      "strokeGeometryBlobs": [
+        {
+          "id": 8848,
+          "sha256": "ab1061f3af588b0771b623c49e50934fc1626ed074a253019a2ee8fd3eeb15d6",
+          "commands": 52
+        }
+      ],
+      "svgSha256": "f6fe2dc0eb1db0c32125792b72802e17bea8f6184c293378040b3d6b2885e9c6"
+    },
+    {
+      "label": "Report",
+      "file": "report.svg",
+      "viewBox": "0 0 24 24",
+      "nodeId": "5640:60213",
+      "familyNodeId": "5640:60180",
+      "componentName": "file-chart, document",
+      "variantName": "filled=off, stroke=1.5, radius=2, join=round",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5640-60213",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "13492:26611",
+        "13492:26612",
+        "13492:26613",
+        "13492:26614",
+        "13492:26615"
+      ],
+      "strokeGeometryBlobs": [
+        {
+          "id": 74011,
+          "sha256": "c92309e5716f3fd86b77c742ffa1ff865b17f98a8a43af842664a8b7829b22af",
+          "commands": 90
+        },
+        {
+          "id": 74013,
+          "sha256": "d420fd1f4ebf265855b078d88ae6028ae8f29878f17e6d25b1f4ac1d5f1936ae",
+          "commands": 24
+        },
+        {
+          "id": 74172,
+          "sha256": "3ac85e69ee6fdfe4a647396f4c93b6a79ad820844e5148b3a1fb944446401c42",
+          "commands": 20
+        },
+        {
+          "id": 74173,
+          "sha256": "0fa368101809b38f9d14ad14dd3ede2e6d857e048cbda34eb192d3036caafa8a",
+          "commands": 20
+        },
+        {
+          "id": 74174,
+          "sha256": "b7993caa8de821e9e097b1defe003a2d50c08756b0a247aa47f7dace42b677a8",
+          "commands": 20
+        }
+      ],
+      "svgSha256": "8e65dc52a2b2e7c9d706d0e8e34e5af5d6f4fb0b53f68bce1d21913c567df30a"
+    },
+    {
+      "label": "Email",
+      "file": "email.svg",
+      "viewBox": "0 0 24 24",
+      "nodeId": "5658:58223",
+      "familyNodeId": "5658:58190",
+      "componentName": "email-1, envelope",
+      "variantName": "filled=off, stroke=1.5, radius=2, join=round",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5658-58223",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "11453:31116",
+        "11453:31111"
+      ],
+      "strokeGeometryBlobs": [
+        {
+          "id": 48950,
+          "sha256": "23d88a8cd4e2e3fec5d52eb79e0758f3b1b7fe346e53124272e3e935d8fb648c",
+          "commands": 48
+        },
+        {
+          "id": 48948,
+          "sha256": "4b27333574f926f2bf15c5a85b2c0c7ec2b3632b8fb2cd4590cb58522ff83cd8",
+          "commands": 28
+        }
+      ],
+      "svgSha256": "26fd36718037c2921546236de574571530bba397ea9579e7acc926a6280384ca"
+    }
+  ],
+  "sprite": {
+    "file": "sprite.svg",
+    "sha256": "4323c564b42b812ab827189dcbf89f4e977ea0b34d8c1a1a4b06fa3066aed3fa",
+    "method": "Original SVG groups copied into symbols without changing geometry. The renderer references these external symbols and supplies currentColor."
+  }
+}
