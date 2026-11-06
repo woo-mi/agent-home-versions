@@ -25,10 +25,8 @@
   const status = byId('status-message');
   const animation = window.AgentBuildAnimation.mount(byId('agent-workspace'));
   let statusTimeout;
-  let buildTimers = [];
   let currentRequest = DEMO_REQUEST;
-  let progressStartedAt = 0;
-  let progressElapsed = 0;
+  let progressStage = -1;
 
   function announce(message) {
     window.clearTimeout(statusTimeout);
@@ -59,9 +57,10 @@
   }
 
   function syncSend() { send.disabled = input.value.trim().length === 0; }
-  function clearBuildTimers() { buildTimers.forEach(clearTimeout); buildTimers = []; }
 
   function renderProgress(stage) {
+    if (progressStage === stage) return;
+    progressStage = stage;
     history.querySelectorAll('.build-step').forEach((step, index) => {
       step.classList.toggle('is-complete', index < stage);
       step.classList.toggle('is-current', index === stage);
@@ -70,18 +69,16 @@
     });
   }
 
-  function scheduleProgress(elapsed = 0) {
-    clearBuildTimers();
-    progressStartedAt = performance.now() - elapsed;
-    Object.values(TIMING).forEach((delay, stage) => {
-      if (delay <= elapsed) renderProgress(stage);
-      else buildTimers.push(setTimeout(() => renderProgress(stage), delay - elapsed));
-    });
+  function renderProgressAt(elapsed) {
+    const time = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? TIMING.connectActions : elapsed;
+    const thresholds = Object.values(TIMING);
+    let stage = 0;
+    thresholds.forEach((threshold, index) => { if (time >= threshold) stage = index; });
+    renderProgress(stage);
   }
 
   function startBuild(request = currentRequest) {
     const moveComposerFocus = document.activeElement === input && window.matchMedia('(max-width: 900px)').matches;
-    clearBuildTimers();
     currentRequest = request;
     const bubble = document.createElement('p');
     bubble.className = 'user-message';
@@ -116,15 +113,14 @@
     panelToggle.title = 'Hide conversation panel';
     setMobileView('workflow');
     if (mobile.matches) setNavigation(false);
-    progressElapsed = 0;
+    progressStage = -1;
     shell.classList.remove('animation-paused');
-    scheduleProgress();
+    renderProgressAt(0);
     animation.start();
     if (moveComposerFocus) byId('view-workflow').focus();
   }
 
   function resetConversation() {
-    clearBuildTimers();
     shell.classList.remove('has-workflow', 'animation-paused');
     animation.stop();
     input.value = '';
@@ -188,17 +184,13 @@
   });
   mobile.addEventListener('change', () => setNavigation(!mobile.matches));
   document.addEventListener('agent-build-motion', (event) => {
-    const paused = Boolean(event.detail?.paused);
-    const wasPaused = shell.classList.contains('animation-paused');
-    shell.classList.toggle('animation-paused', paused);
-    if (!shell.classList.contains('has-workflow')) return;
-    if (event.detail?.restart) progressElapsed = 0;
-    if (paused) {
-      progressElapsed = performance.now() - progressStartedAt;
-      clearBuildTimers();
-    } else if (wasPaused || event.detail?.restart) scheduleProgress(progressElapsed);
+    shell.classList.toggle('animation-paused', Boolean(event.detail?.paused));
+    shell.style.setProperty('--build-spinner-duration', `${1300 / (event.detail?.speed || 1)}ms`);
+    if (shell.classList.contains('has-workflow')) renderProgressAt(event.detail?.elapsedMs || 0);
   });
-  window.addEventListener('pagehide', clearBuildTimers);
+  document.addEventListener('agent-build-time', (event) => {
+    if (shell.classList.contains('has-workflow')) renderProgressAt(event.detail.elapsedMs);
+  });
   setNavigation(!mobile.matches);
   syncSend();
   startBuild(DEMO_REQUEST);

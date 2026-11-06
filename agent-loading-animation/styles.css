@@ -197,3 +197,4 @@ a { color: inherit; text-decoration: none; }
   .toolbar-actions .panel-toggle { display: none; }
 }
 .agent-workspace { overflow-y: auto; overflow-x: hidden; }
+.build-step.is-current .step-indicator::before { animation-duration: var(--build-spinner-duration, 1300ms); }

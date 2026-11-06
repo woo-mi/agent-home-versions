@@ -143,13 +143,24 @@
       <figcaption class="build-caption">
         <h2 class="build-title">Building your agent…</h2>
         <p class="build-subtitle">Connecting your data, analysis, and actions.</p>
-        <div class="build-controls">
-          <button class="build-control build-pause" type="button" aria-label="Pause animation"><svg viewBox="0 0 16 16" aria-hidden="true"><path data-build-pause-icon d="M5.5 3.5v9m5-9v9"/></svg><span data-build-pause-label>Pause</span></button>
-          <span class="build-control-divider" aria-hidden="true"></span>
-          <button class="build-control build-replay" type="button" aria-label="Replay animation"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6a5 5 0 1 1 .6 5.3M3 2.5V6h3.5"/></svg><span>Replay</span></button>
-        </div>
       </figcaption>
-    </figure>`;
+    </figure>
+    <div class="prototype-controls" role="group" aria-label="Animation controls">
+      <div class="prototype-versions" role="tablist" aria-label="Animation version">
+        <button type="button" role="tab" data-version="v1" aria-selected="true" tabindex="0"><span>V1</span><span class="version-name">Isometric</span></button>
+        <button type="button" role="tab" data-version="v2" aria-selected="false" tabindex="-1"><span>V2</span><span class="version-name">Front-facing</span></button>
+        <button type="button" role="tab" data-version="v3" aria-selected="false" tabindex="-1"><span>V3</span><span class="version-name">Constellation</span></button>
+      </div>
+      <div class="prototype-transport">
+        <button class="transport-button build-pause" type="button" aria-label="Pause animation" title="Pause animation"><svg viewBox="0 0 16 16" aria-hidden="true"><path data-build-pause-icon d="M5.5 3.5v9m5-9v9"/></svg></button>
+        <button class="transport-button build-replay" type="button" aria-label="Replay animation" title="Replay animation"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6a5 5 0 1 1 .6 5.3M3 2.5V6h3.5"/></svg></button>
+        <span class="transport-divider" aria-hidden="true"></span>
+        <input class="prototype-timeline" type="range" min="0" max="9100" step="50" value="0" aria-label="Animation timeline">
+        <output class="prototype-time" aria-hidden="true">0:00</output>
+        <label class="prototype-speed"><span class="visually-hidden">Playback speed</span><select aria-label="Playback speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>
+      </div>
+      <span class="visually-hidden prototype-announcement" aria-live="polite"></span>
+    </div>`;
     container.append(illustration);
 
     const plane = illustration.querySelector('.build-plane');
@@ -162,13 +173,39 @@
     const barRects = [...illustration.querySelectorAll('[data-build-bar] > rect:first-child')];
     const caption = illustration.querySelector('.build-caption');
     const pauseButton = illustration.querySelector('.build-pause');
-    const pauseLabel = illustration.querySelector('[data-build-pause-label]');
     const pauseIcon = illustration.querySelector('[data-build-pause-icon]');
     let playback = 'stopped';
     let stage = STAGE.waiting;
     let frame = null;
-    let startedAt = 0;
+    let lastTick = 0;
     let elapsed = 0;
+    let speed = 1;
+    let motionReduced = reducedMotion.matches;
+    let lastBroadcast = -Infinity;
+    let version = 'v1';
+    const versions = ['v1', 'v2', 'v3'];
+    const totalDuration = TIMING.loopStart + TIMING.loopDuration;
+    const timeline = illustration.querySelector('.prototype-timeline');
+    const timeOutput = illustration.querySelector('.prototype-time');
+    const speedSelect = illustration.querySelector('.prototype-speed select');
+    const versionButtons = [...illustration.querySelectorAll('[data-version]')];
+    const announcement = illustration.querySelector('.prototype-announcement');
+    const figurePanel = illustration.querySelector('.build-figure');
+    figurePanel.id = `${id}-panel`;
+    figurePanel.setAttribute('role', 'tabpanel');
+    versionButtons.forEach((button) => {
+      button.id = `${id}-${button.dataset.version}-tab`;
+      button.setAttribute('aria-controls', figurePanel.id);
+    });
+    const panels = { v1: { element: illustration.querySelector('.build-illustration'), render: renderV1 } };
+    ['v2', 'v3'].forEach((key) => {
+      const panel = window.AgentWorkflowVariants[key].create({ id: `${id}-${key}`, items: TILES.items });
+      panel.element.setAttribute('hidden', '');
+      panel.element.setAttribute('data-renderer', key);
+      caption.before(panel.element);
+      panels[key] = panel;
+    });
+    panels.v1.element.setAttribute('data-renderer', 'v1');
 
     function setStage(nextStage) {
       if (nextStage === stage) return;
@@ -177,10 +214,10 @@
     }
 
     function broadcast(paused, restart = false) {
-      document.dispatchEvent(new CustomEvent('agent-build-motion', { detail: { paused, ...(restart ? { restart: true } : {}) } }));
+      document.dispatchEvent(new CustomEvent('agent-build-motion', { detail: { paused, elapsedMs: elapsed, speed, state: playback, ...(restart ? { restart: true } : {}) } }));
     }
 
-    function render(time, staticFrame = false) {
+    function renderV1(time, staticFrame = false) {
       const boardProgress = staticFrame ? 1 : settle(progress(time, TIMING.boardEnter, TIMING.boardSettle));
       const phase = staticFrame ? 0 : Math.max(0, time - TIMING.loopStart) % TIMING.loopDuration;
       const wave = staticFrame ? 0 : Math.sin(phase / TIMING.loopDuration * Math.PI * 2);
@@ -222,10 +259,39 @@
       }
     }
 
+    function displayTime() {
+      return elapsed <= totalDuration ? elapsed : TIMING.loopStart + (elapsed - TIMING.loopStart) % TIMING.loopDuration;
+    }
+
+    function render(time, staticFrame = false) {
+      setStage(staticFrame || time >= TIMING.loopStart ? STAGE.flowing : time >= TIMING.frontEnter ? STAGE.front : time >= TIMING.connectorsEnter ? STAGE.connections : time >= TIMING.tilesEnter ? STAGE.tiles : STAGE.board);
+      panels[version].render(time, staticFrame);
+      caption.style.opacity = staticFrame ? 1 : smooth(progress(time, TIMING.captionEnter, TIMING.captionFade));
+      const playhead = displayTime();
+      timeline.value = String(playhead);
+      timeline.style.setProperty('--playhead', `${playhead / totalDuration * 100}%`);
+      timeline.setAttribute('aria-valuetext', `${(playhead / 1000).toFixed(1)} seconds`);
+      timeOutput.textContent = `0:${Math.floor(playhead / 1000).toString().padStart(2, '0')}`;
+    }
+
+    function notifyTime(force = false) {
+      if (!force && Math.abs(elapsed - lastBroadcast) < 100) return;
+      lastBroadcast = elapsed;
+      document.dispatchEvent(new CustomEvent('agent-build-time', { detail: { elapsedMs: elapsed, speed } }));
+    }
+
+    function syncElapsed() {
+      const now = performance.now();
+      if (playback === 'running' && !motionReduced) elapsed += (now - lastTick) * speed;
+      lastTick = now;
+    }
+
     function tick(now) {
       if (playback !== 'running') return;
-      elapsed = now - startedAt;
+      elapsed += (now - lastTick) * speed;
+      lastTick = now;
       render(elapsed);
+      notifyTime();
       frame = window.requestAnimationFrame(tick);
     }
 
@@ -236,11 +302,24 @@
 
     function updateControls() {
       const paused = playback === 'paused';
-      pauseButton.setAttribute('aria-label', paused ? 'Resume animation' : 'Pause animation');
-      pauseLabel.textContent = paused ? 'Resume' : 'Pause';
+      const label = paused ? 'Resume animation' : 'Pause animation';
+      pauseButton.setAttribute('aria-label', label);
+      pauseButton.title = label;
       pauseIcon.setAttribute('d', paused ? 'm5 3 7 5-7 5z' : 'M5.5 3.5v9m5-9v9');
+      pauseButton.disabled = reducedMotion.matches;
+      timeline.disabled = reducedMotion.matches;
       illustration.dataset.playback = playback;
+      illustration.dataset.version = version;
+      illustration.dataset.speed = speed;
       illustration.dataset.reducedMotion = String(reducedMotion.matches);
+      illustration.style.setProperty('--build-cycle-duration', `${TIMING.loopDuration / speed}ms`);
+      Object.entries(panels).forEach(([key, panel]) => { panel.element.toggleAttribute('hidden', key !== version); });
+      versionButtons.forEach((button) => {
+        const selected = button.dataset.version === version;
+        button.setAttribute('aria-selected', String(selected));
+        button.tabIndex = selected ? 0 : -1;
+        if (selected) figurePanel.setAttribute('aria-labelledby', button.id);
+      });
     }
 
     const api = {
@@ -249,12 +328,14 @@
         illustration.hidden = false;
         playback = 'running';
         elapsed = 0;
-        startedAt = performance.now();
+        lastTick = performance.now();
+        lastBroadcast = -Infinity;
         setStage(STAGE.waiting);
         updateControls();
         render(0, reducedMotion.matches);
         if (!reducedMotion.matches) frame = window.requestAnimationFrame(tick);
         broadcast(false, true);
+        notifyTime(true);
         return api;
       },
       stop() {
@@ -270,20 +351,54 @@
       replay() { return api.start(); },
       pause() {
         if (playback !== 'running' || reducedMotion.matches) return api;
-        elapsed = performance.now() - startedAt;
+        syncElapsed();
         cancelFrame();
         playback = 'paused';
+        render(elapsed);
         updateControls();
         broadcast(true);
+        notifyTime(true);
         return api;
       },
       resume() {
         if (playback !== 'paused') return api;
         playback = 'running';
-        startedAt = performance.now() - elapsed;
+        lastTick = performance.now();
         updateControls();
-        frame = window.requestAnimationFrame(tick);
+        if (!reducedMotion.matches) frame = window.requestAnimationFrame(tick);
         broadcast(false);
+        return api;
+      },
+      selectVersion(nextVersion) {
+        if (!versions.includes(nextVersion)) return api;
+        syncElapsed();
+        version = nextVersion;
+        updateControls();
+        render(elapsed, reducedMotion.matches);
+        const url = new URL(location.href);
+        url.searchParams.set('version', version);
+        history.replaceState(null, '', url);
+        announcement.textContent = `Version ${version.slice(1)}: ${versionButtons.find(b => b.dataset.version === version).innerText.replace(/\n/g, ' ')}`;
+        return api;
+      },
+      setSpeed(nextSpeed) {
+        if (![.5, 1, 1.5, 2].includes(nextSpeed)) return api;
+        syncElapsed();
+        speed = nextSpeed;
+        speedSelect.value = String(speed);
+        updateControls();
+        render(elapsed, reducedMotion.matches);
+        broadcast(playback === 'paused');
+        return api;
+      },
+      seek(time) {
+        cancelFrame();
+        elapsed = Math.max(0, Math.min(totalDuration, Number(time) || 0));
+        playback = 'paused';
+        render(elapsed, reducedMotion.matches);
+        updateControls();
+        broadcast(true);
+        notifyTime(true);
         return api;
       },
       get state() { return playback; },
@@ -291,20 +406,38 @@
 
     pauseButton.addEventListener('click', () => playback === 'paused' ? api.resume() : api.pause());
     illustration.querySelector('.build-replay').addEventListener('click', api.replay);
+    speedSelect.addEventListener('change', () => api.setSpeed(Number(speedSelect.value)));
+    timeline.addEventListener('input', () => api.seek(timeline.value));
+    versionButtons.forEach((button, index) => {
+      button.addEventListener('click', () => api.selectVersion(button.dataset.version));
+      button.addEventListener('keydown', (event) => {
+        let next;
+        if (event.key === 'ArrowRight') next = (index + 1) % versions.length;
+        if (event.key === 'ArrowLeft') next = (index + versions.length - 1) % versions.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = versions.length - 1;
+        if (next === undefined) return;
+        event.preventDefault();
+        api.selectVersion(versions[next]);
+        versionButtons[next].focus();
+      });
+    });
     reducedMotion.addEventListener('change', () => {
-      if (playback === 'stopped') return;
+      syncElapsed();
+      motionReduced = reducedMotion.matches;
+      if (playback === 'stopped') { updateControls(); return; }
       cancelFrame();
+      render(elapsed, reducedMotion.matches);
       updateControls();
-      if (reducedMotion.matches) {
-        playback = 'running';
-        render(TIMING.loopStart, true);
-        updateControls();
-        broadcast(false);
-      } else if (playback === 'running') {
-        startedAt = performance.now() - elapsed;
+      if (!reducedMotion.matches && playback === 'running') {
+        lastTick = performance.now();
         frame = window.requestAnimationFrame(tick);
       }
+      broadcast(playback === 'paused');
     });
+    const requestedVersion = new URL(location.href).searchParams.get('version');
+    version = versions.includes(requestedVersion) ? requestedVersion : 'v1';
+    updateControls();
     mounts.set(container, api);
     return api;
   }
