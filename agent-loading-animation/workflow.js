@@ -154,6 +154,7 @@
         <button type="button" role="menuitemradio" data-version="v5" aria-checked="false" tabindex="-1"><span class="version-number">V5</span><span>Expanded orbit</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
         <button type="button" role="menuitemradio" data-version="v6" aria-checked="false" tabindex="-1"><span class="version-number">V6</span><span>Concentric flow</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
         <button type="button" role="menuitemradio" data-version="v7" aria-checked="false" tabindex="-1"><span class="version-number">V7</span><span>Prismatic pulse</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
+        <button type="button" role="menuitemradio" data-version="v8" aria-checked="false" tabindex="-1"><span class="version-number">V8</span><span>Liquid halo</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
       </div>
       <button class="version-trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Switch version, V1"><span class="version-current">V1</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 6 4.5 4.5L12.5 6"/></svg></button>
       <span class="visually-hidden prototype-announcement" aria-live="polite"></span>
@@ -182,7 +183,7 @@
     let motionReduced = reducedMotion.matches;
     let lastBroadcast = -Infinity;
     let version = 'v1';
-    const versions = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7'];
+    const versions = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8'];
     const totalDuration = TIMING.loopStart + TIMING.loopDuration;
     const versionButtons = [...picker.querySelectorAll('[data-version]')];
     const announcement = picker.querySelector('.prototype-announcement');
@@ -196,7 +197,7 @@
     });
     document.body.append(picker);
     const panels = { v1: { element: illustration.querySelector('.build-illustration'), render: renderV1 } };
-    ['v2', 'v3', 'v4', 'v5', 'v6', 'v7'].forEach((key) => {
+    ['v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8'].forEach((key) => {
       const panel = window.AgentWorkflowVariants[key].create({ id: `${id}-${key}`, items: TILES.items });
       panel.element.setAttribute('hidden', '');
       panel.element.setAttribute('data-renderer', key);
