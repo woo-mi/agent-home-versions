@@ -3,7 +3,7 @@
  *
  *    0ms   a small agent nucleus appears in a quiet aurora
  *  180ms   five upright cards assemble from the center (150ms stagger)
- *  600ms   an airy, closed oval draws around the bare agent sparkle
+ *  600ms   a dark-gray closed oval draws around the purple WisdomAI logo
  * 1700ms   assembly resolves; a luminous dot makes a 7400ms full orbit
  *          a quiet 1200ms rest follows before the next circuit
  *          a luminous signal visits Trigger → Data → Analysis → Report → Email
@@ -59,14 +59,16 @@
   };
   const FLOW = {
     path: `M${SCENE.center.x - ORBIT.radiusX} ${SCENE.center.y} A${ORBIT.radiusX} ${ORBIT.radiusY} 0 1 1 ${SCENE.center.x + ORBIT.radiusX} ${SCENE.center.y} A${ORBIT.radiusX} ${ORBIT.radiusY} 0 1 1 ${SCENE.center.x - ORBIT.radiusX} ${SCENE.center.y} Z`,
-    stroke: '#DDDCEB', width: 1.25,
-    signalColor: '#8B80DB', signalRadius: 3.2,
-    glowColor: '#B8ABEF', glowRadius: 12, glowBlur: 3.8, glowOpacity: .60,
+    stroke: '#737780', width: 1.25,
+    signalColor: '#484C54', signalRadius: 3.2,
+    glowColor: '#737780', glowRadius: 12, glowBlur: 3.8, glowOpacity: .25,
+    wakeColor: '#969AA1',
     highlightRadius: 1.1, wakeWidth: 2.2, wakeLength: .060, wakeOpacity: .64,
   };
   const NUCLEUS = {
     enterScale: .62, breathScale: .025,
-    icon: '#9C90D7',
+    icon: '#595BFF', logoSize: 52,
+    logo: 'assets/wai-logo-symbol-knockout.png',
   };
   const AURORA = {
     width: 196, height: 112, blur: 29,
@@ -150,14 +152,17 @@
     }).join('');
 
     svg.innerHTML = `<title id="${prefix}-title">An agent workflow in orbit</title>
-      <desc id="${prefix}-description">Five larger upright cards sit on a closed oval around an agent sparkle. A luminous signal visits Trigger, Data, Analysis, Report, and Email before returning. Each icon and its card outline share the same step color only while the signal touches the card.</desc>
+      <desc id="${prefix}-description">Five larger upright cards sit on a dark-gray closed oval around the purple WisdomAI logo. A gray signal visits Trigger, Data, Analysis, Report, and Email before returning. Each icon and its card outline share the same step color only while the signal touches the card.</desc>
       <defs>
         <filter id="${prefix}-shadow" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur stdDeviation="${CARDS.shadowBlur}"/></filter>
         <filter id="${prefix}-near-shadow" x="-25%" y="-25%" width="150%" height="160%"><feGaussianBlur stdDeviation="${CARDS.nearShadowBlur}"/></filter>
         <filter id="${prefix}-soft" x="-75%" y="-75%" width="250%" height="250%"><feGaussianBlur stdDeviation="${CARDS.haloBlur}"/></filter>
         <filter id="${prefix}-aurora" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="${AURORA.blur}"/></filter>
         <filter id="${prefix}-signal" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="${FLOW.glowBlur}"/></filter>
-        <linearGradient id="${prefix}-wake" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#C7BDEA"/><stop offset="1" stop-color="${FLOW.signalColor}"/></linearGradient>
+        <linearGradient id="${prefix}-wake" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${FLOW.wakeColor}"/><stop offset="1" stop-color="${FLOW.signalColor}"/></linearGradient>
+        <mask id="${prefix}-logo" maskUnits="userSpaceOnUse" x="${-NUCLEUS.logoSize / 2}" y="${-NUCLEUS.logoSize / 2}" width="${NUCLEUS.logoSize}" height="${NUCLEUS.logoSize}" style="mask-type:alpha">
+          <image href="${NUCLEUS.logo}" x="${-NUCLEUS.logoSize / 2}" y="${-NUCLEUS.logoSize / 2}" width="${NUCLEUS.logoSize}" height="${NUCLEUS.logoSize}"/>
+        </mask>
       </defs>
       <g data-v5-aurora filter="url(#${prefix}-aurora)">
         <ellipse cx="${SCENE.center.x - 24}" cy="${SCENE.center.y - 6}" rx="${AURORA.width / 2}" ry="${AURORA.height / 2}" fill="${AURORA.violet}"/>
@@ -168,8 +173,7 @@
         <path data-v5-path d="${FLOW.path}" pathLength="1" fill="none" stroke="${FLOW.stroke}" stroke-width="${FLOW.width}" stroke-linecap="round"/>
         <path data-v5-wake d="${FLOW.path}" pathLength="1" fill="none" stroke="url(#${prefix}-wake)" stroke-width="${FLOW.wakeWidth}" stroke-linecap="round" opacity="0"/>
         <g data-v5-nucleus transform="translate(${SCENE.center.x} ${SCENE.center.y})">
-          <path d="M0-10C1-3 3-1 10 0 3 1 1 3 0 10-1 3-3 1-10 0-3-1-1-3 0-10Z" fill="${NUCLEUS.icon}"/>
-          <circle cx="12" cy="-12" r="2" fill="#BDAFE7"/>
+          <rect x="${-NUCLEUS.logoSize / 2}" y="${-NUCLEUS.logoSize / 2}" width="${NUCLEUS.logoSize}" height="${NUCLEUS.logoSize}" fill="${NUCLEUS.icon}" mask="url(#${prefix}-logo)"/>
         </g>
         <g data-v5-signal opacity="0"><circle r="${FLOW.glowRadius}" fill="${FLOW.glowColor}" opacity="${FLOW.glowOpacity}" filter="url(#${prefix}-signal)"/><circle r="${FLOW.signalRadius}" fill="${FLOW.signalColor}"/><circle r="${FLOW.highlightRadius}" fill="#FFFFFF" opacity=".95"/></g>
         ${cardMarkup}
