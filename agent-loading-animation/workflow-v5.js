@@ -78,7 +78,7 @@
   };
 
   // Original 24px outline and filled vectors from central icon system v1.35.
-  // Provenance lives in assets/v5-outline-icons and assets/v5-filled-icons.
+  // Provenance lives in assets/v4-icons, v5-outline-icons, and v5-filled-icons.
   const ICONS = Object.freeze({
   "Trigger": {
     "href": "assets/v5-filled-icons/sprite.svg?v=database-v2#trigger",
@@ -88,7 +88,7 @@
   },
   "Data": {
     "href": "assets/v5-filled-icons/sprite.svg?v=database-v2#data",
-    "outlineHref": "assets/v5-outline-icons/sprite.svg#data",
+    "outlineHref": "assets/v4-icons/sprite.svg#data",
     "viewBox": "0 0 24 24",
     "nodeId": "5595:55270"
   },
