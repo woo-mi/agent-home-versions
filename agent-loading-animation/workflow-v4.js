@@ -62,7 +62,7 @@
   };
   const NUCLEUS = {
     enterScale: .62, breathScale: .025,
-    logoSize: 60,
+    logoSize: 48,
     logo: 'assets/wai-logo-symbol-gradient.png',
   };
   const AURORA = {
