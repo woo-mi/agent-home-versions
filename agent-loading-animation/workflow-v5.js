@@ -7,8 +7,8 @@
  * 1700ms   assembly resolves; a luminous dot makes a 7400ms full orbit
  *          a quiet 1200ms rest follows before the next circuit
  *          a luminous signal visits Trigger → Data → Analysis → Report → Email
- *          icons stay black until the visible dot touches their rounded card
- *          icon and card stroke share the exact step color during contact
+ *          filled icons keep their workflow colors inside white cards
+ *          the card stroke takes its icon's color during signal contact
  *          the enlarged card gives a subtle lift, scale, and restrained halo
  * ───────────────────────────────────────────────────────── */
 (() => {
@@ -44,7 +44,7 @@
   };
   const CARDS = {
     width: 76, height: 76, radius: 19,
-    iconSize: 32, iconY: -10, idleIcon: '#000000',
+    iconSize: 32, iconY: -10,
     labelY: 25, labelSize: 13,
     initialScale: .70, pulseLift: 2.1, pulseScale: .018, contactDepth: 24,
     shadowOffset: 9, shadowBlur: 8, shadowOpacity: .070,
@@ -77,33 +77,33 @@
     horizontalDrift: 5, verticalDrift: 3,
   };
 
-  // Original 24px outline vectors from central icon system v1.35.
-  // Node IDs, hashes, and source details live in assets/v4-icons/manifest.json.
+  // Original 24px filled vectors from central icon system v1.35.
+  // Node IDs, hashes, and source details live in assets/v5-filled-icons/manifest.json.
   const ICONS = Object.freeze({
   "Trigger": {
-    "href": "assets/v4-icons/sprite.svg#trigger",
+    "href": "assets/v5-filled-icons/sprite.svg#trigger",
     "viewBox": "0 0 24 24",
-    "nodeId": "6523:55358"
+    "nodeId": "6523:55361"
   },
   "Data": {
-    "href": "assets/v4-icons/sprite.svg#data",
+    "href": "assets/v5-filled-icons/sprite.svg#data",
     "viewBox": "0 0 24 24",
-    "nodeId": "5592:54671"
+    "nodeId": "5592:54675"
   },
   "Analysis": {
-    "href": "assets/v4-icons/sprite.svg#analysis",
+    "href": "assets/v5-filled-icons/sprite.svg#analysis",
     "viewBox": "0 0 24 24",
-    "nodeId": "5645:54428"
+    "nodeId": "5645:54431"
   },
   "Report": {
-    "href": "assets/v4-icons/sprite.svg#report",
+    "href": "assets/v5-filled-icons/sprite.svg#report",
     "viewBox": "0 0 24 24",
-    "nodeId": "5640:60213"
+    "nodeId": "5640:60215"
   },
   "Email": {
-    "href": "assets/v4-icons/sprite.svg#email",
+    "href": "assets/v5-filled-icons/sprite.svg#email",
     "viewBox": "0 0 24 24",
-    "nodeId": "5658:58223"
+    "nodeId": "5658:58225"
   }
 });
 
@@ -146,13 +146,13 @@
         <rect x="${-half}" y="${-half + CARDS.shadowOffset}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="${SCENE.shadowColor}" opacity="${CARDS.shadowOpacity}" filter="url(#${prefix}-shadow)"/>
         <rect x="${-half}" y="${-half + CARDS.nearShadowOffset}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="${SCENE.shadowColor}" opacity="${CARDS.nearShadowOpacity}" filter="url(#${prefix}-near-shadow)"/>
         <rect data-v5-border="${index}" x="${-half}" y="${-half}" width="${CARDS.width}" height="${CARDS.height}" rx="${CARDS.radius}" fill="#FFFFFF" stroke="${CARDS.border}" stroke-width="${CARDS.borderWidth}"/>
-        <svg data-v5-icon="${index}" x="${-CARDS.iconSize / 2}" y="${CARDS.iconY - CARDS.iconSize / 2}" width="${CARDS.iconSize}" height="${CARDS.iconSize}" viewBox="${escape(icon.viewBox || '0 0 24 24')}" color="${CARDS.idleIcon}" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="${escape(icon.href)}"/></svg>
+        <svg data-v5-icon="${index}" x="${-CARDS.iconSize / 2}" y="${CARDS.iconY - CARDS.iconSize / 2}" width="${CARDS.iconSize}" height="${CARDS.iconSize}" viewBox="${escape(icon.viewBox || '0 0 24 24')}" color="${escape(item.color)}" fill="currentColor" stroke="none" aria-hidden="true"><use href="${escape(icon.href)}"/></svg>
         <text data-v5-label="${index}" x="0" y="${CARDS.labelY}" text-anchor="middle" fill="${CARDS.label}" font-family="${SCENE.font}" font-size="${CARDS.labelSize}" font-weight="500">${escape(item.name)}</text>
       </g>`;
     }).join('');
 
     svg.innerHTML = `<title id="${prefix}-title">An agent workflow in orbit</title>
-      <desc id="${prefix}-description">Five larger upright cards sit on a dark-gray closed oval around the purple WisdomAI logo. A gray signal visits Trigger, Data, Analysis, Report, and Email before returning. Each icon and its card outline share the same step color only while the signal touches the card.</desc>
+      <desc id="${prefix}-description">Five white cards with colored filled icons and labels sit on a dark-gray closed oval around the purple WisdomAI logo. A gray signal visits Trigger, Data, Analysis, Report, and Email before returning. Each card outline takes its icon's color while the signal touches the card.</desc>
       <defs>
         <filter id="${prefix}-shadow" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur stdDeviation="${CARDS.shadowBlur}"/></filter>
         <filter id="${prefix}-near-shadow" x="-25%" y="-25%" width="150%" height="160%"><feGaussianBlur stdDeviation="${CARDS.nearShadowBlur}"/></filter>
@@ -191,7 +191,6 @@
     const halos = all('[data-v5-halo]');
     const borders = all('[data-v5-border]');
     const labels = all('[data-v5-label]');
-    const icons = all('[data-v5-icon]');
     let pathLength = null;
 
     function render(time, staticFrame = false) {
@@ -230,7 +229,6 @@
         const scale = restingScale * (1 + pulse * CARDS.pulseScale);
         const touching = visiblePoint && roundedCardDistance(point, x, y, scale) <= FLOW.signalRadius;
         const activeColor = steps[index].color;
-        icons[index].setAttribute('color', touching ? activeColor : CARDS.idleIcon);
         card.dataset.contact = String(touching);
         card.setAttribute('transform', `translate(${x} ${y}) scale(${scale})`);
         card.setAttribute('opacity', smooth(enter));
