@@ -6,7 +6,7 @@
  *  600ms   one continuous workflow connection draws around the nucleus
  * 1700ms   assembly resolves into a calm 7400ms breathing loop
  *          a luminous signal visits Trigger → Data → Analysis → Report → Email
- *          icons stay black until the visible dot touches their rounded card
+ *          icons stay black until the visible dot touches their circular card
  *          contact reveals the filled colored icon; it returns to a black outline as the dot leaves
  * ───────────────────────────────────────────────────────── */
 (() => {
@@ -37,7 +37,7 @@
     font: 'Inter, system-ui, sans-serif',
   };
   const CARDS = {
-    width: 64, height: 64, radius: 13,
+    width: 64, height: 64, radius: 32,
     iconSize: 24, idleIcon: '#000000',
     labelY: 50, labelSize: 11.5,
     initialScale: .70, pulseLift: 2.3, contactDepth: 18,
@@ -120,7 +120,7 @@
   };
   const escape = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 
-  // Signed distance to the actual rounded rectangle, in scene coordinates.
+  // Signed distance to the rendered card, including its circular corner radius.
   // A visible signal touches the card when this distance <= its solid radius.
   function roundedCardDistance(point, x, y, scale) {
     const radius = CARDS.radius;
@@ -151,7 +151,7 @@
     }).join('');
 
     svg.innerHTML = `<title id="${prefix}-title">An agent workflow taking shape</title>
-      <desc id="${prefix}-description">Five upright cards form a constellation around the gradient WisdomAI logo. A soft signal follows Trigger, Data, Analysis, Report, and Email in order. Each black outline icon switches to a filled icon in its step color while the signal touches its card, then returns to a black outline.</desc>
+      <desc id="${prefix}-description">Five circular icon cards form a constellation around the gradient WisdomAI logo. A soft signal follows Trigger, Data, Analysis, Report, and Email in order. Each black outline icon switches to a filled icon in its step color while the signal touches its circle, then returns to a black outline.</desc>
       <defs>
         <filter id="${prefix}-shadow" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur stdDeviation="${CARDS.shadowBlur}"/></filter>
         <filter id="${prefix}-soft" x="-75%" y="-75%" width="250%" height="250%"><feGaussianBlur stdDeviation="${CARDS.haloBlur}"/></filter>
