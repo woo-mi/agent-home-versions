@@ -16,7 +16,8 @@
 .agent-build-animation[data-version="v4"] .build-figure { transform: translateY(-10px); }
 .agent-build-animation[data-version="v5"] .build-figure { container-type: inline-size; transform: translateY(-10px); }
 .agent-build-animation[data-version="v5"] .build-caption { margin-top: 10px; transform: translateY(calc(20px - 10cqw)); }
-.agent-build-animation[data-version="v6"] .build-caption { margin-top: 8px; }
+.agent-build-animation[data-version="v6"] .build-caption,
+.agent-build-animation[data-version="v10"] .build-caption { margin-top: 8px; }
 .agent-build-animation[data-version="v7"] .build-figure { width: min(100%, 620px); }
 .agent-build-animation[data-version="v7"] .build-caption { margin-top: 8px; }
 .agent-build-animation[data-version="v8"] .build-figure { width: min(100%, 620px); }
