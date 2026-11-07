@@ -37,6 +37,7 @@
   };
   const SPARKLES = {
     // Pointed, inward-curved four-point stars; all share the existing lavender.
+    scale: .85,
     path: 'M0-1C.1-.3.3-.1 1 0 .3.1.1.3 0 1-.1.3-.3.1-1 0-.3-.1-.1-.3 0-1Z',
     duration: 4200,
     minScale: .96, maxScale: 1.04, minOpacity: .82,
@@ -199,7 +200,7 @@
 
       svg.dataset.stage = String(stage);
       const centerEnter = staticFrame ? 1 : smooth(progress(elapsed, TIMING.centerEnter, TIMING.centerSettle));
-      center.setAttribute('transform', `translate(${SCENE.center.x} ${SCENE.center.y}) scale(${mix(SCENE.centerScale, 1, centerEnter)})`);
+      center.setAttribute('transform', `translate(${SCENE.center.x} ${SCENE.center.y}) scale(${mix(SCENE.centerScale, 1, centerEnter) * SPARKLES.scale})`);
       center.setAttribute('opacity', centerEnter);
       sparkles.forEach((sparkle, sparkleIndex) => {
         const star = SPARKLES.stars[sparkleIndex];
