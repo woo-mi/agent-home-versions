@@ -162,6 +162,7 @@
         <button type="button" role="menuitemradio" data-version="v8" aria-checked="false" tabindex="-1"><span class="version-number">V8</span><span>Liquid halo</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
         <button type="button" role="menuitemradio" data-version="v9" aria-checked="false" tabindex="-1"><span class="version-number">V9</span><span>Aurora glow</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
         <button type="button" role="menuitemradio" data-version="v10" aria-checked="false" tabindex="-1"><span class="version-number">V10</span><span>Sparkling flow</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
+        <button type="button" role="menuitemradio" data-version="v11" aria-checked="false" tabindex="-1"><span class="version-number">V11</span><span>Static canvas</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
       </div>
       <button class="version-trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Switch version, V1"><span class="version-current">V1</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 6 4.5 4.5L12.5 6"/></svg></button>
       <span class="visually-hidden prototype-announcement" aria-live="polite"></span>
@@ -199,7 +200,9 @@
     let motionReduced = reducedMotion.matches;
     let lastBroadcast = -Infinity;
     let version = 'v1';
-    const versions = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10'];
+    const versions = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10', 'v11'];
+    const isStaticView = () => version === 'v11';
+    const canAnimate = () => !motionReduced && !isStaticView();
     const totalDuration = TIMING.loopStart + TIMING.loopDuration;
     const versionButtons = [...picker.querySelectorAll('[data-version]')];
     const announcement = picker.querySelector('.prototype-announcement');
@@ -213,7 +216,7 @@
     });
     document.body.append(picker);
     const panels = { v1: { element: illustration.querySelector('.build-illustration'), render: renderV1 } };
-    ['v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10'].forEach((key) => {
+    ['v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10', 'v11'].forEach((key) => {
       const panel = window.AgentWorkflowVariants[key].create({ id: `${id}-${key}`, items: TILES.items });
       panel.element.setAttribute('hidden', '');
       panel.element.setAttribute('data-renderer', key);
@@ -229,7 +232,7 @@
     }
 
     function broadcast(paused, restart = false) {
-      document.dispatchEvent(new CustomEvent('agent-build-motion', { detail: { paused, elapsedMs: elapsed, speed, state: playback, ...(restart ? { restart: true } : {}) } }));
+      document.dispatchEvent(new CustomEvent('agent-build-motion', { detail: { paused: paused || isStaticView(), elapsedMs: elapsed, speed, state: playback, ...(restart ? { restart: true } : {}) } }));
     }
 
     function renderV1(time, staticFrame = false) {
@@ -275,6 +278,7 @@
     }
 
     function render(time, staticFrame = false) {
+      staticFrame ||= isStaticView();
       setStage(staticFrame || time >= TIMING.loopStart ? STAGE.flowing : time >= TIMING.frontEnter ? STAGE.front : time >= TIMING.connectorsEnter ? STAGE.connections : time >= TIMING.tilesEnter ? STAGE.tiles : STAGE.board);
       panels[version].render(time, staticFrame);
       caption.style.opacity = staticFrame ? 1 : smooth(progress(time, TIMING.captionEnter, TIMING.captionFade));
@@ -289,12 +293,13 @@
 
     function syncElapsed() {
       const now = performance.now();
-      if (playback === 'running' && !motionReduced) elapsed += (now - lastTick) * speed;
+      if (playback === 'running' && canAnimate()) elapsed += (now - lastTick) * speed;
       lastTick = now;
     }
 
     function tick(now) {
-      if (playback !== 'running') return;
+      frame = null;
+      if (playback !== 'running' || !canAnimate()) return;
       elapsed += (now - lastTick) * speed;
       lastTick = now;
       render(elapsed);
@@ -324,6 +329,9 @@
     function updateControls() {
       illustration.dataset.playback = playback;
       illustration.dataset.version = version;
+      document.documentElement.dataset.workflowVersion = version;
+      illustration.setAttribute('aria-label', isStaticView() ? 'Agent workflow canvas' : 'Agent workflow loading animation');
+      caption.hidden = isStaticView();
       illustration.dataset.speed = speed;
       illustration.dataset.reducedMotion = String(reducedMotion.matches);
       illustration.style.setProperty('--build-cycle-duration', `${TIMING.loopDuration / speed}ms`);
@@ -334,7 +342,7 @@
       versionButtons.forEach((button) => {
         const selected = button.dataset.version === version;
         button.setAttribute('aria-checked', String(selected));
-        if (selected) figurePanel.setAttribute('aria-label', `${button.children[0].textContent} ${button.children[1].textContent} animation`);
+        if (selected) figurePanel.setAttribute('aria-label', `${button.children[0].textContent} ${button.children[1].textContent}${isStaticView() ? '' : ' animation'}`);
       });
     }
 
@@ -349,7 +357,7 @@
         setStage(STAGE.waiting);
         updateControls();
         render(0, reducedMotion.matches);
-        if (!reducedMotion.matches) frame = window.requestAnimationFrame(tick);
+        if (canAnimate()) frame = window.requestAnimationFrame(tick);
         broadcast(false, true);
         notifyTime(true);
         return api;
@@ -381,16 +389,20 @@
         playback = 'running';
         lastTick = performance.now();
         updateControls();
-        if (!reducedMotion.matches) frame = window.requestAnimationFrame(tick);
+        if (canAnimate()) frame = window.requestAnimationFrame(tick);
         broadcast(false);
         return api;
       },
       selectVersion(nextVersion) {
         if (!versions.includes(nextVersion)) return api;
         syncElapsed();
+        cancelFrame();
         version = nextVersion;
         updateControls();
         render(elapsed, reducedMotion.matches);
+        lastTick = performance.now();
+        if (playback === 'running' && canAnimate()) frame = window.requestAnimationFrame(tick);
+        broadcast(playback === 'paused');
         const url = new URL(location.href);
         url.searchParams.set('version', version);
         history.replaceState(null, '', url);
@@ -477,7 +489,7 @@
       cancelFrame();
       render(elapsed, reducedMotion.matches);
       updateControls();
-      if (!reducedMotion.matches && playback === 'running') {
+      if (canAnimate() && playback === 'running') {
         lastTick = performance.now();
         frame = window.requestAnimationFrame(tick);
       }

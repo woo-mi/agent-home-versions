@@ -12,6 +12,16 @@
 }
 
 .agent-build-animation[hidden] { display: none !important; }
+html[data-workflow-version="v11"] .agent-workspace {
+  background-color: #f4f5f7;
+  background-image: radial-gradient(circle, #dee0e7 .7px, transparent .9px);
+  background-size: 12px 12px;
+}
+.agent-build-animation[data-version="v11"] { padding: 0; }
+.agent-build-animation[data-version="v11"] .build-figure { width: 100%; }
+.agent-build-animation[data-version="v11"] .build-static-canvas { width: 100%; min-height: 100%; }
+html[data-workflow-version="v11"] .build-step { transition: none; }
+html[data-workflow-version="v11"] .build-step.is-current .step-indicator::before { animation: none; border-color: #8580df; }
 .agent-build-animation .build-figure { width: min(100%, 600px); margin: 0; text-align: center; }
 .agent-build-animation[data-version="v4"] .build-figure { transform: translateY(-10px); }
 .agent-build-animation[data-version="v5"] .build-figure { container-type: inline-size; transform: translateY(-10px); }
