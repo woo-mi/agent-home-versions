@@ -42,8 +42,8 @@
     minScale: .96, maxScale: 1.04, minOpacity: .82,
     stars: [
       { x: 0, y: 8, radius: 14, phase: 0 },
-      { x: 11, y: -12, radius: 9, phase: 1.4 },
-      { x: -11, y: -7, radius: 6, phase: 2.8 },
+      { x: 8, y: -8, radius: 9, phase: 1.4 },
+      { x: -8, y: -3, radius: 6, phase: 2.8 },
     ],
   };
   const RINGS = {
