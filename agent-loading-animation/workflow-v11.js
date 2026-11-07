@@ -11,7 +11,9 @@
  *  4760ms   output appears; its last row completes by 5450ms
  *  5500ms   the completed graph holds with soft placeholder shimmer
  *  9450ms   the whole graph fades out gently over 800ms
- * 10500ms   the sequence repeats from the shared animation clock
+ * 10500ms   three inputs merge, then continue through two serial cards
+ * 21000ms   an input reaches one process, then fans out to three outputs
+ * 31500ms   the original parallel-chain flow begins again
  * ───────────────────────────────────────────────────────── */
 (() => {
   'use strict';
@@ -33,6 +35,22 @@
     mergeEnter:       3770, // merge card appears at the arriving lines
     outputConnect:    4230, // merge → output
     outputEnter:      4760, // output card appears
+    mergeInputStagger: 180, // three input cards appear in sequence
+    mergeGather:      1250, // first input connection begins
+    mergeGatherStagger:180, // successive input connections follow
+    mergeGatherDraw:   600, // input connection drawing duration
+    mergeHubEnter:    2210, // hub appears after the third input connection
+    mergeContinue:    2820, // hub → next serial card
+    mergeContinueDraw:650, // duration of the two serial connections
+    mergeNextEnter:   3470, // next serial card follows its connection
+    mergeOutputConnect:4110, // final serial connection begins
+    fanProcessConnect:1000, // input → central process
+    fanProcessDraw:    700, // central process connection duration
+    fanProcessEnter:  1700, // process follows the arriving line
+    fanBranchConnect: 2600, // process begins the first output connection
+    fanBranchStagger:  600, // successive output connections follow
+    fanBranchDraw:     850, // each curved output connection duration
+    fanOutputEnter:   3450, // first output follows its connection
     cardSettle:        420, // subtle vertical settling and opacity reveal
     borderDraw:        540, // rounded card perimeter drawing duration
     fillDelay:          80, // pale surface follows the outline
@@ -43,7 +61,7 @@
     rowStagger:         65, // interval between body rows
     rowReveal:         300, // each body row reveal duration
     contentComplete:   690, // final row settles relative to its card entrance
-    graphComplete:    5500, // all seven cards and connections are complete
+    graphComplete:    5500, // every layout is completely drawn
     shimmerStagger:    180, // individual card shimmer offset
     shimmerTravel:    1800, // slow sweep across settled placeholders
     shimmerCycle:     3100, // sweep plus quiet pause
@@ -94,6 +112,39 @@
     ],
   };
   const SHIMMER = { width: 64, color: '#FFFFFF', peakOpacity: .66, opacity: .55 };
+  const FLOWS = [
+    {
+      key: 'parallel',
+      cards: CARD.items,
+      connections: CONNECTIONS.items,
+    },
+    {
+      key: 'merge',
+      cards: [
+        ...[73, 229, 385].map((y, index) => ({ x: 38, y, enter: TIMING.sourceEnter + index * TIMING.mergeInputStagger, stage: STAGE.source })),
+        { x: 326, y: 229, enter: TIMING.mergeHubEnter, stage: STAGE.branches },
+        { x: 614, y: 229, enter: TIMING.mergeNextEnter, stage: STAGE.chains },
+        { x: 902, y: 229, enter: TIMING.outputEnter, stage: STAGE.output },
+      ],
+      connections: [
+        ...[0, 1, 2].map((from, index) => ({ from, to: 3, enter: TIMING.mergeGather + index * TIMING.mergeGatherStagger, duration: TIMING.mergeGatherDraw })),
+        { from: 3, to: 4, enter: TIMING.mergeContinue, duration: TIMING.mergeContinueDraw },
+        { from: 4, to: 5, enter: TIMING.mergeOutputConnect, duration: TIMING.mergeContinueDraw },
+      ],
+    },
+    {
+      key: 'fanout',
+      cards: [
+        { x: 146, y: 229, enter: TIMING.sourceEnter, stage: STAGE.source },
+        { x: 470, y: 229, enter: TIMING.fanProcessEnter, stage: STAGE.branches },
+        ...[73, 229, 385].map((y, index) => ({ x: 794, y, enter: TIMING.fanOutputEnter + index * TIMING.fanBranchStagger, stage: STAGE.chains + index })),
+      ],
+      connections: [
+        { from: 0, to: 1, enter: TIMING.fanProcessConnect, duration: TIMING.fanProcessDraw },
+        ...[2, 3, 4].map((to, index) => ({ from: 1, to, enter: TIMING.fanBranchConnect + index * TIMING.fanBranchStagger, duration: TIMING.fanBranchDraw })),
+      ],
+    },
+  ];
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const clamp = value => Math.max(0, Math.min(1, value));
@@ -105,9 +156,9 @@
     return `<rect x="${shape.x}" y="${shape.y}" width="${shape.width}" height="${shape.height}" rx="${PLACEHOLDERS.radius}" ${extra}/>`;
   }
 
-  function connectionPath(connection) {
-    const source = CARD.items[connection.from];
-    const target = CARD.items[connection.to];
+  function connectionPath(connection, cards) {
+    const source = cards[connection.from];
+    const target = cards[connection.to];
     const x1 = source.x + CARD.width;
     const y1 = source.y + CARD.height / 2;
     const x2 = target.x;
@@ -125,9 +176,10 @@
     svg.setAttribute('aria-labelledby', `${prefix}-title ${prefix}-description`);
 
     const avatarShape = `<circle cx="${PLACEHOLDERS.avatar.x}" cy="${PLACEHOLDERS.avatar.y}" r="${PLACEHOLDERS.avatar.radius}"/>`;
-    const clips = CARD.items.map((_, index) => `<clipPath id="${prefix}-placeholders-${index}" clipPathUnits="userSpaceOnUse">${avatarShape}${PLACEHOLDERS.headers.map(shape => rectangle(shape)).join('')}${PLACEHOLDERS.rows.map(shape => rectangle(shape)).join('')}</clipPath>`).join('');
-    const edges = CONNECTIONS.items.map((connection, index) => `<path data-v11-edge="${index}" d="${connectionPath(connection)}" pathLength="1" fill="none" stroke="${CONNECTIONS.stroke}" stroke-width="${CONNECTIONS.width}" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>`).join('');
-    const cards = CARD.items.map((card, index) => `<g data-v11-card="${index}" transform="translate(${card.x} ${card.y})" opacity="0">
+    const clips = FLOWS.map(flow => flow.cards.map((_, index) => `<clipPath id="${prefix}-${flow.key}-placeholders-${index}" clipPathUnits="userSpaceOnUse">${avatarShape}${PLACEHOLDERS.headers.map(shape => rectangle(shape)).join('')}${PLACEHOLDERS.rows.map(shape => rectangle(shape)).join('')}</clipPath>`).join('')).join('');
+    const graphs = FLOWS.map(flow => {
+      const edges = flow.connections.map((connection, index) => `<path data-v11-edge="${index}" d="${connectionPath(connection, flow.cards)}" pathLength="1" fill="none" stroke="${CONNECTIONS.stroke}" stroke-width="${CONNECTIONS.width}" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1" opacity="0"/>`).join('');
+      const cards = flow.cards.map((card, index) => `<g data-v11-card="${index}" transform="translate(${card.x} ${card.y})" opacity="0">
         <rect data-v11-surface="${index}" width="${CARD.width}" height="${CARD.height}" rx="${CARD.radius}" fill="${CARD.surface}" opacity="0"/>
         <rect data-v11-border="${index}" width="${CARD.width}" height="${CARD.height}" rx="${CARD.radius}" pathLength="1" fill="none" stroke="${CARD.border}" stroke-width="${CARD.borderWidth}" stroke-linecap="round" stroke-dasharray="1" stroke-dashoffset="1"/>
         <g data-v11-header="${index}" opacity="0">
@@ -135,13 +187,15 @@
           ${PLACEHOLDERS.headers.map(shape => rectangle(shape, `fill="${PLACEHOLDERS.headerFill}"`)).join('')}
         </g>
         ${PLACEHOLDERS.rows.map((shape, rowIndex) => rectangle(shape, `data-v11-row="${index}-${rowIndex}" fill="${PLACEHOLDERS.bodyFill}" opacity="0"`)).join('')}
-        <g clip-path="url(#${prefix}-placeholders-${index})">
+        <g clip-path="url(#${prefix}-${flow.key}-placeholders-${index})">
           <rect data-v11-shimmer="${index}" x="${-SHIMMER.width}" width="${SHIMMER.width}" height="${CARD.height}" fill="url(#${prefix}-shimmer)" opacity="0"/>
         </g>
       </g>`).join('');
+      return `<g data-v11-graph data-v11-flow="${flow.key}" hidden display="none" aria-hidden="true">${edges}${cards}</g>`;
+    }).join('');
 
     svg.innerHTML = `<title id="${prefix}-title">A workflow being drawn</title>
-      <desc id="${prefix}-description">Seven pale skeleton cards form a workflow. A source branches into two parallel chains of two cards each. The chains merge into one card and connect to a final output. Curved connections draw progressively as avatar, header, and three body-row placeholders appear. The complete graph holds with a soft shimmer before gently repeating.</desc>
+      <desc id="${prefix}-description">Pale skeleton cards draw three workflows in sequence: two parallel two-card chains merge into an output; three inputs merge and continue through two serial cards; and an input reaches a process that fans out to three outputs. Each graph draws progressively, holds with a soft shimmer, and gently fades before the next. The sequence returns to the first workflow. Reduced motion shows the complete first graph without shimmer.</desc>
       <defs>
         <linearGradient id="${prefix}-shimmer" x1="0" y1="0" x2="1" y2="0">
           <stop stop-color="${SHIMMER.color}" stop-opacity="0"/>
@@ -150,33 +204,47 @@
         </linearGradient>
         ${clips}
       </defs>
-      <g data-v11-graph>${edges}${cards}</g>`;
+      ${graphs}`;
 
-    const all = selector => [...svg.querySelectorAll(selector)];
-    const graph = svg.querySelector('[data-v11-graph]');
-    const edgeNodes = all('[data-v11-edge]');
-    const cardNodes = all('[data-v11-card]');
-    const surfaces = all('[data-v11-surface]');
-    const borders = all('[data-v11-border]');
-    const headers = all('[data-v11-header]');
-    const rows = all('[data-v11-row]');
-    const shimmers = all('[data-v11-shimmer]');
+    const flowViews = FLOWS.map(flow => {
+      const graph = svg.querySelector(`[data-v11-flow="${flow.key}"]`);
+      const all = selector => [...graph.querySelectorAll(selector)];
+      return {
+        graph,
+        edgeNodes: all('[data-v11-edge]'), cardNodes: all('[data-v11-card]'),
+        surfaces: all('[data-v11-surface]'), borders: all('[data-v11-border]'),
+        headers: all('[data-v11-header]'), rows: all('[data-v11-row]'),
+        shimmers: all('[data-v11-shimmer]'),
+      };
+    });
 
     function render(time, staticFrame = false) {
       const numericTime = Number(time);
       const elapsed = Number.isFinite(numericTime) ? Math.max(0, numericTime) : 0;
+      const flowIndex = staticFrame ? 0 : Math.floor(elapsed / TIMING.loopDuration) % FLOWS.length;
+      const flow = FLOWS[flowIndex];
+      const { graph, edgeNodes, cardNodes, surfaces, borders, headers, rows, shimmers } = flowViews[flowIndex];
       const phase = staticFrame ? TIMING.graphComplete : elapsed % TIMING.loopDuration;
-      const stage = staticFrame ? STAGE.settled : phase >= TIMING.fadeOut ? STAGE.fading : phase >= TIMING.graphComplete ? STAGE.settled : phase >= TIMING.outputEnter ? STAGE.output : phase >= TIMING.mergeEnter ? STAGE.merge : phase >= TIMING.upperNextEnter ? STAGE.chains : phase >= TIMING.upperEnter ? STAGE.branches : phase >= TIMING.sourceEnter ? STAGE.source : STAGE.waiting;
+      const enteredStage = flow.cards.reduce((current, card) => phase >= card.enter ? Math.max(current, card.stage) : current, STAGE.waiting);
+      const stage = staticFrame ? STAGE.settled : phase >= TIMING.fadeOut ? STAGE.fading : phase >= TIMING.graphComplete ? STAGE.settled : enteredStage;
       svg.dataset.stage = String(stage);
+      svg.dataset.flow = flow.key;
+      svg.dataset.flowIndex = String(flowIndex);
+      flowViews.forEach((view, index) => {
+        const active = index === flowIndex;
+        view.graph.toggleAttribute('hidden', !active);
+        view.graph.setAttribute('display', active ? 'inline' : 'none');
+        view.graph.setAttribute('aria-hidden', String(!active));
+      });
       graph.setAttribute('opacity', staticFrame ? 1 : 1 - smooth(progress(phase, TIMING.fadeOut, TIMING.fadeDuration)));
 
-      CONNECTIONS.items.forEach((connection, index) => {
+      flow.connections.forEach((connection, index) => {
         const drawn = staticFrame ? 1 : smooth(progress(phase, connection.enter, connection.duration));
         edgeNodes[index].setAttribute('stroke-dashoffset', 1 - drawn);
         edgeNodes[index].setAttribute('opacity', drawn > 0 ? 1 : 0);
       });
 
-      CARD.items.forEach((card, index) => {
+      flow.cards.forEach((card, index) => {
         const appeared = staticFrame ? 1 : stage >= card.stage ? smooth(progress(phase, card.enter, TIMING.cardSettle)) : 0;
         const border = staticFrame ? 1 : smooth(progress(phase, card.enter, TIMING.borderDraw));
         const surface = staticFrame ? 1 : smooth(progress(phase, card.enter + TIMING.fillDelay, TIMING.fillReveal));
