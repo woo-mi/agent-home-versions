@@ -152,6 +152,9 @@
         <span class="theme-current">Light</span>
       </button>
       <div class="version-menu" role="menu" aria-label="Prototype version" hidden>
+        <button type="button" role="menuitemradio" data-version="v10" aria-checked="false" tabindex="-1"><span class="version-number">V10</span><span>Sparkling flow</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
+        <button type="button" role="menuitemradio" data-version="v11" aria-checked="false" tabindex="-1"><span class="version-number">V11</span><span>Skeleton workflow</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
+        <div class="version-divider" role="separator" aria-orientation="horizontal"></div>
         <button type="button" role="menuitemradio" data-version="v1" aria-checked="true" tabindex="-1"><span class="version-number">V1</span><span>Isometric</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
         <button type="button" role="menuitemradio" data-version="v2" aria-checked="false" tabindex="-1"><span class="version-number">V2</span><span>Front-facing</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
         <button type="button" role="menuitemradio" data-version="v3" aria-checked="false" tabindex="-1"><span class="version-number">V3</span><span>Constellation</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
@@ -161,8 +164,6 @@
         <button type="button" role="menuitemradio" data-version="v7" aria-checked="false" tabindex="-1"><span class="version-number">V7</span><span>Prismatic pulse</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
         <button type="button" role="menuitemradio" data-version="v8" aria-checked="false" tabindex="-1"><span class="version-number">V8</span><span>Liquid halo</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
         <button type="button" role="menuitemradio" data-version="v9" aria-checked="false" tabindex="-1"><span class="version-number">V9</span><span>Aurora glow</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
-        <button type="button" role="menuitemradio" data-version="v10" aria-checked="false" tabindex="-1"><span class="version-number">V10</span><span>Sparkling flow</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
-        <button type="button" role="menuitemradio" data-version="v11" aria-checked="false" tabindex="-1"><span class="version-number">V11</span><span>Skeleton workflow</span><svg class="version-check" viewBox="0 0 16 16" aria-hidden="true"><path d="m3 8 3.5 3.5L13 5"/></svg></button>
       </div>
       <button class="version-trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Switch version, V1"><span class="version-current">V1</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 6 4.5 4.5L12.5 6"/></svg></button>
       <span class="visually-hidden prototype-announcement" aria-live="polite"></span>
@@ -200,7 +201,7 @@
     let motionReduced = reducedMotion.matches;
     let lastBroadcast = -Infinity;
     let version = 'v1';
-    const versions = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10', 'v11'];
+    const versions = ['v10', 'v11', 'v1', 'v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9'];
     const isCanvasView = () => version === 'v11';
     const canAnimate = () => !motionReduced;
     const totalDuration = TIMING.loopStart + TIMING.loopDuration;
