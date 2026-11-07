@@ -54,10 +54,10 @@
   };
   const NODES = {
     iconSize: 24, color: '#000000',
-    labelY: 29, labelSize: 11.5, labelColor: '#747988',
+    labelY: 24, labelSize: 11.5, labelColor: '#747988',
     enterScale: .90,
     maskPadding: 4,
-    labelMaskWidth: 68, labelMaskTop: 17, labelMaskHeight: 17,
+    labelMaskWidth: 68, labelMaskTop: 12, labelMaskHeight: 17,
   };
   const SIGNAL = {
     radius: 2.9, color: '#9388D1',
