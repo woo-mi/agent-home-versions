@@ -49,7 +49,7 @@
   const RINGS = {
     radii: [236, 192, 148, 104, 60],
     gapAngles: [-40, -145, 55, 150, -20],
-    stroke: '#DADDE5', width: 1.35, activeWidth: 1.65,
+    stroke: '#DADDE5', width: .8, activeWidth: 1,
     gapClearance: 4,
   };
   const NODES = {
@@ -63,7 +63,7 @@
     radius: 2.9, color: '#9388D1',
     glowRadius: 8.5, glowBlur: 2.7, glowOpacity: .32,
     highlightRadius: .9,
-    wakeLength: .055, wakeWidth: 2, wakeOpacity: .40,
+    wakeLength: .055, wakeWidth: 1.2, wakeOpacity: .40,
   };
 
   // Authentic central icon system v1.35 vectors, unchanged native geometry.
