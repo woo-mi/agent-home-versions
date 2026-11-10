@@ -1,0 +1,120 @@
+.agent-build-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: max-content;
+  min-height: 100%;
+  flex-shrink: 0;
+  padding: 28px;
+  overflow: visible;
+  color: #25272b;
+}
+
+.agent-build-animation[hidden] { display: none !important; }
+html[data-workflow-version="v11"] .agent-workspace {
+  background-color: #f4f5f7;
+  background-image: radial-gradient(circle, #dee0e7 .7px, transparent .9px);
+  background-size: 12px 12px;
+}
+.agent-build-animation[data-version="v11"] { padding: 32px 24px; }
+.agent-build-animation[data-version="v11"] .build-figure { width: min(100%, 1000px); }
+.agent-build-animation .build-figure { width: min(100%, 600px); margin: 0; text-align: center; }
+.agent-build-animation[data-version="v4"] .build-figure { transform: translateY(-10px); }
+.agent-build-animation[data-version="v5"] .build-figure { container-type: inline-size; transform: translateY(-10px); }
+.agent-build-animation[data-version="v5"] .build-caption { margin-top: 10px; transform: translateY(calc(20px - 10cqw)); }
+.agent-build-animation[data-version="v6"] .build-caption { margin-top: 8px; }
+.agent-build-animation[data-version="v10"] .build-figure { container-type: inline-size; }
+/* Remove the SVG's bottom inset so the caption sits 32px below the outer ring. */
+.agent-build-animation[data-version="v10"] .build-caption { margin-top: 8px; text-align: center; transform: translateY(calc(24px - 13.933333cqw)); }
+.agent-build-animation[data-version="v7"] .build-figure { width: min(100%, 620px); }
+.agent-build-animation[data-version="v7"] .build-caption { margin-top: 8px; }
+.agent-build-animation[data-version="v8"] .build-figure { width: min(100%, 620px); }
+.agent-build-animation[data-version="v8"] .build-caption { margin-top: 8px; }
+.agent-build-animation[data-version="v9"] .build-figure { width: min(100%, 620px); }
+.agent-build-animation[data-version="v9"] .build-caption { margin-top: 8px; }
+.agent-build-animation .build-illustration { display: block; width: 100%; height: auto; overflow: visible; }
+.agent-build-animation .build-plane,
+.agent-build-animation .build-front-float,
+.agent-build-animation .build-node-float { will-change: transform; }
+.agent-build-animation .build-node-name { font: 500 8.5px Inter, system-ui, sans-serif; letter-spacing: .02px; fill: #858a96; }
+.agent-build-animation .build-caption { margin-top: 4px; }
+.agent-build-animation .build-title { margin: 0; font-size: 18px; line-height: 25px; font-weight: 600; letter-spacing: -.25px; }
+.agent-build-animation .build-subtitle { margin: 9px 0 0; color: #727780; font-size: 14px; line-height: 21px; font-weight: 400; }
+.agent-build-animation .build-controls { display: flex; justify-content: center; align-items: center; gap: 7px; margin-top: 18px; }
+.agent-build-animation .build-control { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 28px; padding: 0 8px; border: 0; border-radius: 7px; background: transparent; color: #989ca5; font: 400 11px/16px Inter, system-ui, sans-serif; cursor: pointer; }
+.agent-build-animation .build-control:hover { background: #eff0f4; color: #626875; }
+.agent-build-animation .build-control:focus-visible { outline: 2px solid #9294e8; outline-offset: 2px; }
+.agent-build-animation .build-control svg { display: block; width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.agent-build-animation .build-control-divider { width: 1px; height: 10px; background: #e4e6eb; }
+.agent-build-animation[data-reduced-motion="true"] .build-pause,
+.agent-build-animation[data-reduced-motion="true"] .build-control-divider { display: none; }
+
+@media (max-width: 1100px) {
+  .agent-build-animation { padding: 22px 12px; }
+  .agent-build-animation .build-title { font-size: 17px; }
+  .agent-build-animation .build-subtitle { max-width: 300px; margin-inline: auto; }
+}
+@media (max-width: 700px) {
+  .agent-build-animation { padding: 16px 10px; }
+  .agent-build-animation .build-figure { width: min(100%, 520px); }
+  .agent-build-animation .build-caption { margin-top: 12px; }
+  .agent-build-animation .build-title { font-size: 18px; }
+  .agent-build-animation .build-subtitle { font-size: 13px; }
+  .agent-build-animation .build-control { height: 34px; padding-inline: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .agent-build-animation .build-plane,
+  .agent-build-animation .build-front-float,
+  .agent-build-animation .build-node-float { will-change: auto; }
+}
+
+/* A quiet highlight echoes the app-building reference. */
+.agent-build-animation .build-title {
+  background: linear-gradient(105deg, #25272b 20%, #25272b 37%, #8d87df 48%, #aaa5ee 52%, #25272b 64%, #25272b 80%);
+  background-size: 230% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: build-title-highlight 7.4s ease-in-out infinite;
+}
+@keyframes build-title-highlight {
+  0%, 18% { background-position: 100% 50%; }
+  72%, 100% { background-position: 0% 50%; }
+}
+.animation-paused .agent-build-animation .build-title { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .agent-build-animation .build-title { animation: none; background: none; color: #25272b; }
+}
+@media (max-width: 900px) and (max-height: 500px) {
+  .agent-build-animation { padding: 8px; }
+  .agent-build-animation .build-illustration { width: min(100%, 310px); margin-inline: auto; }
+  .agent-build-animation[data-version="v11"] { padding: 16px; }
+  .agent-build-animation[data-version="v11"] .build-illustration { width: 100%; max-height: calc(100dvh - 132px); }
+  .agent-build-animation[data-version="v5"] .build-caption { transform: translateY(calc(20px - min(10cqw, 31px))); }
+  .agent-build-animation[data-version="v10"] .build-caption { transform: translateY(calc(24px - min(13.933333cqw, 43.193333px))); }
+  .agent-build-animation .build-caption { margin-top: 0; }
+  .agent-build-animation .build-title { font-size: 16px; line-height: 22px; }
+  .agent-build-animation .build-subtitle { margin-top: 4px; font-size: 12px; line-height: 18px; }
+  .agent-build-animation .build-controls { margin-top: 8px; }
+  .agent-build-animation .build-control { height: 28px; }
+}
+
+/* Compact version indicator, matching the other live prototypes. */
+.version-picker { position: fixed; z-index: 100; right: 20px; bottom: 16px; }
+.version-trigger { display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 60px; height: 36px; padding: 0 12px; border: 1px solid #ffffff18; border-radius: 16px; background: #4a4a4a; color: white; font: 500 14px/20px Inter, system-ui, sans-serif; box-shadow: 0 12px 38px #0000001c; cursor: pointer; }
+.version-trigger:hover { background: #414141; }
+.version-trigger svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: square; stroke-linejoin: miter; transition: transform .16s ease; }
+.version-picker.is-open .version-trigger svg { transform: rotate(180deg); }
+.version-trigger:focus-visible { outline: 2px solid #9d95e6; outline-offset: 3px; }
+.version-menu { position: absolute; right: 0; bottom: calc(100% + 8px); width: 218px; max-height: calc(100dvh - 80px); overflow-y: auto; overscroll-behavior: contain; padding: 6px; border: 1px solid #e4e5eb; border-radius: 12px; background: #fff; color: #36383f; box-shadow: 0 8px 28px #252a3e1a; }
+.version-menu button { display: flex; align-items: center; gap: 10px; width: 100%; height: 38px; padding: 0 10px; border: 0; border-radius: 7px; background: transparent; color: inherit; font: 400 13px/18px Inter, system-ui, sans-serif; text-align: left; cursor: pointer; }
+.version-menu button:hover { color: #111; }
+.version-menu button:focus-visible { outline: 1px solid #8a8f98; outline-offset: -2px; }
+.version-divider { margin: 6px 8px; border-top: 1px solid var(--line, #e4e5eb); }
+.version-number { width: 21px; color: #777783; font-size: 12px; }
+.version-check { margin-left: auto; width: 14px; height: 14px; fill: none; stroke: #000; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; visibility: hidden; }
+.version-menu button[aria-checked='true'] .version-check { visibility: visible; }
+.agent-build-animation .build-title { animation-duration: var(--build-cycle-duration, 7400ms); }
+@media (max-width: 700px) { .version-picker { right: 16px; bottom: 16px; } }
+@media (prefers-reduced-motion: reduce) { .version-trigger svg { transition: none; } }

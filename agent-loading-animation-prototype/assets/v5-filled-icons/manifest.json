@@ -1,0 +1,178 @@
+{
+  "source": {
+    "fileName": "central+icon+system+v1.35.fig",
+    "figmaFileKey": "DHvlntO88oQJCoiawCCr3d",
+    "fileKeyEvidence": "Matches the exact SHA-256 recorded for this file key in chat-revisit/assets/suggestion-icons/manifest.json",
+    "pageNodeId": "7:118",
+    "pageName": "❖  Icons",
+    "exportedAt": "2026-08-06T06:12:59.209Z",
+    "sha256": "499a69a8967e76f6fcd7e05d2abe5d3584afa871f6454a57f88c13fea2d721c5",
+    "format": "fig-kiwi version 106"
+  },
+  "variant": {
+    "filled": "on",
+    "stroke": 1.5,
+    "radius": 2,
+    "join": "round"
+  },
+  "method": "Original local .fig native fillGeometry command decoding, preserving float32 coordinates, winding rules, transforms, and child draw order.",
+  "geometryNotes": [
+    "SVG paths are the original filled variant contours stored by Figma, not filled-in outline icons or traced silhouettes.",
+    "All M/L/Q/C/Z commands retain the source float32 values without decimal rounding or simplification.",
+    "Original black fill paint is replaced with currentColor; stroke=none prevents an inherited wrapper stroke from changing the native geometry.",
+    "Original even-odd and nonzero winding rules and distinct paths preserve internal transparent cutouts and whitespace.",
+    "Root component position on the source canvas is omitted; child transforms and the original 24 by 24 component bounds are preserved."
+  ],
+  "assets": [
+    {
+      "label": "Trigger",
+      "file": "trigger.svg",
+      "viewBox": "0 0 24 24",
+      "nodeId": "6523:55361",
+      "familyNodeId": "6523:55309",
+      "componentName": "zap, lightning, flash, thunder",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=6523-55361",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "6523:55363"
+      ],
+      "fillGeometryBlobs": [
+        {
+          "id": 16219,
+          "sha256": "4f31da9623fc64ad8eb875c7748e696dc4a9980013d827dff9498045aaeecc08",
+          "commands": 12
+        }
+      ],
+      "svgSha256": "289b6f565c83741280d6a1a86c7ab33d8522d618f6e150d5516f4e66850fd7e6",
+      "symbolId": "trigger",
+      "spriteHref": "sprite.svg#trigger"
+    },
+    {
+      "label": "Data",
+      "file": "data.svg",
+      "viewBox": "0 0 24 24",
+      "nodeId": "5595:55270",
+      "familyNodeId": "5595:55135",
+      "componentName": "server-2, storage, data, coins, money, database",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5595-55270",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "5595:55661"
+      ],
+      "fillGeometryBlobs": [
+        {
+          "id": 5637,
+          "sha256": "1cd19eef66e7756761193fcc65924cf7512ee4b06382272243e5c789c67a1523",
+          "commands": 58
+        }
+      ],
+      "svgSha256": "b13e6b876ab37f285a7076ea8e6b3fdfc4dd26a9a8d62c7a9696eb1e4d7239ca",
+      "symbolId": "data",
+      "spriteHref": "sprite.svg#data"
+    },
+    {
+      "label": "Analysis",
+      "file": "analysis.svg",
+      "viewBox": "0 0 24 24",
+      "nodeId": "5645:54431",
+      "familyNodeId": "5645:54379",
+      "componentName": "sparkle, star, ai",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5645-54431",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "5645:59900"
+      ],
+      "fillGeometryBlobs": [
+        {
+          "id": 8896,
+          "sha256": "d3ea8648c27ecce0e82a6daefaa379158a92f8af48395825d298bb90af9ce89a",
+          "commands": 18
+        }
+      ],
+      "svgSha256": "2188bdf75c67509edd17f93eb1cc3848f235bb87e77491fcf71836fb869605f6",
+      "symbolId": "analysis",
+      "spriteHref": "sprite.svg#analysis"
+    },
+    {
+      "label": "Report",
+      "file": "report.svg",
+      "viewBox": "0 0 24 24",
+      "nodeId": "5640:60215",
+      "familyNodeId": "5640:60180",
+      "componentName": "file-chart, document",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5640-60215",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "5640:60216"
+      ],
+      "fillGeometryBlobs": [
+        {
+          "id": 8439,
+          "sha256": "810c86385bf69feacf56da7a1f862fad16c71754d1452e493cf78ae558a8830b",
+          "commands": 36
+        },
+        {
+          "id": 8440,
+          "sha256": "cb354463733abe3f20d2b5b940d9bd11e5d4717a166968d0947f9b2f513c4ccc",
+          "commands": 8
+        }
+      ],
+      "svgSha256": "b8d2d330d36108841e171af83de29c3ac3057518ebd0d0d611a9e2aaa3d3f841",
+      "symbolId": "report",
+      "spriteHref": "sprite.svg#report"
+    },
+    {
+      "label": "Email",
+      "file": "email.svg",
+      "viewBox": "0 0 24 24",
+      "nodeId": "5658:58225",
+      "familyNodeId": "5658:58190",
+      "componentName": "email-1, envelope",
+      "variantName": "filled=on, stroke=1.5, radius=2, join=round",
+      "figmaUrl": "https://www.figma.com/design/DHvlntO88oQJCoiawCCr3d/central-icon-system-v1.35?node-id=5658-58225",
+      "nativeSize": {
+        "width": 24,
+        "height": 24
+      },
+      "vectorNodeIds": [
+        "5658:58226"
+      ],
+      "fillGeometryBlobs": [
+        {
+          "id": 9653,
+          "sha256": "9b66a9912cbe78a3918758833fa0c9388b16af4a8fdc141891772ad509855fe0",
+          "commands": 22
+        },
+        {
+          "id": 9654,
+          "sha256": "2ad0603df7d398cf52985d3269acc1fd94412b68eca2d003197fd93e62031625",
+          "commands": 12
+        }
+      ],
+      "svgSha256": "f8974d1e216f779169ea82f05e6a8d60e501b785f59d7ee27c1b3cacb32d90c4",
+      "symbolId": "email",
+      "spriteHref": "sprite.svg#email"
+    }
+  ],
+  "sprite": {
+    "file": "sprite.svg",
+    "sha256": "9e2b4bb8aa68eff2e8c4a58176e210bd1b4722ab0cc7735cfdae6a2f04ded4f8",
+    "method": "Original SVG groups copied into symbols without changing geometry. Symbols preserve currentColor, stroke=none, winding rules, and 24px bounds."
+  }
+}
