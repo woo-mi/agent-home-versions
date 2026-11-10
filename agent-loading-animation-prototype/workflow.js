@@ -215,7 +215,7 @@
       button.id = `${id}-${button.dataset.version}-option`;
       button.setAttribute('aria-controls', figurePanel.id);
     });
-    document.body.append(picker);
+    picker.remove();
     const panels = { v1: { element: illustration.querySelector('.build-illustration'), render: renderV1 } };
     ['v2', 'v3', 'v4', 'v5', 'v6', 'v7', 'v8', 'v9', 'v10', 'v11'].forEach((key) => {
       const panel = window.AgentWorkflowVariants[key].create({ id: `${id}-${key}`, items: TILES.items });
